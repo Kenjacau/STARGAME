@@ -2,9 +2,13 @@ package controllers;
 
 import java.io.IOException;
 import java.util.Scanner;
+
+import javax.xml.ws.Response;
+
 import org.apache.commons.lang3.text.WordUtils;
 
 import obstacles.*;
+import playerCharacter.Captain;
 
 /*
 Class: GameController
@@ -23,6 +27,19 @@ public class GameController {
 	 * @throws ClassNotFoundException 
 	 */
 	public static void main (String[] args) throws IOException{
+		Scanner in = new Scanner(System.in); 
+		
+		System.out.println("Hello Captain! Welcome to the world.");
+		System.out.println("Would you like to load a save game? Please enter 'Y' or 'N'");
+		String loadSave = in.nextLine(); 
+		if (loadSave.toLowerCase() == "Y") {
+			System.out.println("Write this method.");
+		}
+		else {
+			setCaptainName(); 
+			displayMainMenu(); 
+		}
+		
 		
 	}
 	
@@ -31,15 +48,15 @@ public class GameController {
 	 * Displays the main menu on the console.
 	 * @return void
 	 */
-	public void displayMainMenu() {
-		//TODO: Write menu
+	public static void displayMainMenu() {
+		displayCrewSelectionMenu(); 
 	}
 	
 	/**displayCrewSelectionMenu()
 	 * Displays the crew selection menu on the console.
 	 * @return void
 	 */
-	public void displayCrewSelectionMenu() {
+	public static void displayCrewSelectionMenu() {
 		//TODO: Write menu
 		final int MAX_CREW_SIZE = 3; 
 		Scanner in = new Scanner(System.in); 		
@@ -100,7 +117,7 @@ public class GameController {
 	 * Confirms the captain's crew selection
 	 * @param selectedCrew An array of strings with crew names. 
 	 */
-	public void confirmCrew(String[] selectedCrew) {
+	public static void confirmCrew(String[] selectedCrew) {
 		Boolean correctCrew = false;
 		Scanner in = new Scanner(System.in); 
 	
@@ -162,6 +179,39 @@ public class GameController {
 		
 		return saveGameNow; 
 	}
+	
+	/**setCaptainName()
+	 * Asks the Captain for a name!
+	 * @param none
+	 * @return void
+	 */
+	public static void setCaptainName() {
+		Scanner in = new Scanner(System.in); 
+		
+		System.out.println("First time Captain, huh? That's ok."); 
+		System.out.println("There are a few things we must do before we begin.");
+		System.out.println("What's your name, Captain?");
+		String captainName = in.nextLine(); 
+		
+		System.out.println(captainName + " eh? You sure? Please enter 'Y' or 'N'.");
+		String youSure = in.nextLine().toLowerCase(); 
+		System.out.println(youSure);
+			
+		if (youSure.equals("y")) { 
+			System.out.println("Great, Captain! Let's get started.");
+			Captain.setCaptainName(captainName);
+		}
+		
+		else {
+			System.out.println("Ok! Let's try again!"); 
+			setCaptainName(); 
+		}
+		
+		
+		
+		//Cleanup
+		in.close();
+		}
 		
 	//END MENU METHODS-------------------------------------------------------
 	
@@ -230,7 +280,7 @@ public class GameController {
 	 * @param crew Array of crew members.
 	 * @return fullCrew Boolean flag for full crew.
 	 */
-	public Boolean doesPlayerHaveFullCrew(String[] crew) {
+	public static Boolean doesPlayerHaveFullCrew(String[] crew) {
 		Boolean fullCrew = null;
 		
 		if (crew.length != 3) {
