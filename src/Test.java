@@ -3,4 +3,7 @@
  * This is Travis attempting to use GIT
  */
 public class Test {
+	public static void main(String[] args){
+		//Added void main to test Eclipse and IntelliJ compatability
+	}
 }
