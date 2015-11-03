@@ -1,0 +1,1 @@
+Testing why bin folder not committing to Git. I guess it is only used for processing on our individual computers. Git automatically ignores bin folder. 
