@@ -27,16 +27,14 @@ public class GameController {
 		
 		System.out.println("Hello Captain! Welcome to the world.");
 		System.out.println("Would you like to load a save game? Please enter 'Y' or 'N'");
-		String loadSave = in.nextLine(); 
-		if (loadSave.toLowerCase() == "Y") {
+		String loadSave = in.nextLine().toLowerCase(); 
+		if (loadSave.equals("y")) {
 			System.out.println("Write this method.");
 		}
 		else {
 			setCaptainName(); 
 			displayMainMenu(); 
 		}
-		
-		
 	}
 	
 	//MENU METNODS ------------------------------------------------------------
