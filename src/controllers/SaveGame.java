@@ -35,7 +35,11 @@ public class SaveGame {
 	 * @return void
 	 */
 	public static void readInData(String path) throws IOException {
-	
+		//TODO: Read in current number of saves.
+		//TODO: Read in captain's name and set it. 
+		//TODO: Read in captain's crew and set them.
+		//TODO: Read in Planets Visited and set them.
+		//TODO: Read in Bosses defeated and set them.
 	}
 	
 	/**addVisistedPlanet()

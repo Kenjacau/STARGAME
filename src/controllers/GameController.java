@@ -2,11 +2,7 @@ package controllers;
 
 import java.io.IOException;
 import java.util.Scanner;
-
-import javax.xml.ws.Response;
-
 import org.apache.commons.lang3.text.WordUtils;
-
 import obstacles.*;
 import playerCharacter.Captain;
 
@@ -60,32 +56,29 @@ public class GameController {
 		//TODO: Write menu
 		final int MAX_CREW_SIZE = 3; 
 		Scanner in = new Scanner(System.in); 		
-		String[] availableCrew = new String[] {"Crew1", "Crew2", "Crew3", "Crew4"}; //Add real crew members 
+		String[] availableCrew = new String[] {"Navigation Officer", "Security Officer", "Tactical Officer", "Survey Officer" , "Sentinel Bot", "Engineer"};
 		String[] selectedCrew = new String[MAX_CREW_SIZE]; 
 
-		System.out.println("Captain! You must select a crew!");
+		System.out.println("Captain! You must select a crew! You can only choose three!"); //Yeah, I made that up.
 		System.out.println("Here is the list of available members:");
 		for (String s : availableCrew) {
-			System.out.println(s + "?");
+			System.out.println(s + "?\n");
 		}
-		System.out.println("Please type three crew members, and press enter between each one!");
-		
+
 		//The Apache clause is an attempt to move every keystroke to lower case, and then appropriately capitalize the crew members. 
-		for (int i = 1; i <= MAX_CREW_SIZE; i++) {
-			selectedCrew[i] = WordUtils.capitalizeFully(in.nextLine().toLowerCase()); 
-			i++; 
-		}
+		System.out.println("Please type three crew members, and press enter between each one!");		
+		selectedCrew[0] = WordUtils.capitalizeFully(in.nextLine().toLowerCase());
+		selectedCrew[1] = WordUtils.capitalizeFully(in.nextLine().toLowerCase()); 
+		selectedCrew[2] = WordUtils.capitalizeFully(in.nextLine().toLowerCase()); 
+		
 		
 		//Confirm selection. This method is an external recurse to the displayCrewSelectionMenu() method. 
 		confirmCrew(selectedCrew); 
 		
 		if (!doesPlayerHaveFullCrew(selectedCrew)) {
 			System.out.println("Something screwed up! Let's do that again!");
-			displayCrewSelectionMenu(); 
+			displayCrewSelectionMenu(); //recurse. 
 		}
-		
-		//Cleanup.
-		in.close();
 	}
 	
 	/**displayPlanetSelectionMenu()
@@ -123,20 +116,21 @@ public class GameController {
 	
 		//Interaction with user:
 		System.out.println("Captain! Have you selected the correct crew members?");
-		System.out.println("You have currently selected: ");
-		
-		for (String s : selectedCrew) {
-			System.out.println(s + "\n");
+		StringBuilder selection = new StringBuilder("You have currently selected: ");  	
+		for (int i = 0; i <= 1; i++) { //Gettin' the first two.
+			selection.append(selectedCrew[i] + ", "); 
 		}
-		System.out.println("If correct, please type 'T'. If incorrect, please type 'F'.");
-		String replyFromCaptain = in.next(); 
-		if (replyFromCaptain.toLowerCase() == "t") {
+		selection.append("and " + selectedCrew[2] + "."); 
+		System.out.println(selection);
+		
+		System.out.println("If correct, please type 'Y'. If incorrect, please type 'N'.");
+		System.out.println("Please note: if the names aren't exact, the crew can't help you!");
+		String replyFromCaptain = in.next().toLowerCase(); 
+		if (replyFromCaptain.toLowerCase().equals("y")) {
 			correctCrew = true;
+			Captain.setCrew(selectedCrew); //This passes the crew array on the captain object. 
 		}
-		
-		//Cleanup input.
-		in.close(); 
-		
+				
 		//Recurse if incorrect. 
 		if (!correctCrew) {
 			displayCrewSelectionMenu(); 
@@ -174,9 +168,6 @@ public class GameController {
 			saveGameNow = false;
 		}
 		
-		//Cleanup
-		in.close(); 
-		
 		return saveGameNow; 
 	}
 	
@@ -195,7 +186,6 @@ public class GameController {
 		
 		System.out.println(captainName + " eh? You sure? Please enter 'Y' or 'N'.");
 		String youSure = in.nextLine().toLowerCase(); 
-		System.out.println(youSure);
 			
 		if (youSure.equals("y")) { 
 			System.out.println("Great, Captain! Let's get started.");
@@ -206,13 +196,7 @@ public class GameController {
 			System.out.println("Ok! Let's try again!"); 
 			setCaptainName(); 
 		}
-		
-		
-		
-		//Cleanup
-		in.close();
-		}
-		
+	}	
 	//END MENU METHODS-------------------------------------------------------
 	
 	
@@ -310,5 +294,4 @@ public class GameController {
 	}
 
 	//END ADMIN METHODS-----------------------------------------------------
-
 }
