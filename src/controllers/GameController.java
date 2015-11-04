@@ -34,6 +34,7 @@ public class GameController {
 		else {
 			setCaptainName(); 
 			displayMainMenu(); 
+			displayPlanetSelectionMenu(); 
 		}
 	}
 	
@@ -83,16 +84,48 @@ public class GameController {
 	 * Displays the planet selection menu on the console.
 	 * @return void
 	 */
-	public void displayPlanetSelectionMenu() {
-		//TODO: Write menu
+	public static void displayPlanetSelectionMenu() {
+		Scanner in = new Scanner(System.in); 
+		String nextPlanet = ""; 
+		String[] planetList = Planet.getPlanetList().clone();
+		System.out.println("Captain! Which planet would you like to visit? Here are a list of possible planets:");
+		for (String s : planetList) {
+			System.out.println(s);
+		}
+		System.out.println("Please enter the planet you'd like to visit. Remember, type the planet name exactly or we'll end up lost in space!!");
+		nextPlanet = in.nextLine().toLowerCase(); 
+		//TODO: Planet instantiation constructor here
+		obstacles.Planet target = new Planet(nextPlanet); //TODO: Need arguments. This is also kinda janky. 
+		displayPlanetMenu(target); 
 	}
 	
-	/**displayPlanetMenu()
+	/**displayPlanetMenu(Planet target)
 	 * Displays the planet menu on the console.
 	 * @return void
 	 */
-	public void displayPlanetMenu() {
-		//TODO: Write menu
+	public static void displayPlanetMenu(Planet targetPlanet) {
+		Scanner in = new Scanner(System.in); 
+		
+		System.out.println("Captain! We have landed on " + WordUtils.capitalizeFully(targetPlanet.getPlanetName()) + "!"); //Capitalization is for the civilized. 
+		System.out.println("Here is the planet's Wikipedia Entry:");
+		System.out.println(targetPlanet.getDescription());
+		System.out.println("What would you like to do? You may Explore (type 'E'), you may Scan (type 'S') or you may choose another planet (type 'get me out of here').");
+		
+		String captainsResponse = in.nextLine().toLowerCase(); //Blocking statement.
+		
+		if (captainsResponse.equals("get me out of here")) {
+			displayPlanetSelectionMenu();
+		}
+		
+		else if (captainsResponse.equals("e")) {
+			System.out.println(targetPlanet.getExploreMessage()); 
+			//TODO: Something
+		}
+		
+		else if (captainsResponse.equals("s")) {
+			System.out.println(targetPlanet.getScanMessage());
+			//TODO: What here?			
+		}	
 	}
 	
 	/**displayCombatMenu()
@@ -194,7 +227,9 @@ public class GameController {
 			System.out.println("Ok! Let's try again!"); 
 			setCaptainName(); 
 		}
-	}	
+	}
+
+
 	//END MENU METHODS-------------------------------------------------------
 	
 	
