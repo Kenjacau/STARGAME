@@ -1,5 +1,6 @@
 package controllers;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import obstacles.*;
@@ -16,12 +17,37 @@ The SaveGame class houses all functionality for saving and loading games.
 */
 public class SaveGame {
 	private final static String PATH = System.getProperty("user.home") + "\\Desktop\\";
+	private final static String EXTENSION = ".ser"; 
 	private String saveGameName = ""; 
-	private static ArrayList<Planet> planetsVisited = new ArrayList<Planet>(); 
-	private static ArrayList<Enemy> bossesDefeated = new ArrayList<Enemy>(); 
+	private static ArrayList<String> planetsVisited = new ArrayList<String>(); 
+	private static ArrayList<String> bossesDefeated = new ArrayList<String>(); 
 	private static String captainName; 
 	private int numPreviousSaves; 
-
+	
+	/**SaveGame()
+	 * Full constructor for the save game object.
+	 * @param fileName The name of the file. 
+	 * @param captainName The name of the captain. 
+	 * @param planetsVisited The planets visited by the captain in previous games. 
+	 * @param bossesDefeated The bosses defeated by the captain in previous games. 
+	 * @return void
+	 */
+	public SaveGame (String fileName, String captainName, ArrayList<String> planetsVisited, ArrayList<String> bossesDefeated) {
+		String fullPath = getPATH().concat(fileName + SaveGame.getEXTENSION());
+		this.captainName = captainName; 
+		this.planetsVisited = planetsVisited;
+		this.bossesDefeated = bossesDefeated; 
+	}
+	
+	/**SaveGame()
+	 * One-arg constructor for the save game object.
+	 * @param fileName The name of the file. Sits on the desktop, the extension will be EXTENSION. 
+	 * @return void
+	 */
+	public SaveGame (String fileName) {
+		
+	}
+	
 	/**writeOutData()
 	 * Writes savegame data to a file. 
 	 * @param path Path to which to write the file. 
@@ -32,16 +58,26 @@ public class SaveGame {
 	}
 	
 	/**readInData()
-	 * Reads savegame data in for game start.  
-	 * @param path Path to which to write the file. 
+	 * Reads save game data in for game start.  
+	 * @param path Path to which to read the file. 
 	 * @return void
 	 */
-	public static void readInData(String path) throws IOException {
+	public static SaveGame readInData(String path) throws IOException {
+		File saveGameFile = new File(path); 
+		String fileName = ""; 
+		String captainName = ""; 
+		ArrayList<String> planetsVisited = new ArrayList<String>(); 
+		ArrayList<String> bossesDefeated = new ArrayList<String>(); 
+		
 		//TODO: Read in current number of saves.
 		//TODO: Read in captain's name and set it. 
 		//TODO: Read in captain's crew and set them.
 		//TODO: Read in Planets Visited and set them.
 		//TODO: Read in Bosses defeated and set them.
+		
+		SaveGame returningCaptain = new SaveGame(fileName, captainName, planetsVisited, bossesDefeated);
+		return returningCaptain; 
+		
 	}
 	
 	/**addVisistedPlanet()
@@ -49,8 +85,8 @@ public class SaveGame {
 	 * @param planet Planet to add. 
 	 * @return void
 	 */
-	public static void addVisistedPlanet(Planet planet) {
-		planetsVisited.add(planet); 
+	public static void addVisistedPlanet(String planetName) {
+		planetsVisited.add(planetName); 
 	}
 	
 	/**addBossDefeated()
@@ -58,34 +94,34 @@ public class SaveGame {
 	 * @param enemy Enemy to add. 
 	 * @return void
 	 */
-	public static void addBossDefeated(Enemy enemy) {
-		bossesDefeated.add(enemy); 
+	public static void addBossDefeated(String enemyName) {
+		bossesDefeated.add(enemyName); 
 	}
 	/**
 	 * @return the planetsVisited
 	 */
-	public static ArrayList<Planet> getPlanetsVisited() {
+	public static ArrayList<String> getPlanetsVisited() {
 		return planetsVisited;
 	}
 
 	/**
 	 * @param planetsVisited the planetsVisited to set
 	 */
-	public static void setPlanetsVisited(ArrayList<Planet> planetsVisited) {
+	public static void setPlanetsVisited(ArrayList<String> planetsVisited) {
 		SaveGame.planetsVisited = planetsVisited;
 	}
 
 	/**
 	 * @return the bossesDefeated
 	 */
-	public static ArrayList<Enemy> getBossesDefeated() {
+	public static ArrayList<String> getBossesDefeated() {
 		return bossesDefeated;
 	}
 
 	/**
 	 * @param bossesDefeated the bossesDefeated to set
 	 */
-	public static void setBossesDefeated(ArrayList<Enemy> bossesDefeated) {
+	public static void setBossesDefeated(ArrayList<String> bossesDefeated) {
 		SaveGame.bossesDefeated = bossesDefeated;
 	}
 
@@ -137,4 +173,12 @@ public class SaveGame {
 	public void setNumPreviousSaves(int numPreviousSaves) {
 		this.numPreviousSaves = numPreviousSaves;
 	}
+
+	/**
+	 * @return the extension
+	 */
+	public static String getEXTENSION() {
+		return EXTENSION;
+	}
+
 }

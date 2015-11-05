@@ -51,9 +51,8 @@ public class GameController {
 			setStartFromSave(true); 
 			System.out.println("The savegame file must be on your desktop.");
 			System.out.println("Please enter the name of the savegame file without the file extension: ");
-			String saveGamePath = SaveGame.getPATH().concat(in.nextLine().toLowerCase() + ".ser"); 
-			SaveGame.readInData(saveGamePath); 
-			
+			String saveGamePath = SaveGame.getPATH().concat(in.nextLine().toLowerCase()); 
+			SaveGame returningCaptain = new SaveGame(saveGamePath);
 		}
 		else {
 			//Blocking statements are used to halt execution at each of these methods. 
