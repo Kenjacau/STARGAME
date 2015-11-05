@@ -1,6 +1,7 @@
 package controllers;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
 import org.apache.commons.lang3.text.WordUtils;
 import obstacles.*;
@@ -11,27 +12,51 @@ Class: GameController
 The GameController class is the primary controller, featuring the interfaces, the runnables and the starting point for the game. 
 - Author: @jbroughton
 - joshua.c.broughton@gmail.com, jbroughton@ggc.edu
-- Version: 0.0.0
+- Version: 0.0.2
 - 2015-11-03    
 */
 public class GameController {
+	private static boolean startFromSave = false;
+	private static int PLANETS_WITH_NAVIGATION = 3; 
+	private static int PLANETS_WITHOUT_NAVIGATION = 2; 
+	
+	/**isStartFromSave
+	 * Gets the start from save flag. 
+	 * @return the startFromSave
+	 */
+	public static boolean isStartFromSave() {
+		return startFromSave;
+	}
+
+	/**setStartFromSave
+	 * Sets the startFromSave flag. 
+	 * @param startFromSave the startFromSave to set
+	 */
+	public static void setStartFromSave(boolean newStartFromSave) {
+		startFromSave = newStartFromSave;
+	}
 	
 	/**main()
 	 * This serves as the starting point for the GameController class. 
 	 * @param args Command line arguments
 	 * @throws IOException 
-	 * @throws ClassNotFoundException 
 	 */
-	public static void main (String[] args) throws IOException{
+	public static void main (String[] args) throws IOException {
 		Scanner in = new Scanner(System.in); 
 		
 		System.out.println("Hello Captain! Welcome to the world.");
 		System.out.println("Would you like to load a save game? Please enter 'Y' or 'N'");
 		String loadSave = in.nextLine().toLowerCase(); 
 		if (loadSave.equals("y")) {
-			System.out.println("Write this method.");
+			setStartFromSave(true); 
+			System.out.println("The savegame file must be on your desktop.");
+			System.out.println("Please enter the name of the savegame file without the file extension: ");
+			String saveGamePath = SaveGame.getPATH().concat(in.nextLine().toLowerCase() + ".ser"); 
+			SaveGame.readInData(saveGamePath); 
+			
 		}
 		else {
+			//Blocking statements are used to halt execution at each of these methods. 
 			setCaptainName(); 
 			displayMainMenu(); 
 			displayPlanetSelectionMenu(); 
@@ -44,7 +69,13 @@ public class GameController {
 	 * @return void
 	 */
 	public static void displayMainMenu() {
-		displayCrewSelectionMenu(); 
+		if (!isStartFromSave()) { 
+			displayCrewSelectionMenu(); 
+		}
+		
+		else {
+			//TODO: Load shit from save game. 
+		}
 	}
 	
 	/**displayCrewSelectionMenu()
@@ -57,26 +88,32 @@ public class GameController {
 		Scanner in = new Scanner(System.in); 		
 		String[] availableCrew = new String[] {"Navigation Officer", "Security Officer", "Tactical Officer", "Survey Officer" , "Sentinel Bot", "Engineer"};
 		String[] selectedCrew = new String[MAX_CREW_SIZE]; 
-
-		System.out.println("Captain! You must select a crew! You can only choose three!"); //Yeah, I made that up.
-		System.out.println("Here is the list of available members:");
-		for (String s : availableCrew) {
-			System.out.println(s + "?\n");
+		if (!isStartFromSave()) {
+			System.out.println("Captain! You must select a crew! You can only choose three!"); //Yeah, I made that up.
+			System.out.println("Here is the list of available members:");
+			for (String s : availableCrew) {
+				System.out.println(s + "?\n");
+			}
+	
+			//The Apache clause is an attempt to move every keystroke to lower case, and then appropriately capitalize the crew members. 
+			System.out.println("Please type three crew members, and press enter between each one!");		
+			selectedCrew[0] = WordUtils.capitalizeFully(in.nextLine().toLowerCase());
+			selectedCrew[1] = WordUtils.capitalizeFully(in.nextLine().toLowerCase()); 
+			selectedCrew[2] = WordUtils.capitalizeFully(in.nextLine().toLowerCase()); 
+			
+			
+			//Confirm selection. This method is an external recurse to the displayCrewSelectionMenu() method. 
+			confirmCrew(selectedCrew); 
+			
+			if (!doesPlayerHaveFullCrew(selectedCrew)) {
+				System.out.println("Something screwed up! Let's do that again!");
+				displayCrewSelectionMenu(); //recurse. 
+			}
 		}
-
-		//The Apache clause is an attempt to move every keystroke to lower case, and then appropriately capitalize the crew members. 
-		System.out.println("Please type three crew members, and press enter between each one!");		
-		selectedCrew[0] = WordUtils.capitalizeFully(in.nextLine().toLowerCase());
-		selectedCrew[1] = WordUtils.capitalizeFully(in.nextLine().toLowerCase()); 
-		selectedCrew[2] = WordUtils.capitalizeFully(in.nextLine().toLowerCase()); 
-		
-		
-		//Confirm selection. This method is an external recurse to the displayCrewSelectionMenu() method. 
-		confirmCrew(selectedCrew); 
-		
-		if (!doesPlayerHaveFullCrew(selectedCrew)) {
-			System.out.println("Something screwed up! Let's do that again!");
-			displayCrewSelectionMenu(); //recurse. 
+		else {
+			System.out.println("Captain, this is who you're travelling with: ");
+			//TODO: Print out crew members from save game.
+			displayPlanetSelectionMenu(); 
 		}
 	}
 	
@@ -87,11 +124,36 @@ public class GameController {
 	public static void displayPlanetSelectionMenu() {
 		Scanner in = new Scanner(System.in); 
 		String nextPlanet = ""; 
-		String[] planetList = Planet.getPlanetList().clone();
-		System.out.println("Captain! Which planet would you like to visit? Here are a list of possible planets:");
+		ArrayList<String> planetList = new ArrayList<String>(); 
+		if (!isStartFromSave()) {
+			 for (String planetName : Planet.getPlanetList()) {
+				 planetList.add(planetName);
+				 planetList.trimToSize(); 
+			 }
+			 
+		}
+		else {
+			System.out.println("Here are all the planets you've already visited: " + "INSERT"); //TODO: Get list of visited planets in there from save game. 	
+		}
+		
+		System.out.println("Captain! Which planet would you like to visit? Here is a list of possibilites: ");
 		for (String s : planetList) {
 			System.out.println(s);
 		}
+		
+		//TODO: Fix the hasNavigatioOfficer method. 
+		if (Captain.hasNavigationOfficer()) {
+			for (int i = 1; i < PLANETS_WITH_NAVIGATION; i++) { //i = 1 to avoid off-by-one
+				System.out.println(Planet.getRandomPlanet(planetList));
+			}
+		}
+		
+		else {
+			for (int i = 1; i < PLANETS_WITHOUT_NAVIGATION; i++) { //i = 1 to avoid off-by-one
+				System.out.println(Planet.getRandomPlanet(planetList));
+			}
+		}
+		
 		System.out.println("Please enter the planet you'd like to visit. Remember, type the planet name exactly or we'll end up lost in space!!");
 		nextPlanet = in.nextLine().toLowerCase(); 
 		//TODO: Planet instantiation constructor here
@@ -105,27 +167,33 @@ public class GameController {
 	 */
 	public static void displayPlanetMenu(Planet targetPlanet) {
 		Scanner in = new Scanner(System.in); 
-		
-		System.out.println("Captain! We have landed on " + WordUtils.capitalizeFully(targetPlanet.getPlanetName()) + "!"); //Capitalization is for the civilized. 
-		System.out.println("Here is the planet's Wikipedia Entry:");
-		System.out.println(targetPlanet.getDescription());
-		System.out.println("What would you like to do? You may Explore (type 'E'), you may Scan (type 'S') or you may choose another planet (type 'get me out of here').");
-		
-		String captainsResponse = in.nextLine().toLowerCase(); //Blocking statement.
-		
-		if (captainsResponse.equals("get me out of here")) {
-			displayPlanetSelectionMenu();
+		if (!Planet.isBossPlanet()) {
+			System.out.println("Captain! We have landed on " + WordUtils.capitalizeFully(targetPlanet.getPlanetName()) + "!"); //Capitalization is for the civilized. 
+			System.out.println("Here is the planet's Wikipedia Entry:");
+			System.out.println(targetPlanet.getDescription());
+			System.out.println("What would you like to do? You may Explore (type 'E'), you may Scan (type 'S') or you may choose another planet (type 'get me out of here').");
+			
+			String captainsResponse = in.nextLine().toLowerCase(); //Blocking statement.
+			
+			if (captainsResponse.equals("get me out of here")) {
+				displayPlanetSelectionMenu();
+			}
+			
+			else if (captainsResponse.equals("e")) {
+				System.out.println(targetPlanet.getExploreMessage()); 
+				//TODO: Something
+			}
+			
+			else if (captainsResponse.equals("s")) {
+				System.out.println(targetPlanet.getScanMessage());
+				//TODO: What here?			
+			}
 		}
 		
-		else if (captainsResponse.equals("e")) {
-			System.out.println(targetPlanet.getExploreMessage()); 
-			//TODO: Something
+		else {
+			System.out.println("Captain! We are about to be ambushed!!"); //TODO: Travis, what do you want to do with bosses? 
+			//TODO: Enter combat. 
 		}
-		
-		else if (captainsResponse.equals("s")) {
-			System.out.println(targetPlanet.getScanMessage());
-			//TODO: What here?			
-		}	
 	}
 	
 	/**displayCombatMenu()
@@ -162,11 +230,10 @@ public class GameController {
 			Captain.setCrew(selectedCrew); //This passes the crew array on the captain object. 
 		}
 				
-		//Recurse if incorrect. 
+		//Recurse if crew incorrect. 
 		if (!correctCrew) {
 			displayCrewSelectionMenu(); 
 		}	
-		
 	}
 	
 	/**displayWinMessage()
@@ -248,7 +315,7 @@ public class GameController {
 	}
 	
 	/**engageEnemy()
-	 * Enagages the enemy on the selected planet in combat. 
+	 * Engages the enemy on the selected planet in combat. 
 	 * @param selectedPlanet The planet on which the Captain sits!
 	 * @return void
 	 */
@@ -325,6 +392,5 @@ public class GameController {
 		String[] authors = new String[] {"Christian de Luna", "Travis Keating", "Kenny Cauthen", "Joshua Broughton"};
 		return authors;
 	}
-
 	//END ADMIN METHODS-----------------------------------------------------
 }

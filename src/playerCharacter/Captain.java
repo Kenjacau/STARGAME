@@ -1,5 +1,12 @@
 package playerCharacter;
-
+/*
+Class: Captain
+TODO: Write class definition here.
+- Author: @CdLuna
+- TODO: Write your email address here.
+- Version: 0.0.0
+- TODO: Date goes here.    
+*/
 public class Captain {
 	
 	private static String captainName = "";
@@ -26,5 +33,8 @@ public class Captain {
 	public static void setCrew (String[] crew) {
 		Captain.captainCrew = crew; 
 	}
-	
+
+	public static boolean hasNavigationOfficer() {
+		return true; 
+	}
 }

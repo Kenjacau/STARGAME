@@ -11,15 +11,17 @@ Class: SaveGame
 The SaveGame class houses all functionality for saving and loading games.  
 - Author: @jbroughton
 - joshua.c.broughton@gmail.com, jbroughton@ggc.edu
-- Version: 0.0.0
-- 2015-11-03    
+- Version: 0.0.2
+- 2015-11-04    
 */
 public class SaveGame {
-	private final String PATH = ""; 
+	private final static String PATH = System.getProperty("user.home") + "\\Desktop\\";
+	private String saveGameName = ""; 
 	private static ArrayList<Planet> planetsVisited = new ArrayList<Planet>(); 
 	private static ArrayList<Enemy> bossesDefeated = new ArrayList<Enemy>(); 
-	private static String playerName; 
-	
+	private static String captainName; 
+	private int numPreviousSaves; 
+
 	/**writeOutData()
 	 * Writes savegame data to a file. 
 	 * @param path Path to which to write the file. 
@@ -59,5 +61,80 @@ public class SaveGame {
 	public static void addBossDefeated(Enemy enemy) {
 		bossesDefeated.add(enemy); 
 	}
-		
+	/**
+	 * @return the planetsVisited
+	 */
+	public static ArrayList<Planet> getPlanetsVisited() {
+		return planetsVisited;
+	}
+
+	/**
+	 * @param planetsVisited the planetsVisited to set
+	 */
+	public static void setPlanetsVisited(ArrayList<Planet> planetsVisited) {
+		SaveGame.planetsVisited = planetsVisited;
+	}
+
+	/**
+	 * @return the bossesDefeated
+	 */
+	public static ArrayList<Enemy> getBossesDefeated() {
+		return bossesDefeated;
+	}
+
+	/**
+	 * @param bossesDefeated the bossesDefeated to set
+	 */
+	public static void setBossesDefeated(ArrayList<Enemy> bossesDefeated) {
+		SaveGame.bossesDefeated = bossesDefeated;
+	}
+
+	/**
+	 * @return the captainName
+	 */
+	public static String getCaptainName() {
+		return captainName;
+	}
+
+	/**
+	 * @param captainName the captainName to set
+	 */
+	public static void setCaptainName(String captainName) {
+		SaveGame.captainName = captainName;
+	}
+
+	/**
+	 * @return the PATH
+	 */
+	public static String getPATH() {
+		return PATH;
+	}
+
+	/**
+	 * @return the numPreviousSaves
+	 */
+	public int getNumPreviousSaves() {
+		return numPreviousSaves;
+	}
+
+	/**
+	 * @return the saveGameName
+	 */
+	public String getSaveGameName() {
+		return saveGameName;
+	}
+
+	/**
+	 * @param saveGameName the saveGameName to set
+	 */
+	public void setSaveGameName(String saveGameName) {
+		this.saveGameName = saveGameName;
+	}
+
+	/**
+	 * @param numPreviousSaves the numPreviousSaves to set
+	 */
+	public void setNumPreviousSaves(int numPreviousSaves) {
+		this.numPreviousSaves = numPreviousSaves;
+	}
 }

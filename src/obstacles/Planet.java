@@ -1,5 +1,8 @@
 package obstacles;
 
+import java.util.ArrayList;
+import java.util.Random;
+
 /*
 Class: Planet
 TODO: Write class definition here.
@@ -17,7 +20,7 @@ public class Planet {
 			"Lisus", "Insula", "Heralda", "Kepler-11f", "Nasqueron", "Altair IV", "TrES-2b", 
 			"55 Cancri e", "Gilese 436 b", "Rignus", "Helnetia", "Nitia", "Jor", "Jmea", 
 			"Atani Starship", "Drabenus", "Eos", "Zaria-3a", "Alpha08c", "Prion", "Planet Z", 
-			"Waldovo", "Genesis", "Gaia"}; 
+			"Waldovo", "Genesis", "Gaia"}; //I entered these to get myself a list of planets in the GameController. --JCB
 	
 	public Enemy getEnemy()  {
 		//TODO: Return an enemy for the GameController class.
@@ -40,9 +43,6 @@ public class Planet {
 		return null;
 	}
 	
-	/**
-	 * @return the planetList
-	 */
 	public static String[] getPlanetList() {
 		return planetList;
 	}
@@ -51,5 +51,14 @@ public class Planet {
 		//TODO: Constructor with args. I added "name" just to get shit started. --JCB
 		this.planetName = name; 
 	}
-
+	
+	public static boolean isBossPlanet() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	
+	public static String getRandomPlanet(ArrayList<String> availablePlanets) {
+		int index = new Random().nextInt(availablePlanets.size()); 
+		return availablePlanets.get(index); 
+	}
 }
