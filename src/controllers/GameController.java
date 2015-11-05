@@ -376,12 +376,23 @@ public class GameController {
 	 * Exits the game.
 	 * @param none
 	 * @return void
+	 * @throws IOException 
 	 */
-	public static void endGame() {
+	public static void endGame() throws IOException {
 		System.out.println("Goodbye, Captain!");
 		if (!startFromSave) {
-			if (askIfPlayerWantsToSave()) {
-				//TODO: SaveGameConstructor here.  
+			try {
+				if (askIfPlayerWantsToSave()) {
+					if (!startFromSave) {
+						newCaptain.writeOutData(newCaptain, newCaptain.getFullPath()); //Yes, this could be DOUBLE extracted. 
+					}
+					
+					else {
+						returningCaptain.writeOutData(returningCaptain, returningCaptain.getFullPath());
+					}
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
 		}
 		else {

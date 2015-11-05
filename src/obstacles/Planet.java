@@ -59,6 +59,12 @@ public class Planet {
 		return false;
 	}
 	
+	/**getRandomPlanet
+	 * STATIC METHOD
+	 * Returns the name of a random planet. 
+	 * @param availablePlanets An arrayList of Strings: available planet names.  
+	 * @return A single, random element in the paramater. 
+	 */
 	public static String getRandomPlanet(ArrayList<String> availablePlanets) {
 		int index = ThreadLocalRandom.current().nextInt(0, availablePlanets.size());
 		return availablePlanets.get(index); 

@@ -13,8 +13,8 @@ The SaveGame class houses all functionality for saving and loading games.
 - 2015-11-04    
 */
 public class SaveGame {
-	private final static String PATH = System.getProperty("user.home") + "\\Desktop\\";
 	private final static String EXTENSION = ".ser"; 
+	private final static String PATH = System.getProperty("user.home") + "\\Desktop\\";
 	private String saveGameName = ""; 
 	private static ArrayList<String> planetsVisited = new ArrayList<String>(); 
 	private static ArrayList<String> bossesDefeated = new ArrayList<String>(); 
@@ -53,7 +53,15 @@ public class SaveGame {
 	 * @param path Path to which to write the file. 
 	 * @return void
 	 */
-	public static void writeOutData(String path) throws IOException {
+	public static void writeOutData(SaveGame thisGame, String path) throws IOException {
+		 File saveGame = new File(path); 
+		 if (saveGame.exists()) {
+			 //TODO: Clear the file and rewrite.
+		 }
+		 
+		 else {
+			 //TODO: Create the file and write.
+		 }
 	
 	}
 	
@@ -194,5 +202,18 @@ public class SaveGame {
 	 */
 	public static void setCrew(ArrayList<String> crew) {
 		SaveGame.crew = crew;
+	}
+	
+	/**getFullPath
+	 * STATIC METHOD
+	 * Returns a concatenation of the path, captain's name and file extension. 
+	 * Note: added for ease of maintenance later... devs can change the savegame path to whatever using this method. 
+	 * @return fullPath A string like this: 
+	 * 		C:/users/<current user>/CaptainsName.ser
+	 */
+	public static String getFullPath() {
+		String fullPath = getPATH().concat(getCaptainName()); 
+		fullPath = fullPath.concat(getEXTENSION()); 
+		return fullPath; 
 	}
 }
