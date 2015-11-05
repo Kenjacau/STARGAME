@@ -21,6 +21,7 @@ public class SaveGame {
 	private String saveGameName = ""; 
 	private static ArrayList<String> planetsVisited = new ArrayList<String>(); 
 	private static ArrayList<String> bossesDefeated = new ArrayList<String>(); 
+	private static ArrayList<String> crew = new ArrayList<String>(); 
 	private static String captainName; 
 	private int numPreviousSaves; 
 	
@@ -30,13 +31,15 @@ public class SaveGame {
 	 * @param captainName The name of the captain. 
 	 * @param planetsVisited The planets visited by the captain in previous games. 
 	 * @param bossesDefeated The bosses defeated by the captain in previous games. 
+	 * @param crew 
 	 * @return void
 	 */
-	public SaveGame (String fileName, String captainName, ArrayList<String> planetsVisited, ArrayList<String> bossesDefeated) {
+	public SaveGame (String fileName, String captainName, ArrayList<String> planetsVisited, ArrayList<String> bossesDefeated, ArrayList<String> crew) {
 		String fullPath = getPATH().concat(fileName + SaveGame.getEXTENSION());
 		this.captainName = captainName; 
 		this.planetsVisited = planetsVisited;
 		this.bossesDefeated = bossesDefeated; 
+		this.crew = crew; 
 	}
 	
 	/**SaveGame()
@@ -67,7 +70,8 @@ public class SaveGame {
 		String fileName = ""; 
 		String captainName = ""; 
 		ArrayList<String> planetsVisited = new ArrayList<String>(); 
-		ArrayList<String> bossesDefeated = new ArrayList<String>(); 
+		ArrayList<String> bossesDefeated = new ArrayList<String>();
+		ArrayList<String> crew = new ArrayList<String>(); 
 		
 		//TODO: Read in current number of saves.
 		//TODO: Read in captain's name and set it. 
@@ -75,7 +79,7 @@ public class SaveGame {
 		//TODO: Read in Planets Visited and set them.
 		//TODO: Read in Bosses defeated and set them.
 		
-		SaveGame returningCaptain = new SaveGame(fileName, captainName, planetsVisited, bossesDefeated);
+		SaveGame returningCaptain = new SaveGame(fileName, captainName, planetsVisited, bossesDefeated, crew);
 		return returningCaptain; 
 		
 	}
@@ -179,6 +183,20 @@ public class SaveGame {
 	 */
 	public static String getEXTENSION() {
 		return EXTENSION;
+	}
+
+	/**
+	 * @return the crew
+	 */
+	public static ArrayList<String> getCrew() {
+		return crew;
+	}
+
+	/**
+	 * @param crew the crew to set
+	 */
+	public static void setCrew(ArrayList<String> crew) {
+		SaveGame.crew = crew;
 	}
 
 }

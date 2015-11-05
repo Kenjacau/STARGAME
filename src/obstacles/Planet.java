@@ -2,6 +2,7 @@ package obstacles;
 
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 /*
 Class: Planet
@@ -21,6 +22,7 @@ public class Planet {
 			"55 Cancri e", "Gilese 436 b", "Rignus", "Helnetia", "Nitia", "Jor", "Jmea", 
 			"Atani Starship", "Drabenus", "Eos", "Zaria-3a", "Alpha08c", "Prion", "Planet Z", 
 			"Waldovo", "Genesis", "Gaia"}; //I entered these to get myself a list of planets in the GameController. --JCB
+	private static Random randomGenerator; 
 	
 	public Enemy getEnemy()  {
 		//TODO: Return an enemy for the GameController class.
@@ -58,7 +60,7 @@ public class Planet {
 	}
 	
 	public static String getRandomPlanet(ArrayList<String> availablePlanets) {
-		int index = new Random().nextInt(availablePlanets.size()); 
+		int index = ThreadLocalRandom.current().nextInt(0, availablePlanets.size());
 		return availablePlanets.get(index); 
 	}
 }

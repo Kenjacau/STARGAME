@@ -19,28 +19,16 @@ public class GameController {
 	private static boolean startFromSave = false;
 	private static int PLANETS_WITH_NAVIGATION = 3; 
 	private static int PLANETS_WITHOUT_NAVIGATION = 2; 
+	private static SaveGame returningCaptain; 
 	
-	/**isStartFromSave
-	 * Gets the start from save flag. 
-	 * @return the startFromSave
-	 */
-	public static boolean isStartFromSave() {
-		return startFromSave;
-	}
-
-	/**setStartFromSave
-	 * Sets the startFromSave flag. 
-	 * @param startFromSave the startFromSave to set
-	 */
-	public static void setStartFromSave(boolean newStartFromSave) {
-		startFromSave = newStartFromSave;
-	}
 	
 	/**main()
+	 * STATIC METHOD
 	 * This serves as the starting point for the GameController class. 
 	 * @param args Command line arguments
 	 * @throws IOException 
 	 */
+	@SuppressWarnings("static-access") //I'm alone in the woods here.
 	public static void main (String[] args) throws IOException {
 		Scanner in = new Scanner(System.in); 
 		
@@ -52,32 +40,40 @@ public class GameController {
 			System.out.println("The savegame file must be on your desktop.");
 			System.out.println("Please enter the name of the savegame file without the file extension: ");
 			String saveGamePath = SaveGame.getPATH().concat(in.nextLine().toLowerCase()); 
-			SaveGame returningCaptain = new SaveGame(saveGamePath);
+			returningCaptain = new SaveGame(saveGamePath);
+			System.out.println("Welcome back, Captain " + returningCaptain.getCaptainName() + "!");
+			if (returningCaptain.getNumPreviousSaves() <= 3) {
+				Captain.setCaptainName(returningCaptain.getCaptainName()); 		
+				Captain.setCrew((String[])returningCaptain.getCrew().toArray()); //Look, I don't know why I didn't use ArrayLists for everything. ok? 
+			}
+			
+			else {
+				System.out.println("Sorry, " + returningCaptain.getCaptainName() + ". You've been retired. You're just too damn old!");
+				System.out.println("End of line.");
+				endGame(); 
+			}
 		}
 		else {
 			//Blocking statements are used to halt execution at each of these methods. 
 			setCaptainName(); 
 			displayMainMenu(); 
 			displayPlanetSelectionMenu(); 
+			
 		}
 	}
 	
 	//MENU METNODS ------------------------------------------------------------
 	/**displayMainMenu()
+	 * STATIC METHOD
 	 * Displays the main menu on the console.
 	 * @return void
 	 */
 	public static void displayMainMenu() {
-		if (!isStartFromSave()) { 
-			displayCrewSelectionMenu(); 
-		}
-		
-		else {
-			//TODO: Load shit from save game. 
-		}
+		displayCrewSelectionMenu();
 	}
 	
 	/**displayCrewSelectionMenu()
+	 * STATIC METHOD
 	 * Displays the crew selection menu on the console.
 	 * @return void
 	 */
@@ -112,43 +108,53 @@ public class GameController {
 		else {
 			System.out.println("Captain, this is who you're travelling with: ");
 			//TODO: Print out crew members from save game.
+			for (String crewName : returningCaptain.getCrew()) {
+				System.out.println(crewName);
+			}
 			displayPlanetSelectionMenu(); 
 		}
 	}
 	
 	/**displayPlanetSelectionMenu()
+	 * STATIC METHOD
 	 * Displays the planet selection menu on the console.
 	 * @return void
 	 */
 	public static void displayPlanetSelectionMenu() {
 		Scanner in = new Scanner(System.in); 
 		String nextPlanet = ""; 
-		ArrayList<String> planetList = new ArrayList<String>(); 
-		if (!isStartFromSave()) {
-			 for (String planetName : Planet.getPlanetList()) {
-				 planetList.add(planetName);
-				 planetList.trimToSize(); 
-			 }
-			 
+		ArrayList<String> planetList = new ArrayList<String>(); 		
+		for (String planetName : Planet.getPlanetList()) {
+			planetList.add(planetName); 
 		}
-		else {
-			System.out.println("Here are all the planets you've already visited: " + "INSERT"); //TODO: Get list of visited planets in there from save game. 	
+	
+		if (startFromSave) {
+			System.out.println("Here are all the planets you've visited: "); //TODO: Get list of visited planets in there from save game. 
+			for (String s : returningCaptain.getPlanetsVisited()) {
+				System.out.println(s);
+			}
+			
+			//This block of code gets rid of the planets the Captain has already visited from the planet list. 
+			for (String s : returningCaptain.getPlanetsVisited()) { 	//For each visited planet...
+				for (String j : planetList) { 							//...for each planet in the full list...
+					if (s.equals(j)) { 									//...compare, and if they're equal...
+						planetList.remove(j); 							//...remove from the full list.
+					}
+				}
+			}
 		}
 		
-		System.out.println("Captain! Which planet would you like to visit? Here is a list of possibilites: ");
-		for (String s : planetList) {
-			System.out.println(s);
-		}
-		
-		//TODO: Fix the hasNavigatioOfficer method. 
+		System.out.println("Which planet would you like to visit? Here is a list of possibilites: ");
+
+		//TODO: Get Christan to fix the hasNavigatioOfficer method. 
 		if (Captain.hasNavigationOfficer()) {
-			for (int i = 1; i < PLANETS_WITH_NAVIGATION; i++) { //i = 1 to avoid off-by-one
+			for (int i = 1; i <= PLANETS_WITH_NAVIGATION; i++) {
 				System.out.println(Planet.getRandomPlanet(planetList));
 			}
 		}
 		
 		else {
-			for (int i = 1; i < PLANETS_WITHOUT_NAVIGATION; i++) { //i = 1 to avoid off-by-one
+			for (int i = 1; i <= PLANETS_WITHOUT_NAVIGATION; i++) {
 				System.out.println(Planet.getRandomPlanet(planetList));
 			}
 		}
@@ -161,6 +167,7 @@ public class GameController {
 	}
 	
 	/**displayPlanetMenu(Planet target)
+	 * STATIC METHOD
 	 * Displays the planet menu on the console.
 	 * @return void
 	 */
@@ -196,15 +203,17 @@ public class GameController {
 	}
 	
 	/**displayCombatMenu()
+	 * STATIC METHOD
 	 * Displays the combat menu on the console.
 	 * @param selectedEnemy The enemy to be fought!
 	 * @return void
 	 */
-	public void displayCombatMenu(Enemy selectedEnemy)	{
+	public static void displayCombatMenu(Enemy selectedEnemy)	{
 		//TODO: Write menu
 	}
 	
 	/**confirmCrew()
+	 * STATIC METHOD
 	 * Confirms the captain's crew selection
 	 * @param selectedCrew An array of strings with crew names. 
 	 */
@@ -236,22 +245,24 @@ public class GameController {
 	}
 	
 	/**displayWinMessage()
+	 * STATIC METHOD
 	 * Displays the win message on the console.
 	 * @return void
 	 */
 	public void displayWinMessage() {
 		System.out.println("Congratulations Captain!! You've won the game!");
-		System.out.println("This was programmed by:");
+		System.out.println("This abomination was programmed by:");
 		for (String s : getAuthors()) {
 			System.out.println(s);
 		}
 	}
 	
 	/**askIfPlayerWantsToSave()
+	 * STATIC METHOD
 	 * Asks the Captain for a save game!
 	 * @return saveGameNow Boolean flag for saving the game. 
 	 */
-	public Boolean askIfPlayerWantsToSave() {
+	public static Boolean askIfPlayerWantsToSave() {
 		Scanner in = new Scanner(System.in); 
 		Boolean saveGameNow;
 		
@@ -341,10 +352,15 @@ public class GameController {
 	 * @param none
 	 * @return void
 	 */
-	public void endGame() {
+	public static void endGame() {
 		System.out.println("Goodbye, Captain!");
-		if (askIfPlayerWantsToSave()) {
-			//TODO: SaveGameConstructor here.  
+		if (!startFromSave) {
+			if (askIfPlayerWantsToSave()) {
+				//TODO: SaveGameConstructor here.  
+			}
+		}
+		else {
+			System.exit(0);
 		}
 	}
 	
@@ -381,6 +397,22 @@ public class GameController {
 		}
 		
 		return fullCrew; 
+	}
+	
+	/**isStartFromSave
+	 * Gets the start from save flag. 
+	 * @return the startFromSave
+	 */
+	public static boolean isStartFromSave() {
+		return startFromSave;
+	}
+
+	/**setStartFromSave
+	 * Sets the startFromSave flag. 
+	 * @param startFromSave the startFromSave to set
+	 */
+	public static void setStartFromSave(boolean newStartFromSave) {
+		startFromSave = newStartFromSave;
 	}
 	
 	/**getAuthors()
