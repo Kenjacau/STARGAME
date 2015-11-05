@@ -1,4 +1,7 @@
 package playerCharacter;
+
+import java.util.ArrayList;
+
 /*
 Class: Captain
 TODO: Write class definition here.
@@ -10,9 +13,8 @@ TODO: Write class definition here.
 public class Captain {
 	
 	private static String captainName = "";
-	private static String[] captainCrew = new String[3];
-	
-	
+	private static ArrayList<String> captainCrew = new ArrayList<String>(); 
+	  
 	/**
 	 * @return the captainName
 	 */
@@ -30,7 +32,7 @@ public class Captain {
 	/**
 	 * @param crew the crew to set
 	 */
-	public static void setCrew (String[] crew) {
+	public static void setCrew (ArrayList<String> crew) {
 		Captain.captainCrew = crew; 
 	}
 

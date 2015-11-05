@@ -3,9 +3,6 @@ package controllers;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import obstacles.*;
-import playerCharacter.*; 
-
 
 /*
 Class: SaveGame
@@ -198,5 +195,4 @@ public class SaveGame {
 	public static void setCrew(ArrayList<String> crew) {
 		SaveGame.crew = crew;
 	}
-
 }

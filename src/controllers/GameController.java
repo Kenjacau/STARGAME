@@ -20,6 +20,7 @@ public class GameController {
 	private static int PLANETS_WITH_NAVIGATION = 3; 
 	private static int PLANETS_WITHOUT_NAVIGATION = 2; 
 	private static SaveGame returningCaptain; 
+	private static SaveGame newCaptain;
 	
 	
 	/**main()
@@ -44,7 +45,7 @@ public class GameController {
 			System.out.println("Welcome back, Captain " + returningCaptain.getCaptainName() + "!");
 			if (returningCaptain.getNumPreviousSaves() <= 3) {
 				Captain.setCaptainName(returningCaptain.getCaptainName()); 		
-				Captain.setCrew((String[])returningCaptain.getCrew().toArray()); //Look, I don't know why I didn't use ArrayLists for everything. ok? 
+				Captain.setCrew(returningCaptain.getCrew());
 			}
 			
 			else {
@@ -78,25 +79,23 @@ public class GameController {
 	 * @return void
 	 */
 	public static void displayCrewSelectionMenu() {
-		//TODO: Write menu
 		final int MAX_CREW_SIZE = 3; 
 		Scanner in = new Scanner(System.in); 		
 		String[] availableCrew = new String[] {"Navigation Officer", "Security Officer", "Tactical Officer", "Survey Officer" , "Sentinel Bot", "Engineer"};
-		String[] selectedCrew = new String[MAX_CREW_SIZE]; 
+		ArrayList<String> selectedCrew = new ArrayList<String>(); 
 		if (!isStartFromSave()) {
 			System.out.println("Captain! You must select a crew! You can only choose three!"); //Yeah, I made that up.
 			System.out.println("Here is the list of available members:");
 			for (String s : availableCrew) {
-				System.out.println(s + "?\n");
+				System.out.println(s + "?");
 			}
 	
 			//The Apache clause is an attempt to move every keystroke to lower case, and then appropriately capitalize the crew members. 
-			System.out.println("Please type three crew members, and press enter between each one!");		
-			selectedCrew[0] = WordUtils.capitalizeFully(in.nextLine().toLowerCase());
-			selectedCrew[1] = WordUtils.capitalizeFully(in.nextLine().toLowerCase()); 
-			selectedCrew[2] = WordUtils.capitalizeFully(in.nextLine().toLowerCase()); 
-			
-			
+			System.out.println("Please type three crew members, and press enter between each one!");	
+			for (int i = 0; i <= 2; i++) {
+				selectedCrew.add(in.nextLine()); 
+			}
+
 			//Confirm selection. This method is an external recurse to the displayCrewSelectionMenu() method. 
 			confirmCrew(selectedCrew); 
 			
@@ -107,7 +106,6 @@ public class GameController {
 		}
 		else {
 			System.out.println("Captain, this is who you're travelling with: ");
-			//TODO: Print out crew members from save game.
 			for (String crewName : returningCaptain.getCrew()) {
 				System.out.println(crewName);
 			}
@@ -123,7 +121,12 @@ public class GameController {
 	public static void displayPlanetSelectionMenu() {
 		Scanner in = new Scanner(System.in); 
 		String nextPlanet = ""; 
-		ArrayList<String> planetList = new ArrayList<String>(); 		
+		ArrayList<String> planetList = new ArrayList<String>(); 
+		ArrayList<String> possiblePlanets = new ArrayList<String>();
+		
+		//Clear values for recurse. 
+		possiblePlanets.clear(); 
+		
 		for (String planetName : Planet.getPlanetList()) {
 			planetList.add(planetName); 
 		}
@@ -134,33 +137,45 @@ public class GameController {
 				System.out.println(s);
 			}
 			
-			//This block of code gets rid of the planets the Captain has already visited from the planet list. 
-			for (String s : returningCaptain.getPlanetsVisited()) { 	//For each visited planet...
-				for (String j : planetList) { 							//...for each planet in the full list...
-					if (s.equals(j)) { 									//...compare, and if they're equal...
-						planetList.remove(j); 							//...remove from the full list.
+			//This loop of code gets rid of the planets the Captain has already visited from the planet list. 
+			for (String thisVisitedPlanet : returningCaptain.getPlanetsVisited()) { 	//For each visited planet...
+				for (String thisPlanet : planetList) { 									//...for each planet in the full list...
+					if (thisVisitedPlanet.equals(thisPlanet)) { 						//...compare, and if they're equal...
+						planetList.remove(thisPlanet); 									//...remove from the full list.
 					}
 				}
 			}
 		}
 		
 		System.out.println("Which planet would you like to visit? Here is a list of possibilites: ");
-
-		//TODO: Get Christan to fix the hasNavigatioOfficer method. 
+		//TODO: Get Christan to fix the hasNavigatioOfficer method.
 		if (Captain.hasNavigationOfficer()) {
 			for (int i = 1; i <= PLANETS_WITH_NAVIGATION; i++) {
-				System.out.println(Planet.getRandomPlanet(planetList));
+				possiblePlanets.add(Planet.getRandomPlanet(planetList));
+			}
+			
+			for (String thisPlanet : possiblePlanets) {
+				System.out.println(thisPlanet);
 			}
 		}
 		
 		else {
 			for (int i = 1; i <= PLANETS_WITHOUT_NAVIGATION; i++) {
-				System.out.println(Planet.getRandomPlanet(planetList));
+				possiblePlanets.add(Planet.getRandomPlanet(planetList));
+			}
+			
+			for (String thisPlanet : possiblePlanets) {
+				System.out.println(thisPlanet);
 			}
 		}
 		
 		System.out.println("Please enter the planet you'd like to visit. Remember, type the planet name exactly or we'll end up lost in space!!");
-		nextPlanet = in.nextLine().toLowerCase(); 
+		nextPlanet = in.nextLine(); //Oh goodness... the case is going to be bad on this one.  		
+		if(!possiblePlanets.contains(nextPlanet)) {
+			System.out.println("Oh no, Captain! We're adrift! Attepting to renavigate...");
+			displayPlanetSelectionMenu(); //Recurse. 
+		}
+		
 		//TODO: Planet instantiation constructor here
 		obstacles.Planet target = new Planet(nextPlanet); //TODO: Need arguments. This is also kinda janky. 
 		displayPlanetMenu(target); 
@@ -172,7 +187,15 @@ public class GameController {
 	 * @return void
 	 */
 	public static void displayPlanetMenu(Planet targetPlanet) {
-		Scanner in = new Scanner(System.in); 
+		Scanner in = new Scanner(System.in);
+		//Pass the planet to the appropriate arrays. 
+		if (startFromSave) {
+			returningCaptain.addVisistedPlanet(targetPlanet.getPlanetName());
+		}
+		else{
+			newCaptain.addVisistedPlanet(targetPlanet.getPlanetName());
+		}
+		
 		if (!Planet.isBossPlanet()) {
 			System.out.println("Captain! We have landed on " + WordUtils.capitalizeFully(targetPlanet.getPlanetName()) + "!"); //Capitalization is for the civilized. 
 			System.out.println("Here is the planet's Wikipedia Entry:");
@@ -217,7 +240,7 @@ public class GameController {
 	 * Confirms the captain's crew selection
 	 * @param selectedCrew An array of strings with crew names. 
 	 */
-	public static void confirmCrew(String[] selectedCrew) {
+	public static void confirmCrew(ArrayList<String> selectedCrew) {
 		Boolean correctCrew = false;
 		Scanner in = new Scanner(System.in); 
 	
@@ -225,9 +248,9 @@ public class GameController {
 		System.out.println("Captain! Have you selected the correct crew members?");
 		StringBuilder selection = new StringBuilder("You have currently selected: ");  	
 		for (int i = 0; i <= 1; i++) { //Gettin' the first two.
-			selection.append(selectedCrew[i] + ", "); 
+			selection.append(selectedCrew.get(i) + ", "); 
 		}
-		selection.append("and " + selectedCrew[2] + "."); 
+		selection.append("and " + selectedCrew.get(2) + "."); 
 		System.out.println(selection);
 		
 		System.out.println("If correct, please type 'Y'. If incorrect, please type 'N'.");
@@ -236,6 +259,7 @@ public class GameController {
 		if (replyFromCaptain.toLowerCase().equals("y")) {
 			correctCrew = true;
 			Captain.setCrew(selectedCrew); //This passes the crew array on the captain object. 
+			newCaptain.setCrew(selectedCrew); //This passes the crew array to the currentSavegame object. 
 		}
 				
 		//Recurse if crew incorrect. 
@@ -297,7 +321,8 @@ public class GameController {
 			
 		if (youSure.equals("y")) { 
 			System.out.println("Great, Captain! Let's get started.");
-			Captain.setCaptainName(captainName);
+			Captain.setCaptainName(captainName); //Pass to captain object. 
+			newCaptain.setCaptainName(captainName); //Pass to savegame object.
 		}
 		
 		else {
@@ -366,28 +391,35 @@ public class GameController {
 	
 	/**checkWin()
 	 * Checks to see if the game has been won!
-	 * @param None
+	 * @param targetGame The saveGame object currently tracking the captain's progress.
 	 * @return success Boolean flag to see if the game has been won.
 	 */
-	public Boolean checkWin() {
-		Boolean success = false;
+	public Boolean checkWin(SaveGame targetGame) {
+		//TODO: Confirm criteria for game win. 
+		Boolean success = null; 		
+		if (targetGame.getBossesDefeated().size() >= 3) {
+			success = true; 
+		}
+		else {
+			success = false;
+		}		
 		return success; 
 	}
 	
 	/**doesPlayerHaveFullCrew()
 	 * Checks to see if the player has three crew members. 
-	 * @param crew Array of crew members.
+	 * @param selectedCrew Array of crew members.
 	 * @return fullCrew Boolean flag for full crew.
 	 */
-	public static Boolean doesPlayerHaveFullCrew(String[] crew) {
+	public static Boolean doesPlayerHaveFullCrew(ArrayList<String> selectedCrew) {
 		Boolean fullCrew = null;
 		
-		if (crew.length != 3) {
+		if (selectedCrew.size() != 3) {
 			fullCrew = false;
 			return fullCrew; 
 		}
 		
-		for (String s : crew) {
+		for (String s : selectedCrew) {
 			if (s == null || s == "") {
 				fullCrew = false;
 			}
