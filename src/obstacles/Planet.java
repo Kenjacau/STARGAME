@@ -4,69 +4,85 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
-/*
-Class: Planet
-TODO: Write class definition here.
-- Author: @KCauthen
-- TODO: Write your email address here.
-- Version: 0.0.1
-- TODO: Date goes here.    
-*/
+/**
+ * Class: Planet
+ * Description: This class defines all methods and attributes that define a Planet object.
+ *
+ * @author Kenny Cauthen
+ *         kcauthen@ggc.edu
+ * @version 0.0.1, 11/5/2015
+ *          Course: ITEC 3860 Fall 2015
+ *          Assignment: Final Project
+ */
 public class Planet {
+
 	//TODO: Write this class. Stubbed for inclusion into the controllers.GameController class.
-	private Enemy enemyInResidence = new Enemy(); //Stubbed for your convenience! 
-	private String description = ""; 
-	private String planetName = ""; 
-	private static String[] planetList = new String[] {"WASP -12b", "Theta-10c", "Nore", "51 Pegasi b", "LV-426", "Shadowfax", 
-			"Lisus", "Insula", "Heralda", "Kepler-11f", "Nasqueron", "Altair IV", "TrES-2b", 
-			"55 Cancri e", "Gilese 436 b", "Rignus", "Helnetia", "Nitia", "Jor", "Jmea", 
-			"Atani Starship", "Drabenus", "Eos", "Zaria-3a", "Alpha08c", "Prion", "Planet Z", 
-			"Waldovo", "Genesis", "Gaia"}; //I entered these to get myself a list of planets in the GameController. --JCB
-	private static Random randomGenerator; 
-	
-	public Enemy getEnemy()  {
-		//TODO: Return an enemy for the GameController class.
-		return enemyInResidence; 
+
+	private String planetName = "";
+	// Description same as arrival message? <------------------SEE JCB----------------
+	private String arrivalMessage = "";
+	private String scanMessage = "";
+	private String exploreMessage = "";
+	//Changed exploreStatus to exploreFlag for less confusion on what it is
+	private int exploreFlag = 0;
+	private boolean planetExplored = false;
+	private int planetFlag = 0;
+	// Found out there were no cases where any two below exists at the same time so created flag above instead
+	//private boolean gasPlanet=false;
+	//private boolean bossPlanet=false;
+	//private boolean specialPlanet = false;
+
+	//I think Enemy and Puzzle should be done from explore. Constructor for Puzzle and Enemy should take in planetName
+
+	/**
+	 * @see controllers.GameController
+	 */
+	//private Enemy enemyInResidence = new Enemy(); //Stubbed for your convenience!
+	public Planet(String newPlanetName, String newArrivalMessage, String newScanMessage, String newExploreMessage,
+				  int newExploreFlag, int newPlanetFlag, boolean newPlanetExplored) {
+
+		planetName = newPlanetName;
+		arrivalMessage = newArrivalMessage;
+		scanMessage = newScanMessage;
+		exploreMessage = newExploreMessage;
+		exploreFlag = newExploreFlag; //Trigger 0 = message only, 1 = puzzle, or 2 = enemy
+		planetFlag = newPlanetFlag; //Trigger 0 = normal planet, 1 = bossPlanet, 2 = gasPlanet, 3 = specialPlanet
+		planetExplored = newPlanetExplored;
+
 	}
+
 	public String getPlanetName() {
-		// TODO Auto-generated method stub
 		return planetName;
 	}
-	public String getDescription() {
-		// TODO Auto-generated method stub
-		return description;
+
+	public String getArrivalMessage() {
+		return arrivalMessage;
 	}
-	public char[] getExploreMessage() {
-		// TODO Auto-generated method stub
-		return null;
+
+	public String getExploreMessage() {
+		return exploreMessage;
 	}
-	public char[] getScanMessage() {
-		// TODO Auto-generated method stub
-		return null;
+
+	public String getScanMessage() {
+		return scanMessage;
 	}
-	
-	public static String[] getPlanetList() {
-		return planetList;
+
+	public int getExploreFlag() {
+		return exploreFlag;
 	}
-	
-	public  Planet(String name) {
-		//TODO: Constructor with args. I added "name" just to get shit started. --JCB
-		this.planetName = name; 
+
+	public int getPlanetFlag() {
+		return planetFlag;
 	}
-	
-	public static boolean isBossPlanet() {
-		// TODO Auto-generated method stub
-		return false;
+
+	public boolean isPlanetExplored() {
+		return planetExplored;
 	}
-	
-	/**getRandomPlanet
-	 * STATIC METHOD
-	 * Returns the name of a random planet. 
-	 * @param availablePlanets An arrayList of Strings: available planet names.  
-	 * @return A single, random element in the paramater. 
-	 */
-	public static String getRandomPlanet(ArrayList<String> availablePlanets) {
-		int index = ThreadLocalRandom.current().nextInt(0, availablePlanets.size());
-		return availablePlanets.get(index); 
+
+	public void setPlanetExplored(boolean value) {
+		planetExplored = value;
 	}
+
+	//getPlanetList Moved to testPlanetMaker <---------------- SEE JCB
+
 }

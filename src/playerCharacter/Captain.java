@@ -13,7 +13,7 @@ TODO: Write class definition here.
 public class Captain {
 	
 	private static String captainName = "";
-	private static ArrayList<String> captainCrew = new ArrayList<String>(); 
+	private static ArrayList<String> captainCrew = new ArrayList<String>();
 	  
 	/**
 	 * @return the captainName
@@ -23,7 +23,7 @@ public class Captain {
 	}
 
 	/**
-	 * @param playerName the captainName to set
+	 * @param captainName the captainName to set
 	 */
 	public static void setCaptainName(String captainName) {
 		Captain.captainName = captainName;
@@ -33,7 +33,7 @@ public class Captain {
 	 * @param crew the crew to set
 	 */
 	public static void setCrew (ArrayList<String> crew) {
-		Captain.captainCrew = crew; 
+		Captain.captainCrew = crew;
 	}
 
 	public static boolean hasNavigationOfficer() {
