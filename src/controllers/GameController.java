@@ -24,10 +24,6 @@ public class GameController {
 	private static SaveGame returningCaptain;
 	private static SaveGame newCaptain;
 	private static ArrayList<Planet> planetArrayList = new PlanetMaker().getPlanetArrayList();
-<<<<<<< HEAD
-=======
-	private int test = 1; 
->>>>>>> branch 'master' of https://github.com/Kenjacau/ITEC3860FALL2015STARGAME
 
 
 	/**main()
@@ -52,7 +48,7 @@ public class GameController {
 			System.out.println("Welcome back, Captain " + returningCaptain.getCaptainName() + "!");
 			if (returningCaptain.getNumPreviousSaves() <= 3) {
 				Captain.setCaptainName(returningCaptain.getCaptainName());
-				Captain.setCrew(returningCaptain.getCrew());
+				Captain.setCaptainCrew(returningCaptain.getCrew());
 			}
 
 			else {
@@ -287,7 +283,7 @@ public class GameController {
 		String replyFromCaptain = in.next().toLowerCase();
 		if (replyFromCaptain.toLowerCase().equals("y")) {
 			correctCrew = true;
-			Captain.setCrew(selectedCrew); //This passes the crew array on the captain object. 
+			Captain.setCaptainCrew(selectedCrew); //This passes the crew array on the captain object. 
 			newCaptain.setCrew(selectedCrew); //This passes the crew array to the currentSavegame object. 
 		}
 
