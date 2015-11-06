@@ -24,6 +24,10 @@ public class GameController {
 	private static SaveGame returningCaptain;
 	private static SaveGame newCaptain;
 	private static ArrayList<Planet> planetArrayList = new PlanetMaker().getPlanetArrayList();
+<<<<<<< HEAD
+=======
+	private int test = 1; 
+>>>>>>> branch 'master' of https://github.com/Kenjacau/ITEC3860FALL2015STARGAME
 
 
 	/**main()

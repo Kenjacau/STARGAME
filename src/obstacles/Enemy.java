@@ -12,6 +12,7 @@ public class Enemy {
 	//TODO: Write this class. Stubbed for inclusion into the controllers.GameController class.
 	//Need Enemy constructor that takes in String of planetName.
 	public Enemy(String originPlanet) {
+<<<<<<< HEAD
 	
 	}
 	
@@ -20,6 +21,12 @@ public class Enemy {
 	private String enemyDescription;
 	private String enemyLocation;
 	private int ambushStatus;
+=======
+
+	}
+
+
+>>>>>>> branch 'master' of https://github.com/Kenjacau/ITEC3860FALL2015STARGAME
 
 	/**
 	 * CONSTRUCTOR FOR ENEMIES with super()
