@@ -10,5 +10,11 @@ TODO: Write class definition here.
 */
 public class Enemy {
 	//TODO: Write this class. Stubbed for inclusion into the controllers.GameController class.
+	//Need Enemy constructor that takes in String of planetName.
+	public Enemy(String originPlanet) {
+
+	}
+
+
 
 }
