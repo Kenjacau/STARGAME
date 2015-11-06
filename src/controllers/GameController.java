@@ -24,6 +24,7 @@ public class GameController {
 	private static SaveGame returningCaptain;
 	private static SaveGame newCaptain;
 	private static ArrayList<Planet> planetArrayList = new PlanetMaker().getPlanetArrayList();
+	private int test = 1; 
 
 
 	/**main()
