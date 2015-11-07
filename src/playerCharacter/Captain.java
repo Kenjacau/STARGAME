@@ -10,6 +10,8 @@ Purpose: The Captain class manages the display of player information, selection 
 - Version: 0.0.1
 - Date: 11/5/2015  
 */
+
+//TODO: NOTE FROM KENNY... THIS CLASS SHOULD EXTEND PERSONA
 public class Captain {
 
 	private static String captainName = "";
@@ -25,7 +27,7 @@ public class Captain {
 	}
 
 	/**
-	 * @param playerName
+	 * @param captainName
 	 *            the captainName to set
 	 */
 	public static void setCaptainName(String captainName) {

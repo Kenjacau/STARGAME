@@ -24,6 +24,7 @@ public class GameController {
 	private static SaveGame returningCaptain;
 	private static SaveGame newCaptain;
 	private static ArrayList<Planet> planetArrayList = new PlanetMaker().getPlanetArrayList();
+	private static ArrayList<Puzzle> puzzleArrayList = new PuzzleMaker().getPuzzleArrayList();
 
 
 	/**main()
@@ -246,20 +247,6 @@ public class GameController {
 		//TODO: Write menu
 	}
 
-	/**
-	 * displayCombatMenu()
-	 *
-	 * @param selectedPuzzle The puzzle to be solved!
-	 * @return void
-	 * @author Kenny Cauthen
-	 * Displays the puzzle menu on the console.
-	 */
-	public boolean displayPuzzleMenu(Puzzle selectedPuzzle) {
-		//TODO: Write menu Kenny
-		return true;
-	}
-
-
 	/**confirmCrew()
 	 * STATIC METHOD
 	 * Confirms the captain's crew selection
@@ -283,11 +270,11 @@ public class GameController {
 		String replyFromCaptain = in.next().toLowerCase();
 		if (replyFromCaptain.toLowerCase().equals("y")) {
 			correctCrew = true;
-			Captain.setCaptainCrew(selectedCrew); //This passes the crew array on the captain object. 
-			newCaptain.setCrew(selectedCrew); //This passes the crew array to the currentSavegame object. 
+			Captain.setCaptainCrew(selectedCrew); //This passes the crew array on the captain object.
+			newCaptain.setCrew(selectedCrew); //This passes the crew array to the currentSavegame object.
 		}
 
-		//Recurse if crew incorrect. 
+		//Recurse if crew incorrect.
 		if (!correctCrew) {
 			displayCrewSelectionMenu();
 		}
@@ -320,8 +307,7 @@ public class GameController {
 
 		if (response == "y") {
 			saveGameNow = true;
-		}
-		else {
+		} else {
 			saveGameNow = false;
 		}
 
@@ -346,58 +332,12 @@ public class GameController {
 
 		if (youSure.equals("y")) {
 			System.out.println("Great, Captain! Let's get started.");
-			Captain.setCaptainName(captainName); //Pass to captain object. 
+			Captain.setCaptainName(captainName); //Pass to captain object.
 			newCaptain.setCaptainName(captainName); //Pass to savegame object.
 		} else {
 			System.out.println("Ok! Let's try again!");
 			setCaptainName();
 		}
-	}
-
-
-	//END MENU METHODS-------------------------------------------------------
-
-
-
-
-	//OBSTACLE METHODS-------------------------------------------------------
-
-	/**solvePuzzle()
-	 * executes the puzzle on the selected planet.
-	 * @param selectedPlanet The planet on which the Captain sits!
-	 * @return success Boolean for successful solve!
-	 * Last Edit: Kenny Cauthen
-	 * Remarks: Why does Puzzle return boolean but Enemy doesnt. I think success should be judged within puzzle.
-	 */
-	public Boolean solvePuzzle(Planet selectedPlanet)	{
-		//TODO: Write whatever this is supposed to be.
-		Boolean success = displayPuzzleMenu(new Puzzle(selectedPlanet.getPlanetName()));
-		return success;
-	}
-
-	/**engageEnemy()
-	 * Engages the enemy on the selected planet in combat.
-	 * @param selectedPlanet The planet on which the Captain sits!
-	 * @return void
-	 * Last Edit: Kenny Cauthen - new Enemy should be created based on planetName
-	 */
-	public void engageEnemy(Planet selectedPlanet)	{
-		//TODO: Write whatever this is supposed to be.
-		displayCombatMenu(new Enemy(selectedPlanet.getPlanetName()));
-	}
-	//END OBSTACLE METHODS--------------------------------------------------
-
-
-
-	//ADMIN METHODS---------------------------------------------------------
-
-	/**newGame()
-	 * Starts a new game
-	 * @param none
-	 * @return void
-	 */
-	public void newGame() {
-		//TODO: Write method.
 	}
 
 	/**exitGame()
@@ -412,21 +352,26 @@ public class GameController {
 			try {
 				if (askIfPlayerWantsToSave()) {
 					if (!startFromSave) {
-						newCaptain.writeOutData(newCaptain, newCaptain.getFullPath()); //Yes, this could be DOUBLE extracted. 
-					}
-
-					else {
+						newCaptain.writeOutData(newCaptain, newCaptain.getFullPath()); //Yes, this could be DOUBLE extracted.
+					} else {
 						returningCaptain.writeOutData(returningCaptain, returningCaptain.getFullPath());
 					}
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}
-		else {
+		} else {
 			System.exit(0);
 		}
 	}
+
+
+	//END MENU METHODS-------------------------------------------------------
+
+
+
+
+	//OBSTACLE METHODS-------------------------------------------------------
 
 	/**checkWin()
 	 * Checks to see if the game has been won!
@@ -434,7 +379,7 @@ public class GameController {
 	 * @return success Boolean flag to see if the game has been won.
 	 */
 	public static Boolean checkWin(SaveGame targetGame) {
-		//TODO: Confirm criteria for game win. 
+		//TODO: Confirm criteria for game win.
 		Boolean success = null;
 		if (targetGame.getBossesDefeated().size() >= 3) {
 			success = true;
@@ -467,6 +412,11 @@ public class GameController {
 
 		return fullCrew;
 	}
+	//END OBSTACLE METHODS--------------------------------------------------
+
+
+
+	//ADMIN METHODS---------------------------------------------------------
 
 	/**isStartFromSave
 	 * Gets the start from save flag.
@@ -489,11 +439,9 @@ public class GameController {
 	 * @return Author array.
 	 */
 	public static String[] getAuthors() {
-		String[] authors = new String[] {"Christian de Luna", "Travis Keating", "Kenny Cauthen", "Joshua Broughton"};
+		String[] authors = new String[]{"Christian de Luna", "Travis Keating", "Kenny Cauthen", "Joshua Broughton"};
 		return authors;
 	}
-	//END ADMIN METHODS-----------------------------------------------------
-
 
 	/**
 	 * getRandomPlanet
@@ -507,4 +455,69 @@ public class GameController {
 		int index = ThreadLocalRandom.current().nextInt(0, availablePlanets.size());
 		return availablePlanets.get(index);
 	}
+
+	/**
+	 * displayCombatMenu()
+	 *
+	 * @param selectedPuzzle The puzzle to be solved!
+	 * @return void
+	 * @author Kenny Cauthen
+	 * Displays the puzzle menu on the console.
+	 */
+	public boolean displayPuzzleMenu(Puzzle selectedPuzzle) {
+		//TODO: Write menu Kenny
+		return true;
+	}
+
+	/**solvePuzzle()
+	 * executes the puzzle on the selected planet.
+	 * @param selectedPlanet The planet on which the Captain sits!
+	 * @return success Boolean for successful solve!
+	 * Last Edit: Kenny Cauthen
+	 * Remarks: Why does Puzzle return boolean but Enemy doesnt. I think success should be judged within puzzle.
+	 */
+	public void solvePuzzle(Planet selectedPlanet) {
+		//TODO: Write whatever this is supposed to be.
+		for (Puzzle p : puzzleArrayList) {
+			if (removeNonWords(p.getPuzzleHomePlanet()).contains(removeNonWords(selectedPlanet.getPlanetName()))) {
+				displayPuzzleMenu(p);
+				break;
+			}
+		}
+	}
+
+	/**engageEnemy()
+	 * Engages the enemy on the selected planet in combat.
+	 * @param selectedPlanet The planet on which the Captain sits!
+	 * @return void
+	 * Last Edit: Kenny Cauthen - new Enemy should be created based on planetName
+	 */
+	public void engageEnemy(Planet selectedPlanet) {
+		//TODO: Write whatever this is supposed to be.
+		displayCombatMenu(new Enemy(selectedPlanet.getPlanetName()));
+	}
+	//END ADMIN METHODS-----------------------------------------------------
+
+	/**
+	 * newGame()
+	 * Starts a new game
+	 *
+	 * @param none
+	 * @return void
+	 */
+	public void newGame() {
+		//TODO: Write method.
+	}
+
+	/**removeNonWords()
+	 * executes the puzzle on the selected planet.
+	 * @param string
+	 * @return string with all non word characters including whitespace removed
+	 * Last Edit: Kenny Cauthen
+	 * Remarks:
+	 */
+	public String removeNonWords(String string) {
+		return string.replaceAll("//W", "");
+	}
+
 }

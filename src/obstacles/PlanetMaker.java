@@ -13,28 +13,25 @@ import java.util.Collections;
  *          Assignment: Final Project
  */
 public class PlanetMaker {
-	ArrayList<Planet> planetArrayList;
-	private static String[] planetList = new String[]{"WASP -12b", "Theta-10c", "Nore", "51 Pegasi b", "LV-426", "Shadowfax",
+	private final String[] planetList = new String[]{"WASP -12b", "Theta-10c", "Nore", "51 Pegasi b", "LV-426", "Shadowfax",
 			"Lisus", "Insula", "Heralda", "Kepler-11f", "Nasqueron", "Altair IV", "TrES-2b",
 			"55 Cancri e", "Gilese 436 b", "Rignus", "Helnetia", "Nitia", "Jor", "Jmea",
 			"Atani Starship", "Drabenus", "Eos", "Zaria-3a", "Alpha08c", "Prion", "Planet Z",
 			"Waldovo", "Genesis", "Gaia"}; //I entered these to get myself a list of planets in the GameController. --JCB
-
-	private static String[] exploreMessageList;
-
-	private static String[] scanMessageList;
-
-	private static String[] arrivalMessageList;
+	private final String[] exploreMessageList = new String[]{"Test ExploreMessage 1", "Test ExploreMessage 2",
+			"Test ExploreMessage 3"};
+	private final String[] scanMessageList = new String[]{"Test ScanMessage 1", "Test ScanMessage 2", "Test ScanMessage 3"};
+	private final String[] arrivalMessageList = new String[]{"Test ArrivalMessage 1", "Test ArrivalMessage 2",
+			"Test ArrivalMessage 3"};
+	ArrayList<Planet> planetArrayList;
 
 
 	public PlanetMaker() {
 		Collections.addAll(planetArrayList,
-				new Planet(planetList[0], "Test Planet 1 Arrival Message", "Test Planet 1 Scan Message",
-						"Test Planet 1 Explore Message", 0, 0, false),
-				new Planet(planetList[1], "Test Planet 2 Arrival Message", "Test Planet 2 Scan Message",
-						"Test Planet 2 Explore Message", 0, 0, false),
-				new Planet(planetList[2], "Test Planet 3 Arrival Message", "Test Planet 3 Scan Message",
-						"Test Planet 3 Explore Message", 0, 0, false)
+				//Planet Name, Arrival Message,Scan Message, Explore Message, Explore Flag, Planet Flag, Planet Explored)
+				new Planet(planetList[3], arrivalMessageList[0], scanMessageList[0], exploreMessageList[0], 0, 3, false),
+				new Planet(planetList[4], arrivalMessageList[1], scanMessageList[1], exploreMessageList[1], 2, 0, false),
+				new Planet(planetList[5], arrivalMessageList[2], scanMessageList[2], exploreMessageList[2], 2, 2, false)
 
 		);
 
@@ -43,7 +40,5 @@ public class PlanetMaker {
 	public ArrayList<Planet> getPlanetArrayList() {
 		return planetArrayList;
 	}
-
-	//getPlanetList removed, Edited source.
 
 }

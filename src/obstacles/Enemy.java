@@ -9,16 +9,17 @@ TODO: Write class definition here.
 - TODO: Date goes here.    
 */
 public class Enemy {
-	//TODO: Write this class. Stubbed for inclusion into the controllers.GameController class.
-	//Need Enemy constructor that takes in String of planetName.
-	public Enemy(String originPlanet) {
-	}
-	
 	//Declare enemy specific Attributes
 	private String enemyName;
 	private String enemyDescription;
 	private String enemyLocation;
 	private int ambushStatus;
+
+	//TODO: NOTE FROM KENNY... THIS CLASS SHOULD EXTEND PERSONA
+	//TODO: Write this class. Stubbed for inclusion into the controllers.GameController class.
+	//Need Enemy constructor that takes in String of planetName.
+	public Enemy(String originPlanet) {
+	}
 
 	/**
 	 * CONSTRUCTOR FOR ENEMIES with super()

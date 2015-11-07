@@ -10,7 +10,7 @@ import java.util.concurrent.ThreadLocalRandom;
  *
  * @author Kenny Cauthen
  *         kcauthen@ggc.edu
- * @version 0.0.1, 11/5/2015
+ * @version 0.0.2, 11/5/2015
  *          Course: ITEC 3860 Fall 2015
  *          Assignment: Final Project
  */
@@ -19,25 +19,14 @@ public class Planet {
 	//TODO: Write this class. Stubbed for inclusion into the controllers.GameController class.
 
 	private String planetName = "";
-	// Description same as arrival message? <------------------SEE JCB----------------
 	private String arrivalMessage = "";
 	private String scanMessage = "";
 	private String exploreMessage = "";
-	//Changed exploreStatus to exploreFlag for less confusion on what it is
 	private int exploreFlag = 0;
 	private boolean planetExplored = false;
 	private int planetFlag = 0;
-	// Found out there were no cases where any two below exists at the same time so created flag above instead
-	//private boolean gasPlanet=false;
-	//private boolean bossPlanet=false;
-	//private boolean specialPlanet = false;
 
-	//I think Enemy and Puzzle should be done from explore. Constructor for Puzzle and Enemy should take in planetName
 
-	/**
-	 * @see controllers.GameController
-	 */
-	//private Enemy enemyInResidence = new Enemy(); //Stubbed for your convenience!
 	public Planet(String newPlanetName, String newArrivalMessage, String newScanMessage, String newExploreMessage,
 				  int newExploreFlag, int newPlanetFlag, boolean newPlanetExplored) {
 
@@ -83,6 +72,5 @@ public class Planet {
 		planetExplored = value;
 	}
 
-	//getPlanetList Moved to testPlanetMaker <---------------- SEE JCB
 
 }
