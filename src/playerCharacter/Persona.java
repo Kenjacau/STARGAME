@@ -5,7 +5,7 @@ Class: Persona
 Purpose: The Persona class stores attributes, which gets and sets stat points necessary for combat.
 - Author: @cdeluna
 - Email: cdeluna@ggc.edu
-- Version: 0.0.1
+- Version: 0.0.2
 - Date: 2015-11-05
 */
 public abstract class Persona {
@@ -15,32 +15,68 @@ public abstract class Persona {
 	private int attackPoints;
 	private int defensePoints;
 
+	/**
+	 * Method: isAlive - Determines the player's status based on amount of
+	 * health points
+	 * 
+	 * @return true
+	 */
 	public boolean isAlive() {
-		return false;
+		return true;
 	}
 
+	/**
+	 * Method: getHealthPoints - Getter method for the health points of the
+	 * player
+	 *
+	 * @return the healthPoints
+	 */
 	public int getHealthPoints() {
-		return 0;
+		return healthPoints;
 	}
 
-	public int setHealthPoints() {
-		return 0;
+	/**
+	 * @param healthPoints
+	 *            the healthPoints to set
+	 */
+	public void setHealthPoints(int healthPoints) {
+		this.healthPoints = healthPoints;
 	}
 
-	public int getDefensePoints() {
-		return 0;
-	}
-
-	public int setDefensePoints() {
-		return 0;
-	}
-
+	/**
+	 * Method: getAttackPoints - Getter method for the attack points of the
+	 * player
+	 *
+	 * @return the attackPoints
+	 */
 	public int getAttackPoints() {
-		return 0;
+		return attackPoints;
 	}
 
-	public int setAttackPoints() {
-		return 0;
+	/**
+	 * @param attackPoints
+	 *            the attackPoints to set
+	 */
+	public void setAttackPoints(int attackPoints) {
+		this.attackPoints = attackPoints;
+	}
+
+	/**
+	 * Method: getDefensePoints - Getter method for the defense points of the
+	 * player
+	 *
+	 * @return the defensePoints
+	 */
+	public int getDefensePoints() {
+		return defensePoints;
+	}
+
+	/**
+	 * @param defensePoints
+	 *            the defensePoints to set
+	 */
+	public void setDefensePoints(int defensePoints) {
+		this.defensePoints = defensePoints;
 	}
 
 }

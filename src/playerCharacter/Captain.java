@@ -7,12 +7,10 @@ Class: Captain
 Purpose: The Captain class manages the display of player information, selection of crew members, and actions related to combat.
 - Author: @cdeluna
 - Email: cdeluna@ggc.edu
-- Version: 0.0.1
+- Version: 0.0.2
 - Date: 11/5/2015  
 */
-
-//TODO: NOTE FROM KENNY... THIS CLASS SHOULD EXTEND PERSONA
-public class Captain {
+public class Captain extends Persona {
 
 	private static String captainName = "";
 	private static int[] bossesBeat = new int[0];
@@ -20,6 +18,15 @@ public class Captain {
 	private static ArrayList<String> captainCrew = new ArrayList<String>();
 
 	/**
+	 * Constructor: Captain - Creates Captain object with attributes
+	 */
+	public Captain() {
+		// TODO Combat attributes needed
+	}
+
+	/**
+	 * Method: getCaptainName - Getter method for the name of the captain
+	 *
 	 * @return the captainName
 	 */
 	public static String getCaptainName() {
@@ -35,6 +42,8 @@ public class Captain {
 	}
 
 	/**
+	 * Method: getCrewSelection - Getter method for selecting a crew member
+	 * 
 	 * @return the crewSelection
 	 */
 	public static String[] getCrewSelection() {
@@ -42,14 +51,9 @@ public class Captain {
 	}
 
 	/**
-	 * @param selection
-	 *            the selection to set
-	 */
-	public static void setCrewSelection(String[] selection) {
-		Captain.crewSelection = selection;
-	}
-
-	/**
+	 * Method: getCaptainCrew - Getter method for captainCrew as an ArrayList of
+	 * crew members
+	 * 
 	 * @return the captainCrew
 	 */
 	public static ArrayList<String> getCaptainCrew() {
@@ -64,38 +68,65 @@ public class Captain {
 		Captain.captainCrew = crew;
 	}
 
+	/**
+	 * @return true
+	 */
 	public static boolean hasSurveyOfficer() {
 		return true;
 	}
 
+	/**
+	 * @return true
+	 */
 	public static boolean hasEngineerOfficer() {
 		return true;
 	}
 
+	/**
+	 * @return true
+	 */
 	public static boolean hasNavigationOfficer() {
 		return true;
 	}
 
+	/**
+	 * @return true
+	 */
 	public static boolean hasTacticalOfficer() {
 		return true;
 	}
 
+	/**
+	 * @return void
+	 */
 	public void selectWithNavigationOfficer() {
 
 	}
 
+	/**
+	 * @return void
+	 */
 	public void selectWithoutNavigationOfficer() {
 
 	}
 
+	/**
+	 * @return void
+	 */
 	public void selectPlanet(String targetPlanet) {
 
 	}
 
+	/**
+	 * @return null
+	 */
 	public Boolean requestSave() {
 		return null;
 	}
 
+	/**
+	 * @return null
+	 */
 	public Boolean fleeCombat() {
 		return null;
 	}
