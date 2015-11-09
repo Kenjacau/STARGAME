@@ -60,6 +60,8 @@ public class GameController2 {
 			 game.setCrew(tempCrewArray);		 
 		 }
 		 
+		 System.out.println("Let's get started Captain!");
+		 
 		 //TODO: Display Planet selection menu. 
 
 		 //TODO: Display Planet menu
