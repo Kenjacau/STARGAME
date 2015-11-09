@@ -59,7 +59,7 @@ public class CombatMenu{
 				//Determine damage
 				int foeDmg = foeATK - captainDEF;
 				
-				//Sustain Damaeg
+				//Sustain Damage
 				currentCaptainHP = currentCaptainHP - foeDmg;
 				
 				//Display damage dealt
@@ -116,7 +116,7 @@ public class CombatMenu{
 					System.out.println("Incoming lasers! Brace for impact in 3... 2... 1!\n");
 					
 					//Determine damage
-					int foeDmg = foeATK - captainDEF;
+					foeDmg = foeATK - captainDEF;
 					
 					//Sustain Damaeg
 					currentCaptainHP = currentCaptainHP - foeDmg;
