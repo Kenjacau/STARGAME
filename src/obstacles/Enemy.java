@@ -1,5 +1,7 @@
 package obstacles;
 
+import playerCharacter.Persona;
+
 /*
 Class: Enemy
 TODO: Write class definition here.
@@ -8,9 +10,9 @@ TODO: Write class definition here.
 - Version: 0.0.0
 - TODO: Date goes here.    
 */
-public class Enemy {
+public class Enemy extends Persona{
 	//Declare enemy specific Attributes
-	private String enemyName;
+	
 	private String enemyDescription;
 	private String enemyLocation;
 	private int ambushStatus;
@@ -31,10 +33,13 @@ public class Enemy {
 	 * CREATED: 11/3/15
 	 * LAST EDITED ON: 11/3/15  BY: Travis K.
 	 */
-	public Enemy(String enemyName, String enemyDescription, String enemyLocation, int ambushStatus) {
+	public Enemy(String enemyDescription, String enemyLocation, int ambushStatus) {
 		super();
 		
-		this.enemyName = enemyName;
+		int healthPoints = getHealthPoints();
+		int attackPoints = getAttackPoints();
+		int defensePoints = getDefensePoints();
+		
 		this.enemyDescription = enemyDescription;
 		this.enemyLocation = enemyLocation;
 		this.ambushStatus = ambushStatus;
@@ -42,14 +47,14 @@ public class Enemy {
 
 	
 	
-	/**
-	 * @return the enemy name
-	 */
-	
-	public String getEnemyName() {
-		return enemyName;
-	}
-	
+//	/**
+//	 * @return the enemy name
+//	 */
+//	
+//	public String getEnemyName() {
+//		return enemyName;
+//	}
+//	
 	/**
 	 * @return the enemy description
 	 */
