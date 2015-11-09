@@ -2,6 +2,8 @@ package ToBeImplemented;
 
 import java.util.Scanner;
 
+import controllers.Combat;
+
 /**
  * 
  * @author Travis T3 Keating
@@ -14,7 +16,7 @@ import java.util.Scanner;
  * 		>11/4/15 Travis K
  *
  */
-public class CombatMenu /*implements Combat*/ {
+public class CombatMenu{
 
 	public static void main(String[] args) {
 		
@@ -50,7 +52,26 @@ public class CombatMenu /*implements Combat*/ {
 			
 			//Loop for ambush round
 			if(ambushStatus == 1){
+				//if enemy survives initiate Enemy on player Combat
+				System.out.println("Captain! " + foeName + "Appears to be readying for an attack!\n");
+				System.out.println("Incoming lasers! Brace for impact in 3... 2... 1!\n");
 				
+				//Determine damage
+				int foeDmg = foeATK - captainDEF;
+				
+				//Sustain Damaeg
+				currentCaptainHP = currentCaptainHP - foeDmg;
+				
+				//Display damage dealt
+				System.out.println("Captain! Our sensors are showing us that we have sustained class " 
+						+ foeDmg + " damage to our hull!\n");
+				System.out.println("Sir our shields are at level " + currentCaptainHP + "!\n");
+				
+				//If player dies
+				if(currentCaptainHP <= 0){
+					System.out.println("GAME OEVER");
+					captainAlive = false;
+					//TODO Game Over Sequence
 			}
 			
 			//Combat menu
