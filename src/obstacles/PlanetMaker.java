@@ -32,7 +32,6 @@ public class PlanetMaker {
 				new Planet(planetList[3], arrivalMessageList[0], scanMessageList[0], exploreMessageList[0], 0, 3, false),
 				new Planet(planetList[4], arrivalMessageList[1], scanMessageList[1], exploreMessageList[1], 2, 0, false),
 				new Planet(planetList[5], arrivalMessageList[2], scanMessageList[2], exploreMessageList[2], 2, 2, false)
-
 		);
 
 	}

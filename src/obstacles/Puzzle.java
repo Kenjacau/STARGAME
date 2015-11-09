@@ -26,6 +26,7 @@ public class Puzzle {
 		puzzleHint = hint;
 		puzzleChoices = choices;
 		puzzleChoiceMessages = choiceMessages;
+
 	}
 
 	/**
