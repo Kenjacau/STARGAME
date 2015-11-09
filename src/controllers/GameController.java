@@ -11,11 +11,11 @@
 //
 ///*
 //Class: GameController
-//The GameController class is the primary controller, featuring the interfaces, the runnables and the starting point for the game. 
+//The GameController class is the primary controller, featuring the interfaces, the runnables and the starting point for the game.
 //- Author: @jbroughton
 //- joshua.c.broughton@gmail.com, jbroughton@ggc.edu
 //- Version: 0.0.2
-//- 2015-11-03    
+//- 2015-11-03
 //*/
 //public class GameController {
 //	private static boolean startFromSave = false;
@@ -25,6 +25,8 @@
 //	private static SaveGame newCaptain;
 //	private static ArrayList<Planet> planetArrayList = new PlanetMaker().getPlanetArrayList();
 //	private static ArrayList<Puzzle> puzzleArrayList = new PuzzleMaker().getPuzzleArrayList();
+//    private Scanner in = new Scanner(System.in);
+//    private String userInput = "";
 //
 //
 //	/**main()
@@ -59,7 +61,7 @@
 //			}
 //		}
 //		else {
-//			//Blocking statements are used to halt execution at each of these methods. 
+//			//Blocking statements are used to halt execution at each of these methods.
 //			setCaptainName();
 //			displayMainMenu();
 //			displayPlanetSelectionMenu();
@@ -67,14 +69,14 @@
 //		}
 //	}
 //
-//	//MENU METNODS ------------------------------------------------------------
+//	//MENU METHODS ------------------------------------------------------------
 //	/**displayMainMenu()
 //	 * STATIC METHOD
 //	 * Displays the main menu on the console.
 //	 * @return void
 //	 */
 //	public static void displayMainMenu() {
-//		displayCrewSelectionMenu();
+//		displayCrewSelectionMenu()
 //	}
 //
 //	/**displayCrewSelectionMenu()
@@ -94,18 +96,18 @@
 //				System.out.println(s + "?");
 //			}
 //
-//			//The Apache clause is an attempt to move every keystroke to lower case, and then appropriately capitalize the crew members. 
+//			//The Apache clause is an attempt to move every keystroke to lower case, and then appropriately capitalize the crew members.
 //			System.out.println("Please type three crew members, and press enter between each one!");
 //			for (int i = 0; i <= 2; i++) {
 //				selectedCrew.add(in.nextLine());
 //			}
 //
-//			//Confirm selection. This method is an external recurse to the displayCrewSelectionMenu() method. 
+//			//Confirm selection. This method is an external recurse to the displayCrewSelectionMenu() method.
 //			confirmCrew(selectedCrew);
 //
 //			if (!doesPlayerHaveFullCrew(selectedCrew)) {
 //				System.out.println("Something screwed up! Let's do that again!");
-//				displayCrewSelectionMenu(); //recurse. 
+//				displayCrewSelectionMenu(); //recurse.
 //			}
 //		}
 //		else {
@@ -128,7 +130,7 @@
 //		ArrayList<String> planetList = new ArrayList<String>();
 //		ArrayList<String> possiblePlanets = new ArrayList<String>();
 //
-//		//Clear values for recurse. 
+//		//Clear values for recurse.
 //		possiblePlanets.clear();
 //
 //		//Editted by: Kenny Cauthen
@@ -138,12 +140,12 @@
 //
 //
 //		if (startFromSave) {
-//			System.out.println("Here are all the planets you've visited: "); //TODO: Get list of visited planets in there from save game. 
+//			System.out.println("Here are all the planets you've visited: "); //TODO: Get list of visited planets in there from save game.
 //			for (String s : returningCaptain.getPlanetsVisited()) {
 //				System.out.println(s);
 //			}
 //
-//			//This loop of code gets rid of the planets the Captain has already visited from the planet list. 
+//			//This loop of code gets rid of the planets the Captain has already visited from the planet list.
 //			for (String thisVisitedPlanet : returningCaptain.getPlanetsVisited()) { 	//For each visited planet...
 //				for (String thisPlanet : planetList) { 									//...for each planet in the full list...
 //					if (thisVisitedPlanet.equals(thisPlanet)) { 						//...compare, and if they're equal...
@@ -176,10 +178,10 @@
 //		}
 //
 //		System.out.println("Please enter the planet you'd like to visit. Remember, type the planet name exactly or we'll end up lost in space!!");
-//		nextPlanet = in.nextLine(); //Oh goodness... the case is going to be bad on this one.  		
+//		nextPlanet = in.nextLine(); //Oh goodness... the case is going to be bad on this one.
 //		if(!possiblePlanets.contains(nextPlanet)) {
 //			System.out.println("Oh no, Captain! We're adrift! Attempting to renavigate...");
-//			displayPlanetSelectionMenu(); //Recurse. 
+//			displayPlanetSelectionMenu(); //Recurse.
 //		}
 //
 //		//TODO: Planet instantiation constructor here
@@ -200,7 +202,7 @@
 //	 */
 //	public static void displayPlanetMenu(Planet targetPlanet) {
 //		Scanner in = new Scanner(System.in);
-//		//Pass the planet to the appropriate arrays. 
+//		//Pass the planet to the appropriate arrays.
 //		if (startFromSave) {
 //			returningCaptain.addVisistedPlanet(targetPlanet.getPlanetName());
 //		}
@@ -209,7 +211,7 @@
 //		}
 //
 //		if (targetPlanet.getPlanetFlag() == 1) {
-//			System.out.println("Captain! We have landed on " + WordUtils.capitalizeFully(targetPlanet.getPlanetName()) + "!"); //Capitalization is for the civilized. 
+//			System.out.println("Captain! We have landed on " + WordUtils.capitalizeFully(targetPlanet.getPlanetName()) + "!"); //Capitalization is for the civilized.
 //			System.out.println("Here is the planet's Wikipedia Entry:");
 //			System.out.println(targetPlanet.getArrivalMessage());
 //			System.out.println("What would you like to do? You may Explore (type 'E'), you may Scan (type 'S') or you may choose another planet (type 'get me out of here').");
@@ -227,13 +229,13 @@
 //
 //			else if (captainsResponse.equals("s")) {
 //				System.out.println(targetPlanet.getScanMessage());
-//				//TODO: What here?			
+//				//TODO: What here?
 //			}
 //		}
 //
 //		else {
-//			System.out.println("Captain! We are about to be ambushed!!"); //TODO: Travis, what do you want to do with bosses? 
-//			//TODO: Enter combat. 
+//			System.out.println("Captain! We are about to be ambushed!!"); //TODO: Travis, what do you want to do with bosses?
+//			//TODO: Enter combat.
 //		}
 //	}
 //
@@ -517,7 +519,62 @@
 //	 * Remarks:
 //	 */
 //	public String removeNonWords(String string) {
-//		return string.replaceAll("//W", "");
+//		return (string.replaceAll("//W", "")).toLowerCase();
 //	}
+//
+//    public void titleScreen(){
+//        boolean titleNotComplete = true;
+//        headerPrint();
+//        System.out.println("Space Game Title");
+//        wWJD();
+//        System.out.println("");
+//        nl(2);
+//        System.out.println("New Game  :  Load Game  :  Exit Game");
+//        while(titleNotComplete) {
+//            if (booleanMaker("New Game")) {
+//                //TODO Create New Game
+//                titleNotComplete = false;
+//
+//            } else if (booleanMaker("Load Game")) {
+//                //TODO Load Game Menu
+//                titleNotComplete = false;
+//
+//            } else if (booleanMaker("Exit Game")) {
+//                //TODO Exit Game
+//                titleNotComplete = false;
+//
+//            } else{
+//                inputFailureMessage();
+//            }
+//        }
+//
+//
+//    }
+//    public void headerPrint(){
+//        nl(1);
+//        System.out.println("==================================================================");
+//        nl(1);
+//    }
+//    public void wWJD(){
+//        System.out.println("------------------------------------------------------------------");
+//        System.out.println("What would you like to do?");
+//    }
+//    public void nl(int numberOfNextLines){
+//        for(int i =0; i<numberOfNextLines;i++){
+//            System.out.println();
+//        }
+//
+//    }
+//
+//    public void listener(){
+//        userInput = removeNonWords(in.nextLine());
+//    }
+//    public boolean booleanMaker(String input){
+//        return userInput.contains(removeNonWords(input)) || userInput.contains((removeNonWords(input.substring(0,1))));
+//
+//    }
+//   public void inputFailureMessage(){
+//       System.out.println("Please try your entry again...");
+//   }
 //
 //}

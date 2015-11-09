@@ -18,18 +18,20 @@ import obstacles.Puzzle;
 import playerCharacter.Captain;
 
 public class Game {
-	private Captain captain = new Captain(); 
-	private ArrayList<Enemy> bossesBeat; 
-	private ArrayList<Puzzle> puzzlesSolved;
-	private ArrayList<String> crew;
-	private ArrayList<Planet> planets; 
+	private static final String EXTENSION = ".ser";
 	private static int numPreviousSaves;
-	private static final String EXTENSION = ".ser"; 
+	private Captain captain = new Captain();
+	private Planet currentPlanet;
+	private ArrayList<Planet> planets;
+
+	//private ArrayList<Enemy> bossesBeat;
+	//private ArrayList<Puzzle> puzzlesSolved;
+	//private ArrayList<String> crew;
 	
 	/**Game()
 	 * CONSTRUCTOR
 	 * @param captain The captain playing the game. 
-	 * @param planetsVisisted The planets the captain has visited. 
+	 * @param planets The planets the captain has visited.
 	 */
 	public Game(Captain captain, ArrayList<Planet> planets) {
 		super();
@@ -42,58 +44,6 @@ public class Game {
 	 */
 	public Game() {
 		// TODO Auto-generated constructor stub
-	}
-
-	/**
-	 * @return the captain
-	 */
-	public Captain getCaptain() {
-		return captain;
-	}
-	/**
-	 * @param captain the captain to set
-	 */
-	public void setCaptain(Captain captain) {
-		this.captain = captain;
-	}
-
-	/**
-	 * @return the bossesBeat
-	 */
-	public ArrayList<Enemy> getBossesBeat() {
-		return bossesBeat;
-	}
-	/**
-	 * @param bossesBeat the bossesBeat to set
-	 */
-	public void setBossesBeat(ArrayList<Enemy> bossesBeat) {
-		this.bossesBeat = bossesBeat;
-	}
-	/**
-	 * @return the puzzlesSolved
-	 */
-	public ArrayList<Puzzle> getPuzzlesSolved() {
-		return puzzlesSolved;
-	}
-	/**
-	 * @param puzzlesSolved the puzzlesSolved to set
-	 */
-	public void setPuzzlesSolved(ArrayList<Puzzle> puzzlesSolved) {
-		this.puzzlesSolved = puzzlesSolved;
-	}
-
-	/**
-	 * @return the crew
-	 */
-	public ArrayList<String> getCrew() {
-		return crew;
-	}
-
-	/**
-	 * @param crew the crew to set
-	 */
-	public void setCrew(ArrayList<String> crew) {
-		this.crew = crew;
 	}
 
 	/**
@@ -110,43 +60,34 @@ public class Game {
 		Game.numPreviousSaves = numPreviousSaves;
 	}
 
-	/**
-	 * @param planets the planets to set
-	 */
-	public void setPlanets(ArrayList<Planet> planets) {
-		this.planets = planets;
-	}
-	
-	public static Game loadGame (String path) throws IOException {
-		//TODO: Read in these from the file. Blanks for now. 
-		Captain captain = new Captain(); 
-		ArrayList<Planet> planets = new ArrayList<Planet>(); 
-		
-		//Construct game object. 
-		Game game = new Game(captain, planets); 
-		
+	public static Game loadGame(String path) throws IOException {
+		//TODO: Read in these from the file. Blanks for now.
+		Captain captain = new Captain();
+		ArrayList<Planet> planets = new ArrayList<Planet>();
+
+		//Construct game object.
+		Game game = new Game(captain, planets);
+
 		if (game.numPreviousSaves <= 3) {
 			System.out.println("Sorry, Captain! You're too old for active duty!");
 			System.exit(0);
 		}
-		 
-		return game; 
+
+		return game;
 	}
-	
+
 	/**saveGame()
-	 * Writes savegame data to a file. 
-	 * @param path Path to which to write the file. 
+	 * Writes savegame data to a file.
+	 * @param path Path to which to write the file.
 	 * @return void
 	 */
 	public static void saveGame(Game thisGame, String path) throws IOException {
-		 File saveGame = new File(path); 
-		 if (saveGame.exists()) {
-			 //TODO: Clear the file and rewrite.
-		 }
-		 
-		 else {
-			 //TODO: Create the file and write.
-		 }
+		File saveGame = new File(path);
+		if (saveGame.exists()) {
+			//TODO: Clear the file and rewrite.
+		} else {
+			//TODO: Create the file and write.
+		}
 	}
 
 	/**
@@ -155,4 +96,87 @@ public class Game {
 	public static String getExtension() {
 		return EXTENSION;
 	}
+
+	/**
+	 * @return the captain
+	 */
+	public Captain getCaptain() {
+		return captain;
+	}
+
+	/**
+	 * @param captain the captain to set
+	 */
+	public void setCaptain(Captain captain) {
+		this.captain = captain;
+	}
+
+	/**
+	 * @return planets the planets to get
+	 */
+	public ArrayList<Planet> getPlanets() {
+		return planets;
+	}
+
+	/**
+	 * @param planets the planets to set
+	 */
+
+	public void setPlanets(ArrayList<Planet> planets) {
+		this.planets = planets;
+	}
+
+	/*
+
+	*/
+/**
+ * @return the bossesBeat
+ *//*
+
+	public ArrayList<Enemy> getBossesBeat() {
+		return bossesBeat;
+	}
+	*/
+/**
+ * @param bossesBeat the bossesBeat to set
+ *//*
+
+	public void setBossesBeat(ArrayList<Enemy> bossesBeat) {
+		this.bossesBeat = bossesBeat;
+	}
+	*/
+/**
+ * @return the puzzlesSolved
+ *//*
+
+	public ArrayList<Puzzle> getPuzzlesSolved() {
+		return puzzlesSolved;
+	}
+	*/
+/**
+ * @param puzzlesSolved the puzzlesSolved to set
+ *//*
+
+	public void setPuzzlesSolved(ArrayList<Puzzle> puzzlesSolved) {
+		this.puzzlesSolved = puzzlesSolved;
+	}
+
+	*/
+/**
+ * @return the crew
+ *//*
+
+	public ArrayList<String> getCrew() {
+		return crew;
+	}
+
+	*/
+/**
+ * @param crew the crew to set
+ *//*
+
+	public void setCrew(ArrayList<String> crew) {
+		this.crew = crew;
+	}
+*/
 }
