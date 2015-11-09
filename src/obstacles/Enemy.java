@@ -83,11 +83,7 @@ public class Enemy extends Persona implements Combat{
 		return ambushStatus;
 	}
 
-	@Override
-	public int attack(int attackPoints, int defensePoints) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+	
 
 
 ////Implement Combat Interface
