@@ -1,5 +1,17 @@
 package controllers;
 
+/**
+ * 
+ * @author Travis T3 Keating
+ * 
+ * LAST EDITED ON 11.9.15
+ * 
+ * Let me know what you guys think about this. I'm thinking
+ * that we have combat happen in either Persona or Planet. 
+ * --Travis
+ *
+ */
+
 public interface Combat {
 
 	/**
