@@ -4,6 +4,12 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import obstacles.Enemy;
+import obstacles.Planet;
+import obstacles.Puzzle;
+import playerCharacter.Captain;
+import controllers.Game; 
+
 /*
 Class: SaveGame
 The SaveGame class houses all functionality for saving and loading games.  
@@ -16,10 +22,11 @@ public class SaveGame {
 	private final static String EXTENSION = ".ser"; 
 	private final static String PATH = System.getProperty("user.home") + "\\Desktop\\";
 	private String saveGameName = ""; 
-	private static ArrayList<String> planetsVisited = new ArrayList<String>(); 
-	private static ArrayList<String> bossesDefeated = new ArrayList<String>(); 
-	private static ArrayList<String> crew = new ArrayList<String>(); 
-	private static String captainName; 
+	private ArrayList<Planet> planetsVisited; 
+	private ArrayList<Enemy> bossesBeat; 
+	private ArrayList<Puzzle> puzzlesSolved; 
+	private ArrayList<String> crew; 
+	private Captain captain; 
 	private int numPreviousSaves; 
 	
 	/**SaveGame()
@@ -27,16 +34,16 @@ public class SaveGame {
 	 * @param fileName The name of the file. 
 	 * @param captainName The name of the captain. 
 	 * @param planetsVisited The planets visited by the captain in previous games. 
-	 * @param bossesDefeated The bosses defeated by the captain in previous games. 
+	 * @param bossesBeat The bosses defeated by the captain in previous games. 
 	 * @param crew 
 	 * @return void
 	 */
-	public SaveGame (String fileName, String captainName, ArrayList<String> planetsVisited, ArrayList<String> bossesDefeated, ArrayList<String> crew) {
+	public SaveGame (String fileName, Captain captain, ArrayList<Planet> planetsVisited, ArrayList<Enemy> bossesBeat, ArrayList<String> crew) {
 		String fullPath = getPATH().concat(fileName + SaveGame.getEXTENSION());
-		this.captainName = captainName; 
-		this.planetsVisited = planetsVisited;
-		this.bossesDefeated = bossesDefeated; 
-		this.crew = crew; 
+		this.captain = captain; 
+		this.setPlanetsVisited(planetsVisited);
+		this.setBossesBeat(bossesBeat); 
+		this.setCrew(crew); 
 	}
 	
 	/**SaveGame()
@@ -70,84 +77,20 @@ public class SaveGame {
 	 * @param path Path to which to read the file. 
 	 * @return void
 	 */
-	public static SaveGame readInData(String path) throws IOException {
-		File saveGameFile = new File(path); 
-		String fileName = ""; 
-		String captainName = ""; 
-		ArrayList<String> planetsVisited = new ArrayList<String>(); 
-		ArrayList<String> bossesDefeated = new ArrayList<String>();
-		ArrayList<String> crew = new ArrayList<String>(); 
+	public static Game readInData(String path) throws IOException {
+		//TODO: Read in these from the file. Blanks for now. 
+		Captain captain = new Captain(); 
+		ArrayList<Planet> planetsVisisted = new ArrayList<Planet>(); 
+		ArrayList<Enemy> bossesBeat = new ArrayList<Enemy>();
+		ArrayList<Puzzle> puzzlesSolved = new ArrayList<Puzzle>();
+		ArrayList<String> crew =  new ArrayList<String>(); 
 		
-		//TODO: Read in current number of saves.
-		//TODO: Read in captain's name and set it. 
-		//TODO: Read in captain's crew and set them.
-		//TODO: Read in Planets Visited and set them.
-		//TODO: Read in Bosses defeated and set them.
-		
-		SaveGame returningCaptain = new SaveGame(fileName, captainName, planetsVisited, bossesDefeated, crew);
-		return returningCaptain; 
-		
+		//Construct game object. 
+		Game game = new Game(captain, planetsVisisted, bossesBeat, puzzlesSolved, crew); 
+		 
+		return game; 
 	}
 	
-	/**addVisistedPlanet()
-	 * Adds a visited planet to the private array. 
-	 * @param planet Planet to add. 
-	 * @return void
-	 */
-	public static void addVisistedPlanet(String planetName) {
-		planetsVisited.add(planetName); 
-	}
-	
-	/**addBossDefeated()
-	 * Adds a defeated boss to the private array. 
-	 * @param enemy Enemy to add. 
-	 * @return void
-	 */
-	public static void addBossDefeated(String enemyName) {
-		bossesDefeated.add(enemyName); 
-	}
-	/**
-	 * @return the planetsVisited
-	 */
-	public static ArrayList<String> getPlanetsVisited() {
-		return planetsVisited;
-	}
-
-	/**
-	 * @param planetsVisited the planetsVisited to set
-	 */
-	public static void setPlanetsVisited(ArrayList<String> planetsVisited) {
-		SaveGame.planetsVisited = planetsVisited;
-	}
-
-	/**
-	 * @return the bossesDefeated
-	 */
-	public static ArrayList<String> getBossesDefeated() {
-		return bossesDefeated;
-	}
-
-	/**
-	 * @param bossesDefeated the bossesDefeated to set
-	 */
-	public static void setBossesDefeated(ArrayList<String> bossesDefeated) {
-		SaveGame.bossesDefeated = bossesDefeated;
-	}
-
-	/**
-	 * @return the captainName
-	 */
-	public static String getCaptainName() {
-		return captainName;
-	}
-
-	/**
-	 * @param captainName the captainName to set
-	 */
-	public static void setCaptainName(String captainName) {
-		SaveGame.captainName = captainName;
-	}
-
 	/**
 	 * @return the PATH
 	 */
@@ -193,15 +136,15 @@ public class SaveGame {
 	/**
 	 * @return the crew
 	 */
-	public static ArrayList<String> getCrew() {
+	public ArrayList<String> getCrew() {
 		return crew;
 	}
 
 	/**
 	 * @param crew the crew to set
 	 */
-	public static void setCrew(ArrayList<String> crew) {
-		SaveGame.crew = crew;
+	public void setCrew(ArrayList<String> crew) {
+		this.crew = crew;
 	}
 	
 	/**getFullPath
@@ -211,9 +154,50 @@ public class SaveGame {
 	 * @return fullPath A string like this: 
 	 * 		C:/users/<current user>/CaptainsName.ser
 	 */
-	public static String getFullPath() {
-		String fullPath = getPATH().concat(getCaptainName()); 
+	public String getFullPath() {
+		String fullPath = getPATH().concat(getCaptain().getCaptainName()); 
 		fullPath = fullPath.concat(getEXTENSION()); 
 		return fullPath; 
+	}
+	
+	/**
+	 * @return puzzles solved
+	 */
+	public ArrayList<Puzzle> getPuzzlesSolved() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public Captain getCaptain() {
+		// TODO Auto-generated method stub
+		return captain;
+	}
+
+	/**
+	 * @param planetsVisited the planetsVisited to set
+	 */
+	public void setPlanetsVisited(ArrayList<Planet> planetsVisited) {
+		this.planetsVisited = planetsVisited;
+	}
+
+	/**
+	 * @return the bossesBeat
+	 */
+	public ArrayList<Enemy> getBossesBeat() {
+		return bossesBeat;
+	}
+
+	/**
+	 * @param bossesBeat the bossesBeat to set
+	 */
+	public void setBossesBeat(ArrayList<Enemy> bossesBeat) {
+		this.bossesBeat = bossesBeat;
+	}
+
+	/**
+	 * @param puzzlesSolved the puzzlesSolved to set
+	 */
+	public void setPuzzlesSolved(ArrayList<Puzzle> puzzlesSolved) {
+		this.puzzlesSolved = puzzlesSolved;
 	}
 }
