@@ -35,8 +35,7 @@ public class GameController2 {
 		 if (response.toLowerCase().equals("y")) {
 			 //TODO: Display SaveGame menu that returns a string path. 
 			 String path = ""; //TODO: Remove this when menu sys implemented.  
-			 Game game = SaveGame.readInData(path); 
-			 
+			 Game game = Game.loadGame(System.getProperty("user.home") + "\\Desktop\\" + Game.getExtension()); 
 		 }
 		 
 		 if (response.toLowerCase().equals("h")) {
@@ -47,17 +46,15 @@ public class GameController2 {
 			 //TODO: Display Menu for a new Game that returns a Game object.
 			 //Create empty arrays for Game constructor. Remove when menu sys implemented.
 			 Captain captain = new Captain(); 
-			 ArrayList<Planet> planetsVisisted = new ArrayList<Planet>(); 
-			 ArrayList<Enemy> bossesBeat = new ArrayList<Enemy>();
-			 ArrayList<Puzzle> puzzlesSolved = new ArrayList<Puzzle>();
-			 ArrayList<String> crew =  new ArrayList<String>(); 
+			 ArrayList<Planet> planets = new ArrayList<Planet>(); 
 			 
 			 //Construct game object. 
-			 Game game = new Game(captain, planetsVisisted, bossesBeat, puzzlesSolved, crew);
+			 Game game = new Game(captain, planets);
 			 
 			 //TODO: Display menu for crew selection that returns an ArrayList<String> of the crew. 
 			 ArrayList<String> tempCrewArray = new ArrayList<String>(); //TODO: Remove this when menu sys implemented. 
-			 game.setCrew(tempCrewArray);		 
+			 game.setCrew(tempCrewArray);		
+			 game.setNumPreviousSaves(0);
 		 }
 		 
 		 System.out.println("Let's get started Captain!");
@@ -69,4 +66,7 @@ public class GameController2 {
 		 //TODO: Display Combat menu
 		 
 	}
+	
+	//TODO: Static method saveGame
+	//TODO: Static method loadGame
 }

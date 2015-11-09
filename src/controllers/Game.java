@@ -1,5 +1,7 @@
 package controllers;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 /*
@@ -17,25 +19,22 @@ import playerCharacter.Captain;
 
 public class Game {
 	private Captain captain = new Captain(); 
-	private ArrayList<Planet> planetsVisited; 
 	private ArrayList<Enemy> bossesBeat; 
 	private ArrayList<Puzzle> puzzlesSolved;
-	private ArrayList<String> crew; 
+	private ArrayList<String> crew;
+	private ArrayList<Planet> planets; 
+	private static int numPreviousSaves;
+	private static final String EXTENSION = ".ser"; 
 	
 	/**Game()
 	 * CONSTRUCTOR
 	 * @param captain The captain playing the game. 
 	 * @param planetsVisisted The planets the captain has visited. 
-	 * @param bossesBeat The bosses the captain has defeated. 
-	 * @param puzzlesSolved The puzzles the captain has solved. 
 	 */
-	public Game(Captain captain, ArrayList<Planet> planetsVisisted, ArrayList<Enemy> bossesBeat, ArrayList<Puzzle> puzzlesSolved, ArrayList<String> crew) {
+	public Game(Captain captain, ArrayList<Planet> planets) {
 		super();
 		this.captain = captain;
-		this.planetsVisited = planetsVisisted;
-		this.bossesBeat = bossesBeat;
-		this.puzzlesSolved = puzzlesSolved;
-		this.setCrew(crew); 
+		this.planets = planets;
 	}
 	
 	/**
@@ -57,18 +56,7 @@ public class Game {
 	public void setCaptain(Captain captain) {
 		this.captain = captain;
 	}
-	/**
-	 * @return the planetsVisited
-	 */
-	public ArrayList<Planet> getPlanetsVisited() {
-		return planetsVisited;
-	}
-	/**
-	 * @param planetsVisited the planetsVisited to set
-	 */
-	public void setPlanetsVisited(ArrayList<Planet> planetsVisited) {
-		this.planetsVisited = planetsVisited;
-	}
+
 	/**
 	 * @return the bossesBeat
 	 */
@@ -106,5 +94,65 @@ public class Game {
 	 */
 	public void setCrew(ArrayList<String> crew) {
 		this.crew = crew;
+	}
+
+	/**
+	 * @return the numPreviousSaves
+	 */
+	public static int getNumPreviousSaves() {
+		return numPreviousSaves;
+	}
+
+	/**
+	 * @param numPreviousSaves the numPreviousSaves to set
+	 */
+	public static void setNumPreviousSaves(int numPreviousSaves) {
+		Game.numPreviousSaves = numPreviousSaves;
+	}
+
+	/**
+	 * @param planets the planets to set
+	 */
+	public void setPlanets(ArrayList<Planet> planets) {
+		this.planets = planets;
+	}
+	
+	public static Game loadGame (String path) throws IOException {
+		//TODO: Read in these from the file. Blanks for now. 
+		Captain captain = new Captain(); 
+		ArrayList<Planet> planets = new ArrayList<Planet>(); 
+		
+		//Construct game object. 
+		Game game = new Game(captain, planets); 
+		
+		if (game.numPreviousSaves <= 3) {
+			System.out.println("Sorry, Captain! You're too old for active duty!");
+			System.exit(0);
+		}
+		 
+		return game; 
+	}
+	
+	/**saveGame()
+	 * Writes savegame data to a file. 
+	 * @param path Path to which to write the file. 
+	 * @return void
+	 */
+	public static void saveGame(Game thisGame, String path) throws IOException {
+		 File saveGame = new File(path); 
+		 if (saveGame.exists()) {
+			 //TODO: Clear the file and rewrite.
+		 }
+		 
+		 else {
+			 //TODO: Create the file and write.
+		 }
+	}
+
+	/**
+	 * @return the extension
+	 */
+	public static String getExtension() {
+		return EXTENSION;
 	}
 }
