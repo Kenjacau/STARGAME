@@ -14,6 +14,7 @@ import java.util.Collections;
  *          Assignment: Final Project
  */
 public class PuzzleMaker {
+
 	private final String[] puzzleDescriptionArray = {"TestP 1 Description Message", "TestP 2 Description Message",
 			"TestP 3 Description Message"};
 	private final String[] puzzleHintArray = {"TestP 1 Hint Message", "TestP 2 Hint Message", "TestP 3Hint Message"};
@@ -88,28 +89,6 @@ public class PuzzleMaker {
 		}
 		return tempArrayList;
 	}
-
-/*
-	public void createPuzzleChoiceList(){
-		String[] pegasiB = {"testchoice1a","testchoice1b"};
-		String[] lVfour = {"testchoice2a","testchoice2b"};
-		String[] shadowFax = {"testchoice3a","testchoice3b","testchoice3c"};
-		String[] lisus = {"testchoice4a","testchoice4b"};
-		String[] insula = {"testchoice5a","testchoice5b"};
-		String[] heralda = {"",""};
-		Collections.addAll(puzzleChoiceList,pegasiB,lVfour,shadowFax,lisus,insula,heralda);
-
-	}
-	public void createPuzzleChoiceMessageList(){
-		String[] pB = {"testmessage1","testmessage1"};
-		String[] lV = {"testmessage2","testmessage2"};
-		String[] sF = {"testmessage3","testmessage3"};
-		String[] l = {"testmessage4","testmessage4"};
-		String[] i = {"testmessage5","testmessage5"};
-		String[] h = {"",""};
-		Collections.addAll(puzzleChoiceMessageList,pB,lV,sF,l,i,h);
-	}
-	*/
 }
 
 
