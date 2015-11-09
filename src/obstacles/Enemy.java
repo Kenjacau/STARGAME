@@ -11,7 +11,7 @@ TODO: Write class definition here.
 - Version: 0.0.0
 - TODO: Date goes here.    
 */
-public class Enemy extends Persona implements Combat{
+public class Enemy extends Persona implements Combat {
 	//Declare enemy specific Attributes
 	
 	private String enemyDescription;
@@ -81,6 +81,18 @@ public class Enemy extends Persona implements Combat{
 	 */
 	public int getAmbushStatus() {
 		return ambushStatus;
+	}
+
+	@Override
+	public void attack(int attackPoints, int defensePoints) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void ambush(int attackPoints, int defensePoints) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	

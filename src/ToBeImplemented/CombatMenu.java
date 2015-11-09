@@ -16,7 +16,7 @@ import controllers.Combat;
  * 		>11/4/15 Travis K
  *
  */
-public class CombatMenu{
+public class CombatMenu {
 
 	public static void main(String[] args) {
 		
@@ -149,6 +149,7 @@ public class CombatMenu{
 			
 		}
 
+		}
 	}
 
 }
