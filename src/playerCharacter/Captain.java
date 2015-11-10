@@ -7,46 +7,21 @@ Class: Captain
 Purpose: The Captain class manages the display of player information, selection of crew members, and actions related to combat.
 - Author: @cdeluna
 - Email: cdeluna@ggc.edu
-- Version: 0.0.2
+- Version: 0.0.3
 - Date: 11/5/2015  
 */
 public class Captain extends Persona {
 
-	private static String captainName = "";
-	private static int[] bossesBeat = new int[0];
-	private static String[] crewSelection = new String[6];
-	private static ArrayList<String> captainCrew = new ArrayList<String>();
-
-	/**
-	 * Constructor: Captain - Creates Captain object with attributes
-	 */
-	public Captain() {
-		// TODO Combat attributes needed
-	}
-
-	/**
-	 * Method: getCaptainName - Getter method for the name of the captain
-	 *
-	 * @return the captainName
-	 */
-	public static String getCaptainName() {
-		return captainName;
-	}
-
-	/**
-	 * @param captainName
-	 *            the captainName to set
-	 */
-	public static void setCaptainName(String captainName) {
-		Captain.captainName = captainName;
-	}
+	private static int[] bossesBeat;
+	private static ArrayList<String> crewSelection;
+	private static ArrayList<String> captainCrew;
 
 	/**
 	 * Method: getCrewSelection - Getter method for selecting a crew member
 	 * 
 	 * @return the crewSelection
 	 */
-	public static String[] getCrewSelection() {
+	public static ArrayList<String> getCrewSelection() {
 		return crewSelection;
 	}
 
@@ -61,11 +36,11 @@ public class Captain extends Persona {
 	}
 
 	/**
-	 * @param crew
-	 *            the crew to set
+	 * @param captainCrew
+	 *            the captainCrew to set
 	 */
-	public static void setCaptainCrew(ArrayList<String> crew) {
-		Captain.captainCrew = crew;
+	public static void setCaptainCrew(ArrayList<String> captainCrew) {
+		Captain.captainCrew = captainCrew;
 	}
 
 	/**
@@ -129,6 +104,28 @@ public class Captain extends Persona {
 	 */
 	public Boolean fleeCombat() {
 		return null;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see controllers.Combat#attack(int, int)
+	 */
+	@Override
+	public void attack(int attackPoints, int defensePoints) {
+		// TODO Auto-generated method stub
+
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see controllers.Combat#ambush(int, int)
+	 */
+	@Override
+	public void ambush(int attackPoints, int defensePoints) {
+		// TODO Auto-generated method stub
+
 	}
 
 }

@@ -1,19 +1,40 @@
 package playerCharacter;
 
+import controllers.Combat;
+
 /*
 Class: Persona
 Purpose: The Persona class stores attributes, which gets and sets stat points necessary for combat.
 - Author: @cdeluna
 - Email: cdeluna@ggc.edu
-- Version: 0.0.2
+- Version: 0.0.3
 - Date: 2015-11-05
 */
-public abstract class Persona {
+public abstract class Persona implements Combat {
+	// Have we decided on this yet? Are we going to put the combat stuff here?
 
-	private boolean alive;
+	private static String playerName = "";
+	private boolean alive = true;
 	private int healthPoints;
 	private int attackPoints;
 	private int defensePoints;
+
+	/**
+	 * Method: getPlayerName - Getter method for the name of the player
+	 * 
+	 * @return playerName
+	 */
+	public String getPlayerName() {
+		return playerName;
+	}
+
+	/**
+	 * @param playerName
+	 *            the playerName to set
+	 */
+	public static void setPlayerName(String playerName) {
+		Persona.playerName = playerName;
+	}
 
 	/**
 	 * Method: isAlive - Determines the player's status based on amount of
