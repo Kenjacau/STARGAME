@@ -7,12 +7,12 @@ Class: Captain
 Purpose: The Captain class manages the display of player information, selection of crew members, and actions related to combat.
 - Author: @cdeluna
 - Email: cdeluna@ggc.edu
-- Version: 0.0.3
+- Version: 0.0.4
 - Date: 11/5/2015  
 */
 public class Captain extends Persona {
 
-	private static int[] bossesBeat;
+	private int[] bossesBeat;
 	private static ArrayList<String> crewSelection;
 	private static ArrayList<String> captainCrew;
 
@@ -114,7 +114,6 @@ public class Captain extends Persona {
 	@Override
 	public void attack(int attackPoints, int defensePoints) {
 		// TODO Auto-generated method stub
-
 	}
 
 	/*
@@ -125,7 +124,6 @@ public class Captain extends Persona {
 	@Override
 	public void ambush(int attackPoints, int defensePoints) {
 		// TODO Auto-generated method stub
-
 	}
 
 }
