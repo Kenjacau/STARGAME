@@ -5,8 +5,8 @@ import java.util.ArrayList;
 /*
 Class: Captain
 Purpose: The Captain class manages the display of player information, selection of crew members, and actions related to combat.
-- Author: @cdeluna
-- Email: cdeluna@ggc.edu
+- Author: @cdeluna, @jcbrough
+- Email: cdeluna@ggc.edu, jbroughton@ggc.edu
 - Version: 0.0.4
 - Date: 11/5/2015  
 */

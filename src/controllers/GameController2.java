@@ -53,7 +53,7 @@ public class GameController2 {
 			 
 			 //TODO: Display menu for crew selection that returns an ArrayList<String> of the crew. 
 			 ArrayList<String> tempCrewArray = new ArrayList<String>(); //TODO: Remove this when menu sys implemented. 
-			 game.setCrew(tempCrewArray);		
+			 game.getCaptain().setCaptainCrew(tempCrewArray);	
 			 game.setNumPreviousSaves(0);
 		 }
 		 
