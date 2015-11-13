@@ -87,6 +87,8 @@ public class Enemy extends Persona implements Combat {
 	public void attack(int attackPoints, int defensePoints) {
 		// TODO Auto-generated method stub
 		
+		//Calculate damage
+		
 	}
 
 	@Override
