@@ -13,7 +13,7 @@ The Enemy class is a sub class of Persona that controls the creation of enemy ob
 - 11/13/2015 
 */
 
-public class EnemyTester {
+public class EnemyClassTester {
 
 	/**main()
 	 * STATIC METHOD
