@@ -9,7 +9,7 @@ import playerCharacter.Captain;
 
 /**
 Class: GameClassTester
-The GameController class is the primary controller, featuring the interfaces, the runnables and the starting point for the game. 
+The GameClassTester tests the Game object.
 - Author: @jbroughton
 - joshua.c.broughton@gmail.com, jbroughton@ggc.edu
 - Version: 0.0.0
@@ -18,30 +18,40 @@ The GameController class is the primary controller, featuring the interfaces, th
 public class GameClassTester {
 	private final static int NUM_OF_PLANETS = 30; //Provided for ease of changing. 
 	
-	/**main()
-	 * STATIC METHOD
-	 * This serves as the starting point for the GameController class.
-	 * @param args Command line arguments
-	 * @throws IOException
+	/**testHasCaptain()
+	 * Tests to see if the captain object is null. 
+	 * @param game A game object.
+	 * @return Flag for a passing test. 
 	 */
-	public static void main(String[] args) {
-		//Start a game and run tests on it. 
-		Captain captain = new Captain(); 
-		ArrayList<Planet> planetList = new ArrayList<Planet>(); 
-		Game game = new Game(captain, planetList); 
-		
+	public Boolean testHasCaptain(Game game) {
 		if (game.getCaptain() == null) {
-			throw new IllegalArgumentException("Captain was null.");
+			throw new IllegalArgumentException("Captain was null.");		
 		}
-		if (game.getPlanets().size() != NUM_OF_PLANETS) {
-			if (game.getPlanets().size() < NUM_OF_PLANETS) {
-				throw new IllegalArgumentException("Too few planets.");
-			}
-			
-			else if (game.getPlanets().size() > NUM_OF_PLANETS) {
-				throw new IllegalArgumentException("To many planets.");
-			}
+		else {
+			return true; 
 		}
 	}
+	
+	/**testHasPlanets()
+	 * Tests to see if the game object has the correct number of planets. 
+	 * @param game A game object.
+	 * @return Flag for a passing test. 
+	 */
+	public Boolean testHasPlanets(Game game) {
+		if (game.getPlanets().size() != NUM_OF_PLANETS) {
+			if (game.getPlanets().size() < NUM_OF_PLANETS) {
+				throw new IllegalArgumentException("Too few planets in Game class.");
+			}
 
-}
+			else if (game.getPlanets().size() > NUM_OF_PLANETS) {
+				throw new IllegalArgumentException("Too many planets in Game class.");
+			}
+
+			return false; 
+		}
+
+		else {
+			return true; 
+		}
+	}
+}	
