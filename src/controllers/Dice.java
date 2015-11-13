@@ -33,11 +33,17 @@ public class Dice {
 	 * @return boolean of dice rolling in favor of modifier
 	 */
 	public boolean roll() {
-		boolean result;
 		int randomNumber;
 		Random rand = new Random();
 		randomNumber = rand.nextInt(100) + 1;
 
 		return randomNumber <= modifier;
+	}
+
+	/**
+	 * @return the modifier
+	 */
+	public double getModifier() {
+		return modifier;
 	}
 }
