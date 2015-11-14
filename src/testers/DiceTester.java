@@ -13,7 +13,7 @@ The DiceTester tests the Dice object.
 public class DiceTester {
 	
 	/**hasModifier()
-	 * Tests to see if the captain object is null. 
+	 * Tests to see if the dice has a correct modifier. 
 	 * @param d A dice object.
 	 * @return Flag for a passing test. 
 	 */

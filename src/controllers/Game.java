@@ -19,45 +19,48 @@ import obstacles.Puzzle;
 import playerCharacter.Captain;
 
 public class Game {
-	private final String EXTENSION = ".ser";
+	private static final String EXTENSION = ".ser";
 	private int numPreviousSaves;
 	private Captain captain = new Captain();
 	private Planet currentPlanet;
 	private ArrayList<Planet> planets;
 
-	//private ArrayList<Enemy> bossesBeat;
-	//private ArrayList<Puzzle> puzzlesSolved;
-	//private ArrayList<String> crew;
 
-	//Comment from Kenny: I think the game class should handle all initializing of Captain, Planets and Enemys.
-	//                    Same for methods to save those elements to game.
 	/**Game()
-	 * CONSTRUCTOR
+	 * CONSTRUCTOR, TWO ARG
 	 * @param newCaptain The captain playing the game.
 	 * @param newPlanets The planets the captain has visited.
+	 * 
+	 * @author jcbrough, kenny
 	 */
-	public Game(Captain newCaptain, ArrayList<Planet> newPlanets) {
+	public Game(Captain _captain, ArrayList<Planet> _planets) {
 		super();
-		captain = newCaptain;
-		planets = newPlanets;
+		this.captain = _captain;
+		this.planets = _planets;
 	}
 	
-	/**
-	 * ONE ARG CONSTRUCTOR
+	/**Game()
+	 * CONSTUCTOR, ONE-ARG
+	 * @param path The path to the file where the *.ser is held. 
+	 * 
+	 * @author jcbrough
+	 */
+	public Game(String path) {
+		//TODO: Read in these from the fil pathe. Blanks for now.
+
+		captain = new Captain();
+		planets = new PlanetMaker().getPlanetArrayList();
+	}
+	
+	/**Game()
+	 * CONSTUCTOR, ZERO-ARG
+	 * 
+	 * @author jcbrough, kenny
 	 */
 	public Game() {
-		captain = new Captain();
-		planets = new PlanetMaker().getPlanetArrayList();
-		// TODO Auto-generated constructor stub
-	}
-
-	public Game(String path) {
-		//TODO: Read in these from the file. Blanks for now.
-
-		captain = new Captain();
-		planets = new PlanetMaker().getPlanetArrayList();
-
-
+		this.captain = new Captain();
+		this.planets = new PlanetMaker().getPlanetArrayList();
+		
 	}
 
 	/**
@@ -78,6 +81,9 @@ public class Game {
 	//Edited by: Kenny
 	//Comment: If a method is returning a game object from a class constructor, isnt that just a constructor for a game object.
 	//         Didnt see when else this method would be used except on loading a game. So created another constructor.
+	//Edit: JCB
+	//Comment: I hate it when you're right. You're a butthole.
+	
 //	public Game loadGame(String path) throws IOException {
 //		//TODO: Read in these from the file. Blanks for now.
 //		Captain captain = new Captain();

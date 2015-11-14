@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 import obstacles.*;
 import playerCharacter.Captain;
+import testers.*; 
 
 /*
 Class: GameController
@@ -26,6 +27,10 @@ public class GameController2 {
 	private Planet currentPlanet;
 	private Scanner in = new Scanner(System.in);
 	private String userInput = "";
+	
+	//Static constants. 
+	private static final String SPACE_GAME_TITLE = "Super Elite: Space Adventure";  
+
 
 	
 	/**main()
@@ -48,25 +53,31 @@ public class GameController2 {
 	//TODO: method saveGame
 	//TODO: method loadGame
 
-
 	//ALL Menu Methods
+	
+	/**titleScreen()
+	 * Displays dat title screen. 
+	 * 
+	 * @return void
+	 * @author kenny
+	 */
 	public void titleScreen() {
 		boolean titleNotComplete = true;
 
 		headerPrint();
-		System.out.println("Space Game Title");
+		System.out.println(SPACE_GAME_TITLE);
 		nl(1);
-		System.out.println("Welcome to the world, Captain. Here are your options.");
+		System.out.println("Welcome to dat world, Captain! Here are your options.");
 		nl(1);
 
 		while (titleNotComplete) {
-			System.out.println("New Game(N)  :  Load Game(L)  :  Exit Game(E)  :  Help Menu(H)");
+			System.out.println("dat New Game (N)  :  Load dat Game (L)  :  Exit dat Game (E)  :  dat Help Menu (H)");
 			wWJD();
 			nl(1);
 			listener();
 			if (booleanMaker("New Game")) {
 				//Construct New game object.
-				thisGame = new Game();
+				Game thisGame = new Game();
 				thisGame.setNumPreviousSaves(0);
 				loadThisGameElements(thisGame);
 
@@ -93,8 +104,9 @@ public class GameController2 {
 				//TODO Help Menu
 				helpMenu();
 
-			} else {
-				inputFailureMessage();
+			} 
+			else {
+				genericInputFailure();
 			}
 		}
 		headerPrint();
@@ -115,6 +127,13 @@ public class GameController2 {
 
 	}
 
+	/** planetSelectionMenu()
+	 * Displays the planet selection menu. 
+	 * 
+	 * @return void
+	 * @author jcbrough, kenny
+	 * 
+	 */
 	public void planetSelectionMenu() {
 		headerPrint();
 		nl(1);
@@ -141,6 +160,7 @@ public class GameController2 {
 	 * Description: Load Game menu that displays
 	 *
 	 * @return String path for Game.loadGame
+	 * @author jcbrough, kenny
 	 */
 	public String loadGameMenu() {
 		System.out.println("TODO loadGameMenu. Which game would you like to load?");
@@ -191,14 +211,27 @@ public class GameController2 {
 	public String removeNonWords(String string) {
 		return (string.replaceAll("//W", "")).toLowerCase();
 	}
-
+	
+	/**
+	 * Method: headerPrint()
+	 * Prints a header thingy. 
+	 * @return void
+	 * @author kenny
+	 */
 	public void headerPrint() {
 		nl(1);
 		System.out.println("==================================================================");
 		nl(1);
 	}
 
-	public void wWJD() {
+	/**
+	 * Method: wWJD()
+	 * Description: Print statement requesting next command. 
+	 *
+	 * @return void
+	 * @author kenny
+	 */
+	public void wWJD() { //HAHAHAHA!!! WWJD, really? Fuck me running. -JCB
 		System.out.println("------------------------------------------------------------------");
 		System.out.println("What would you like to do?");
 	}
@@ -208,6 +241,7 @@ public class GameController2 {
 	 * Description: goes to next line @param number of times.
 	 *
 	 * @param numberOfNextLines
+	 * @author kenny
 	 */
 	public void nl(int numberOfNextLines) {
 		for (int i = 0; i < numberOfNextLines; i++) {
@@ -215,7 +249,14 @@ public class GameController2 {
 		}
 
 	}
-
+	
+	/**
+	 * Method: listener()
+	 * TODO: I'm not sure what this does. KENNY!! --JCB
+	 *
+	 * @return void
+	 * @author kenny
+	 */
 	public void listener() {
 		userInput = removeNonWords(in.nextLine());
 	}
@@ -233,10 +274,33 @@ public class GameController2 {
 				userInput.contains(input.substring(0, input.indexOf(" ")));
 
 	}
-
-	public void inputFailureMessage() {
-		System.out.println("Please try your entry again...");
+	
+	/**
+	 * Method: genericInputFailure()
+	 * Prints a generic failure message. 
+	 *
+	 * @return void
+	 * @author kenny, jcbrough
+	 */
+	public void genericInputFailure() {
+		System.out.println("Input failure!");
 	}
-
-
+	
+	/**
+	 * Method: inputFailure()
+	 * Prints a failure based on passed parameters
+	 *
+	 * @return void
+	 * @author jcbrough
+	 * 
+	 * Use case: 
+	 *	String garbage = in.nextline(); 
+	 * 	if (garbage != validInput) {
+	 *	 	inputFaulre("Hey, Captain! " + garbage.toUpperCase() + " is not a valid input!");
+	 * 		tryInputAgain(); 
+	 * 	}
+	 */
+	public void inputFailure(String message) {
+		System.out.println(message);
+	}
 }
