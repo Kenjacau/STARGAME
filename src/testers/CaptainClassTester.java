@@ -9,7 +9,6 @@ Purpose: The Captain class manages the display of player information, selection 
 - Date: 2015-11-13 
 **/
 public class CaptainClassTester {
-	private final static String[] = ""
 	
 	public static void main(String[] args) {
 		

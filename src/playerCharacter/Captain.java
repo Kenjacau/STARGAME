@@ -13,15 +13,15 @@ Purpose: The Captain class manages the display of player information, selection 
 public class Captain extends Persona {
 
 	private int[] bossesBeat;
-	private static ArrayList<String> crewSelection;
-	private static ArrayList<String> captainCrew;
+	private ArrayList<String> crewSelection;
+	private ArrayList<String> captainCrew;
 
 	/**
 	 * Method: getCrewSelection - Getter method for selecting a crew member
 	 * 
 	 * @return the crewSelection
 	 */
-	public static ArrayList<String> getCrewSelection() {
+	public ArrayList<String> getCrewSelection() {
 		return crewSelection;
 	}
 
@@ -31,43 +31,43 @@ public class Captain extends Persona {
 	 * 
 	 * @return the captainCrew
 	 */
-	public static ArrayList<String> getCaptainCrew() {
+	public ArrayList<String> getCaptainCrew() {
 		return captainCrew;
 	}
 
 	/**
-	 * @param captainCrew
+	 * @param newCaptainCrew
 	 *            the captainCrew to set
 	 */
-	public static void setCaptainCrew(ArrayList<String> captainCrew) {
-		Captain.captainCrew = captainCrew;
+	public void setCaptainCrew(ArrayList<String> newCaptainCrew) {
+		captainCrew = newCaptainCrew;
 	}
 
 	/**
 	 * @return true
 	 */
-	public static boolean hasSurveyOfficer() {
+	public boolean hasSurveyOfficer() {
 		return true;
 	}
 
 	/**
 	 * @return true
 	 */
-	public static boolean hasEngineerOfficer() {
+	public boolean hasEngineerOfficer() {
 		return true;
 	}
 
 	/**
 	 * @return true
 	 */
-	public static boolean hasNavigationOfficer() {
+	public boolean hasNavigationOfficer() {
 		return true;
 	}
 
 	/**
 	 * @return true
 	 */
-	public static boolean hasTacticalOfficer() {
+	public boolean hasTacticalOfficer() {
 		return true;
 	}
 
@@ -125,5 +125,6 @@ public class Captain extends Persona {
 	public void ambush(int attackPoints, int defensePoints) {
 		// TODO Auto-generated method stub
 	}
+
 
 }

@@ -11,8 +11,8 @@ Purpose: The Persona class stores attributes, which gets and sets stat points ne
 - Date: 2015-11-05
 **/
 public class PersonaClassTester {
-		
-		String healthPoints = 
-	}
+
+	String healthPoints = "";
+
 
 }

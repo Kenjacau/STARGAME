@@ -14,12 +14,13 @@ The Game class is the primary interface between the captian, the planets, the pu
 */
 import obstacles.Enemy;
 import obstacles.Planet;
+import obstacles.PlanetMaker;
 import obstacles.Puzzle;
 import playerCharacter.Captain;
 
 public class Game {
-	private static final String EXTENSION = ".ser";
-	private static int numPreviousSaves;
+	private final String EXTENSION = ".ser";
+	private int numPreviousSaves;
 	private Captain captain = new Captain();
 	private Planet currentPlanet;
 	private ArrayList<Planet> planets;
@@ -27,61 +28,78 @@ public class Game {
 	//private ArrayList<Enemy> bossesBeat;
 	//private ArrayList<Puzzle> puzzlesSolved;
 	//private ArrayList<String> crew;
-	
+
+	//Comment from Kenny: I think the game class should handle all initializing of Captain, Planets and Enemys.
+	//                    Same for methods to save those elements to game.
 	/**Game()
 	 * CONSTRUCTOR
-	 * @param captain The captain playing the game. 
-	 * @param planets The planets the captain has visited.
+	 * @param newCaptain The captain playing the game.
+	 * @param newPlanets The planets the captain has visited.
 	 */
-	public Game(Captain captain, ArrayList<Planet> planets) {
+	public Game(Captain newCaptain, ArrayList<Planet> newPlanets) {
 		super();
-		this.captain = captain;
-		this.planets = planets;
+		captain = newCaptain;
+		planets = newPlanets;
 	}
 	
 	/**
 	 * ONE ARG CONSTRUCTOR
 	 */
 	public Game() {
+		captain = new Captain();
+		planets = new PlanetMaker().getPlanetArrayList();
 		// TODO Auto-generated constructor stub
+	}
+
+	public Game(String path) {
+		//TODO: Read in these from the file. Blanks for now.
+
+		captain = new Captain();
+		planets = new PlanetMaker().getPlanetArrayList();
+
+
 	}
 
 	/**
 	 * @return the numPreviousSaves
 	 */
-	public static int getNumPreviousSaves() {
+	public int getNumPreviousSaves() {
 		return numPreviousSaves;
 	}
 
 	/**
-	 * @param numPreviousSaves the numPreviousSaves to set
+	 * @param newNumPreviousSaves the numPreviousSaves to set
 	 */
-	public static void setNumPreviousSaves(int numPreviousSaves) {
-		Game.numPreviousSaves = numPreviousSaves;
+	public void setNumPreviousSaves(int newNumPreviousSaves) {
+		numPreviousSaves = newNumPreviousSaves;
 	}
 
-	public static Game loadGame(String path) throws IOException {
-		//TODO: Read in these from the file. Blanks for now.
-		Captain captain = new Captain();
-		ArrayList<Planet> planets = new ArrayList<Planet>();
 
-		//Construct game object.
-		Game game = new Game(captain, planets);
-
-		if (game.numPreviousSaves <= 3) {
-			System.out.println("Sorry, Captain! You're too old for active duty!");
-			System.exit(0);
-		}
-
-		return game;
-	}
+	//Edited by: Kenny
+	//Comment: If a method is returning a game object from a class constructor, isnt that just a constructor for a game object.
+	//         Didnt see when else this method would be used except on loading a game. So created another constructor.
+//	public Game loadGame(String path) throws IOException {
+//		//TODO: Read in these from the file. Blanks for now.
+//		Captain captain = new Captain();
+//		ArrayList<Planet> planets = new ArrayList<Planet>();
+//
+//		//Construct game object.
+//		Game game = new Game(captain, planets);
+//
+//		if (game.numPreviousSaves <= 3) {
+//			System.out.println("Sorry, Captain! You're too old for active duty!");
+//			System.exit(0);
+//		}
+//
+//		return game;
+//	}
 
 	/**saveGame()
 	 * Writes savegame data to a file.
 	 * @param path Path to which to write the file.
 	 * @return void
 	 */
-	public static void saveGame(Game thisGame, String path) throws IOException {
+	public void saveGame(String path) throws IOException {
 		File saveGame = new File(path);
 		if (saveGame.exists()) {
 			//TODO: Clear the file and rewrite.
@@ -93,7 +111,7 @@ public class Game {
 	/**
 	 * @return the extension
 	 */
-	public static String getExtension() {
+	public String getExtension() {
 		return EXTENSION;
 	}
 
@@ -124,5 +142,13 @@ public class Game {
 
 	public void setPlanets(ArrayList<Planet> planets) {
 		this.planets = planets;
+	}
+
+	public Planet getCurrentPlanet() {
+		return currentPlanet;
+	}
+
+	public void setCurrentPlanet(Planet currentPlanet) {
+		this.currentPlanet = currentPlanet;
 	}
 }
