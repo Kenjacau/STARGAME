@@ -2,15 +2,14 @@ package playerCharacter;
 
 import java.util.ArrayList;
 import java.util.Scanner;
-
 import controllers.GameController2;
 
 /**
 Class: Captain
 Purpose: The Captain class manages the display of player information, selection of crew members, and actions related to combat.
-- Author: @cdeluna, @jbroughton
+- Author: @cdeluna, @jcbrough
 - Email: cdeluna@ggc.edu, jbroughton@ggc.edu
-- Version: 0.0.5
+- Version: 0.0.6
 - Date: 2015-11-05 
 **/
 public class Captain extends Persona {
@@ -55,7 +54,6 @@ public class Captain extends Persona {
 		}
 		System.out.println("\n");
 		System.out.println("Please enter (y)es or (n)o!");
-		
 		
 		@SuppressWarnings("resource")
 		Scanner in = new Scanner(System.in); 
@@ -161,6 +159,7 @@ public class Captain extends Persona {
 	/**
 	 * Method: headerPrint()
 	 * Prints a header thingy. 
+	 * 
 	 * @return void
 	 * @author kenny
 	 */
@@ -181,7 +180,6 @@ public class Captain extends Persona {
 		for (int i = 0; i < numberOfNextLines; i++) {
 			System.out.println();
 		}
-
 	}
 
 }

@@ -1,7 +1,6 @@
 package testers;
 
 import java.util.ArrayList;
-
 import playerCharacter.Captain;
 
 /**
@@ -40,7 +39,6 @@ public class CaptainClassTester {
 		} else {
 			return true;
 		}
-		
 	}
 	
 	/**doesPlayerHaveFullCrew
