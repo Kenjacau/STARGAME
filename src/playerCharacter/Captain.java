@@ -2,26 +2,26 @@ package playerCharacter;
 
 import java.util.ArrayList;
 
-/*
+/**
 Class: Captain
 Purpose: The Captain class manages the display of player information, selection of crew members, and actions related to combat.
-- Author: @cdeluna, @jcbrough
+- Author: @cdeluna, @jbroughton
 - Email: cdeluna@ggc.edu, jbroughton@ggc.edu
-- Version: 0.0.4
-- Date: 11/5/2015  
-*/
+- Version: 0.0.5
+- Date: 2015-11-05 
+**/
 public class Captain extends Persona {
 
 	private int[] bossesBeat;
-	private ArrayList<String> crewSelection;
-	private ArrayList<String> captainCrew;
+	private static ArrayList<String> crewSelection;
+	private static ArrayList<String> captainCrew;
 
 	/**
 	 * Method: getCrewSelection - Getter method for selecting a crew member
 	 * 
 	 * @return the crewSelection
 	 */
-	public ArrayList<String> getCrewSelection() {
+	public static ArrayList<String> getCrewSelection() {
 		return crewSelection;
 	}
 
@@ -31,43 +31,43 @@ public class Captain extends Persona {
 	 * 
 	 * @return the captainCrew
 	 */
-	public ArrayList<String> getCaptainCrew() {
+	public static ArrayList<String> getCaptainCrew() {
 		return captainCrew;
 	}
 
 	/**
-	 * @param newCaptainCrew
+	 * @param captainCrew
 	 *            the captainCrew to set
 	 */
-	public void setCaptainCrew(ArrayList<String> newCaptainCrew) {
-		captainCrew = newCaptainCrew;
+	public static void setCaptainCrew(ArrayList<String> captainCrew) {
+		Captain.captainCrew = captainCrew;
 	}
 
 	/**
 	 * @return true
 	 */
-	public boolean hasSurveyOfficer() {
+	public static boolean hasSurveyOfficer() {
 		return true;
 	}
 
 	/**
 	 * @return true
 	 */
-	public boolean hasEngineerOfficer() {
+	public static boolean hasEngineerOfficer() {
 		return true;
 	}
 
 	/**
 	 * @return true
 	 */
-	public boolean hasNavigationOfficer() {
+	public static boolean hasNavigationOfficer() {
 		return true;
 	}
 
 	/**
 	 * @return true
 	 */
-	public boolean hasTacticalOfficer() {
+	public static boolean hasTacticalOfficer() {
 		return true;
 	}
 
@@ -105,26 +105,5 @@ public class Captain extends Persona {
 	public Boolean fleeCombat() {
 		return null;
 	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see controllers.Combat#attack(int, int)
-	 */
-	@Override
-	public void attack(int attackPoints, int defensePoints) {
-		// TODO Auto-generated method stub
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see controllers.Combat#ambush(int, int)
-	 */
-	@Override
-	public void ambush(int attackPoints, int defensePoints) {
-		// TODO Auto-generated method stub
-	}
-
 
 }
