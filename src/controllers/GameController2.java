@@ -76,9 +76,12 @@ public class GameController2 {
 				Game thisGame = new Game();
 				thisGame.setNumPreviousSaves(0);
 				loadThisGameElements(thisGame);
+				
+				//Set Captain's name through menu
+				captainNameMenu(thisGame); 
 
 				//Set Captain's Crew through menu
-				crewSelectionMenu(captain);
+				crewSelectionMenu(thisGame);
 				//End loop
 				titleNotComplete = false;
 
@@ -108,6 +111,25 @@ public class GameController2 {
 			planetMenu(currentPlanet);
 		} else
 			planetSelectionMenu();
+	}
+
+	/**captainNameMenu
+	 * displays a menu for setting the Captain's name. 
+	 * 
+	 * @param game The current game.
+	 * @author jcbrough
+	 */
+	private void captainNameMenu(Game game) {
+		@SuppressWarnings("resource")
+		Scanner in = new Scanner(System.in); 
+		
+		headerPrint(); 
+		System.out.println("A new captain! What's your name?");
+		String response = in.nextLine(); 
+		
+		game.getCaptain().setName(response);
+		
+		System.out.println("Thank you, Captain " + game.getCaptain().getName() + "!"); 
 	}
 
 	public void loadThisGameElements(Game thisGame) {
@@ -181,13 +203,48 @@ public class GameController2 {
 	}
 
 
-	public void crewSelectionMenu(Captain captain) {
-		//TODO Menu for crewSelection that returns ArrayList
-		ArrayList<String> newCrew = new ArrayList<>();
+	public void crewSelectionMenu(Game game) {
+		
+		ArrayList<String> selectedCrew = new ArrayList<String>(); 	
+		
+		if (game.getNumPreviousSaves() == 0) {
+			headerPrint();
+			System.out.println("Captain! You must select a crew! You can only choose three!"); //Yeah, I made that up.
+			System.out.println("Here is a list of currently unassigned crew:");
+			for (String s : game.getCaptain().getFullCrewList()) {
+				System.out.println("		" + s + "?");
+			}
+			
+			System.out.println("The rest of the officers of SuperElite StarFleet have been disqualified for active duty for a felony involving a can of pureed pumpkin.");
+			System.out.println("Please type three crew members, and press enter between each one!");
+			System.out.println("You must type their names EXACTLY, or I don't be able to undestand you finger-accent.");
+			nl(1); 
+			for (int i = 0; i <= 2; i++) {
+				selectedCrew.add(in.nextLine());
+			}
 
+			//Confirm selection. This method is an external recurse.
+			if (game.getCaptain().confirmCrew(selectedCrew)) {			
+				//TODO: Continue. 
+			}
 
-		//Ending Statement
-		captain.setCaptainCrew(newCrew);
+			else{
+				System.out.println("Something screwed up, captain! Let's do that again!");
+				crewSelectionMenu(game); 
+			}
+		}
+		else {
+			System.out.println("Captain, this is who you're travelling with: ");
+			for (String crewName : selectedCrew) {
+				System.out.println(crewName);
+				game.getCaptain().setCaptainCrew(selectedCrew);
+			}
+			//displayPlanetSelectionMenu();
+		}
+		
+		
+		
+	
 	}
 
 
@@ -204,6 +261,7 @@ public class GameController2 {
 	public String removeNonWords(String string) {
 		return (string.replaceAll("[^\\p{L}\\p{Nd}]+", "")).toLowerCase();
 	}
+	
 	/**
 	 * Method: headerPrint()
 	 * Prints a header thingy. 

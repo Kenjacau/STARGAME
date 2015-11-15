@@ -1,13 +1,15 @@
 package testers;
 
+import java.util.ArrayList;
+
 import playerCharacter.Captain;
 
 /**
 Class: CaptainClassTester 
 Purpose: The CaptainClassTester tests the Captain object.
-- Author: @cdeluna 
-- Email: cdeluna@ggc.edu 
-- Version: 0.0.2
+- Author: @cdeluna, @jcbrough
+- Email: cdeluna@ggc.edu, jbroughton@ggc.edu
+- Version: 0.0.3
 - Date: 2015-11-13
 **/
 public class CaptainClassTester {
@@ -39,5 +41,23 @@ public class CaptainClassTester {
 			return true;
 		}
 		
+	}
+	
+	/**doesPlayerHaveFullCrew
+	 * Makes sure the captain has three crew members. 
+	 * 
+	 * @param selectedCrew An ArrayList of selected crewmenbers. 
+	 * 
+	 * @return Boolean flag for correct crew list. 
+	 * 
+	 * @author jcbrough
+	 */
+	public boolean doesPlayerHaveFullCrew(ArrayList<String> selectedCrew) {
+		if (selectedCrew.size() != 3) {
+			return false;
+		}
+		else {
+			return true;
+		}
 	}
 }
