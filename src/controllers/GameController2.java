@@ -17,22 +17,18 @@ The GameController class is the primary controller, featuring the interfaces, th
 - 2015-11-03    
 */
 public class GameController2 {
+	//Static constants.
+	private static final String SPACE_GAME_TITLE = "Super Elite: Space Adventure";
 	private final String EXTENSION = ".ser";
 	private Game thisGame;
 	private Captain captain;
 	private ArrayList<Planet> planetArrayList;
 	private ArrayList<Puzzle> puzzleArrayList = new PuzzleMaker().getPuzzleArrayList();
 	private ArrayList<Enemy> enemyArrayList;
-
 	private Planet currentPlanet;
 	private Scanner in = new Scanner(System.in);
 	private String userInput = "";
-	
-	//Static constants. 
-	private static final String SPACE_GAME_TITLE = "Super Elite: Space Adventure";  
 
-
-	
 	/**main()
 	 * STATIC METHOD
 	 * This serves as the starting point for the GameController class.
@@ -100,13 +96,10 @@ public class GameController2 {
 				System.exit(0);
 
 				titleNotComplete = false;
-			} else if (booleanMaker("Help Menu")) {
-				//TODO Help Menu
-				helpMenu();
 
 			} 
 			else {
-				genericInputFailure();
+				genericHelpOrInputFailure();
 			}
 		}
 		headerPrint();
@@ -209,9 +202,8 @@ public class GameController2 {
 	 * Remarks:
 	 */
 	public String removeNonWords(String string) {
-		return (string.replaceAll("//W", "")).toLowerCase();
+		return (string.replaceAll("[^\\p{L}\\p{Nd}]+", "")).toLowerCase();
 	}
-	
 	/**
 	 * Method: headerPrint()
 	 * Prints a header thingy. 
@@ -252,7 +244,7 @@ public class GameController2 {
 	
 	/**
 	 * Method: listener()
-	 * TODO: I'm not sure what this does. KENNY!! --JCB
+	 * Description: Takes in user input, removes all non-words and whitespace, then sets the final value to userInput.
 	 *
 	 * @return void
 	 * @author kenny
@@ -264,7 +256,9 @@ public class GameController2 {
 	/**
 	 * Method: booleanMaker()
 	 * Description: Takes in a String input and converts tests whether userInput contains the whole
-	 * String or the first char.
+	 * String, first char, or just the first word.
+	 *
+	 * Example: booleanMaker("Exit Menu") <-- will be true if input is "Exit Menu", "Exit", or E
 	 *
 	 * @param input String to test userInput against.
 	 * @return boolean if userInput matches @param input
@@ -276,16 +270,22 @@ public class GameController2 {
 	}
 	
 	/**
-	 * Method: genericInputFailure()
-	 * Prints a generic failure message. 
+	 * Method: genericHelpOrInputFailure()
+	 * if userInput contains Help then displays help menu Else Prints a generic failure message.
 	 *
 	 * @return void
 	 * @author kenny, jcbrough
 	 */
-	public void genericInputFailure() {
-		System.out.println("Input failure!");
+	public void genericHelpOrInputFailure() {
+		if (booleanMaker("Help")) {
+			helpMenu();
+			System.out.println("Displaying Help Menu");
+		} else {
+			System.out.println("Input failure!");
+		}
 	}
-	
+
+
 	/**
 	 * Method: inputFailure()
 	 * Prints a failure based on passed parameters
@@ -296,7 +296,7 @@ public class GameController2 {
 	 * Use case: 
 	 *	String garbage = in.nextline(); 
 	 * 	if (garbage != validInput) {
-	 *	 	inputFaulre("Hey, Captain! " + garbage.toUpperCase() + " is not a valid input!");
+	 *	 	inputFailure("Hey, Captain! " + garbage.toUpperCase() + " is not a valid input!");
 	 * 		tryInputAgain(); 
 	 * 	}
 	 */

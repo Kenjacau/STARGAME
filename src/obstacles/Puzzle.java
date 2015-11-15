@@ -16,6 +16,10 @@ public class Puzzle {
 	private String[] puzzleChoiceMessages;
 	private String puzzleHomePlanet;
 
+	public Puzzle() {
+
+	}
+
 	/**
 	 * Constructor:Puzzle
 	 * Description: creates Puzzle object with Attributes

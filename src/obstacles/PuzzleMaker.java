@@ -22,7 +22,7 @@ public class PuzzleMaker {
 			"testchoice3a", "testchoice3b", "testchoice3c"};
 	private final String[] puzzleChoiceResultMessages = {"testchoiceResult1a", "testchoiceResult1b", "testchoiceResult2a",
 			"testchoiceResult2b", "testchoiceResult3a", "testchoiceResult3b"};
-	ArrayList<Puzzle> puzzleArrayList = new ArrayList<>();
+	private ArrayList<Puzzle> puzzleArrayList = new ArrayList<>();
 	private ArrayList<String[]> puzzleChoiceList;
 
 	private ArrayList<String[]> puzzleChoiceResultMessageList;
@@ -68,32 +68,28 @@ public class PuzzleMaker {
 	private ArrayList<String[]> puzzleArrayListGenerator(String[] list, int rowWithThreeChoices) {
 		ArrayList<String[]> tempArrayList = new ArrayList<>();
 		int count = 0;
-		String[] temp2 = new String[2];
-		String[] temp3 = new String[3];
 
 		for (int i = 0; i < list.length; i += 2) {
+			String[] temp2 = new String[2];
+			String[] temp3 = new String[3];
+
 			if (rowWithThreeChoices == 0) {
 				temp2[0] = list[i];
 				temp2[1] = list[i + 1];
-				count++;
 				tempArrayList.add(temp2);
+				count++;
 			} else if (count != rowWithThreeChoices - 1) {
 				temp2[0] = list[i];
 				temp2[1] = list[i + 1];
-				count++;
 				tempArrayList.add(temp2);
-				//System.out.println(list[i]);
-				//System.out.println(list[i+1]);
+				count++;
 
 			} else {
 				temp3[0] = list[i];
 				temp3[1] = list[i + 1];
 				temp3[2] = list[i + 2];
-				count++;
 				tempArrayList.add(temp3);
-				//System.out.println(list[i]);
-				//System.out.println(list[i+1]);
-				//System.out.println(list[i+2]);
+				count++;
 				i++;
 			}
 		}
