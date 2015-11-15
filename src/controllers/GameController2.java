@@ -203,8 +203,7 @@ public class GameController2 {
 	}
 
 
-	public void crewSelectionMenu(Game game) {
-		
+	public void crewSelectionMenu(Game game) {		
 		ArrayList<String> selectedCrew = new ArrayList<String>(); 	
 		
 		if (game.getNumPreviousSaves() == 0) {
@@ -223,9 +222,9 @@ public class GameController2 {
 				selectedCrew.add(in.nextLine());
 			}
 
-			//Confirm selection. This method is an external recurse.
+			//Confirm selection.
 			if (game.getCaptain().confirmCrew(selectedCrew)) {			
-				//TODO: Continue. 
+				game.getCaptain().setCaptainCrew(selectedCrew);
 			}
 
 			else{
@@ -241,10 +240,6 @@ public class GameController2 {
 			}
 			//displayPlanetSelectionMenu();
 		}
-		
-		
-		
-	
 	}
 
 
