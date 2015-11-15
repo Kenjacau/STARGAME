@@ -1,18 +1,16 @@
 package playerCharacter;
 
-import controllers.Combat;
-
-/*
+/**
 Class: Persona
 Purpose: The Persona class stores attributes, which gets and sets stat points necessary for combat.
 - Author: @cdeluna
 - Email: cdeluna@ggc.edu
-- Version: 0.0.4
+- Version: 0.0.5
 - Date: 2015-11-05
-*/
-public abstract class Persona implements Combat {
+**/
+public abstract class Persona {
 
-	private static String name = "";
+	private String name = "";
 	private boolean alive = true;
 	private int healthPoints;
 	private int attackPoints;
@@ -31,8 +29,8 @@ public abstract class Persona implements Combat {
 	 * @param name
 	 *            the name to set
 	 */
-	public static void setName(String name) {
-		Persona.name = name;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	/**
@@ -98,5 +96,7 @@ public abstract class Persona implements Combat {
 	public void setDefensePoints(int defensePoints) {
 		this.defensePoints = defensePoints;
 	}
-
+	
+	// Combat stuff here
+	
 }
