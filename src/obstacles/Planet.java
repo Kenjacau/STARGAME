@@ -71,6 +71,4 @@ public class Planet {
 	public void setPlanetExplored(boolean value) {
 		planetExplored = value;
 	}
-
-
 }

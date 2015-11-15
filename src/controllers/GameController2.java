@@ -38,18 +38,22 @@ public class GameController2 {
 	public static void main (String[] args) throws IOException {
 		GameController2 thisGameController = new GameController2();
 		thisGameController.titleScreen();
+		thisGameController.planetSelectionMenu();
+		
+		
+		//TODO: Quit Game Menu with save option
+		//TODO: Display Planet selection menu.
+		//TODO: Display Planet menu
+		//TODO: Display Combat menu
+		//saveGame method and loadGame Constructor should be implemented in game class.
+		//Menu to get path for loadGame should be done below.
+		//TODO: method saveGame
+		//TODO: method loadGame
+
+		//ALL Menu Methods
 	}
 
-	//TODO: Quit Game Menu with save option
-	//TODO: Display Planet selection menu.
-	//TODO: Display Planet menu
-	//TODO: Display Combat menu
-	//saveGame method and loadGame Constructor should be implemented in game class.
-	//Menu to get path for loadGame should be done below.
-	//TODO: method saveGame
-	//TODO: method loadGame
-
-	//ALL Menu Methods
+	
 	
 	/**titleScreen()
 	 * Displays dat title screen. 
@@ -107,10 +111,11 @@ public class GameController2 {
 		}
 		headerPrint();
 		System.out.println("Let's get started Captain!");
+	
 		if (currentPlanet != null) {
 			planetMenu(currentPlanet);
 		} else
-			planetSelectionMenu();
+			return;
 	}
 
 	/**captainNameMenu
@@ -120,7 +125,7 @@ public class GameController2 {
 	 * @author jcbrough
 	 */
 	private void captainNameMenu(Game game) {
-		@SuppressWarnings("resource")
+		@SuppressWarnings("resource") //Known bug. in should never be in.close()ed. 
 		Scanner in = new Scanner(System.in); 
 		
 		headerPrint(); 
@@ -150,10 +155,21 @@ public class GameController2 {
 	 * 
 	 */
 	public void planetSelectionMenu() {
-		headerPrint();
-		nl(1);
-		System.out.println("TODO Displaying planet Selection Menu");
-		//TODO Planet Selection Menu
+
+		System.out.println("What is our first destination, Captain " + captain.getName() + "?");
+		System.out.println("Based on our current position, these are our options: ");
+		for (Planet thisPlanet : PlanetMaker.getPlanetArrayList()) {
+			System.out.println("		" + thisPlanet.getPlanetName());
+		}
+		System.out.println("Please type the EXACT NAME of the planet you'd like to visit: ");
+		
+		Scanner in = new Scanner(System.in); 
+		String response = in.nextLine(); 
+		
+		nl(1); 
+		System.out.println("Thank you, Captain!");
+		System.out.println("You have chosen to go to " + response + "! BOLDLY GOING NOW, CAPTAIN!!!");
+		
 	}
 
 	public void planetMenu(Planet planet) {
@@ -238,7 +254,7 @@ public class GameController2 {
 				System.out.println(crewName);
 				game.getCaptain().setCaptainCrew(selectedCrew);
 			}
-			//displayPlanetSelectionMenu();
+			return; 
 		}
 	}
 
