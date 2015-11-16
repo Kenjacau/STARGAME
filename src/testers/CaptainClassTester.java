@@ -1,6 +1,8 @@
 package testers;
 
 import java.util.ArrayList;
+
+import controllers.Game;
 import playerCharacter.Captain;
 
 /**
@@ -14,14 +16,26 @@ Purpose: The CaptainClassTester tests the Captain object.
 public class CaptainClassTester {
 //	String[] captainSelectionArray = {"Crew Test 1", "Crew Test 2", "Crew Test 3"};
 //	String[] captainCrewArray = {"Crew Test 1", "Crew Test 2"};
+	private Captain captain; 
 
+	/**CaptainClassTester
+	 * CONSTRUCTOR
+	 * 
+	 * @param _captain The captain to be tested. 
+	 * 
+	 * @author jcbrough
+	 */
+	public CaptainClassTester(Captain _captain) {
+		this.captain = _captain; 
+	}
+	
 	/**
 	 * hasCrewSelection - Tests to see if crew selection is null.
 	 * 
 	 * @return true
 	 */
 	public boolean hasCrewSelection() {
-		if (Captain.getCrewSelection() == null) {
+		if (captain.getCrewSelection() == null) {
 			throw new IllegalArgumentException("Crew selection is null.");
 		} else {
 			return true;
@@ -34,7 +48,7 @@ public class CaptainClassTester {
 	 * @return true
 	 */
 	public boolean hasCaptainCrew() {
-		if (Captain.getCaptainCrew() == null) {
+		if (captain.getCaptainCrew() == null) {
 			throw new IllegalArgumentException("Captain crew is null.");
 		} else {
 			return true;

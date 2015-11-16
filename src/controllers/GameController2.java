@@ -19,7 +19,6 @@ The GameController class is the primary controller, featuring the interfaces, th
 public class GameController2 {
 	//Static constants.
 	private static final String SPACE_GAME_TITLE = "Super Elite: Space Adventure";
-	private final String EXTENSION = ".ser";
 	private Game thisGame;
 	private Captain captain;
 	private ArrayList<Planet> planetArrayList;
@@ -94,7 +93,7 @@ public class GameController2 {
 				//TODO: Display LoadGame/SaveGame menu that returns a string path.
 
 				//String path = loadGameMenu(); //TODO: Remove this when menu sys implemented.
-				thisGame = new Game(loadGameMenu());
+				thisGame = new Game(loadGameMenu(userInput));
 				loadThisGameElements(thisGame);
 
 				titleNotComplete = false;
@@ -193,7 +192,7 @@ public class GameController2 {
 	 * @return String path for Game.loadGame
 	 * @author jcbrough, kenny
 	 */
-	public String loadGameMenu() {
+	public String loadGameMenu(String fileName) {
 		System.out.println("TODO loadGameMenu. Which game would you like to load?");
 		//selectedGame should be the saved game that the player chooses. This is just filler.
 		Game selectedGame = new Game();
@@ -201,7 +200,7 @@ public class GameController2 {
 			System.out.println("Sorry, Captain! You're too old for active duty!");
 			titleScreen();
 		}
-		return System.getProperty("user.home") + "\\Desktop\\" + EXTENSION;
+		return System.getProperty("user.home") + "\\Desktop\\" + Game.getExtension();
 		//TODO load game menu that returns path for Game secondary constructor.
 	}
 
@@ -217,7 +216,6 @@ public class GameController2 {
 		}
 
 	}
-
 
 	public void crewSelectionMenu(Game game) {		
 		ArrayList<String> selectedCrew = new ArrayList<String>(); 	
@@ -371,5 +369,23 @@ public class GameController2 {
 	 */
 	public void inputFailure(String message) {
 		System.out.println(message);
+	}
+
+
+
+	/**
+	 * @return the thisGame
+	 */
+	public Game getThisGame() {
+		return thisGame;
+	}
+
+
+
+	/**
+	 * @param thisGame the thisGame to set
+	 */
+	public void setThisGame(Game thisGame) {
+		this.thisGame = thisGame;
 	}
 }

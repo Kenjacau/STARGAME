@@ -115,9 +115,12 @@ public class Game {
 	}
 
 	/**
+	 * STATIC METHOD
+	 * Must be accessed from the GameController2 class without an instantiated game object. 
 	 * @return the extension
+	 *
 	 */
-	public String getExtension() {
+	public static String getExtension() {
 		return EXTENSION;
 	}
 

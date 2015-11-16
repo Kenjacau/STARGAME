@@ -74,7 +74,7 @@ public class GameClassTester {
 	 */
 	public boolean testNumPreviousSaves(Game game) {
 		if (game.getNumPreviousSaves() < 0 || game.getNumPreviousSaves() > 2)
-			return false; 
+			throw new IllegalArgumentException("Illegal number of previous saves.");
 		else {
 			return true; 
 		}
@@ -87,7 +87,7 @@ public class GameClassTester {
 	 */
 	public boolean testExtension(Game game) {
 		if (game.getExtension().length() <= 0) {
-			return false;
+			throw new IllegalArgumentException("No file extension detected!");
 		}
 		else {
 			return true;

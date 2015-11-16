@@ -1,6 +1,7 @@
 package testers;
 
 import obstacles.Enemy;
+import playerCharacter.Captain;
 
 /**
  * Class: EnemyTester 
@@ -11,18 +12,31 @@ import obstacles.Enemy;
  * - 11/13/2015
  */
 public class EnemyClassTester extends PersonaClassTester {
-
+	private Enemy enemy; 
+	
+	/**EnemyClassTester
+	 * CONSTRUCTOR
+	 * 
+	 * @param _enemy The enemy to be tested. 
+	 * 
+	 * @author jcbrough
+	 */
+	public EnemyClassTester(Enemy _enemy) {
+		this.enemy = _enemy; 
+	}
+	
+	
 	/**
 	 * doesEnemyHaveDescription()
 	 * 
-	 * @param e
-	 *            Enemy for testing.
+	 * @param e Enemy for testing.
 	 * @return Flag for successful test.
+	 * 
+	 * @author jcbrough, Travis
 	 */
 	public boolean doesEnemyHaveDescription(Enemy e) {
 		if (e.getEnemyDescription() == "" || e.getEnemyDescription() == null) {
-			// Throw illegal arg exce
-			return false;
+			throw new IllegalArgumentException("Enemy description was null or empty.");		
 		} else {
 			return true;
 		}
@@ -31,14 +45,14 @@ public class EnemyClassTester extends PersonaClassTester {
 	/**
 	 * doesEnemyHaveName()
 	 * 
-	 * @param e
-	 *            Enemy for testing
+	 * @param e Enemy for testing
 	 * @return Flag for successful test.
+	 * 
+	 * @author jcbrough, Travis
 	 */
 	public boolean doesEnemyHaveName(Enemy e) {
 		if (e.getName() == "" || e.getName() == null) {
-			// Throw illegal arg exce
-			return false;
+			throw new IllegalArgumentException("Enemy name was null or empty.");		
 		} else {
 			return true;
 		}
@@ -47,14 +61,14 @@ public class EnemyClassTester extends PersonaClassTester {
 	/**
 	 * doesEnemyHaveLocation()
 	 * 
-	 * @param e
-	 *            Enemy for testing
+	 * @param e Enemy for testing
 	 * @return Flag for successful test.
+	 * 
+	 * @author jcbrough, Travis
 	 */
 	public boolean doesEnemyHaveLocation(Enemy e) {
 		if (e.getEnemyLocation() == "" || e.getEnemyLocation() == null) {
-			// thorw illegal arg exce
-			return false;
+			throw new IllegalArgumentException("Enemy location was null or empty.");		
 		} else {
 			return true;
 		}
@@ -63,14 +77,13 @@ public class EnemyClassTester extends PersonaClassTester {
 	/**
 	 * doesEnemyHaveAmbushStatus()
 	 * 
-	 * @param e
-	 *            Enemy for testing
+	 * @param e Enemy for testing
 	 * @return Flag for successful test.
+	 * @author jcbrough, Travis
 	 */
 	public boolean doesEnemyHaveAmbushStatus(Enemy e) {
 		if (e.getAmbushStatus() < 0 || e.getAmbushStatus() > 0 || e.getEnemyLocation() == null) {
-			// throw illegal arg exce
-			return false;
+			throw new IllegalArgumentException("Enemy ambush status was null or empty.");		
 		} else {
 			return true;
 		}
