@@ -9,7 +9,7 @@ Class: CaptainClassTester
 Purpose: The CaptainClassTester tests the Captain object.
 - Author: @cdeluna, @jcbrough
 - Email: cdeluna@ggc.edu, jbroughton@ggc.edu
-- Version: 0.0.4
+- Version: 0.0.5
 - Date: 2015-11-13
 **/
 public class CaptainClassTester {
@@ -26,18 +26,18 @@ public class CaptainClassTester {
 		this.captain = _captain; 
 	}
 	
-	/**
-	 * hasCrewSelection - Tests to see if crew selection is null.
-	 * 
-	 * @return true
-	 */
-	public boolean hasCrewSelection() {
-		if (captain.getCaptainCrew() == null) {
-			throw new IllegalArgumentException("Crew selection is null.");
-		} else {
-			return true;
-		}
-	}
+//	/**
+//	 * hasCrewSelection - Tests to see if crew selection is null.
+//	 * 
+//	 * @return true
+//	 */
+//	public boolean hasCrewSelection() {
+//		if (captain.getCaptainCrew() == null) {
+//			throw new IllegalArgumentException("Crew selection is null.");
+//		} else {
+//			return true;
+//		}
+//	}
 	
 	/**
 	 * hasCaptainCrew - Tests to see if captain crew is null.
