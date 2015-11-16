@@ -1,7 +1,6 @@
 package testers;
 
 import java.util.ArrayList;
-
 import controllers.Game;
 import playerCharacter.Captain;
 
@@ -10,12 +9,10 @@ Class: CaptainClassTester
 Purpose: The CaptainClassTester tests the Captain object.
 - Author: @cdeluna, @jcbrough
 - Email: cdeluna@ggc.edu, jbroughton@ggc.edu
-- Version: 0.0.3
+- Version: 0.0.4
 - Date: 2015-11-13
 **/
 public class CaptainClassTester {
-//	String[] captainSelectionArray = {"Crew Test 1", "Crew Test 2", "Crew Test 3"};
-//	String[] captainCrewArray = {"Crew Test 1", "Crew Test 2"};
 	private Captain captain; 
 
 	/**CaptainClassTester
@@ -72,4 +69,5 @@ public class CaptainClassTester {
 			return true;
 		}
 	}
+	
 }
