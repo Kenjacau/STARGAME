@@ -7,16 +7,18 @@ import controllers.GameController2;
 /**
 Class: Captain
 Purpose: The Captain class manages the display of player information, selection of crew members, and actions related to combat.
-- Author: @cdeluna, @jcbrough
+ - Author: @cdeluna, @jcbrough, @kcauthen
 - Email: cdeluna@ggc.edu, jbroughton@ggc.edu
 - Version: 0.0.6
 - Date: 2015-11-05 
 **/
 public class Captain extends Persona {
-
-	private int[] bossesBeat;
-	private static ArrayList<String> crewSelection = new ArrayList<String>();
-	private static ArrayList<String> captainCrew = new ArrayList<String>();
+	//TODO we need a Captain constructor that has default health points, attack points, and defense --Kenny
+	//TODO we need a method for the end of crew selection to modify above attributes before leaving crew selection menu --Kenny
+	//TODO Why do we have both crewSelection and Captain crew? --Kenny
+	//private int[] bossesBeat;
+	//private ArrayList<String> crewSelection = new ArrayList<String>();
+	private ArrayList<String> captainCrew = new ArrayList<String>();
 
 	/**getFullCrewList
 	 * Gets a full list of all possible crew choices. 
@@ -32,7 +34,7 @@ public class Captain extends Persona {
 		fullCrewList.add("Tactical Officer");
 		fullCrewList.add("Survey Officer");
 		fullCrewList.add("Sentinel Bot");
-		fullCrewList.add("Engineer");
+		fullCrewList.add("Engineer Officer");
 		
 		return fullCrewList;
 	}
@@ -56,13 +58,13 @@ public class Captain extends Persona {
 		System.out.println("Please enter (y)es or (n)o!");
 		
 		@SuppressWarnings("resource")
-		Scanner in = new Scanner(System.in); 
-		String response = in.nextLine(); 
+		Scanner in = new Scanner(System.in);
+		String response = in.nextLine();
 		if (response.toLowerCase().equals("y")) {
-			return true; 
+			return true;
 		}
 		else {
-			return false; 
+			return false;
 		}
 	}
 	
@@ -71,9 +73,9 @@ public class Captain extends Persona {
 	 * 
 	 * @return the crewSelection
 	 */
-	public static ArrayList<String> getCrewSelection() {
-		return crewSelection;
-	}
+	//public ArrayList<String> getCrewSelection() {
+	//	return crewSelection;
+	//}
 
 	/**
 	 * Method: getCaptainCrew - Getter method for captainCrew as an ArrayList of
@@ -81,77 +83,64 @@ public class Captain extends Persona {
 	 * 
 	 * @return the captainCrew
 	 */
-	public static ArrayList<String> getCaptainCrew() {
+	public ArrayList<String> getCaptainCrew() {
 		return captainCrew;
 	}
 
 	/**
-	 * @param captainCrew
+	 * @param newCaptainCrew
 	 *            the captainCrew to set
 	 */
-	public void setCaptainCrew(ArrayList<String> captainCrew) {
-		Captain.captainCrew = captainCrew;
+	public void setCaptainCrew(ArrayList<String> newCaptainCrew) {
+		captainCrew = newCaptainCrew;
 	}
 
 	/**
 	 * @return true
 	 */
-	public static boolean hasSurveyOfficer() {
-		return true;
+	public boolean hasSurveyOfficer() {
+
+		return hasCrew("Survey Officer");
+	}
+
+	/**
+	 * @return true
+	 * author: Kenny
+	 */
+	public boolean hasEngineerOfficer() {
+
+		return hasCrew("Engineer Officer");
 	}
 
 	/**
 	 * @return true
 	 */
-	public static boolean hasEngineerOfficer() {
-		return true;
+	public boolean hasNavigationOfficer() {
+		return hasCrew("Navigation Officer");
 	}
 
 	/**
 	 * @return true
 	 */
-	public static boolean hasNavigationOfficer() {
-		return true;
+	public boolean hasTacticalOfficer() {
+		return hasCrew("Tactical Officer");
 	}
 
 	/**
-	 * @return true
+	 * @return boolean
+	 * author: Kenny
 	 */
-	public static boolean hasTacticalOfficer() {
-		return true;
+	public boolean hasCrew(String crewName) {
+		boolean crewMember = false;
+		for (String s : captainCrew) {
+			if (removeNonWords(s).contains(removeNonWords(crewName))) {
+				crewMember = true;
+			}
+		}
+		return crewMember;
 	}
 
-	/**
-	 * @return void
-	 */
-	public void selectWithNavigationOfficer() {
 
-	}
-
-	/**
-	 * @return void
-	 */
-	public void selectWithoutNavigationOfficer() {
-
-	}
-
-	/**
-	 * @return void
-	 */
-	public void selectPlanet(String targetPlanet) {
-
-	}
-
-	/**
-	 * @return null
-	 */
-	public Boolean requestSave() {
-		return null;
-	}
-
-	/**
-	 * @return null
-	 */
 	public Boolean fleeCombat() {
 		return null;
 	}
@@ -181,5 +170,10 @@ public class Captain extends Persona {
 			System.out.println();
 		}
 	}
+
+	public String removeNonWords(String string) {
+		return (string.replaceAll("[^\\p{L}\\p{Nd}]+", "")).toLowerCase();
+	}
+
 
 }

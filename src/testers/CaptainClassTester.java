@@ -32,7 +32,7 @@ public class CaptainClassTester {
 	 * @return true
 	 */
 	public boolean hasCrewSelection() {
-		if (captain.getCrewSelection() == null) {
+		if (captain.getCaptainCrew() == null) {
 			throw new IllegalArgumentException("Crew selection is null.");
 		} else {
 			return true;

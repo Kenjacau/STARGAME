@@ -1,12 +1,15 @@
 package controllers;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
 
 import obstacles.*;
 import playerCharacter.Captain;
-import testers.*; 
+import sun.font.TrueTypeFont;
+import testers.*;
 
 /*
 Class: GameController
@@ -37,7 +40,7 @@ public class GameController2 {
 	public static void main (String[] args) throws IOException {
 		GameController2 thisGameController = new GameController2();
 		thisGameController.titleScreen();
-		thisGameController.planetSelectionMenu();
+
 		
 		
 		//TODO: Quit Game Menu with save option
@@ -75,17 +78,17 @@ public class GameController2 {
 			nl(1);
 			listener();
 			if (booleanMaker("New Game")) {
-				//Construct New game object and ArrayList of default planets.
+				//Construct New game object, captain object, and ArrayList of default planets.
 				Game thisGame = new Game();
+				captain = new Captain();
 				planetArrayList = new PlanetMaker().getPlanetArrayList();
 				thisGame.setNumPreviousSaves(0);
-				loadThisGameElements(thisGame);
 				
 				//Set Captain's name through menu
-				captainNameMenu(thisGame); 
+				captainNameMenu();
 
 				//Set Captain's Crew through menu
-				crewSelectionMenu(thisGame);
+				crewSelectionMenu();
 				//End loop
 				titleNotComplete = false;
 
@@ -96,6 +99,11 @@ public class GameController2 {
 				//String path = loadGameMenu(); //TODO: Remove this when menu sys implemented.
 				thisGame = new Game(loadGameMenu(userInput));
 				loadThisGameElements(thisGame);
+				System.out.println("Captain, this is who you're travelling with: ");
+				for (String crewName : captain.getCaptainCrew()) {
+					System.out.println(crewName);
+				}
+
 
 				titleNotComplete = false;
 
@@ -106,7 +114,8 @@ public class GameController2 {
 
 			} 
 			else {
-				genericHelpOrInputFailure();
+				helpChoice();
+				genericInputFailure();
 			}
 		}
 		headerPrint();
@@ -114,29 +123,37 @@ public class GameController2 {
 	
 		if (currentPlanet != null) {
 			planetMenu(currentPlanet);
-		} else
-			return;
+		} else if (captain.hasSurveyOfficer()) {
+			planetSelectionMenu(3);
+		} else {
+			planetSelectionMenu(2);
+		}
+
 	}
 
 	/**captainNameMenu
 	 * displays a menu for setting the Captain's name. 
-	 * 
-	 * @param game The current game.
+	 *
 	 * @author jcbrough
 	 */
-	private void captainNameMenu(Game game) {
+	private void captainNameMenu() {
 		@SuppressWarnings("resource") //Known bug. in should never be in.close()ed. 
 		Scanner in = new Scanner(System.in); 
 		
 		headerPrint(); 
 		System.out.println("A new captain! What's your name?");
-		String response = in.nextLine(); 
-		
-		game.getCaptain().setName(response);
-		
-		System.out.println("Thank you, Captain " + game.getCaptain().getName() + "!"); 
+		String response = in.nextLine();
+
+		captain.setName(response);
+
+		System.out.println("Thank you, Captain " + captain.getName() + "!");
 	}
 
+	/**
+	 * Method: loadThisGameElements
+	 * Description: Pulls saved planetArrayList and captain object from game object to current Game Controllers Attributes.
+	 * Author: Kenny
+	 */
 	public void loadThisGameElements(Game thisGame) {
 		captain = thisGame.getCaptain();
 		planetArrayList = thisGame.getPlanets();
@@ -152,24 +169,73 @@ public class GameController2 {
 	 * 
 	 * @return void
 	 * @author jcbrough, kenny
-	 * 
+	 *
 	 */
-	public void planetSelectionMenu() {
+	public void planetSelectionMenu(int numberOfPlanets) {
+		boolean planetSelectionNotComplete = true;
+		ArrayList<Planet> planetChoices = new ArrayList<>();
+		planetChoices = randomPlanets(numberOfPlanets);
 
-		System.out.println("What is our first destination, Captain " + captain.getName() + "?");
-		System.out.println("Based on our current position, these are our options: ");
-		for (Planet thisPlanet : planetArrayList) {
-			System.out.println("		" + thisPlanet.getPlanetName());
+		while (planetSelectionNotComplete) {
+			System.out.println("What is our first destination, Captain " + captain.getName() + "?");
+			System.out.println("Based on our current position, these are our options: ");
+			for (Planet thisPlanet : planetChoices) {
+				System.out.println("		" + thisPlanet.getPlanetName());
+			}
+			System.out.println("Please type the EXACT NAME of the planet you'd like to visit: ");
+			listener();
+			nl(1);
+			for (Planet selectedPlanet : planetChoices) {
+				if (userInput.contains(removeNonWords(selectedPlanet.getPlanetName()))) {
+					currentPlanet = selectedPlanet;
+					selectedPlanet.setPlanetExplored(true);
+					System.out.println("Thank you, Captain!");
+					System.out.println("You have chosen to go to " + selectedPlanet.getPlanetName() + "! BOLDLY GOING NOW, CAPTAIN!!!");
+					planetSelectionNotComplete = false;
+					planetMenu(selectedPlanet);
+
+				} else if (planetChoices.indexOf(selectedPlanet) < planetChoices.size() - 1) {
+					helpChoice();
+					//continue for loop
+				} else {
+					genericInputFailure();
+				}
+			}
 		}
-		System.out.println("Please type the EXACT NAME of the planet you'd like to visit: ");
-		
-		Scanner in = new Scanner(System.in); 
-		String response = in.nextLine(); 
-		
-		nl(1); 
-		System.out.println("Thank you, Captain!");
-		System.out.println("You have chosen to go to " + response + "! BOLDLY GOING NOW, CAPTAIN!!!");
-		
+
+
+	}
+
+	/**
+	 * Method: randomPlanets
+	 * Description: picks randomized planets from available planetArrayList
+	 * author: Kenny
+	 *
+	 * @param numberOfPlanets
+	 * @return ArrayList
+	 */
+	public ArrayList<Planet> randomPlanets(int numberOfPlanets) {
+		boolean randomPlanetNotComplete = true;
+		ArrayList<Planet> randomPlanets = new ArrayList<>();
+		int count = 0;
+		Random rand = new Random();
+		int randomNumber = rand.nextInt(planetArrayList.size());
+
+		while (randomPlanetNotComplete) {
+			for (Planet p : planetArrayList) {
+				if (count == numberOfPlanets) {
+					randomPlanetNotComplete = false;
+					break;
+				} else if (!p.isPlanetExplored() && randomNumber == planetArrayList.indexOf(p) &&
+						!randomPlanets.contains(p)) {
+					//System.out.println(p.getPlanetName());
+					randomPlanets.add(p);
+					randomNumber = rand.nextInt(planetArrayList.size() - count);
+					count++;
+				}
+			}
+		}
+		return randomPlanets;
 	}
 
 	public void planetMenu(Planet planet) {
@@ -180,7 +246,7 @@ public class GameController2 {
 	}
 
 	public void helpMenu() {
-		//TODO
+		//TODO Help Menu
 		headerPrint();
 		System.out.println("TODO Displaying Help Menu");
 		nl(2);
@@ -218,43 +284,34 @@ public class GameController2 {
 
 	}
 
-	public void crewSelectionMenu(Game game) {		
+	public void crewSelectionMenu() {
 		ArrayList<String> selectedCrew = new ArrayList<String>(); 	
-		
-		if (game.getNumPreviousSaves() == 0) {
+
 			headerPrint();
 			System.out.println("Captain! You must select a crew! You can only choose three!"); //Yeah, I made that up.
 			System.out.println("Here is a list of currently unassigned crew:");
-			for (String s : game.getCaptain().getFullCrewList()) {
+		for (String s : captain.getFullCrewList()) {
 				System.out.println("		" + s + "?");
 			}
 			
 			System.out.println("The rest of the officers of SuperElite StarFleet have been disqualified for active duty for a felony involving a can of pureed pumpkin.");
 			System.out.println("Please type three crew members, and press enter between each one!");
-			System.out.println("You must type their names EXACTLY, or I don't be able to undestand you finger-accent.");
+		System.out.println("You must type their names EXACTLY, or I don't be able to understand you finger-accent.");
 			nl(1); 
 			for (int i = 0; i <= 2; i++) {
 				selectedCrew.add(in.nextLine());
 			}
 
-			//Confirm selection.
-			if (game.getCaptain().confirmCrew(selectedCrew)) {			
-				game.getCaptain().setCaptainCrew(selectedCrew);
+		//Confirm selection.
+		if (captain.confirmCrew(selectedCrew)) {
+			captain.setCaptainCrew(selectedCrew);
 			}
 
 			else{
 				System.out.println("Something screwed up, captain! Let's do that again!");
-				crewSelectionMenu(game); 
-			}
+			crewSelectionMenu();
 		}
-		else {
-			System.out.println("Captain, this is who you're travelling with: ");
-			for (String crewName : selectedCrew) {
-				System.out.println(crewName);
-				game.getCaptain().setCaptainCrew(selectedCrew);
-			}
-			return; 
-		}
+
 	}
 
 
@@ -344,12 +401,15 @@ public class GameController2 {
 	 * @return void
 	 * @author kenny, jcbrough
 	 */
-	public void genericHelpOrInputFailure() {
+	public void genericInputFailure() {
+		System.out.println("Input failure!");
+
+	}
+
+	public void helpChoice(){
 		if (booleanMaker("Help")) {
 			helpMenu();
 			System.out.println("Displaying Help Menu");
-		} else {
-			System.out.println("Input failure!");
 		}
 	}
 
