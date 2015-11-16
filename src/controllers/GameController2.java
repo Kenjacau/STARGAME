@@ -123,7 +123,7 @@ public class GameController2 {
 	
 		if (currentPlanet != null) {
 			planetMenu(currentPlanet);
-		} else if (captain.hasSurveyOfficer()) {
+		} else if (captain.hasNavigationOfficer()) {
 			planetSelectionMenu(3);
 		} else {
 			planetSelectionMenu(2);
@@ -172,6 +172,7 @@ public class GameController2 {
 	 *
 	 */
 	public void planetSelectionMenu(int numberOfPlanets) {
+		System.out.println("Planet Selection Start");
 		boolean planetSelectionNotComplete = true;
 		ArrayList<Planet> planetChoices = new ArrayList<>();
 		planetChoices = randomPlanets(numberOfPlanets);
@@ -215,22 +216,23 @@ public class GameController2 {
 	 * @return ArrayList
 	 */
 	public ArrayList<Planet> randomPlanets(int numberOfPlanets) {
+
 		boolean randomPlanetNotComplete = true;
 		ArrayList<Planet> randomPlanets = new ArrayList<>();
 		int count = 0;
 		Random rand = new Random();
-		int randomNumber = rand.nextInt(planetArrayList.size());
+		int randomNumber;
 
 		while (randomPlanetNotComplete) {
+			randomNumber = rand.nextInt(planetArrayList.size());
 			for (Planet p : planetArrayList) {
+
 				if (count == numberOfPlanets) {
 					randomPlanetNotComplete = false;
 					break;
 				} else if (!p.isPlanetExplored() && randomNumber == planetArrayList.indexOf(p) &&
 						!randomPlanets.contains(p)) {
-					//System.out.println(p.getPlanetName());
 					randomPlanets.add(p);
-					randomNumber = rand.nextInt(planetArrayList.size() - count);
 					count++;
 				}
 			}
@@ -241,7 +243,7 @@ public class GameController2 {
 	public void planetMenu(Planet planet) {
 		headerPrint();
 		nl(1);
-		System.out.println("TODO Displaying planet menu with planet" + planet);
+		System.out.println("TODO Displaying planet menu with planet" + planet.getPlanetName());
 		//TODO Planet Menu
 	}
 
@@ -305,6 +307,7 @@ public class GameController2 {
 		//Confirm selection.
 		if (captain.confirmCrew(selectedCrew)) {
 			captain.setCaptainCrew(selectedCrew);
+			captain.getAttributesToCrew();
 			}
 
 			else{
@@ -384,19 +387,19 @@ public class GameController2 {
 	 * String, first char, or just the first word.
 	 *
 	 * Example: booleanMaker("Exit Menu") <-- will be true if input is "Exit Menu", "Exit", or E
-	 *
+	 *Author: Kenny
 	 * @param input String to test userInput against.
 	 * @return boolean if userInput matches @param input
 	 */
 	public boolean booleanMaker(String input) {
-		return userInput.contains(removeNonWords(input)) || userInput.contains((removeNonWords(input.substring(0, 1)))) ||
-				userInput.contains(input.substring(0, input.indexOf(" ")));
+		return userInput.contains(removeNonWords(input)) || userInput.compareTo(removeNonWords(input.substring(0, 1))) == 0;
+		//|| userInput.contains(input.substring(0, input.indexOf(" ")));
 
 	}
 	
 	/**
-	 * Method: genericHelpOrInputFailure()
-	 * if userInput contains Help then displays help menu Else Prints a generic failure message.
+	 * Method: genericInputFailure()
+	 * Prints a generic failure message.
 	 *
 	 * @return void
 	 * @author kenny, jcbrough
@@ -406,10 +409,16 @@ public class GameController2 {
 
 	}
 
+	/**
+	 * Method: helpChoice()
+	 * Checks for userInput of Help and then displays Help Menu
+	 *
+	 * @return void
+	 * @author kenny, jcbrough
+	 */
 	public void helpChoice(){
 		if (booleanMaker("Help")) {
 			helpMenu();
-			System.out.println("Displaying Help Menu");
 		}
 	}
 

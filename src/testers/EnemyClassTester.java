@@ -11,7 +11,7 @@ import playerCharacter.Captain;
  * - Version: 0.0.0 
  * - 11/13/2015
  */
-public class EnemyClassTester extends PersonaClassTester {
+public class EnemyClassTester {
 	private Enemy enemy; 
 	
 	/**EnemyClassTester
@@ -24,8 +24,8 @@ public class EnemyClassTester extends PersonaClassTester {
 	public EnemyClassTester(Enemy _enemy) {
 		this.enemy = _enemy; 
 	}
-	
-	
+
+
 	/**
 	 * doesEnemyHaveDescription()
 	 * 
