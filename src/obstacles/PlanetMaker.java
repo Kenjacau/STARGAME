@@ -23,7 +23,7 @@ public class PlanetMaker {
 	private final String[] scanMessageList = new String[]{"Test ScanMessage 1", "Test ScanMessage 2", "Test ScanMessage 3"};
 	private final String[] arrivalMessageList = new String[]{"Test ArrivalMessage 1", "Test ArrivalMessage 2",
 			"Test ArrivalMessage 3"};
-	static ArrayList<Planet> planetArrayList = new ArrayList<>();
+	private ArrayList<Planet> planetArrayList = new ArrayList<>();
 
 
 	public PlanetMaker() {
@@ -36,7 +36,7 @@ public class PlanetMaker {
 
 	}
 
-	public static ArrayList<Planet> getPlanetArrayList() {
+	public ArrayList<Planet> getPlanetArrayList() {
 		return planetArrayList;
 	}
 

@@ -75,8 +75,9 @@ public class GameController2 {
 			nl(1);
 			listener();
 			if (booleanMaker("New Game")) {
-				//Construct New game object.
+				//Construct New game object and ArrayList of default planets.
 				Game thisGame = new Game();
+				planetArrayList = new PlanetMaker().getPlanetArrayList();
 				thisGame.setNumPreviousSaves(0);
 				loadThisGameElements(thisGame);
 				
@@ -157,7 +158,7 @@ public class GameController2 {
 
 		System.out.println("What is our first destination, Captain " + captain.getName() + "?");
 		System.out.println("Based on our current position, these are our options: ");
-		for (Planet thisPlanet : PlanetMaker.getPlanetArrayList()) {
+		for (Planet thisPlanet : planetArrayList) {
 			System.out.println("		" + thisPlanet.getPlanetName());
 		}
 		System.out.println("Please type the EXACT NAME of the planet you'd like to visit: ");

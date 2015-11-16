@@ -14,9 +14,9 @@ import java.util.Scanner;
  *
  * @author Kenny Cauthen
  *         kcauthen@ggc.edu
- * @version 0.0, 11/14/2015
+ * @version 0.0.1, 11/14/2015
  *          Course: ITEC 3150 Fall 2015
- *          Assignment:
+ *          Assignment: Final Project
  */
 public class PuzzleClassTester {
 	private Scanner in = new Scanner(System.in);
