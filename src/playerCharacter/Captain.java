@@ -8,17 +8,43 @@ import controllers.GameController2;
 Class: Captain
 Purpose: The Captain class manages the display of player information, selection of crew members, and actions related to combat.
  - Author: @cdeluna, @jcbrough, @kcauthen
-- Email: cdeluna@ggc.edu, jbroughton@ggc.edu
-- Version: 0.0.6
+- Email: cdeluna@ggc.edu, jbroughton@ggc.edu, kcauthen@ggc.edu
+- Version: 0.0.7
 - Date: 2015-11-05 
 **/
 public class Captain extends Persona {
-	//TODO we need a Captain constructor that has default health points, attack points, and defense --Kenny
-	//TODO we need a method for the end of crew selection to modify above attributes before leaving crew selection menu --Kenny
-	//TODO Why do we have both crewSelection and Captain crew? --Kenny
-	//private int[] bossesBeat;
-	//private ArrayList<String> crewSelection = new ArrayList<String>();
 	private ArrayList<String> captainCrew = new ArrayList<String>();
+	
+	/**
+	 * Method: Captain - No-arg constructor that sets default attributes to Captain
+	 * 
+	 */
+	public Captain() {
+		super();
+		this.setHealthPoints(100); //Subject to change
+		this.setAttackPoints(20); //Subject to change
+		this.setDefensePoints(20); //Subject to change
+	}
+	
+	/**
+	 * Method: getAttributesToCrew - Sets attributes from selected crew member to Captain
+	 * 
+	 */
+	public void getAttributesToCrew() {
+		for (String s : captainCrew) {
+			switch(s) {
+			case "Tactical Officer": //Subject to change
+				setHealthPoints(150); //Subject to change
+				break;
+			case "Sentinel Bot": //Subject to change
+				setAttackPoints(40); //Subject to change
+				break;
+			case "Security Officer": //Subject to change
+				setDefensePoints(40); //Subject to change
+				break;
+			}
+		}
+	}
 
 	/**getFullCrewList
 	 * Gets a full list of all possible crew choices. 
@@ -67,15 +93,6 @@ public class Captain extends Persona {
 			return false;
 		}
 	}
-	
-	/**
-	 * Method: getCrewSelection - Getter method for selecting a crew member
-	 * 
-	 * @return the crewSelection
-	 */
-	//public ArrayList<String> getCrewSelection() {
-	//	return crewSelection;
-	//}
 
 	/**
 	 * Method: getCaptainCrew - Getter method for captainCrew as an ArrayList of
@@ -174,6 +191,5 @@ public class Captain extends Persona {
 	public String removeNonWords(String string) {
 		return (string.replaceAll("[^\\p{L}\\p{Nd}]+", "")).toLowerCase();
 	}
-
 
 }
