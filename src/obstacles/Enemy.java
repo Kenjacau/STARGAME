@@ -22,6 +22,7 @@ public class Enemy extends Persona implements Combat {
 	//TODO: Write this class. Stubbed for inclusion into the controllers.GameController class.
 	//Need Enemy constructor that takes in String of planetName.
 	public Enemy(String enemyList, int ambushStatus, int attackPoints, int defensePoints, int health, String enemyLocation, String enemyDescription) {
+		
 	}
 
 	/**
