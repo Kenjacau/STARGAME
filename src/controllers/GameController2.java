@@ -26,7 +26,7 @@ public class GameController2 {
 	private Captain captain;
 	private ArrayList<Planet> planetArrayList;
 	private ArrayList<Puzzle> puzzleArrayList = new PuzzleMaker().getPuzzleArrayList();
-	private ArrayList<Enemy> enemyArrayList;
+	private ArrayList<Enemy> enemyArrayList = new EnemyMaker().getEnemyArrayList();
 	private Planet currentPlanet;
 	private Scanner in = new Scanner(System.in);
 	private String userInput = "";
