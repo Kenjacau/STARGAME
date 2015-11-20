@@ -11,17 +11,32 @@ TODO: Write class definition here.
 - Version: 0.0.0
 - TODO: Date goes here.    
 */
-public class Enemy extends Persona implements Combat {
+public class Enemy extends Persona implements Combat
+{
 	//Declare enemy specific Attributes
-	
+	private String enemyName;
+	private int ambushStatus;
+	private int attackPoints;
+	private int defensePoints;
+	private int health;
 	private String enemyDescription;
 	private String enemyLocation;
-	private int ambushStatus;
 
 	//TODO: NOTE FROM KENNY... THIS CLASS SHOULD EXTEND PERSONA
 	//TODO: Write this class. Stubbed for inclusion into the controllers.GameController class.
 	//Need Enemy constructor that takes in String of planetName.
-	public Enemy(String enemyList, int ambushStatus, int attackPoints, int defensePoints, int health, String enemyLocation, String enemyDescription) {
+	public Enemy(String newEnemyList, int newAmbushStatus, int newAttackPoints,
+			int newDefensePoints, int newHealth, String newEnemyLocation,
+			String newEnemyDescription)
+	{
+		enemyName = newEnemyList;
+		ambushStatus = newAmbushStatus;
+		attackPoints = newAttackPoints;
+		defensePoints = newDefensePoints;
+		health = newHealth;
+		enemyDescription = newEnemyDescription;
+		enemyLocation = newEnemyLocation;
+		
 		
 	}
 
@@ -35,42 +50,68 @@ public class Enemy extends Persona implements Combat {
 	 * CREATED: 11/3/15
 	 * LAST EDITED ON: 11/3/15  BY: Travis K.
 	 */
-	public Enemy(String enemyDescription, String enemyLocation, int ambushStatus) {
-		super();
-		
-		int healthPoints = getHealthPoints();
-		int attackPoints = getAttackPoints();
-		int defensePoints = getDefensePoints();
-		
-		this.enemyDescription = enemyDescription;
-		this.enemyLocation = enemyLocation;
-		this.ambushStatus = ambushStatus;
+//	public Enemy(String enemyDescription, String enemyLocation,
+//			int ambushStatus)
+//	{
+//		super();
+//
+//		int healthPoints = getHealthPoints();
+//		int attackPoints = getAttackPoints();
+//		int defensePoints = getDefensePoints();
+//
+//		this.enemyDescription = enemyDescription;
+//		this.enemyLocation = enemyLocation;
+//		this.ambushStatus = ambushStatus;
+//	}
+
+	/**Method Name: getEnemyName
+	 * @return the enemyName
+	 */
+	public String getEnemyName()
+	{
+		return enemyName;
 	}
 
-	
-	
-//	/**
-//	 * @return the enemy name
-//	 */
-//	
-//	public String getEnemyName() {
-//		return enemyName;
-//	}
-//	
+	/**Method Name: getAttackPoints
+	 * @return the attackPoints
+	 */
+	public int getAttackPoints()
+	{
+		return attackPoints;
+	}
+
+	/**Method Name: getDefensePoints
+	 * @return the defensePoints
+	 */
+	public int getDefensePoints()
+	{
+		return defensePoints;
+	}
+
+	/**Method Name: getHealth
+	 * @return the health
+	 */
+	public int getHealth()
+	{
+		return health;
+	}
+
 	/**
 	 * @return the enemy description
 	 */
-	public String getEnemyDescription() {
+	public String getEnemyDescription()
+	{
 		return enemyDescription;
 	}
-	
+
 	/**
 	 * @return the enemy location
 	 */
-	public String getEnemyLocation() {
+	public String getEnemyLocation()
+	{
 		return enemyLocation;
 	}
-	
+
 	/**
 	 * @return the ambush status
 	 * 
@@ -80,37 +121,25 @@ public class Enemy extends Persona implements Combat {
 	 * 	I'm assuming this is what ambushStatus is supposed to be?
 	 * 		--Travis K.
 	 */
-	public int getAmbushStatus() {
+	public int getAmbushStatus()
+	{
 		return ambushStatus;
 	}
 
 	@Override
-	public void attack(int attackPoints, int defensePoints) {
+	public void attack(int attackPoints, int defensePoints)
+	{
 		// TODO Auto-generated method stub
-		
+
 		//Calculate damage
-		
+
 	}
 
 	@Override
-	public void ambush(int attackPoints, int defensePoints) {
+	public void ambush(int attackPoints, int defensePoints)
+	{
 		// TODO Auto-generated method stub
-		
+
 	}
 
-	
-
-
-////Implement Combat Interface
-//	public int attack(int attackPoints, int defensePoints) {
-//		// TODO Auto-generated method stub
-//		return 0;
-//	}
-//	
-    //private int[] enemyList;
-		/* I'm leaving enemyList out for now, I don't think it has much
-		 * use in this class, Let me know if you want here --Travis K*/
-	
-	
 }
-
