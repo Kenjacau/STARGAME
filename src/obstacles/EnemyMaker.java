@@ -5,11 +5,13 @@ import java.util.Collections;
 
 /**
  * Class: EnemyMaker
- * Description:
+ * Description: Creates and populates an arrayList with enemies
  *
  * @author Kenny Cauthen
  *         kcauthen@ggc.edu
- * @version 0.0, 11/14/2015
+ *         Travis Keating
+ *         tkeating@ggc.edu
+ * @version 0.5, 11/20/2015
  *          Course: ITEC 3150 Fall 2015
  *          Assignment:
  */
@@ -72,4 +74,5 @@ public class EnemyMaker
 	public ArrayList<Enemy> getEnemyArrayList() {
 		return enemyArrayList;
 	}
+	
 }
