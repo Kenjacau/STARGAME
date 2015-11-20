@@ -57,7 +57,16 @@ public class EnemyMaker
 	public EnemyMaker(){
 		Collections.addAll(enemyArrayList,
 				//Enemy Name, Ambush Status, Attack Points, Defense Points, Health, Enemy Location, Enemy Description
-				new Enemy(enemyList[0], ambushStatus[0], attackPoints[0], defensePoints[0], health[0], enemyLocation[0], enemyDescription[0]));
+				new Enemy(enemyList[0], ambushStatus[0], attackPoints[0], defensePoints[0], health[0], enemyLocation[0], enemyDescription[0]),
+				new Enemy(enemyList[1], ambushStatus[1], attackPoints[1], defensePoints[1], health[1], enemyLocation[1], enemyDescription[1]),
+				new Enemy(enemyList[2], ambushStatus[2], attackPoints[2], defensePoints[2], health[2], enemyLocation[2], enemyDescription[2]),
+				new Enemy(enemyList[3], ambushStatus[3], attackPoints[3], defensePoints[3], health[3], enemyLocation[3], enemyDescription[3]),
+				new Enemy(enemyList[4], ambushStatus[4], attackPoints[4], defensePoints[4], health[4], enemyLocation[4], enemyDescription[4]),
+				new Enemy(enemyList[5], ambushStatus[5], attackPoints[5], defensePoints[5], health[5], enemyLocation[5], enemyDescription[5]),
+				new Enemy(enemyList[6], ambushStatus[6], attackPoints[6], defensePoints[6], health[6], enemyLocation[6], enemyDescription[6]),
+				new Enemy(enemyList[7], ambushStatus[7], attackPoints[7], defensePoints[7], health[7], enemyLocation[7], enemyDescription[7]),
+				new Enemy(enemyList[8], ambushStatus[8], attackPoints[8], defensePoints[8], health[8], enemyLocation[8], enemyDescription[8])
+		);
 	}
 	
 	public ArrayList<Enemy> getEnemyArrayList() {
