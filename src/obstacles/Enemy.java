@@ -95,6 +95,7 @@ public class Enemy extends Persona implements Combat
 	{
 		return health;
 	}
+	
 
 	/**
 	 * @return the enemy description
