@@ -30,6 +30,17 @@ public class GameClassTester {
 		this.game = _game; 
 	}
 	
+	/**GameClassTester
+	 * CONSTRUCTOR
+	 * 
+	 * @param _game The game to be tested. 
+	 * 
+	 * @author jcbrough
+	 */
+	public GameClassTester() {
+		
+	}
+	
 	/**testHasCaptain()
 	 * Tests to see if the captain object is null. 
 	 * @param game A game object.

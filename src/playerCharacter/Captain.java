@@ -81,7 +81,7 @@ public class Captain extends Persona {
 			System.out.println("		" + s);
 		}
 		System.out.println("\n");
-		System.out.println("Please enter [yes] or [no]!");
+		System.out.println("Please enter [y]es or [n]o!");
 		
 		@SuppressWarnings("resource")
 		Scanner in = new Scanner(System.in);
