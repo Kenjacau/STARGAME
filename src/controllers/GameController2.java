@@ -22,6 +22,7 @@ The GameController class is the primary controller, featuring the interfaces, th
 public class GameController2 {
 	//Static constants.
 	private static final String SPACE_GAME_TITLE = "Super Elite: Space Adventure";
+	private static final String SAVE_FILE_EXTENSION = ".ser"; 
 	private Game thisGame;
 	private Captain captain;
 	private ArrayList<Planet> planetArrayList;
@@ -30,6 +31,7 @@ public class GameController2 {
 	private Planet currentPlanet;
 	private Scanner in = new Scanner(System.in);
 	private String userInput = "";
+	
 
 	/**main()
 	 * STATIC METHOD
@@ -69,11 +71,11 @@ public class GameController2 {
 		headerPrint();
 		System.out.println(SPACE_GAME_TITLE);
 		nl(1);
-		System.out.println("Welcome to dat world, Captain! Here are your options.");
+		System.out.println("Welcome to the world, Captain! Here are your options.");
 		nl(1);
 
 		while (titleNotComplete) {
-			System.out.println("dat New Game (N)  :  Load dat Game (L)  :  Exit dat Game (E)  :  dat Help Menu (H)");
+			System.out.println("New Game (N)  :  Load Game (L)  :  Exit Game (E)  :  Help Menu (H)");
 			wWJD();
 			nl(1);
 			listener();
@@ -154,14 +156,13 @@ public class GameController2 {
 	 * Description: Pulls saved planetArrayList and captain object from game object to current Game Controllers Attributes.
 	 * Author: Kenny
 	 */
-	public void loadThisGameElements(Game thisGame) {
+	private void loadThisGameElements(Game thisGame) {
 		captain = thisGame.getCaptain();
 		planetArrayList = thisGame.getPlanets();
 
 		if (thisGame.getCurrentPlanet() != null) {
 			currentPlanet = thisGame.getCurrentPlanet();
 		}
-
 	}
 
 	/** planetSelectionMenu()
@@ -247,7 +248,7 @@ public class GameController2 {
 		//TODO Planet Menu
 	}
 
-	public void helpMenu() {
+	private void helpMenu() {
 		//TODO Help Menu
 		headerPrint();
 		System.out.println("TODO Displaying Help Menu");
@@ -261,7 +262,7 @@ public class GameController2 {
 	 * @return String path for Game.loadGame
 	 * @author jcbrough, kenny
 	 */
-	public String loadGameMenu(String fileName) {
+	private String loadGameMenu(String fileName) {
 		System.out.println("TODO loadGameMenu. Which game would you like to load?");
 		//selectedGame should be the saved game that the player chooses. This is just filler.
 		Game selectedGame = new Game();
@@ -273,20 +274,23 @@ public class GameController2 {
 		//TODO load game menu that returns path for Game secondary constructor.
 	}
 
-	public void saveGameMenu() {
+	public void saveGameMenu(Game game) {
 		String nextAvailableSavePath = "";
 		//TODO Save Game Menu to save Game
-		System.out.println("TODO Save Game Menu");
-		try {
-			thisGame.saveGame(nextAvailableSavePath);
-		} catch (IOException e) {
-			System.out.println("Error Blah Blah");
-			e.printStackTrace();
+		System.out.println("Would you like to (s)ave your game? Or are you do(n)e with this cruel world?!");
+		listener();
+		
+		if (booleanMaker("Save")) {
+			Scanner in = new Scanner(System.in); 
+			System.out.println("What would you like the save file to be called?");
+			String saveGameFileName = in.nextLine(); 
+			saveGameFileName += " - " + game.getCaptain().getName(); //Concatenates the name of the captain to the savegame file name.
+			saveGameFileName += SAVE_FILE_EXTENSION; 
 		}
 
 	}
 
-	public void crewSelectionMenu() {
+	private void crewSelectionMenu() {
 		ArrayList<String> selectedCrew = new ArrayList<String>(); 	
 
 			headerPrint();
@@ -314,7 +318,6 @@ public class GameController2 {
 				System.out.println("Something screwed up, captain! Let's do that again!");
 			crewSelectionMenu();
 		}
-
 	}
 
 
@@ -351,7 +354,7 @@ public class GameController2 {
 	 * @return void
 	 * @author kenny
 	 */
-	public void wWJD() { //HAHAHAHA!!! WWJD, really? Fuck me running. -JCB
+	private void wWJD() { //HAHAHAHA!!! WWJD, really? Fuck me running. -JCB
 		System.out.println("------------------------------------------------------------------");
 		System.out.println("What would you like to do?");
 	}
@@ -363,11 +366,10 @@ public class GameController2 {
 	 * @param numberOfNextLines
 	 * @author kenny
 	 */
-	public void nl(int numberOfNextLines) {
+	private void nl(int numberOfNextLines) {
 		for (int i = 0; i < numberOfNextLines; i++) {
 			System.out.println();
 		}
-
 	}
 	
 	/**
@@ -377,7 +379,7 @@ public class GameController2 {
 	 * @return void
 	 * @author kenny
 	 */
-	public void listener() {
+	private void listener() {
 		userInput = removeNonWords(in.nextLine());
 	}
 
@@ -394,7 +396,6 @@ public class GameController2 {
 	public boolean booleanMaker(String input) {
 		return userInput.contains(removeNonWords(input)) || userInput.compareTo(removeNonWords(input.substring(0, 1))) == 0;
 		//|| userInput.contains(input.substring(0, input.indexOf(" ")));
-
 	}
 	
 	/**
@@ -404,7 +405,7 @@ public class GameController2 {
 	 * @return void
 	 * @author kenny, jcbrough
 	 */
-	public void genericInputFailure() {
+	private void genericInputFailure() {
 		System.out.println("Input failure!");
 
 	}
