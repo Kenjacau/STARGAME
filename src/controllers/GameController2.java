@@ -20,9 +20,12 @@ The GameController class is the primary controller, featuring the interfaces, th
 - 2015-11-03    
 */
 public class GameController2 {
-	//Static constants.
+	//Static constants
 	private static final String SPACE_GAME_TITLE = "Super Elite: Space Adventure";
 	private static final String SAVE_FILE_EXTENSION = ".ser"; 
+	private static final String DESKTOP_PATH = System.getProperty("user.home") + "\\Desktop"; 
+		
+	//Other private variables 
 	private Game thisGame;
 	private Captain captain;
 	private ArrayList<Planet> planetArrayList;
@@ -42,7 +45,7 @@ public class GameController2 {
 	public static void main (String[] args) throws IOException {
 		GameController2 thisGameController = new GameController2();
 		thisGameController.titleScreen();
-
+		
 		
 		
 		//TODO: Quit Game Menu with save option
@@ -184,28 +187,33 @@ public class GameController2 {
 			for (Planet thisPlanet : planetChoices) {
 				System.out.println("		" + thisPlanet.getPlanetName());
 			}
-			System.out.println("Please type the EXACT NAME of the planet you'd like to visit: ");
+			System.out.println("Please type [help] or the name of the planet you'd like to visit: ");
+			System.out.println("Please note: if the planet name isn't input into the navigation system with precision, we'll be...");
+			System.out.println("LOOOOOSSSST IIIINNNNN SSPPPPPPPAAAAACCCEEEEE!!!!!");
 			listener();
 			nl(1);
-			for (Planet selectedPlanet : planetChoices) {
-				if (userInput.contains(removeNonWords(selectedPlanet.getPlanetName()))) {
-					currentPlanet = selectedPlanet;
-					selectedPlanet.setPlanetExplored(true);
-					System.out.println("Thank you, Captain!");
-					System.out.println("You have chosen to go to " + selectedPlanet.getPlanetName() + "! BOLDLY GOING NOW, CAPTAIN!!!");
-					planetSelectionNotComplete = false;
-					planetMenu(selectedPlanet);
-
-				} else if (planetChoices.indexOf(selectedPlanet) < planetChoices.size() - 1) {
-					helpChoice();
-					//continue for loop
-				} else {
-					genericInputFailure();
+			if (booleanMaker("Help")) {
+				helpMenu(); 
+			}
+			else {
+				for (Planet selectedPlanet : planetChoices) {
+					if (userInput.contains(removeNonWords(selectedPlanet.getPlanetName()))) {
+						currentPlanet = selectedPlanet;
+						selectedPlanet.setPlanetExplored(true);
+						System.out.println("Thank you, Captain!");
+						System.out.println("You have chosen to go to " + selectedPlanet.getPlanetName() + "! BOLDLY GOING NOW, CAPTAIN!!!");
+						planetSelectionNotComplete = false;
+						planetMenu(selectedPlanet);
+	
+					} else if (planetChoices.indexOf(selectedPlanet) < planetChoices.size() - 1) {
+						helpChoice();
+						//continue for loop
+					} else {
+						genericInputFailure();
+					}
 				}
 			}
 		}
-
-
 	}
 
 	/**
@@ -251,7 +259,17 @@ public class GameController2 {
 	private void helpMenu() {
 		//TODO Help Menu
 		headerPrint();
-		System.out.println("TODO Displaying Help Menu");
+		System.out.println("You get very little help, Captain!");
+		System.out.println("You can [save], and that's about it.");
+		nl(1); 
+		System.out.println("What would you like to do?");
+		headerPrint(); 
+		listener(); 
+		if (booleanMaker("save")) {
+			System.out.println("Copy that, Captain!");
+			saveGameMenu(thisGame); 
+		}
+		
 		nl(2);
 	}
 
@@ -277,7 +295,7 @@ public class GameController2 {
 	public void saveGameMenu(Game game) {
 		String nextAvailableSavePath = "";
 		//TODO Save Game Menu to save Game
-		System.out.println("Would you like to (s)ave your game? Or are you do(n)e with this cruel world?!");
+		System.out.println("Would you like to [save] your game? Or are you [done] with this cruel world?!");
 		listener();
 		
 		if (booleanMaker("Save")) {
@@ -286,6 +304,9 @@ public class GameController2 {
 			String saveGameFileName = in.nextLine(); 
 			saveGameFileName += " - " + game.getCaptain().getName(); //Concatenates the name of the captain to the savegame file name.
 			saveGameFileName += SAVE_FILE_EXTENSION; 
+			String fullPath = DESKTOP_PATH.concat(saveGameFileName); 
+			System.out.println(fullPath);
+
 		}
 
 	}
@@ -426,7 +447,7 @@ public class GameController2 {
 
 	/**
 	 * Method: inputFailure()
-	 * Prints a failure based on passed parameters
+	 * Prints a failure based on passed parameters. Used for readability. 
 	 *
 	 * @return void
 	 * @author jcbrough
@@ -441,7 +462,6 @@ public class GameController2 {
 	public void inputFailure(String message) {
 		System.out.println(message);
 	}
-
 
 
 	/**
