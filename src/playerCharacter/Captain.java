@@ -9,11 +9,14 @@ Class: Captain
 Purpose: The Captain class manages the display of player information, selection of crew members, and actions related to combat.
  - Author: @cdeluna, @jcbrough, @kcauthen
 - Email: cdeluna@ggc.edu, jbroughton@ggc.edu, kcauthen@ggc.edu
-- Version: 0.0.7
+- Version: 0.0.8
 - Date: 2015-11-05 
 **/
 public class Captain extends Persona {
 	private ArrayList<String> captainCrew = new ArrayList<String>();
+	private static final int HEALTH_POINTS = 100;
+	private static final int ATTACK_POINTS = 20;
+	private static final int DEFENSE_POINTS = 20;
 	
 	/**
 	 * Method: Captain - No-arg constructor that sets default attributes to Captain
@@ -21,9 +24,9 @@ public class Captain extends Persona {
 	 */
 	public Captain() {
 		super();
-		this.setHealthPoints(100); //Subject to change
-		this.setAttackPoints(20); //Subject to change
-		this.setDefensePoints(20); //Subject to change
+		this.setHealthPoints(100);
+		this.setAttackPoints(20);
+		this.setDefensePoints(20);
 	}
 	
 	/**
@@ -31,19 +34,19 @@ public class Captain extends Persona {
 	 * 
 	 */
 	public void getAttributesToCrew() {
-		for (String s : captainCrew) {
-			switch(s) {
-			case "Tactical Officer": //Subject to change
-				setHealthPoints(150); //Subject to change
-				break;
-			case "Sentinel Bot": //Subject to change
-				setAttackPoints(40); //Subject to change
-				break;
-			case "Security Officer": //Subject to change
-				setDefensePoints(40); //Subject to change
-				break;
-			}
-		}
+//		for (String s : captainCrew) {
+//			switch(s) {
+//			case "Tactical Officer":
+//				setHealthPoints(150);
+//				break;
+//			case "Sentinel Bot":
+//				setAttackPoints(40);
+//				break;
+//			case "Security Officer":
+//				setDefensePoints(40);
+//				break;
+//			}
+//		}
 	}
 
 	/**getFullCrewList
@@ -113,31 +116,29 @@ public class Captain extends Persona {
 	}
 
 	/**
-	 * @return true
+	 * @return hasCrew
 	 */
 	public boolean hasSurveyOfficer() {
-
 		return hasCrew("Survey Officer");
 	}
 
 	/**
-	 * @return true
+	 * @return hasCrew
 	 * author: Kenny
 	 */
 	public boolean hasEngineerOfficer() {
-
 		return hasCrew("Engineer Officer");
 	}
 
 	/**
-	 * @return true
+	 * @return hasCrew
 	 */
 	public boolean hasNavigationOfficer() {
 		return hasCrew("Navigation Officer");
 	}
 
 	/**
-	 * @return true
+	 * @return hasCrew
 	 */
 	public boolean hasTacticalOfficer() {
 		return hasCrew("Tactical Officer");
@@ -157,7 +158,9 @@ public class Captain extends Persona {
 		return crewMember;
 	}
 
-
+	/**
+	 * @return null
+	 */
 	public Boolean fleeCombat() {
 		return null;
 	}
@@ -188,6 +191,13 @@ public class Captain extends Persona {
 		}
 	}
 
+	/**
+	 * Method: removeNonWords
+	 * Description: replaces non-words
+	 *
+	 * @param string
+	 * @author kenny
+	 */
 	public String removeNonWords(String string) {
 		return (string.replaceAll("[^\\p{L}\\p{Nd}]+", "")).toLowerCase();
 	}

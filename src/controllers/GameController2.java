@@ -22,6 +22,9 @@ public class GameController2 {
 	private static final String SPACE_GAME_TITLE = "Super Elite: Space Adventure";
 	private static final String SAVE_FILE_EXTENSION = ".ser";
 	private static final String DESKTOP_PATH = System.getProperty("user.home") + "\\Desktop\\";
+	private static final int TACTICAL_OFFICER = 50;
+	private static final int SENTINEL_BOT = 20;
+	private static final int SECURITY_OFFICER = 20;
 
 	// Other private variables
 	private Game game;
@@ -370,7 +373,7 @@ public class GameController2 {
 		System.out.println(
 				"The rest of the officers of SuperElite StarFleet have been disqualified for active duty for a felony involving a can of pureed pumpkin.");
 		System.out.println("Please type three crew members, and press enter between each one!");
-		System.out.println("You must type their names EXACTLY, or I don't be able to understand you finger-accent.");
+		System.out.println("You must type their names EXACTLY, or I won't be able to understand your finger-accent.");
 		nl(1);
 		for (int i = 0; i <= 2; i++) {
 			selectedCrew.add(in.nextLine());
@@ -379,13 +382,30 @@ public class GameController2 {
 		// Confirm selection.
 		if (game.getCaptain().confirmCrew(selectedCrew)) { //Confirm the selection.
 			game.getCaptain().setCaptainCrew(selectedCrew); //Set the selection
-			game.getCaptain().getAttributesToCrew(); //Grant the attributes. 
+			game.getCaptain().getAttributesToCrew(); //Grant the attributes.
 		}
 
 		else {
 			System.out.println("Something screwed up, captain! Let's do that again!");
 			crewSelectionMenu(game);
 		}
+	}
+	
+	/**
+	 * Method: modifyAttributesToCrew - Officers modify captain's stats
+	 *
+	 * @param game
+	 * @author cdeluna, jcbrough
+	 */
+	public void modifyAttributesToCrew(Game game) {
+		System.out.println("Here are your stats, captain!");
+		nl(1);
+		game.getCaptain().setHealthPoints(TACTICAL_OFFICER);
+		System.out.println("Your health points are: " + game.getCaptain().getHealthPoints());
+		game.getCaptain().setAttackPoints(SENTINEL_BOT);
+		System.out.println("Your attack points are: " + game.getCaptain().getAttackPoints());
+		game.getCaptain().setDefensePoints(SECURITY_OFFICER);
+		System.out.println("Your defense points are: " + game.getCaptain().getDefensePoints());
 	}
 
 	// Menu Making Helper Methods//
