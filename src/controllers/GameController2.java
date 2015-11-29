@@ -6,6 +6,7 @@ import java.util.Random;
 import java.util.Scanner;
 import obstacles.*;
 import playerCharacter.Captain;
+import sun.font.TrueTypeFont;
 import testers.GameClassTester;
 
 /*
@@ -21,14 +22,10 @@ public class GameController2 {
 	private static final String SPACE_GAME_TITLE = "Super Elite: Space Adventure";
 	private static final String SAVE_FILE_EXTENSION = ".ser";
 	private static final String DESKTOP_PATH = System.getProperty("user.home") + "\\Desktop\\";
-	private static final int TACTICAL_OFFICER = 50;
-	private static final int SENTINEL_BOT = 20;
-	private static final int SECURITY_OFFICER = 20;
 
 	// Other private variables
 	private Game thisGame;
 	private Captain captain;
-	private Enemy enemy;
 	private ArrayList<Planet> planetArrayList;
 	private ArrayList<Puzzle> puzzleArrayList = new PuzzleMaker().getPuzzleArrayList();
 	private ArrayList<Enemy> enemyArrayList = new EnemyMaker().getEnemyArrayList();
@@ -100,12 +97,7 @@ public class GameController2 {
 				titleNotComplete = false;
 
 				System.out.println("Let's get started Captain!");
-
-				if (captain.hasNavigationOfficer()) {
-					planetSelectionMenu(3);
-				} else {
-					planetSelectionMenu(2);
-				}
+				planetSelectionMenu();
 				
 			} else if (booleanMaker("Load Game")) {
 				// TODO: Display LoadGame/SaveGame menu that returns a string
@@ -122,12 +114,10 @@ public class GameController2 {
 				
 				System.out.println("Let's get started Captain!");
 
-				if (thisGame.getCurrentPlanet() != null) {
-					planetMenu(currentPlanet);
-				} else if (captain.hasNavigationOfficer()) {
-					planetSelectionMenu(3);
+				if (captain.getCurrentPlanet() != null) {
+					planetMenu();
 				} else {
-					planetSelectionMenu(2);
+					planetSelectionMenu();
 				}
 
 				titleNotComplete = false;
@@ -141,8 +131,7 @@ public class GameController2 {
 			else if (booleanMaker("Help Menu")) {
 				headerPrint(); 
 				System.out.println("Captain! You have to start a game to get help with one!");
-				headerPrint(); 
-				titleNotComplete = false;
+				headerPrint();
 				titleScreen();
 			}
 			
@@ -174,8 +163,8 @@ public class GameController2 {
 		captain = game.getCaptain();
 		planetArrayList = game.getPlanets();
 
-		if (game.getCurrentPlanet() != null) {
-			currentPlanet = game.getCurrentPlanet();
+		if (captain.getCurrentPlanet() != null) {
+			currentPlanet = captain.getCurrentPlanet();
 		}
 	}
 
@@ -195,10 +184,16 @@ public class GameController2 {
 	 * @author jcbrough, kenny
 	 *
 	 */
-	public void planetSelectionMenu(int numberOfPlanets) {
+	public void planetSelectionMenu() {
 		boolean planetSelectionNotComplete = true;
 		ArrayList<Planet> planetChoices = new ArrayList<>();
-		planetChoices = randomPlanets(numberOfPlanets);
+
+		if (captain.hasNavigationOfficer()) {
+			planetChoices = randomPlanets(3);
+		} else {
+			planetChoices = randomPlanets(2);
+		}
+
 
 		while (planetSelectionNotComplete) {
 			System.out.println("What is our destination, Captain " + captain.getName() + "?");
@@ -213,7 +208,7 @@ public class GameController2 {
 			listener();
 			nl(1);
 			if (booleanMaker("Help")) {
-				//TODO HelpMenu
+				helpMenu();
 			} else {
 				for (Planet selectedPlanet : planetChoices) {
 					if (userInput.contains(removeNonWords(selectedPlanet.getPlanetName()))) {
@@ -223,41 +218,22 @@ public class GameController2 {
 						System.out.println("You have chosen to go to " + selectedPlanet.getPlanetName()
 								+ "! BOLDLY GOING NOW, CAPTAIN!!!");
 						planetSelectionNotComplete = false;
-						planetMenu(selectedPlanet);
+						planetMenu();
 
 					} else if (planetChoices.indexOf(selectedPlanet) < planetChoices.size() - 1) {
-						helpMenu();
-						// continue for loop
+						// continues loop until planetSelectionNotComplete == false
 					} else {
-						planetInputFailure(userInput);
+						nl(1);
+						headerPrint();
+						System.out.println("Captain, the input \"" + userInput + "\" is garbage!!! You are a crazy person!");
+						System.out.println("Let's try that again!");
+						nl(1);
+						headerPrint();
+						nl(1);
+						// continues loop until planetSelectionNotComplete == false
 					}
 				}
 			}
-		}
-	}
-
-	/**
-	 * Method: planetInputFailure Description: prints an input failure message
-	 * and recurses the planetSelectionMenu method.
-	 * 
-	 *
-	 * @param input from the captain
-	 * @return void
-	 * @author jcbrough
-	 */
-	private void planetInputFailure(String input) {
-		nl(1);
-		headerPrint();
-		System.out.println("Captain, the input \"" + input + "\" is garbage!!! You are a crazy person!");
-		System.out.println("Let's try that again!");
-		nl(1);
-		headerPrint();
-		nl(1);
-
-		if (captain.hasNavigationOfficer()) {
-			planetSelectionMenu(3);
-		} else {
-			planetSelectionMenu(2);
 		}
 	}
 
@@ -293,11 +269,62 @@ public class GameController2 {
 		return randomPlanets;
 	}
 
-	public void planetMenu(Planet planet) {
+	public void planetMenu() {
 		headerPrint();
 		nl(1);
-		System.out.println("TODO Displaying planet menu with planet" + planet.getPlanetName());
-		// TODO Planet Menu
+		System.out.println("You have arrived at " + currentPlanet.getPlanetName());
+		if (!currentPlanet.getArrivalMessage().contains("Nothing")) {
+			System.out.println(currentPlanet.getArrivalMessage());
+		}
+		//NORMAL PLANET
+		if (currentPlanet.getPlanetFlag() == 0) {
+			planetMenuSelection();
+		}
+		//BOSS PLANET
+		else if (currentPlanet.getPlanetFlag() == 1) {
+			combatMenu();
+			planetMenuSelection();
+
+		} else {
+			//specialPlanetMenu();
+		}
+	}
+
+	public void planetMenuSelection() {
+		final int REPAIR_HEALTH_AMOUNT = 25;
+		boolean planetMenuNotFinished = true;
+		boolean notScanned = true;
+		boolean notExplored = true;
+		boolean notRepaired = true;
+
+		while (planetMenuNotFinished) {
+			headerPrint();
+			System.out.println("Here are your options Captain");
+			System.out.print("| [S]can | [E]xplore | [L]eave |");
+			if (captain.hasEngineerOfficer()) {
+				System.out.println(" [R]epair |");
+			}
+			wWJD();
+			listener();
+			if (booleanMaker("Scan") && notScanned) {
+				System.out.println(currentPlanet.getScanMessage());
+				notScanned = false;
+			} else if (booleanMaker("Explore") && notExplored) {
+				//exploreMenu();
+				notExplored = false;
+			} else if (booleanMaker("Repair") && notRepaired) {
+				captain.setHealthPoints(captain.getHealthPoints() + REPAIR_HEALTH_AMOUNT);
+				notRepaired = false;
+			} else if (booleanMaker("Leave")) {
+				planetMenuNotFinished = false;
+				planetSelectionMenu();
+
+			} else if (booleanMaker("Help")) {
+				helpMenu();
+			} else {
+				System.out.println("Not sure what you are saying Captain... Lets try that again");
+			}
+		}
 	}
 
 	private void helpMenu() {
@@ -383,7 +410,8 @@ public class GameController2 {
 		// Confirm selection.
 		if (captain.confirmCrew(selectedCrew)) { //Confirm the selection.
 			captain.setCaptainCrew(selectedCrew); //Set the selection
-			captain.getAttributesToCrew(); //Grant the attributes.
+			captain.getAttributesFromCrew(); //Grant the attributes.
+
 		}
 
 		else {
@@ -391,23 +419,7 @@ public class GameController2 {
 			crewSelectionMenu();
 		}
 	}
-	
-	/**
-	 * Method: modifyAttributesToCrew - Officers modify captain's stats
-	 *
-	 * @author cdeluna, jcbrough
-	 */
-	public void modifyAttributesToCrew() {
-		System.out.println("Here are your stats, captain!");
-		nl(1);
-		captain.setHealthPoints(TACTICAL_OFFICER);
-		System.out.println("Your health points are: " + captain.getHealthPoints());
-		captain.setAttackPoints(SENTINEL_BOT);
-		System.out.println("Your attack points are: " + captain.getAttackPoints());
-		captain.setDefensePoints(SECURITY_OFFICER);
-		System.out.println("Your defense points are: " + captain.getDefensePoints());
-		softSaveGame();
-	}
+
 
 	// Menu Making Helper Methods//
 
@@ -486,7 +498,7 @@ public class GameController2 {
 	 * @return boolean if userInput matches @param input
 	 */
 	public boolean booleanMaker(String input) {
-		return userInput.contains(removeNonWords(input))
+		return userInput.equals(removeNonWords(input))
 				|| userInput.compareTo(removeNonWords(input.substring(0, 1))) == 0;
 		// || userInput.contains(input.substring(0, input.indexOf(" ")));
 	}
@@ -546,9 +558,17 @@ public class GameController2 {
 		boolean captainAlive = true;
 		boolean enemyAlive = true;
 		boolean hasFled = false;
-		int currentCaptainHP = captain.getHealthPoints();
+		Enemy enemy = new Enemy();
+
+		for (Enemy e : enemyArrayList) {
+			if (removeNonWords(e.getEnemyLocation()).equals(removeNonWords(currentPlanet.getPlanetName()))) {
+				enemy = e;
+			}
+		}
+
 		int currentEnemyHP = enemy.getHealth();
-		
+		int currentCaptainHP = captain.getHealthPoints();
+
 		while (captainAlive == true && enemyAlive == true && hasFled == false) {
 			if (enemy.getAmbushStatus() == 1) {
 				// If enemy survives initiate Enemy on player Combat

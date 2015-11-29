@@ -40,7 +40,6 @@ public class PuzzleClassTester {
 			for (String st : p.getPuzzleChoiceMessages()) {
 				System.out.println(st);
 			}
-			System.out.println(p.getPuzzleDescription());
 			System.out.println(p.getPuzzleHint());
 			System.out.println(p.getPuzzleHomePlanet());
 		}
@@ -60,7 +59,7 @@ public class PuzzleClassTester {
 		}
 
 		headerPrint();
-		System.out.println(thisPuzzle.getPuzzleDescription());
+
 
 		while (puzzleNotSolved) {
 			choicesString();

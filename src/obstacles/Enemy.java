@@ -40,6 +40,10 @@ public class Enemy extends Persona implements Combat
 		
 	}
 
+	public Enemy() {
+
+	}
+
 	/**
 	 * CONSTRUCTOR FOR ENEMIES with super()
 	 * @param enemyName

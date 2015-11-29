@@ -70,13 +70,13 @@ public class PlanetMaker {
 	private String[] getExploreMessageList() {
 		return new String[]{
 				/*1*/"Cannot explore this planet",
-				/*2*/"The user finds vast tracks of sand. Located in the center of the northern most point of the planet is a" +
+				/*2*/"You find vast tracks of sand. Located in the center of the northern most point of the planet is a" +
 						" massive monument. On it, three massive statues: A boulder, a tablet, and a sheering device.",
 				/*3*/"Cannot explore this planet",
 				/*4*/"Cannot explore this planet",
 				/*5*/"A derelict engineer ship is found",
-				/*6*/"The player fumbles across the planet surface and en-counters 3 other-worldly portal doors towering at the base of a impassable incline.",
-				/*7*/"The player comes to the entrance of a large maze-like forest",
+				/*6*/"You fumbles across the planet surface and en-counters 3 other-worldly portal doors towering at the base of a impassable incline.",
+				/*7*/"You come to the entrance of a large maze-like forest",
 				/*8*/"The ship sinks into the swamp and is unable to take flight. The swamp makes it difficult to navigate. After several hours of travel " +
 						"you encounter a cave that appears to be occupied. The door blocking its entrance glows a faint blue and you see a small mallet " +
 						"hanging by a rope from a dome-like protrusion on the door",
@@ -118,8 +118,7 @@ public class PlanetMaker {
 						"is liquid while facing the star and cools to a solid while facing away.",
 				/*2*/"The hot planet is a barren desert. It appears void of life and no electronic signals can be detected.",
 				/*3*/"Returns no useful data from the missing planet.",
-				/*4*/"Composed primarily of hydrogen and helium, this uninhabitable gas giant roasts in the light of its star at over 1800 degrees F. The player " +
-						"detects a distress signal from an orbital research station that has suffered severe dam-age to its heat shield.",
+				/*4*/"Composed primarily of hydrogen and helium, this uninhabitable gas giant roasts in the light of its star at over 1800 degrees F.",
 				/*5*/"This large moon is one of three orbiting a mid-sized gas giant with rings. A neighboring moon is now uninhabitable but appears to have " +
 						"been home to an engineering facility at some point.",
 				/*6*/"This planet is pitch black, as though all light is being drawn in and captured by its surface. No useful data is gathered from the planet",

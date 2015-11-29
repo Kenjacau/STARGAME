@@ -14,11 +14,13 @@ Purpose: The Captain class manages the display of player information, selection 
 - Date: 2015-11-05 
 **/
 public class Captain extends Persona {
-	private ArrayList<String> captainCrew = new ArrayList<String>();
-	private ArrayList<Planet> planetsVisited = new ArrayList<Planet>(); 
 	private static final int HEALTH_POINTS = 100;
-	private static final int ATTACK_POINTS = 20;
+	private static final int ATTACK_POINTS = 25;
 	private static final int DEFENSE_POINTS = 20;
+	private static final int SENTINEL_BOT = 30;
+	private static final int SECURITY_OFFICER = 40;
+	private ArrayList<String> captainCrew = new ArrayList<String>();
+	private ArrayList<Planet> planetsVisited = new ArrayList<Planet>();
 	private Planet currentPlanet = null;
 	
 	/**
@@ -27,29 +29,26 @@ public class Captain extends Persona {
 	 */
 	public Captain() {
 		super();
-		this.setHealthPoints(100);
-		this.setAttackPoints(20);
-		this.setDefensePoints(20);
+		this.setHealthPoints(HEALTH_POINTS);
+		this.setAttackPoints(ATTACK_POINTS);
+		this.setDefensePoints(DEFENSE_POINTS);
 	}
 	
 	/**
 	 * Method: getAttributesToCrew - Sets attributes from selected crew member to Captain
 	 * 
 	 */
-	public void getAttributesToCrew() {
-//		for (String s : captainCrew) {
-//			switch(s) {
-//			case "Tactical Officer":
-//				setHealthPoints(150);
-//				break;
-//			case "Sentinel Bot":
-//				setAttackPoints(40);
-//				break;
-//			case "Security Officer":
-//				setDefensePoints(40);
-//				break;
-//			}
-//		}
+	public void getAttributesFromCrew() {
+		for (String s : captainCrew) {
+			switch (s) {
+				case "Sentinel Bot":
+					setDefensePoints(30);
+					break;
+				case "Security Officer":
+					setAttackPoints(40);
+					break;
+			}
+		}
 	}
 
 	/**getFullCrewList
@@ -98,6 +97,19 @@ public class Captain extends Persona {
 		else {
 			return false;
 		}
+	}
+
+	/**
+	 * Method: modifyAttributesToCrew - Officers modify captain's stats
+	 *
+	 * @author cdeluna, jcbrough
+	 */
+	public void getAllAttributes() {
+		System.out.println("Here are your stats, captain!");
+		nl(1);
+		System.out.println("Your health points are: " + getHealthPoints());
+		System.out.println("Your attack points are: " + getAttackPoints());
+		System.out.println("Your defense points are: " + getDefensePoints());
 	}
 
 	/**
@@ -215,8 +227,8 @@ public class Captain extends Persona {
 	/**
 	 * @param planetsVisited the planetsVisited to set
 	 */
-	public void setPlanetsVisited(ArrayList<Planet> palnetsVisited) {
-		this.planetsVisited = palnetsVisited;
+	public void setPlanetsVisited(ArrayList<Planet> planetsVisited) {
+		this.planetsVisited = planetsVisited;
 	}
 	
 	/**visitedPlanetCount

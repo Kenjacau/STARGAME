@@ -22,7 +22,6 @@ public class Game {
 	private static final String EXTENSION = ".ser";
 	private int numPreviousSaves;
 	private Captain captain = new Captain();
-	private Planet currentPlanet;
 	private ArrayList<Planet> planets;
 
 
@@ -153,11 +152,5 @@ public class Game {
 		this.planets = planets;
 	}
 
-	public Planet getCurrentPlanet() {
-		return currentPlanet;
-	}
 
-	public void setCurrentPlanet(Planet currentPlanet) {
-		this.currentPlanet = currentPlanet;
-	}
 }
