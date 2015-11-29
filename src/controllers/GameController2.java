@@ -27,7 +27,7 @@ public class GameController2 {
 	private static final int SECURITY_OFFICER = 20;
 
 	// Other private variables
-	private Game game;
+	private Game thisGame;
 	private Captain captain;
 	private ArrayList<Planet> planetArrayList;
 	private ArrayList<Puzzle> puzzleArrayList = new PuzzleMaker().getPuzzleArrayList();
@@ -35,6 +35,7 @@ public class GameController2 {
 	private Planet currentPlanet;
 	private Scanner in = new Scanner(System.in);
 	private String userInput = "";
+	private String exactInput = "";
 	private GameClassTester gameTester = new GameClassTester(); 
 
 	/**
@@ -85,26 +86,26 @@ public class GameController2 {
 			if (booleanMaker("New Game")) {
 				// Construct New game object, captain object, and ArrayList of
 				// default planets.
-				Game game = new Game();
+				thisGame = new Game();
 				captain = new Captain();
-				game.setCaptain(captain);
+				thisGame.setCaptain(captain);
 				planetArrayList = new PlanetMaker().getPlanetArrayList();
-				game.setNumPreviousSaves(0);
+				thisGame.setNumPreviousSaves(0);
 
 				// Set Captain's name through menu
-				captainNameMenu(game);
+				captainNameMenu();
 
 				// Set Captain's Crew through menu
-				crewSelectionMenu(game);
+				crewSelectionMenu();
 				// End loop
 				titleNotComplete = false;
 
 				System.out.println("Let's get started Captain!");
 
 				if (captain.hasNavigationOfficer()) {
-					planetSelectionMenu(3, game);
+					planetSelectionMenu(3);
 				} else {
-					planetSelectionMenu(2, game);
+					planetSelectionMenu(2);
 				}
 				
 			} else if (booleanMaker("Load Game")) {
@@ -113,8 +114,8 @@ public class GameController2 {
 
 				// String path = loadGameMenu(); //TODO: Remove this when menu
 				// sys implemented.
-				Game game = new Game(loadGameMenu(userInput));
-				loadThisGameElements(game);
+				thisGame = new Game(loadGameMenu(userInput));
+				loadThisGameElements(thisGame);
 				System.out.println("Captain, this is who you're travelling with: ");
 				for (String crewName : captain.getCaptainCrew()) {
 					System.out.println(crewName);
@@ -122,12 +123,12 @@ public class GameController2 {
 				
 				System.out.println("Let's get started Captain!");
 
-				if (game.getCurrentPlanet() != null) {
+				if (thisGame.getCurrentPlanet() != null) {
 					planetMenu(currentPlanet);
 				} else if (captain.hasNavigationOfficer()) {
-					planetSelectionMenu(3, game);
+					planetSelectionMenu(3);
 				} else {
-					planetSelectionMenu(2, game);
+					planetSelectionMenu(2);
 				}
 
 				titleNotComplete = false;
@@ -158,19 +159,13 @@ public class GameController2 {
 	 *
 	 * @author jcbrough
 	 */
-	private void captainNameMenu(Game game) {
-		@SuppressWarnings("resource") // Known bug. in should never be
-										// in.close()ed.
-		Scanner in = new Scanner(System.in);
+	private void captainNameMenu() {
 
 		headerPrint();
 		System.out.println("A new captain! What's your name?");
-		String response = in.nextLine();
+		getExactResponse();
+		captain.setName(exactInput);
 
-		captain.setName(response);
-
-		System.out.println("Thank you, Captain " + captain.getName() + "!");
-		game.setCaptain(captain);
 	}
 
 	/**
@@ -188,13 +183,22 @@ public class GameController2 {
 	}
 
 	/**
+	 * Method:TODO
+	 * Description:
+	 */
+	public void softSaveGame() {
+		thisGame.setCaptain(captain);
+		thisGame.setPlanets(planetArrayList);
+	}
+
+	/**
 	 * planetSelectionMenu() Displays the planet selection menu.
 	 * 
 	 * @return void
 	 * @author jcbrough, kenny
 	 *
 	 */
-	public void planetSelectionMenu(int numberOfPlanets, Game game) {
+	public void planetSelectionMenu(int numberOfPlanets) {
 		boolean planetSelectionNotComplete = true;
 		ArrayList<Planet> planetChoices = new ArrayList<>();
 		planetChoices = randomPlanets(numberOfPlanets);
@@ -212,7 +216,7 @@ public class GameController2 {
 			listener();
 			nl(1);
 			if (booleanMaker("Help")) {
-				helpMenu(game);
+
 			} else {
 				for (Planet selectedPlanet : planetChoices) {
 					if (userInput.contains(removeNonWords(selectedPlanet.getPlanetName()))) {
@@ -225,10 +229,10 @@ public class GameController2 {
 						planetMenu(selectedPlanet);
 
 					} else if (planetChoices.indexOf(selectedPlanet) < planetChoices.size() - 1) {
-						helpMenu(game); 
+						helpMenu();
 						// continue for loop
 					} else {
-						planetInputFailure(userInput, game);
+						planetInputFailure(userInput);
 					}
 				}
 			}
@@ -240,12 +244,11 @@ public class GameController2 {
 	 * and recurses the planetSelectionMenu method.
 	 * 
 	 *
-	 * @param the
-	 *            input from the captian
+	 * @param input from the captain
 	 * @return void
 	 * @author jcbrough
 	 */
-	private void planetInputFailure(String input, Game game) {
+	private void planetInputFailure(String input) {
 		nl(1);
 		headerPrint();
 		System.out.println("Captain, the input \"" + input + "\" is garbage!!! You are a crazy person!");
@@ -254,10 +257,10 @@ public class GameController2 {
 		headerPrint();
 		nl(1);
 
-		if (game.getCaptain().hasNavigationOfficer()) {
-			planetSelectionMenu(3, game);
+		if (captain.hasNavigationOfficer()) {
+			planetSelectionMenu(3);
 		} else {
-			planetSelectionMenu(2, game);
+			planetSelectionMenu(2);
 		}
 	}
 
@@ -300,7 +303,7 @@ public class GameController2 {
 		// TODO Planet Menu
 	}
 
-	private void helpMenu(Game game) {
+	private void helpMenu() {
 		// TODO Help Menu
 		headerPrint();
 		System.out.println("You get very little help, Captain!");
@@ -314,7 +317,8 @@ public class GameController2 {
 			nl(1);
 			headerPrint();
 			nl(1);
-			saveGameMenu(game);
+			softSaveGame();
+			saveGameMenu();
 		}
 		nl(2);
 	}
@@ -338,7 +342,7 @@ public class GameController2 {
 		// TODO load game menu that returns path for Game secondary constructor.
 	}
 
-	public void saveGameMenu(Game game) {
+	public void saveGameMenu() {
 		// TODO Save Game Menu to save Game
 		//At this point, a valid savegame is not being passed to this method. 
 		System.out.println("Would you like to [save] your game? Or are you [done] with this cruel world?!");
@@ -350,8 +354,8 @@ public class GameController2 {
 			System.out.println("What would you like the save file to be called?");
 			StringBuilder saveGameFileName = new StringBuilder(in.nextLine());
 			System.out.println(saveGameFileName.length()); 
-			saveGameFileName.append(" - "); 
-			saveGameFileName.append("Captain " + game.getCaptain().getName());																	
+			saveGameFileName.append(" - ");
+			saveGameFileName.append("Captain " + captain.getName());
 			saveGameFileName.append(SAVE_FILE_EXTENSION); 
 			StringBuilder fullPath = new StringBuilder(DESKTOP_PATH); //Changed name for readability. 
 			fullPath.append(saveGameFileName); 
@@ -360,13 +364,13 @@ public class GameController2 {
 		}
 	}
 
-	private void crewSelectionMenu(Game game) {
+	private void crewSelectionMenu() {
 		ArrayList<String> selectedCrew = new ArrayList<String>();
 
 		headerPrint();
 		System.out.println("Captain! You must select a crew! You can only choose three!"); 
 		System.out.println("Here is a list of currently unassigned crew:");
-		for (String s : game.getCaptain().getFullCrewList()) {
+		for (String s : captain.getFullCrewList()) {
 			System.out.println("		" + s + "?");
 		}
 
@@ -380,32 +384,32 @@ public class GameController2 {
 		}
 
 		// Confirm selection.
-		if (game.getCaptain().confirmCrew(selectedCrew)) { //Confirm the selection.
-			game.getCaptain().setCaptainCrew(selectedCrew); //Set the selection
-			game.getCaptain().getAttributesToCrew(); //Grant the attributes.
+		if (captain.confirmCrew(selectedCrew)) { //Confirm the selection.
+			captain.setCaptainCrew(selectedCrew); //Set the selection
+			captain.getAttributesToCrew(); //Grant the attributes.
 		}
 
 		else {
 			System.out.println("Something screwed up, captain! Let's do that again!");
-			crewSelectionMenu(game);
+			crewSelectionMenu();
 		}
 	}
 	
 	/**
 	 * Method: modifyAttributesToCrew - Officers modify captain's stats
 	 *
-	 * @param game
 	 * @author cdeluna, jcbrough
 	 */
-	public void modifyAttributesToCrew(Game game) {
+	public void modifyAttributesToCrew() {
 		System.out.println("Here are your stats, captain!");
 		nl(1);
-		game.getCaptain().setHealthPoints(TACTICAL_OFFICER);
-		System.out.println("Your health points are: " + game.getCaptain().getHealthPoints());
-		game.getCaptain().setAttackPoints(SENTINEL_BOT);
-		System.out.println("Your attack points are: " + game.getCaptain().getAttackPoints());
-		game.getCaptain().setDefensePoints(SECURITY_OFFICER);
-		System.out.println("Your defense points are: " + game.getCaptain().getDefensePoints());
+		captain.setHealthPoints(TACTICAL_OFFICER);
+		System.out.println("Your health points are: " + captain.getHealthPoints());
+		captain.setAttackPoints(SENTINEL_BOT);
+		System.out.println("Your attack points are: " + captain.getAttackPoints());
+		captain.setDefensePoints(SECURITY_OFFICER);
+		System.out.println("Your defense points are: " + captain.getDefensePoints());
+		softSaveGame();
 	}
 
 	// Menu Making Helper Methods//
@@ -469,6 +473,9 @@ public class GameController2 {
 		userInput = removeNonWords(in.nextLine());
 	}
 
+	private void getExactResponse() {
+		exactInput = in.nextLine();
+	}
 	/**
 	 * Method: booleanMaker() Description: Takes in a String input and converts
 	 * tests whether userInput contains the whole String, first char, or just
@@ -520,7 +527,7 @@ public class GameController2 {
 	 * @return the thisGame
 	 */
 	public Game getThisGame() {
-		return game;
+		return thisGame;
 	}
 
 	/**
@@ -528,6 +535,7 @@ public class GameController2 {
 	 *            the thisGame to set
 	 */
 	public void setThisGame(Game thisGame) {
-		this.game = thisGame;
+		this.thisGame = thisGame;
 	}
 }
+
