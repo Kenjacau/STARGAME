@@ -9,17 +9,17 @@ import playerCharacter.Captain;
 import sun.font.TrueTypeFont;
 import testers.GameClassTester;
 
-/*
-Class: GameController
-The GameController class is the primary controller, featuring the interfaces, the runnables and the starting point for the game. 
-- Author: @jbroughton
-- joshua.c.broughton@gmail.com, jbroughton@ggc.edu
-- Version: 0.0.2
-- 2015-11-03    
-*/
+/**
+ * Class: GameController 
+ * The GameController class is the primary controller, featuring the interfaces, the runnables and the starting point for the game.
+ * - Author: @jbroughton 
+ * - joshua.c.broughton@gmail.com, jbroughton@ggc.edu -
+ * Version: 0.0.2 
+ * - 2015-11-03
+ **/
 public class GameController2 {
 	// Static constants
-	private static final String SPACE_GAME_TITLE = "Super Elite: Space Adventure";
+	private static final String SPACE_GAME_TITLE = "Super Elite: Space Adventure!";
 	private static final String SAVE_FILE_EXTENSION = ".ser";
 	private static final String DESKTOP_PATH = System.getProperty("user.home") + "\\Desktop\\";
 
@@ -308,7 +308,6 @@ public class GameController2 {
 		boolean notScanned = true;
 		boolean notExplored = true;
 		boolean notRepaired = true;
-
 
 		while (planetMenuNotFinished && captain.isAlive()) {
 			headerPrint();
@@ -770,7 +769,7 @@ public class GameController2 {
 	 * combatMenu() - Displays the combat menu
 	 * 
 	 * @return void
-	 * @author cdeluna, tkeating
+	 * @author tkeating, cdeluna
 	 *
 	 */
 	public void combatMenu() {
@@ -785,7 +784,7 @@ public class GameController2 {
 			}
 		}
 
-		int currentEnemyHP = enemy.getHealth();
+		int enemyHP = enemy.getHealth();
 		int currentCaptainHP = captain.getHealthPoints();
 
 		while (captainAlive == true && enemyAlive == true && hasFled == false) {
@@ -826,14 +825,14 @@ public class GameController2 {
 			// Determine damage
 			int captainDamage = captain.getAttackPoints() - enemy.getDefensePoints();
 			// Inflict damage 
-			currentEnemyHP = enemy.getHealth() - captainDamage;
+			enemyHP = enemy.getHealth() - captainDamage;
 			// Display damage dealt
 			System.out.println("Captain, our scanners report that " + enemy.getEnemyName() + " has sustained class "
 					+ captainDamage + " damage!");
 			nl(1);
 			
 			// Determine if enemy is still alive
-			if (enemy.getHealth() <= 0) {
+			if (enemyHP <= 0) {
 				System.out.println("Sir, " + enemy.getEnemyName() + " has been neutralized");
 				nl(1);
 				enemyAlive = false;
