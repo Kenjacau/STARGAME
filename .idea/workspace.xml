@@ -5,11 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="511a37c4-096f-4213-83cd-204fe18f5250" name="Default" comment="UPDATE: 11/28/2015 Kenny Cauthen&#10;Planets completed done with Descriptions and methods. add method for softSaveGame in GameController.">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.classpath" afterPath="$PROJECT_DIR$/.classpath" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/controllers/Game.java" afterPath="$PROJECT_DIR$/src/controllers/Game.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/controllers/GameController2.java" afterPath="$PROJECT_DIR$/src/controllers/GameController2.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/obstacles/PlanetMaker.java" afterPath="$PROJECT_DIR$/src/obstacles/PlanetMaker.java" />
     </list>
     <ignored path="ITEC3860Fall15SpaceGame.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -32,21 +28,30 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="GameController2.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="GameController2.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/controllers/GameController2.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="228" column="35" selection-start-line="228" selection-start-column="35" selection-end-line="228" selection-end-column="35" />
-              <folding />
+            <state vertical-scroll-proportion="3.5162094">
+              <caret line="195" column="6" selection-start-line="195" selection-start-column="6" selection-end-line="195" selection-end-column="6" />
+              <folding>
+                <element signature="e#9951#9980#1" expanded="true" />
+                <element signature="e#10664#10672#0" expanded="true" />
+                <element signature="e#12711#12712#0" expanded="true" />
+                <element signature="e#12783#12784#0" expanded="true" />
+                <element signature="e#13842#13843#0" expanded="true" />
+                <element signature="e#13890#13891#0" expanded="true" />
+                <element signature="e#13928#13929#0" expanded="true" />
+                <element signature="e#13955#13956#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Captain.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Captain.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/playerCharacter/Captain.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-1.1046374">
-              <caret line="77" column="23" selection-start-line="77" selection-start-column="23" selection-end-line="77" selection-end-column="23" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="179" column="97" selection-start-line="179" selection-start-column="97" selection-end-line="179" selection-end-column="97" />
               <folding />
             </state>
           </provider>
@@ -56,11 +61,8 @@
         <entry file="file://$PROJECT_DIR$/src/playerCharacter/Persona.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="134" column="76" selection-start-line="134" selection-start-column="76" selection-end-line="134" selection-end-column="76" />
-              <folding>
-                <element signature="e#2696#2697#0" expanded="true" />
-                <element signature="e#2740#2741#0" expanded="true" />
-              </folding>
+              <caret line="173" column="12" selection-start-line="173" selection-start-column="12" selection-end-line="173" selection-end-column="12" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -100,13 +102,7 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="36" column="0" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
-              <folding>
-                <element signature="e#0#25830#0" expanded="false" />
-                <element signature="e#5748#5749#0" expanded="false" />
-                <element signature="e#5784#5785#0" expanded="false" />
-                <element signature="e#10065#10066#0" expanded="false" />
-                <element signature="e#10148#10149#0" expanded="false" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -183,10 +179,10 @@
         <option value="$PROJECT_DIR$/src/playerCharacter/Captain.java" />
         <option value="$PROJECT_DIR$/src/testers/EnemyClassTester.java" />
         <option value="$PROJECT_DIR$/.classpath" />
-        <option value="$PROJECT_DIR$/src/controllers/GameController2.java" />
         <option value="$PROJECT_DIR$/src/controllers/Game.java" />
         <option value="$PROJECT_DIR$/src/obstacles/PlanetMaker.java" />
         <option value="$PROJECT_DIR$/src/playerCharacter/Persona.java" />
+        <option value="$PROJECT_DIR$/src/controllers/GameController2.java" />
       </list>
     </option>
   </component>
@@ -197,9 +193,9 @@
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="-11" />
-    <option name="y" value="19" />
+    <option name="y" value="21" />
     <option name="width" value="1932" />
-    <option name="height" value="1001" />
+    <option name="height" value="999" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -242,8 +238,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
+      <pane id="Scratches" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -364,7 +361,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -377,6 +373,116 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../3150MultithreadingInClass" />
     <property name="js-jscs-nodeInterpreter" value="C:\Program Files\nodejs\node.exe" />
+  </component>
+  <component name="RestoreUpdateTree" date="Moments ago" ActionInfo="_Update">
+    <UpdatedFiles>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Updated from server" />
+        <option name="myStatusName" value="Changed on server" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="CHANGED_ON_SERVER" />
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Updated" />
+          <option name="myStatusName" value="Changed" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="UPDATED" />
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/playerCharacter/Captain.java</PATH>
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Created" />
+          <option name="myStatusName" value="Created" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="CREATED" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Deleted" />
+          <option name="myStatusName" value="Deleted" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="true" />
+          <option name="myId" value="REMOVED_FROM_REPOSITORY" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Restored" />
+          <option name="myStatusName" value="Will be restored" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="RESTORED" />
+        </FILE-GROUP>
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Modified" />
+        <option name="myStatusName" value="Modified" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MODIFIED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Skipped" />
+        <option name="myStatusName" value="Skipped" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="SKIPPED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with conflicts" />
+        <option name="myStatusName" value="Will be merged with conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_CONFLICTS" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with tree conflicts" />
+        <option name="myStatusName" value="Merged with tree conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_TREE_CONFLICT" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with property conflicts" />
+        <option name="myStatusName" value="Will be merged with property conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_PROPERTY_CONFLICT" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged" />
+        <option name="myStatusName" value="Will be merged" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Not in repository" />
+        <option name="myStatusName" value="Not in repository" />
+        <option name="mySupportsDeletion" value="true" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="UNKNOWN" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Locally added" />
+        <option name="myStatusName" value="Locally added" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="LOCALLY_ADDED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Locally removed" />
+        <option name="myStatusName" value="Locally removed" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="LOCALLY_REMOVED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Switched" />
+        <option name="myStatusName" value="Switched" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="SWITCHED" />
+      </FILE-GROUP>
+    </UpdatedFiles>
   </component>
   <component name="RunManager" selected="Application.GameController2">
     <configuration default="false" name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -916,7 +1022,9 @@
       <workItem from="1448756654251" duration="185000" />
       <workItem from="1448770873814" duration="5968000" />
       <workItem from="1448777876499" duration="1938000" />
-      <workItem from="1448779868030" duration="606000" />
+      <workItem from="1448779868030" duration="742000" />
+      <workItem from="1448780629433" duration="100000" />
+      <workItem from="1448808096909" duration="1297000" />
     </task>
     <task id="LOCAL-00001" summary="Commiting after changes with IntelliJ">
       <created>1446516332691</created>
@@ -984,22 +1092,29 @@
       <option name="project" value="LOCAL" />
       <updated>1448756792502</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="UPDATE: 11/28/2015 Kenny Cauthen&#10;Planets completed done with Descriptions and methods. add method for softSaveGame in GameController.">
+      <created>1448780511124</created>
+      <option name="number" value="00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1448780511124</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="103024000" />
+    <option name="totallyTimeSpent" value="104557000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-11" y="19" width="1932" height="1001" extended-state="0" />
-    <editor active="true" />
+    <frame x="-11" y="21" width="1932" height="999" extended-state="0" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.042626727" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.04157044" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19124424" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32881355" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17200854" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -1008,16 +1123,15 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39976957" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3248848" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19124424" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3299435" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39976957" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1465,13 +1579,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="36" column="0" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#25830#0" expanded="false" />
-            <element signature="e#5748#5749#0" expanded="false" />
-            <element signature="e#5784#5785#0" expanded="false" />
-            <element signature="e#10065#10066#0" expanded="false" />
-            <element signature="e#10148#10149#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1499,10 +1607,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/controllers/GameController2.java">
+    <entry file="file://$PROJECT_DIR$/src/playerCharacter/Captain.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="228" column="35" selection-start-line="228" selection-start-column="35" selection-end-line="228" selection-end-column="35" />
+          <caret line="179" column="97" selection-start-line="179" selection-start-column="97" selection-end-line="179" selection-end-column="97" />
           <folding />
         </state>
       </provider>
@@ -1510,19 +1618,25 @@
     <entry file="file://$PROJECT_DIR$/src/playerCharacter/Persona.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="134" column="76" selection-start-line="134" selection-start-column="76" selection-end-line="134" selection-end-column="76" />
-          <folding>
-            <element signature="e#2696#2697#0" expanded="true" />
-            <element signature="e#2740#2741#0" expanded="true" />
-          </folding>
+          <caret line="173" column="12" selection-start-line="173" selection-start-column="12" selection-end-line="173" selection-end-column="12" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/playerCharacter/Captain.java">
+    <entry file="file://$PROJECT_DIR$/src/controllers/GameController2.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.1046374">
-          <caret line="77" column="23" selection-start-line="77" selection-start-column="23" selection-end-line="77" selection-end-column="23" />
-          <folding />
+        <state vertical-scroll-proportion="3.5162094">
+          <caret line="195" column="6" selection-start-line="195" selection-start-column="6" selection-end-line="195" selection-end-column="6" />
+          <folding>
+            <element signature="e#9951#9980#1" expanded="true" />
+            <element signature="e#10664#10672#0" expanded="true" />
+            <element signature="e#12711#12712#0" expanded="true" />
+            <element signature="e#12783#12784#0" expanded="true" />
+            <element signature="e#13842#13843#0" expanded="true" />
+            <element signature="e#13890#13891#0" expanded="true" />
+            <element signature="e#13928#13929#0" expanded="true" />
+            <element signature="e#13955#13956#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
