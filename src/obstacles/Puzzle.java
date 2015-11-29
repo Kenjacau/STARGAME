@@ -10,7 +10,6 @@ package obstacles;
  *          Assignment: Final Project
  */
 public class Puzzle {
-	private String puzzleDescription = "";
 	private String puzzleHint = "";
 	private String[] puzzleChoices;
 	private String[] puzzleChoiceMessages;
@@ -24,9 +23,8 @@ public class Puzzle {
 	 * Constructor:Puzzle
 	 * Description: creates Puzzle object with Attributes
 	 */
-	public Puzzle(String homePlanet, String description, String hint, String[] choices, String[] choiceMessages) {
+	public Puzzle(String homePlanet, String hint, String[] choices, String[] choiceMessages) {
 		puzzleHomePlanet = homePlanet;
-		puzzleDescription = description;
 		puzzleHint = hint;
 		puzzleChoices = choices;
 		puzzleChoiceMessages = choiceMessages;
@@ -41,16 +39,6 @@ public class Puzzle {
 	 */
 	public String getPuzzleHomePlanet() {
 		return puzzleHomePlanet;
-	}
-
-	/**
-	 * Method: getPuzzleDescription()
-	 * Description: returns the string value of the description of the puzzle
-	 *
-	 * @return puzzleDescription
-	 */
-	public String getPuzzleDescription() {
-		return puzzleDescription;
 	}
 
 	/**

@@ -15,34 +15,26 @@ import java.util.Collections;
  */
 public class PuzzleMaker {
 
-	private final String[] puzzleDescriptionArray = {"TestP 1 Description Message", "TestP 2 Description Message",
-			"TestP 3 Description Message"};
-	private final String[] puzzleHintArray = {"TestP 1 Hint Message", "TestP 2 Hint Message", "TestP 3Hint Message"};
-	private final String[] puzzleChoices = {"testchoice1a", "testchoice1b", "testchoice2a", "testchoice2b",
-			"testchoice3a", "testchoice3b", "testchoice3c"};
-	private final String[] puzzleChoiceResultMessages = {"testchoiceResult1a", "testchoiceResult1b", "testchoiceResult2a",
-			"testchoiceResult2b", "testchoiceResult3a", "testchoiceResult3b"};
 	private ArrayList<Puzzle> puzzleArrayList = new ArrayList<>();
-	private ArrayList<String[]> puzzleChoiceList;
-
-	private ArrayList<String[]> puzzleChoiceResultMessageList;
 
 	/**
 	 * Constructor: PuzzleMaker()
 	 * Description: main constructor for creating all Puzzles and adding them to an ArrayList of Puzzles
 	 */
 	public PuzzleMaker() {
-		puzzleChoiceList = puzzleArrayListGenerator(puzzleChoices, 3);
-		puzzleChoiceResultMessageList = puzzleArrayListGenerator(puzzleChoiceResultMessages, 0);
+		String[] puzzleChoices = getPuzzleChoices();
+		ArrayList<String[]> puzzleChoiceList = puzzleArrayListGenerator(puzzleChoices, 3);
+		String[] puzzleChoiceResultMessages = getPuzzleChoiceResultMessages();
+		ArrayList<String[]> puzzleChoiceResultMessageList = puzzleArrayListGenerator(puzzleChoiceResultMessages, 0);
 
+		String[] puzzleHintArray = getPuzzleHintArray();
 		Collections.addAll(puzzleArrayList,
-				new Puzzle("51 Pegasi b", puzzleDescriptionArray[0], puzzleHintArray[0]
-						, puzzleChoiceList.get(0), puzzleChoiceResultMessageList.get(0)),
-				new Puzzle("LV-426", puzzleDescriptionArray[1], puzzleHintArray[1]
-						, puzzleChoiceList.get(1), puzzleChoiceResultMessageList.get(1)),
-				new Puzzle("Shadowfax", puzzleDescriptionArray[2], puzzleHintArray[2]
-						, puzzleChoiceList.get(2), puzzleChoiceResultMessageList.get(2))
-
+				new Puzzle("51 Pegasi b", puzzleHintArray[0], puzzleChoiceList.get(0), puzzleChoiceResultMessageList.get(0)),
+				new Puzzle("LV-426", puzzleHintArray[1], puzzleChoiceList.get(1), puzzleChoiceResultMessageList.get(1)),
+				new Puzzle("Shadowfax", puzzleHintArray[2], puzzleChoiceList.get(2), puzzleChoiceResultMessageList.get(2)),
+				new Puzzle("Lisus", puzzleHintArray[3], puzzleChoiceList.get(3), puzzleChoiceResultMessageList.get(3)),
+				new Puzzle("Insula", puzzleHintArray[4], puzzleChoiceList.get(4), puzzleChoiceResultMessageList.get(4)),
+				new Puzzle("Heralda", puzzleHintArray[5], puzzleChoiceList.get(5), puzzleChoiceResultMessageList.get(5))
 		);
 
 	}
@@ -55,6 +47,46 @@ public class PuzzleMaker {
 	 */
 	public ArrayList<Puzzle> getPuzzleArrayList() {
 		return puzzleArrayList;
+	}
+
+	/**
+	 * Method:TODO
+	 * Description:
+	 *
+	 * @param
+	 * @return
+	 */
+	private String[] getPuzzleHintArray() {
+		return new String[]{"We may be able to utilize the skilled crew should they survive.",
+				"We have to consider why that facility is empty and where everyone went. If you continue be prepared for anything.",
+				"Two of these doors appear identical in every way. There’s something strange about the middle door. Its glow seems… foreboding.",
+				"This forest looks dangerous but the markings on nearby landmarks suggest that it may have been home to a " +
+						"technologically advanced society at some point.",
+				"Whoever is inside this domicile may be our only chance to get off this planet in one piece.",
+				"Sorry. You're on your own on this one."
+		};
+	}
+
+	private String[] getPuzzleChoices() {
+		return new String[]{"Abandon", "Rescue", "Leave", "Search", "Left", "Middle", "Right", "Leave", "Stay", "Leave", "Mallet", "Leave", "Device"
+		};
+	}
+
+	;
+
+	private String[] getPuzzleChoiceResultMessages() {
+		return new String[]{"As you abandon the station it explodes...", "The search and rescue mission was a success and you managed to save the entire crew! \n" +
+				"The Survey Officer of the station wishes to join your crew",
+				"You found an ARTIFACT!", "Oh no! Something is heading towards you...You should get your blaster ready",
+				"As you step through the door you notice that you are now back in your ship hovering over the same planet.",
+				"As you step through the door your vision goes dark. You awake on the flight deck overlooking a very familiar planet...Earth",
+				"You head back to the ship and leave the planet's surface.", "You attempt to navigate the forest...",
+				"You had back to the ship and spend a day digging out the ship with your plasma shovel",
+				"You take the mallet and strike the door...", "You leave the body and head back to the ship",
+				"You head over to the body and grab the device..."
+
+
+		};
 	}
 
 	/**
