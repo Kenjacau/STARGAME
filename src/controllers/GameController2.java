@@ -14,7 +14,7 @@ Class: GameController
 The GameController class is the primary controller, featuring the interfaces, the runnables and the starting point for the game. 
 - Author: @jbroughton
 - joshua.c.broughton@gmail.com, jbroughton@ggc.edu
-- Version: 0.0.2
+- Version: 0.1.0
 - 2015-11-03    
 */
 public class GameController2 {
@@ -60,7 +60,7 @@ public class GameController2 {
 		// TODO: method saveGame
 		// TODO: method loadGame
 
-		// ALL Menu Methods
+		// All Menu Methods
 	}
 
 	/**
@@ -207,7 +207,7 @@ public class GameController2 {
 			}
 			System.out.println("Please type [help] or the name of the planet you'd like to visit: ");
 			System.out.println(
-					"Please note: if the planet name isn't input into the navigation system with precision, we'll be...");
+					"Please note: If the planet name isn't input into the navigation system with precision, we'll be...");
 			System.out.println("LOOOOOSSSST IIIINNNNN SSPPPPPPPAAAAACCCEEEEE!!!!!");
 			listener();
 			nl(1);
@@ -439,6 +439,104 @@ public class GameController2 {
 		System.out.println("Your defense points are: " + captain.getDefensePoints());
 		softSaveGame();
 	}
+	
+	/**
+	 * combatMenu() - Displays the combat menu
+	 * 
+	 * @return void
+	 * @author cdeluna, tkeating
+	 *
+	 */
+	public void combatMenu() {
+		boolean captainAlive = true;
+		boolean enemyAlive = true;
+		boolean hasFled = false;
+		int currentCaptainHP = captain.getHealthPoints();
+		int currentEnemyHP = enemy.getHealth();
+		// Initiate combat
+		while (captainAlive == true && enemyAlive == true && hasFled == false) {
+			if (enemy.getAmbushStatus() == 1) {
+				// If enemy survives initiate Enemy on player Combat
+				System.out.println("Captain! " + enemy.getEnemyName() + "You appear to be readying for an attack! Brace for impact!");
+				nl(1);
+		}
+			// Determine damage
+			int enemyDamage = enemy.getAttackPoints() - captain.getDefensePoints();
+			// Sustain damage
+			currentCaptainHP = currentCaptainHP - enemyDamage;
+			// Display damage dealt
+			System.out.println("Captain! Our sensors are showing us that we have sustained class " + enemyDamage
+					+ " damage to our hull!");
+			nl(1);
+			System.out.println("Sir, our shields are at level " + currentCaptainHP + "!");
+			nl(1);
+			// If player dies
+			if (currentCaptainHP <= 0) {
+				System.out.println("Oops! Too bad!");
+				captainAlive = false;
+			}
+			// Combat menu
+			System.out.println("Captain! What are you orders?");
+			System.out.println("[A]ttack");
+			// Flee with Tactical Officer
+			if (captain.hasTacticalOfficer() == true) {
+				System.out.println("[F]lee");
+			}
+			// Declare String to hold player choice
+			String playerAction = in.nextLine();
+			// When player attacks
+			if (playerAction.equalsIgnoreCase("Attack")) {
+				System.out.println("Roger that, Captain! Target acquired, firing lasers!");
+				nl(1);
+			}
+			// Determine damage
+			int captainDamage = captain.getAttackPoints() - enemy.getDefensePoints();
+			// Inflict damage 
+			currentEnemyHP = enemy.getHealth() - captainDamage;
+			// Display damage dealt
+			System.out.println("Captain, our scanners report that " + enemy.getEnemyName() + " has sustained class "
+					+ captainDamage + " damage!");
+			nl(1);
+			
+			// Determine if enemy is still alive
+			if (enemy.getHealth() <= 0) {
+				System.out.println("Sir, " + enemy.getEnemyName() + " has been neutralized");
+				nl(1);
+				enemyAlive = false;
+			} else {
+				// If enemy survives initiate Enemy on player Combat
+				System.out.println("Captain! " + enemy.getEnemyName() + "appears to be readying for an attack! Brace for impact!");
+				nl(1);
+			}
+			// Determine damage
+			enemyDamage = enemy.getAttackPoints() - captain.getDefensePoints();
+			// Sustain Damage
+			currentCaptainHP = currentCaptainHP - enemyDamage;
+			// Display damage dealt
+			System.out.println("Captain! Our sensors are showing us that we have sustained class " + enemyDamage
+					+ " damage to our hull!");
+			nl(1);
+			System.out.println("Sir, our shields are at level " + currentCaptainHP + "!");
+			nl(1);
+			// If player dies
+			if (currentCaptainHP <= 0) {
+				System.out.println("Oops! Too bad!");
+				captainAlive = false;
+			}
+			// Handle Flee Command
+			else if (playerAction.equalsIgnoreCase("Flee")) {
+				System.out.println("Roger that captain! Preparing for ludicrous Speed!");
+				System.out.println("Ludicrous Speed reached! Sir we've gone Plaid.\n");
+				hasFled = true;
+				// TODO: Then enter into planet selection because player jumped into hyper space.
+			}
+			// Handle incorrect commands
+			else {
+				System.out.println("Uh, sir, we can't do that thing here!");
+				nl(1);
+			}
+		}
+	}
 
 	// Menu Making Helper Methods//
 
@@ -564,104 +662,6 @@ public class GameController2 {
 	 */
 	public void setThisGame(Game thisGame) {
 		this.thisGame = thisGame;
-	}
-	
-	/**
-	 * combatMenu() - Displays the combat menu
-	 * 
-	 * @return void
-	 * @author cdeluna, tkeating
-	 *
-	 */
-	public void combatMenu() {
-		boolean captainAlive = true;
-		boolean enemyAlive = true;
-		boolean hasFled = false;
-		int currentCaptainHP = captain.getHealthPoints();
-		int currentEnemyHP = enemy.getHealth();
-		
-		while (captainAlive == true && enemyAlive == true && hasFled == false) {
-			if (enemy.getAmbushStatus() == 1) {
-				// If enemy survives initiate Enemy on player Combat
-				System.out.println("Captain! " + enemy.getEnemyName() + "You appear to be readying for an attack! Brace for impact!");
-				nl(1);
-		}
-			// Determine damage
-			int enemyDamage = enemy.getAttackPoints() - captain.getDefensePoints();
-			// Sustain damage
-			currentCaptainHP = currentCaptainHP - enemyDamage;
-			// Display damage dealt
-			System.out.println("Captain! Our sensors are showing us that we have sustained class " + enemyDamage
-					+ " damage to our hull!");
-			nl(1);
-			System.out.println("Sir, our shields are at level " + currentCaptainHP + "!");
-			nl(1);
-			// If player dies
-			if (currentCaptainHP <= 0) {
-				System.out.println("Oops! Too bad!");
-				captainAlive = false;
-			}
-			// Combat menu
-			System.out.println("Captain! What are you orders?");
-			System.out.println("[A]ttack");
-			// Flee with Tactical Officer
-			if (captain.hasTacticalOfficer() == true) {
-				System.out.println("[F]lee");
-			}
-			// Declare String to hold player choice
-			String playerAction = in.nextLine();
-			// When player attacks
-			if (playerAction.equalsIgnoreCase("Attack")) {
-				System.out.println("Roger that, Captain! Target acquired, firing lasers!");
-				nl(1);
-			}
-			// Determine damage
-			int captainDamage = captain.getAttackPoints() - enemy.getDefensePoints();
-			// Inflict damage 
-			currentEnemyHP = enemy.getHealth() - captainDamage;
-			// Display damage dealt
-			System.out.println("Captain, our scanners report that " + enemy.getEnemyName() + " has sustained class "
-					+ captainDamage + " damage!");
-			nl(1);
-			
-			// Determine if enemy is still alive
-			if (enemy.getHealth() <= 0) {
-				System.out.println("Sir, " + enemy.getEnemyName() + " has been neutralized");
-				nl(1);
-				enemyAlive = false;
-			} else {
-				// If enemy survives initiate Enemy on player Combat
-				System.out.println("Captain! " + enemy.getEnemyName() + "appears to be readying for an attack! Brace for impact!");
-				nl(1);
-			}
-			// Determine damage
-			enemyDamage = enemy.getAttackPoints() - captain.getDefensePoints();
-			// Sustain Damage
-			currentCaptainHP = currentCaptainHP - enemyDamage;
-			// Display damage dealt
-			System.out.println("Captain! Our sensors are showing us that we have sustained class " + enemyDamage
-					+ " damage to our hull!");
-			nl(1);
-			System.out.println("Sir, our shields are at level " + currentCaptainHP + "!");
-			nl(1);
-			// If player dies
-			if (currentCaptainHP <= 0) {
-				System.out.println("Oops! Too bad!");
-				captainAlive = false;
-			}
-			// Handle Flee Command
-			else if (playerAction.equalsIgnoreCase("Flee")) {
-				System.out.println("Roger that captain! Preparing for ludicrous Speed!");
-				System.out.println("Ludicrous Speed reached! Sir we've gone Plaid.\n");
-				hasFled = true;
-				// TODO: Then enter into planet selection because player jumped into hyper space.
-			}
-			// Handle incorrect commands
-			else {
-				System.out.println("Uh, sir, we can't do that thing here!");
-				nl(1);
-			}
-		}
 	}
 	
 }
