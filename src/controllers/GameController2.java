@@ -103,9 +103,9 @@ public class GameController2 {
 				System.out.println("Let's get started Captain!");
 
 				if (captain.hasNavigationOfficer()) {
-					planetSelectionMenu(3);
+					planetSelectionMenu(thisGame, 3);
 				} else {
-					planetSelectionMenu(2);
+					planetSelectionMenu(thisGame, 2);
 				}
 				
 			} else if (booleanMaker("Load Game")) {
@@ -126,9 +126,9 @@ public class GameController2 {
 				if (thisGame.getCurrentPlanet() != null) {
 					planetMenu(currentPlanet);
 				} else if (captain.hasNavigationOfficer()) {
-					planetSelectionMenu(3);
+					planetSelectionMenu(thisGame, 3);
 				} else {
-					planetSelectionMenu(2);
+					planetSelectionMenu(thisGame, 2);
 				}
 
 				titleNotComplete = false;
@@ -194,11 +194,14 @@ public class GameController2 {
 	/**
 	 * planetSelectionMenu() Displays the planet selection menu.
 	 * 
+	 * @param thisGame The game object to be modified and read from
+	 * @param numberOfPlanets The number of planet navigation objects to provide the Captain
+	 * 
 	 * @return void
 	 * @author jcbrough, kenny
 	 *
 	 */
-	public void planetSelectionMenu(int numberOfPlanets) {
+	public void planetSelectionMenu(Game thisGame, int numberOfPlanets) {
 		boolean planetSelectionNotComplete = true;
 		ArrayList<Planet> planetChoices = new ArrayList<>();
 		planetChoices = randomPlanets(numberOfPlanets);
@@ -227,12 +230,14 @@ public class GameController2 {
 								+ "! BOLDLY GOING NOW, CAPTAIN!!!");
 						planetSelectionNotComplete = false;
 						planetMenu(selectedPlanet);
+						thisGame.getCaptain().getPlanetsVisited().add(selectedPlanet); 
+						
 
 					} else if (planetChoices.indexOf(selectedPlanet) < planetChoices.size() - 1) {
 						helpMenu();
 						// continue for loop
 					} else {
-						planetInputFailure(userInput);
+						planetInputFailure(thisGame, userInput);
 					}
 				}
 			}
@@ -248,7 +253,7 @@ public class GameController2 {
 	 * @return void
 	 * @author jcbrough
 	 */
-	private void planetInputFailure(String input) {
+	private void planetInputFailure(Game thisGame, String input) {
 		nl(1);
 		headerPrint();
 		System.out.println("Captain, the input \"" + input + "\" is garbage!!! You are a crazy person!");
@@ -258,9 +263,9 @@ public class GameController2 {
 		nl(1);
 
 		if (captain.hasNavigationOfficer()) {
-			planetSelectionMenu(3);
+			planetSelectionMenu(thisGame, 3);
 		} else {
-			planetSelectionMenu(2);
+			planetSelectionMenu(thisGame, 2);
 		}
 	}
 

@@ -15,7 +15,7 @@ Purpose: The Captain class manages the display of player information, selection 
 **/
 public class Captain extends Persona {
 	private ArrayList<String> captainCrew = new ArrayList<String>();
-	private ArrayList<Planet> palnetsVisited = new ArrayList<Planet>(); 
+	private ArrayList<Planet> planetsVisited = new ArrayList<Planet>(); 
 	private static final int HEALTH_POINTS = 100;
 	private static final int ATTACK_POINTS = 20;
 	private static final int DEFENSE_POINTS = 20;
@@ -207,21 +207,21 @@ public class Captain extends Persona {
 	/**
 	 * @return the palnetsVisited
 	 */
-	public ArrayList<Planet> getPalnetsVisited() {
+	public ArrayList<Planet> getPlanetsVisited() {
 		return palnetsVisited;
 	}
 
 	/**
 	 * @param palnetsVisited the palnetsVisited to set
 	 */
-	public void setPalnetsVisited(ArrayList<Planet> palnetsVisited) {
+	public void setPlanetsVisited(ArrayList<Planet> palnetsVisited) {
 		this.palnetsVisited = palnetsVisited;
 	}
 	
 	/**visitedPlanetCount
 	 * "Getter" for the number of planets the captain has visited.
 	 * 
-	 * @return Int value of number of planets the captain has visited. 
+	 * @return int value of number of planets the captain has visited. 
 	 * 
 	 * @author jcbrough
 	 */
