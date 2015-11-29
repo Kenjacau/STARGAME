@@ -3,6 +3,7 @@ package playerCharacter;
 import java.util.ArrayList;
 import java.util.Scanner;
 import controllers.GameController2;
+import obstacles.Planet;
 
 /**
 Class: Captain
@@ -14,6 +15,7 @@ Purpose: The Captain class manages the display of player information, selection 
 **/
 public class Captain extends Persona {
 	private ArrayList<String> captainCrew = new ArrayList<String>();
+	private ArrayList<Planet> palnetsVisited = new ArrayList<Planet>(); 
 	private static final int HEALTH_POINTS = 100;
 	private static final int ATTACK_POINTS = 20;
 	private static final int DEFENSE_POINTS = 20;
@@ -200,6 +202,31 @@ public class Captain extends Persona {
 	 */
 	public String removeNonWords(String string) {
 		return (string.replaceAll("[^\\p{L}\\p{Nd}]+", "")).toLowerCase();
+	}
+
+	/**
+	 * @return the palnetsVisited
+	 */
+	public ArrayList<Planet> getPalnetsVisited() {
+		return palnetsVisited;
+	}
+
+	/**
+	 * @param palnetsVisited the palnetsVisited to set
+	 */
+	public void setPalnetsVisited(ArrayList<Planet> palnetsVisited) {
+		this.palnetsVisited = palnetsVisited;
+	}
+	
+	/**visitedPlanetCount
+	 * "Getter" for the number of planets the captain has visited.
+	 * 
+	 * @return Int value of number of planets the captain has visited. 
+	 * 
+	 * @author jcbrough
+	 */
+	public int visitedPlanetCount() {
+		return this.getPalnetsVisited().size(); 
 	}
 
 }
