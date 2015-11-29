@@ -3,6 +3,7 @@ package playerCharacter;
 import java.util.ArrayList;
 import java.util.Scanner;
 import controllers.GameController2;
+import obstacles.Planet;
 
 /**
 Class: Captain
@@ -14,9 +15,11 @@ Purpose: The Captain class manages the display of player information, selection 
 **/
 public class Captain extends Persona {
 	private ArrayList<String> captainCrew = new ArrayList<String>();
+	private ArrayList<Planet> planetsVisited = new ArrayList<Planet>(); 
 	private static final int HEALTH_POINTS = 100;
 	private static final int ATTACK_POINTS = 20;
 	private static final int DEFENSE_POINTS = 20;
+	private Planet currentPlanet = null;
 	
 	/**
 	 * Method: Captain - No-arg constructor that sets default attributes to Captain
@@ -200,6 +203,45 @@ public class Captain extends Persona {
 	 */
 	public String removeNonWords(String string) {
 		return (string.replaceAll("[^\\p{L}\\p{Nd}]+", "")).toLowerCase();
+	}
+
+	/**
+	 * @return the palnetsVisited
+	 */
+	public ArrayList<Planet> getPlanetsVisited() {
+		return planetsVisited;
+	}
+
+	/**
+	 * @param palnetsVisited the palnetsVisited to set
+	 */
+	public void setPlanetsVisited(ArrayList<Planet> palnetsVisited) {
+		this.planetsVisited = palnetsVisited;
+	}
+	
+	/**visitedPlanetCount
+	 * "Getter" for the number of planets the captain has visited.
+	 * 
+	 * @return int value of number of planets the captain has visited. 
+	 * 
+	 * @author jcbrough
+	 */
+	public int getVisitedPlanetCount() {
+		return this.getPlanetsVisited().size(); 
+	}
+
+	/**
+	 * @return the currentPlanet
+	 */
+	public Planet getCurrentPlanet() {
+		return currentPlanet;
+	}
+
+	/**
+	 * @param currentPlanet the currentPlanet to set
+	 */
+	public void setCurrentPlanet(Planet currentPlanet) {
+		this.currentPlanet = currentPlanet;
 	}
 
 }
