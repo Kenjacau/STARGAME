@@ -28,8 +28,8 @@ public class Game {
 
 	/**Game()
 	 * CONSTRUCTOR, TWO ARG
-	 * @param newCaptain The captain playing the game.
-	 * @param newPlanets The planets the captain has visited.
+	 * @param _captain The captain playing the game.
+	 * @param _planets The planets the captain has visited.
 	 * 
 	 * @author jcbrough, kenny
 	 */
@@ -64,17 +64,20 @@ public class Game {
 	}
 
 	/**
+	 * STATIC METHOD
+	 * Must be accessed from the GameController2 class without an instantiated game object.
+	 * @return the extension
+	 *
+	 */
+	public static String getExtension() {
+		return EXTENSION;
+	}
+
+	/**
 	 * @return the numPreviousSaves
 	 */
 	public int getNumPreviousSaves() {
 		return numPreviousSaves;
-	}
-
-	/**
-	 * @param newNumPreviousSaves the numPreviousSaves to set
-	 */
-	public void setNumPreviousSaves(int newNumPreviousSaves) {
-		numPreviousSaves = newNumPreviousSaves;
 	}
 
 
@@ -100,6 +103,13 @@ public class Game {
 //		return game;
 //	}
 
+	/**
+	 * @param newNumPreviousSaves the numPreviousSaves to set
+	 */
+	public void setNumPreviousSaves(int newNumPreviousSaves) {
+		numPreviousSaves = newNumPreviousSaves;
+	}
+
 	/**saveGame()
 	 * Writes savegame data to a file.
 	 * @param path Path to which to write the file.
@@ -112,16 +122,6 @@ public class Game {
 		} else {
 			//TODO: Create the file and write.
 		}
-	}
-
-	/**
-	 * STATIC METHOD
-	 * Must be accessed from the GameController2 class without an instantiated game object. 
-	 * @return the extension
-	 *
-	 */
-	public static String getExtension() {
-		return EXTENSION;
 	}
 
 	/**
