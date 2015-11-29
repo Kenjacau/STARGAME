@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
-
 import obstacles.*;
 import playerCharacter.Captain;
 import testers.GameClassTester;
@@ -29,6 +28,7 @@ public class GameController2 {
 	// Other private variables
 	private Game thisGame;
 	private Captain captain;
+	private Enemy enemy;
 	private ArrayList<Planet> planetArrayList;
 	private ArrayList<Puzzle> puzzleArrayList = new PuzzleMaker().getPuzzleArrayList();
 	private ArrayList<Enemy> enemyArrayList = new EnemyMaker().getEnemyArrayList();
@@ -534,5 +534,103 @@ public class GameController2 {
 	public void setThisGame(Game thisGame) {
 		this.thisGame = thisGame;
 	}
+	
+	/**
+	 * combatMenu() - Displays the combat menu
+	 * 
+	 * @return void
+	 * @author cdeluna, tkeating
+	 *
+	 */
+	public void combatMenu() {
+		boolean captainAlive = true;
+		boolean enemyAlive = true;
+		boolean hasFled = false;
+		int currentCaptainHP = captain.getHealthPoints();
+		int currentEnemyHP = enemy.getHealth();
+		
+		while (captainAlive == true && enemyAlive == true && hasFled == false) {
+			if (enemy.getAmbushStatus() == 1) {
+				// If enemy survives initiate Enemy on player Combat
+				System.out.println("Captain! " + enemy.getEnemyName() + "You appear to be readying for an attack! Brace for impact!");
+				nl(1);
+		}
+			// Determine damage
+			int enemyDamage = enemy.getAttackPoints() - captain.getDefensePoints();
+			// Sustain damage
+			currentCaptainHP = currentCaptainHP - enemyDamage;
+			// Display damage dealt
+			System.out.println("Captain! Our sensors are showing us that we have sustained class " + enemyDamage
+					+ " damage to our hull!");
+			nl(1);
+			System.out.println("Sir, our shields are at level " + currentCaptainHP + "!");
+			nl(1);
+			// If player dies
+			if (currentCaptainHP <= 0) {
+				System.out.println("Oops! Too bad!");
+				captainAlive = false;
+			}
+			// Combat menu
+			System.out.println("Captain! What are you orders?");
+			System.out.println("[A]ttack");
+			// Flee with Tactical Officer
+			if (captain.hasTacticalOfficer() == true) {
+				System.out.println("[F]lee");
+			}
+			// Declare String to hold player choice
+			String playerAction = in.nextLine();
+			// When player attacks
+			if (playerAction.equalsIgnoreCase("Attack")) {
+				System.out.println("Roger that, Captain! Target acquired, firing lasers!");
+				nl(1);
+			}
+			// Determine damage
+			int captainDamage = captain.getAttackPoints() - enemy.getDefensePoints();
+			// Inflict damage 
+			currentEnemyHP = enemy.getHealth() - captainDamage;
+			// Display damage dealt
+			System.out.println("Captain, our scanners report that " + enemy.getEnemyName() + " has sustained class "
+					+ captainDamage + " damage!");
+			nl(1);
+			
+			// Determine if enemy is still alive
+			if (enemy.getHealth() <= 0) {
+				System.out.println("Sir, " + enemy.getEnemyName() + " has been neutralized");
+				nl(1);
+				enemyAlive = false;
+			} else {
+				// If enemy survives initiate Enemy on player Combat
+				System.out.println("Captain! " + enemy.getEnemyName() + "appears to be readying for an attack! Brace for impact!");
+				nl(1);
+			}
+			// Determine damage
+			enemyDamage = enemy.getAttackPoints() - captain.getDefensePoints();
+			// Sustain Damage
+			currentCaptainHP = currentCaptainHP - enemyDamage;
+			// Display damage dealt
+			System.out.println("Captain! Our sensors are showing us that we have sustained class " + enemyDamage
+					+ " damage to our hull!");
+			nl(1);
+			System.out.println("Sir, our shields are at level " + currentCaptainHP + "!");
+			nl(1);
+			// If player dies
+			if (currentCaptainHP <= 0) {
+				System.out.println("Oops! Too bad!");
+				captainAlive = false;
+			}
+			// Handle Flee Command
+			else if (playerAction.equalsIgnoreCase("Flee")) {
+				System.out.println("Roger that captain! Preparing for ludicrous Speed!");
+				System.out.println("Ludicrous Speed reached! Sir we've gone Plaid.\n");
+				hasFled = true;
+				// TODO: Then enter into planet selection because player jumped into hyper space.
+			}
+			// Handle incorrect commands
+			else {
+				System.out.println("Uh, sir, we can't do that thing here!");
+				nl(1);
+			}
+		}
+	}
+	
 }
-

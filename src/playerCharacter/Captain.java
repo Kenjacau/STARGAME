@@ -213,7 +213,7 @@ public class Captain extends Persona {
 	}
 
 	/**
-	 * @param palnetsVisited the palnetsVisited to set
+	 * @param planetsVisited the planetsVisited to set
 	 */
 	public void setPlanetsVisited(ArrayList<Planet> palnetsVisited) {
 		this.planetsVisited = palnetsVisited;
