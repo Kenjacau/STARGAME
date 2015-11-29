@@ -206,41 +206,47 @@ public class GameController2 {
 		ArrayList<Planet> planetChoices = new ArrayList<>();
 		planetChoices = randomPlanets(numberOfPlanets);
 
-		while (planetSelectionNotComplete) {
-			System.out.println("What is our destination, Captain " + captain.getName() + "?");
-			System.out.println("Based on our current position, these are our options: ");
-			for (Planet thisPlanet : planetChoices) {
-				System.out.println("		" + thisPlanet.getPlanetName());
-			}
-			System.out.println("Please type [help] or the name of the planet you'd like to visit: ");
-			System.out.println(
-					"Please note: if the planet name isn't input into the navigation system with precision, we'll be...");
-			System.out.println("LOOOOOSSSST IIIINNNNN SSPPPPPPPAAAAACCCEEEEE!!!!!");
-			listener();
-			nl(1);
-			if (booleanMaker("Help")) {
-
-			} else {
-				for (Planet selectedPlanet : planetChoices) {
-					if (userInput.contains(removeNonWords(selectedPlanet.getPlanetName()))) {
-						currentPlanet = selectedPlanet;
-						selectedPlanet.setPlanetExplored(true);
-						System.out.println("Thank you, Captain!");
-						System.out.println("You have chosen to go to " + selectedPlanet.getPlanetName()
-								+ "! BOLDLY GOING NOW, CAPTAIN!!!");
-						planetSelectionNotComplete = false;
-						planetMenu(selectedPlanet);
-						thisGame.getCaptain().getPlanetsVisited().add(selectedPlanet); 
-						
-
-					} else if (planetChoices.indexOf(selectedPlanet) < planetChoices.size() - 1) {
-						helpMenu();
-						// continue for loop
-					} else {
-						planetInputFailure(thisGame, userInput);
+		if (thisGame.getCaptain().getVisitedPlanetCount() <= 10) {
+			while (planetSelectionNotComplete) {
+				System.out.println("What is our destination, Captain " + captain.getName() + "?");
+				System.out.println("Based on our current position, these are our options: ");
+				for (Planet thisPlanet : planetChoices) {
+					System.out.println("		" + thisPlanet.getPlanetName());
+				}
+				System.out.println("Please type [help] or the name of the planet you'd like to visit: ");
+				System.out.println(
+						"Please note: if the planet name isn't input into the navigation system with precision, we'll be...");
+				System.out.println("LOOOOOSSSST IIIINNNNN SSPPPPPPPAAAAACCCEEEEE!!!!!");
+				listener();
+				nl(1);
+				if (booleanMaker("Help")) {
+	
+				} else {
+					for (Planet selectedPlanet : planetChoices) {
+						if (userInput.contains(removeNonWords(selectedPlanet.getPlanetName()))) {
+							currentPlanet = selectedPlanet;
+							selectedPlanet.setPlanetExplored(true);
+							System.out.println("Thank you, Captain!");
+							System.out.println("You have chosen to go to " + selectedPlanet.getPlanetName()
+									+ "! BOLDLY GOING NOW, CAPTAIN!!!");
+							planetSelectionNotComplete = false;
+							planetMenu(selectedPlanet);
+							thisGame.getCaptain().getPlanetsVisited().add(selectedPlanet); 
+							
+	
+						} else if (planetChoices.indexOf(selectedPlanet) < planetChoices.size() - 1) {
+							helpMenu();
+							// continue for loop
+						} else {
+							planetInputFailure(thisGame, userInput);
+						}
 					}
 				}
 			}
+		}
+		else {
+			System.out.println("Captain! You've made it though ten planets! You've been promoted to Rear Admiral!");
+			System.exit(0);
 		}
 	}
 

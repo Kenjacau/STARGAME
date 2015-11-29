@@ -208,14 +208,14 @@ public class Captain extends Persona {
 	 * @return the palnetsVisited
 	 */
 	public ArrayList<Planet> getPlanetsVisited() {
-		return palnetsVisited;
+		return planetsVisited;
 	}
 
 	/**
 	 * @param palnetsVisited the palnetsVisited to set
 	 */
 	public void setPlanetsVisited(ArrayList<Planet> palnetsVisited) {
-		this.palnetsVisited = palnetsVisited;
+		this.planetsVisited = palnetsVisited;
 	}
 	
 	/**visitedPlanetCount
@@ -225,8 +225,8 @@ public class Captain extends Persona {
 	 * 
 	 * @author jcbrough
 	 */
-	public int visitedPlanetCount() {
-		return this.getPalnetsVisited().size(); 
+	public int getVisitedPlanetCount() {
+		return this.getPlanetsVisited().size(); 
 	}
 
 }
