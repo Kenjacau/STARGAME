@@ -231,6 +231,9 @@ public class GameController2 {
 									+ "! BOLDLY GOING NOW, CAPTAIN!!!");
 							planetSelectionNotComplete = false;
 							planetMenu(selectedPlanet);
+							
+							//Modify the captain object to touch the visited planet. 
+							thisGame.getCaptain().setCurrentPlanet(selectedPlanet);
 							thisGame.getCaptain().getPlanetsVisited().add(selectedPlanet); 
 							
 	

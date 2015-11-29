@@ -19,6 +19,7 @@ public class Captain extends Persona {
 	private static final int HEALTH_POINTS = 100;
 	private static final int ATTACK_POINTS = 20;
 	private static final int DEFENSE_POINTS = 20;
+	private Planet currentPlanet = null;
 	
 	/**
 	 * Method: Captain - No-arg constructor that sets default attributes to Captain
@@ -227,6 +228,20 @@ public class Captain extends Persona {
 	 */
 	public int getVisitedPlanetCount() {
 		return this.getPlanetsVisited().size(); 
+	}
+
+	/**
+	 * @return the currentPlanet
+	 */
+	public Planet getCurrentPlanet() {
+		return currentPlanet;
+	}
+
+	/**
+	 * @param currentPlanet the currentPlanet to set
+	 */
+	public void setCurrentPlanet(Planet currentPlanet) {
+		this.currentPlanet = currentPlanet;
 	}
 
 }
