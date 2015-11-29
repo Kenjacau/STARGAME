@@ -1,6 +1,7 @@
 package obstacles;
 
 import controllers.Combat;
+import playerCharacter.Captain;
 import playerCharacter.Persona;
 
 /*
@@ -11,7 +12,7 @@ TODO: Write class definition here.
 - Version: 0.0.0
 - TODO: Date goes here.    
 */
-public class Enemy extends Persona implements Combat
+public class Enemy extends Persona
 {
 	//Declare enemy specific Attributes
 	private String enemyName;
@@ -36,8 +37,7 @@ public class Enemy extends Persona implements Combat
 		health = newHealth;
 		enemyDescription = newEnemyDescription;
 		enemyLocation = newEnemyLocation;
-		
-		
+
 	}
 
 	public Enemy() {
@@ -54,19 +54,19 @@ public class Enemy extends Persona implements Combat
 	 * CREATED: 11/3/15
 	 * LAST EDITED ON: 11/3/15  BY: Travis K.
 	 */
-//	public Enemy(String enemyDescription, String enemyLocation,
-//			int ambushStatus)
-//	{
-//		super();
-//
-//		int healthPoints = getHealthPoints();
-//		int attackPoints = getAttackPoints();
-//		int defensePoints = getDefensePoints();
-//
-//		this.enemyDescription = enemyDescription;
-//		this.enemyLocation = enemyLocation;
-//		this.ambushStatus = ambushStatus;
-//	}
+	//	public Enemy(String enemyDescription, String enemyLocation,
+	//			int ambushStatus)
+	//	{
+	//		super();
+	//
+	//		int healthPoints = getHealthPoints();
+	//		int attackPoints = getAttackPoints();
+	//		int defensePoints = getDefensePoints();
+	//
+	//		this.enemyDescription = enemyDescription;
+	//		this.enemyLocation = enemyLocation;
+	//		this.ambushStatus = ambushStatus;
+	//	}
 
 	/**Method Name: getEnemyName
 	 * @return the enemyName
@@ -99,7 +99,6 @@ public class Enemy extends Persona implements Combat
 	{
 		return health;
 	}
-	
 
 	/**
 	 * @return the enemy description
@@ -131,20 +130,6 @@ public class Enemy extends Persona implements Combat
 		return ambushStatus;
 	}
 
-	@Override
-	public void attack(int attackPoints, int defensePoints)
-	{
-		// TODO Auto-generated method stub
-
-		//Calculate damage
-
-	}
-
-	@Override
-	public void ambush(int attackPoints, int defensePoints)
-	{
-		// TODO Auto-generated method stub
-
-	}
+	
 
 }
