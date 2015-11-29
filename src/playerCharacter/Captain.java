@@ -6,13 +6,13 @@ import controllers.GameController2;
 import obstacles.Planet;
 
 /**
-Class: Captain
-Purpose: The Captain class manages the display of player information, selection of crew members, and actions related to combat.
- - Author: @cdeluna, @jcbrough, @kcauthen
-- Email: cdeluna@ggc.edu, jbroughton@ggc.edu, kcauthen@ggc.edu
-- Version: 0.0.8
-- Date: 2015-11-05 
-**/
+ * Class: Captain
+ * Purpose: The Captain class manages the display of player information, selection of crew members, and actions related to combat.
+ * - Author: @cdeluna, @jcbrough, @kcauthen
+ * - Email: cdeluna@ggc.edu, jbroughton@ggc.edu, kcauthen@ggc.edu
+ * - Version: 0.0.8
+ * - Date: 2015-11-05
+ **/
 public class Captain extends Persona {
 	private static final int HEALTH_POINTS = 100;
 	private static final int ATTACK_POINTS = 25;
@@ -22,10 +22,12 @@ public class Captain extends Persona {
 	private ArrayList<String> captainCrew = new ArrayList<String>();
 	private ArrayList<Planet> planetsVisited = new ArrayList<Planet>();
 	private Planet currentPlanet = null;
-	
+	private int planetCount = 0;
+
+
+
 	/**
 	 * Method: Captain - No-arg constructor that sets default attributes to Captain
-	 * 
 	 */
 	public Captain() {
 		super();
@@ -33,10 +35,9 @@ public class Captain extends Persona {
 		this.setAttackPoints(ATTACK_POINTS);
 		this.setDefensePoints(DEFENSE_POINTS);
 	}
-	
+
 	/**
 	 * Method: getAttributesToCrew - Sets attributes from selected crew member to Captain
-	 * 
 	 */
 	public void getAttributesFromCrew() {
 		for (String s : captainCrew) {
@@ -51,50 +52,48 @@ public class Captain extends Persona {
 		}
 	}
 
-	/**getFullCrewList
-	 * Gets a full list of all possible crew choices. 
-	 * 
-	 * @return fullCrewList All possible crew members. 
-	 * 
+	/**
+	 * getFullCrewList
+	 * Gets a full list of all possible crew choices.
+	 *
+	 * @return fullCrewList All possible crew members.
 	 * @author jcbrough
 	 */
 	public ArrayList<String> getFullCrewList() {
 		ArrayList<String> fullCrewList = new ArrayList<String>();
-		fullCrewList.add("Navigation Officer"); 
+		fullCrewList.add("Navigation Officer");
 		fullCrewList.add("Security Officer");
 		fullCrewList.add("Tactical Officer");
 		fullCrewList.add("Survey Officer");
 		fullCrewList.add("Sentinel Bot");
 		fullCrewList.add("Engineer Officer");
-		
+
 		return fullCrewList;
 	}
-	
-	/**confirmCrew
-	 * Gets a full list of all possible crew choices. 
-	 * 
-	 * @param selectedCrew An ArrayList of selected crewmenbers. 
-	 * 
-	 * @return Boolean flag for correct crew list. 
-	 * 
+
+	/**
+	 * confirmCrew
+	 * Gets a full list of all possible crew choices.
+	 *
+	 * @param selectedCrew An ArrayList of selected crewmenbers.
+	 * @return Boolean flag for correct crew list.
 	 * @author jcbrough
 	 */
 	public boolean confirmCrew(ArrayList<String> selectedCrew) {
-		headerPrint(); 
+		headerPrint();
 		System.out.println("Captain! Is your crew selection correct?");
 		for (String s : selectedCrew) {
 			System.out.println("		" + s);
 		}
 		System.out.println("\n");
 		System.out.println("Please enter [y]es or [n]o!");
-		
+
 		@SuppressWarnings("resource")
 		Scanner in = new Scanner(System.in);
 		String response = in.nextLine();
 		if (response.toLowerCase().equals("y")) {
 			return true;
-		}
-		else {
+		} else {
 			return false;
 		}
 	}
@@ -115,7 +114,7 @@ public class Captain extends Persona {
 	/**
 	 * Method: getCaptainCrew - Getter method for captainCrew as an ArrayList of
 	 * crew members
-	 * 
+	 *
 	 * @return the captainCrew
 	 */
 	public ArrayList<String> getCaptainCrew() {
@@ -123,8 +122,7 @@ public class Captain extends Persona {
 	}
 
 	/**
-	 * @param newCaptainCrew
-	 *            the captainCrew to set
+	 * @param newCaptainCrew the captainCrew to set
 	 */
 	public void setCaptainCrew(ArrayList<String> newCaptainCrew) {
 		captainCrew = newCaptainCrew;
@@ -179,11 +177,11 @@ public class Captain extends Persona {
 	public Boolean fleeCombat() {
 		return null;
 	}
-	
+
 	/**
 	 * Method: headerPrint()
-	 * Prints a header thingy. 
-	 * 
+	 * Prints a header thingy.
+	 *
 	 * @return void
 	 * @author kenny
 	 */
@@ -192,7 +190,7 @@ public class Captain extends Persona {
 		System.out.println("==================================================================");
 		nl(1);
 	}
-	
+
 	/**
 	 * Method: nl()
 	 * Description: goes to next line @param number of times.
@@ -230,16 +228,16 @@ public class Captain extends Persona {
 	public void setPlanetsVisited(ArrayList<Planet> planetsVisited) {
 		this.planetsVisited = planetsVisited;
 	}
-	
-	/**visitedPlanetCount
+
+	/**
+	 * visitedPlanetCount
 	 * "Getter" for the number of planets the captain has visited.
-	 * 
-	 * @return int value of number of planets the captain has visited. 
-	 * 
+	 *
+	 * @return int value of number of planets the captain has visited.
 	 * @author jcbrough
 	 */
 	public int getVisitedPlanetCount() {
-		return this.getPlanetsVisited().size(); 
+		return this.getPlanetsVisited().size();
 	}
 
 	/**
@@ -254,6 +252,14 @@ public class Captain extends Persona {
 	 */
 	public void setCurrentPlanet(Planet currentPlanet) {
 		this.currentPlanet = currentPlanet;
+	}
+
+	public int getPlanetCount() {
+		return planetCount;
+	}
+
+	public void setPlanetCount(int planetCount) {
+		this.planetCount = planetCount;
 	}
 
 }

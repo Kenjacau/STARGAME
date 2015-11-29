@@ -28,7 +28,7 @@ public class PlanetMaker {
 				new Planet(planetList[2], arrivalMessageList[2], scanMessageList[2], exploreMessageList[2], 0, 1, false),
 				new Planet(planetList[3], arrivalMessageList[3], scanMessageList[3], exploreMessageList[3], 0, 3, false),
 				new Planet(planetList[4], arrivalMessageList[4], scanMessageList[4], exploreMessageList[4], 2, 0, false),
-				new Planet(planetList[5], arrivalMessageList[5], scanMessageList[5], exploreMessageList[5], 2, 2, false),
+				new Planet(planetList[5], arrivalMessageList[5], scanMessageList[5], exploreMessageList[5], 2, 3, false),
 				new Planet(planetList[6], arrivalMessageList[6], scanMessageList[6], exploreMessageList[6], 2, 0, false),
 				new Planet(planetList[7], arrivalMessageList[7], scanMessageList[7], exploreMessageList[7], 2, 0, false),
 				new Planet(planetList[8], arrivalMessageList[8], scanMessageList[8], exploreMessageList[8], 2, 0, false),

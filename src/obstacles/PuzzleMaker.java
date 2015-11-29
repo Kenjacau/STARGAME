@@ -77,7 +77,7 @@ public class PuzzleMaker {
 	private String[] getPuzzleChoiceResultMessages() {
 		return new String[]{"As you abandon the station it explodes...", "The search and rescue mission was a success and you managed to save the entire crew! \n" +
 				"The Survey Officer of the station wishes to join your crew",
-				"You found an ARTIFACT!", "Oh no! Something is heading towards you...You should get your blaster ready",
+				"Oh no! Something is heading towards you...You should get your blaster ready", "You found an ARTIFACT!",
 				"As you step through the door you notice that you are now back in your ship hovering over the same planet.",
 				"As you step through the door your vision goes dark. You awake on the flight deck overlooking a very familiar planet...Earth",
 				"You head back to the ship and leave the planet's surface.", "You attempt to navigate the forest...",

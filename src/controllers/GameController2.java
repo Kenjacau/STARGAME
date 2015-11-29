@@ -140,6 +140,7 @@ public class GameController2 {
 			}
 		}
 		headerPrint();
+		isCaptainAlive();
 	}
 
 	/**
@@ -195,7 +196,7 @@ public class GameController2 {
 		}
 
 
-		while (planetSelectionNotComplete) {
+		while (planetSelectionNotComplete && captain.isAlive()) {
 			System.out.println("What is our destination, Captain " + captain.getName() + "?");
 			System.out.println("Based on our current position, these are our options: ");
 			for (Planet thisPlanet : planetChoices) {
@@ -218,7 +219,9 @@ public class GameController2 {
 						System.out.println("You have chosen to go to " + selectedPlanet.getPlanetName()
 								+ "! BOLDLY GOING NOW, CAPTAIN!!!");
 						planetSelectionNotComplete = false;
+						captain.setPlanetCount(captain.getPlanetCount() + 1);
 						planetMenu();
+						break;
 
 					} else if (planetChoices.indexOf(selectedPlanet) < planetChoices.size() - 1) {
 						// continues loop until planetSelectionNotComplete == false
@@ -227,8 +230,6 @@ public class GameController2 {
 						headerPrint();
 						System.out.println("Captain, the input \"" + userInput + "\" is garbage!!! You are a crazy person!");
 						System.out.println("Let's try that again!");
-						nl(1);
-						headerPrint();
 						nl(1);
 						// continues loop until planetSelectionNotComplete == false
 					}
@@ -255,17 +256,28 @@ public class GameController2 {
 		while (randomPlanetNotComplete) {
 			randomNumber = rand.nextInt(planetArrayList.size());
 			for (Planet p : planetArrayList) {
-
-				if (count == numberOfPlanets) {
-					randomPlanetNotComplete = false;
-					break;
-				} else if (!p.isPlanetExplored() && randomNumber == planetArrayList.indexOf(p)
-						&& !randomPlanets.contains(p)) {
-					randomPlanets.add(p);
-					count++;
+				if (captain.getPlanetCount() == 9) {
+					if (count == numberOfPlanets) {
+						randomPlanetNotComplete = false;
+						break;
+					} else if (!p.isPlanetExplored() && randomNumber == planetArrayList.indexOf(p)
+							&& !randomPlanets.contains(p) && p.getPlanetFlag() == 1) {
+						randomPlanets.add(p);
+						count++;
+					}
+				} else {
+					if (count == numberOfPlanets) {
+						randomPlanetNotComplete = false;
+						break;
+					} else if (!p.isPlanetExplored() && randomNumber == planetArrayList.indexOf(p)
+							&& !randomPlanets.contains(p) && p.getPlanetFlag() != 1) {
+						randomPlanets.add(p);
+						count++;
+					}
 				}
 			}
 		}
+
 		return randomPlanets;
 	}
 
@@ -297,7 +309,8 @@ public class GameController2 {
 		boolean notExplored = true;
 		boolean notRepaired = true;
 
-		while (planetMenuNotFinished) {
+
+		while (planetMenuNotFinished && captain.isAlive()) {
 			headerPrint();
 			System.out.println("Here are your options Captain");
 			System.out.print("| [S]can | [E]xplore | [L]eave |");
@@ -310,10 +323,11 @@ public class GameController2 {
 				System.out.println(currentPlanet.getScanMessage());
 				notScanned = false;
 			} else if (booleanMaker("Explore") && notExplored) {
-				//exploreMenu();
+				exploreMenu();
 				notExplored = false;
 			} else if (booleanMaker("Repair") && notRepaired) {
 				captain.setHealthPoints(captain.getHealthPoints() + REPAIR_HEALTH_AMOUNT);
+				captain.getAllAttributes();
 				notRepaired = false;
 			} else if (booleanMaker("Leave")) {
 				planetMenuNotFinished = false;
@@ -325,6 +339,210 @@ public class GameController2 {
 				System.out.println("Not sure what you are saying Captain... Lets try that again");
 			}
 		}
+		isCaptainAlive();
+	}
+
+	public void exploreMenu() {
+		if (currentPlanet.getExploreFlag() == 0) {
+			System.out.println(currentPlanet.getExploreMessage());
+
+		} else if (currentPlanet.getExploreFlag() == 1) {
+			System.out.println(currentPlanet.getExploreMessage());
+			combatMenu();
+
+		} else if (currentPlanet.getExploreFlag() == 2) {
+			System.out.println(currentPlanet.getExploreMessage());
+			puzzleMenu();
+		}
+
+	}
+
+	public void puzzleMenu() {
+		Dice dice50 = new Dice(50);
+		boolean puzzleNotComplete = true;
+		Puzzle currentPuzzle = new Puzzle();
+		for (Puzzle p : puzzleArrayList) {
+			if (removeNonWords(p.getPuzzleHomePlanet()).equals(removeNonWords(currentPlanet.getPlanetName()))) {
+				currentPuzzle = p;
+			}
+		}
+		while (puzzleNotComplete && captain.isAlive()) {
+			headerPrint();
+			nl(1);
+			System.out.println("Hmm...So what you think we should do Captain?");
+			if (currentPuzzle.getPuzzleChoices().length == 3) {
+				System.out.println(currentPuzzle.getPuzzleChoices()[0] + " | or | " + currentPuzzle.getPuzzleChoices()[1]
+						+ " | or | " + currentPuzzle.getPuzzleChoices()[2]);
+			} else {
+				System.out.println(currentPuzzle.getPuzzleChoices()[0] + " | or | " + currentPuzzle.getPuzzleChoices()[1]);
+			}
+			if (captain.hasSurveyOfficer()) {
+				System.out.println("Captain we can have our Survey Officer inspect the area to give us a [H]int");
+			}
+
+			listener();
+			if (booleanMaker("Hint")) {
+				System.out.println(currentPuzzle.getPuzzleHint());
+			} else if (booleanMaker("Help")) {
+				helpMenu();
+			} else {
+
+				switch (currentPuzzle.getPuzzleHomePlanet()) {
+					case "51 Pegasi b":
+						if (booleanMaker(currentPuzzle.getPuzzleChoices()[0])) {
+							printChoice(currentPuzzle.getPuzzleChoices()[0]);
+							System.out.println(currentPuzzle.getPuzzleChoiceMessages()[0]);
+							puzzleNotComplete = false;
+						} else if (booleanMaker(currentPuzzle.getPuzzleChoices()[1])) {
+							printChoice(currentPuzzle.getPuzzleChoices()[1]);
+							System.out.println(currentPuzzle.getPuzzleChoiceMessages()[1]);
+							if (!captain.hasSurveyOfficer()) {
+								captain.getCaptainCrew().add("Survey Officer");
+								System.out.println(captain.getCaptainCrew());
+							} else {
+								System.out.println("Sorry Captain we had to decline the offer since we already have a Survey Officer");
+							}
+							puzzleNotComplete = false;
+						}
+
+						break;
+					case "LV-426":
+						if (booleanMaker(currentPuzzle.getPuzzleChoices()[0])) {
+							printChoice(currentPuzzle.getPuzzleChoices()[0]);
+							if (dice50.roll()) {
+								System.out.println(currentPuzzle.getPuzzleChoiceMessages()[0]);
+								combatMenu();
+							}
+							puzzleNotComplete = false;
+						} else if (booleanMaker(currentPuzzle.getPuzzleChoices()[1])) {
+							printChoice(currentPuzzle.getPuzzleChoices()[1]);
+							if (dice50.roll()) {
+								System.out.println(currentPuzzle.getPuzzleChoiceMessages()[0]);
+								combatMenu();
+							} else {
+								System.out.println(currentPuzzle.getPuzzleChoiceMessages()[1]);
+								if (!captain.hasNavigationOfficer()) {
+									System.out.println("Seems like this Navigation Officer is attracted to the Artifact.");
+									captain.getCaptainCrew().add("Navigation Officer");
+									System.out.println(captain.getCaptainCrew());
+								} else {
+									System.out.println("Sorry Captain we had to throw them overboard since we already have a Navigation Officer");
+								}
+							}
+							puzzleNotComplete = false;
+						}
+						break;
+					case "Shadowfax":
+						if (booleanMaker(currentPuzzle.getPuzzleChoices()[0])) {
+							printChoice(currentPuzzle.getPuzzleChoices()[0]);
+							System.out.println(currentPuzzle.getPuzzleChoiceMessages()[0]);
+
+							puzzleNotComplete = false;
+
+						} else if (booleanMaker(currentPuzzle.getPuzzleChoices()[1])) {
+							printChoice(currentPuzzle.getPuzzleChoices()[1]);
+							System.out.println(currentPuzzle.getPuzzleChoiceMessages()[1]);
+							captain.setPlanetCount(0);
+							puzzleNotComplete = false;
+
+						} else if (booleanMaker(currentPuzzle.getPuzzleChoices()[2])) {
+							printChoice(currentPuzzle.getPuzzleChoices()[2]);
+							System.out.println(currentPuzzle.getPuzzleChoiceMessages()[0]);
+							puzzleNotComplete = false;
+
+						}
+						break;
+
+					case "Lisus":
+						if (booleanMaker(currentPuzzle.getPuzzleChoices()[0])) {
+							printChoice(currentPuzzle.getPuzzleChoices()[0]);
+							System.out.println(currentPuzzle.getPuzzleChoiceMessages()[0]);
+							puzzleNotComplete = false;
+						} else if (booleanMaker(currentPuzzle.getPuzzleChoices()[1])) {
+							System.out.println(currentPuzzle.getPuzzleChoiceMessages()[1]);
+							if (dice50.roll()) {
+								System.out.println("After wandering the forest for days, you return to your ship with half health");
+								captain.setHealthPoints(captain.getHealthPoints() / 2);
+								isCaptainAlive();
+								captain.getAllAttributes();
+							} else {
+								System.out.println(currentPuzzle.getPuzzleChoiceMessages()[0]);
+								if (!captain.hasCrew("Sentinel Bot")) {
+									captain.getCaptainCrew().add("Sentinel Bot");
+									System.out.println(captain.getCaptainCrew());
+								} else {
+									System.out.println("Sorry Captain. We scrapped the Sentinel Bot since we have one already");
+								}
+
+							}
+							puzzleNotComplete = false;
+						}
+						break;
+					case "Insula":
+
+						if (booleanMaker(currentPuzzle.getPuzzleChoices()[0])) {
+							printChoice(currentPuzzle.getPuzzleChoices()[0]);
+							System.out.println(currentPuzzle.getPuzzleChoiceMessages()[0]);
+							System.out.println("Due to the harsh environment you have taken 30 damage");
+							captain.setHealthPoints(captain.getHealthPoints() - 30);
+							isCaptainAlive();
+							captain.getAllAttributes();
+							puzzleNotComplete = false;
+						} else if (booleanMaker(currentPuzzle.getPuzzleChoices()[1])) {
+							printChoice(currentPuzzle.getPuzzleChoices()[1]);
+							System.out.println(currentPuzzle.getPuzzleChoiceMessages()[1]);
+							if (dice50.roll()) {
+								System.out.println("The door opens and you see a device capable of lifting the ship laying on the table");
+							} else {
+								System.out.println("As door creeks open you notice glaring eyes on the other side...");
+								combatMenu();
+							}
+							puzzleNotComplete = false;
+						}
+						break;
+					case "Heralda":
+						if (booleanMaker(currentPuzzle.getPuzzleChoices()[0])) {
+							printChoice(currentPuzzle.getPuzzleChoices()[0]);
+							System.out.println(currentPuzzle.getPuzzleChoiceMessages()[0]);
+							puzzleNotComplete = false;
+						} else if (booleanMaker(currentPuzzle.getPuzzleChoices()[1])) {
+							printChoice(currentPuzzle.getPuzzleChoices()[1]);
+							System.out.println(currentPuzzle.getPuzzleChoiceMessages()[1]);
+							if (dice50.roll()) {
+								System.out.println("The Device just crumbles in your hands...");
+							} else {
+								System.out.println("Thanks to the Device, A Tactical Officer has found our ship and wishes to join our crew");
+								if (!captain.hasCrew("Tactical Officer")) {
+									captain.getCaptainCrew().add("Tactical Officer");
+									System.out.println(captain.getCaptainCrew());
+								} else {
+									System.out.println("Sorry Captain. We assigned the Tactical Officer to kitchen duty since we have one already");
+								}
+							}
+							puzzleNotComplete = false;
+						}
+						break;
+
+					default:
+						System.out.println("Looks like there was some issues with the comm. Lets try this again");
+						break;
+
+
+				}
+			}
+		}
+		isCaptainAlive();
+	}
+
+	public void isCaptainAlive() {
+		if (captain.getHealthPoints() <= 0) {
+			System.out.println("YOU HAVE DIED...");
+			titleScreen();
+		}
+	}
+
+	public void printChoice(String s) {
+		System.out.println("You chosen " + s);
 	}
 
 	private void helpMenu() {
@@ -479,6 +697,7 @@ public class GameController2 {
 	 * @author kenny
 	 */
 	private void listener() {
+		System.out.print("::");
 		userInput = removeNonWords(in.nextLine());
 	}
 

@@ -39,7 +39,7 @@ public abstract class Persona {
 	 * @return true
 	 */
 	public boolean isAlive() {
-		return true;
+		return healthPoints > 0;
 	}
 
 	/**
