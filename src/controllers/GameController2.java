@@ -817,7 +817,7 @@ public class GameController2 {
 
 		if (enemy.getAmbushStatus() == 1) {
 			// If enemy survives initiate Enemy on player Combat
-			System.out.println("Captain! " + enemy.getEnemyName() + "You appear to be readying for an attack! Brace for impact!");
+			System.out.println("Captain! " + enemy.getEnemyName() + " appear to be readying for an attack! Brace for impact!");
 			hitCaptain(enemy);
 			isCaptainAlive();
 			nl(1);
@@ -843,6 +843,9 @@ public class GameController2 {
 				System.out.println("Roger that captain! Preparing for ludicrous Speed!");
 				System.out.println("Ludicrous Speed reached! Sir we've gone Plaid.\n");
 				hasNotFled = false;
+				
+				//Without this the ship jumps back to the same planet
+				planetSelectionMenu();
 			} else {
 				System.out.println("There seems to be an issue with comms. Lets try that again.");
 
