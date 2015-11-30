@@ -192,7 +192,7 @@ public class GameController2 {
 			planetChoices = randomPlanets(2);
 		}
 
-		if (!(captain.getPlanetCount() >= 10)) {
+		if (!(captain.getPlanetCount() > 9)) {
 			while (planetSelectionNotComplete && captain.isAlive()) {
 				System.out.println("What is our destination, Captain " + captain.getName() + "?");
 				System.out.println("Based on our current position, these are our options: ");
@@ -975,9 +975,11 @@ public class GameController2 {
 		System.out.println("Roger that, Captain! Target acquired, firing lasers at " + enemy.getName() + "!");
 		nl(1);
 		enemy.setHealthPoints(enemy.getHealthPoints() - captainDamage);
-
-		System.out.println("Sir, scanners show enemy health at " + enemy.getHealthPoints() + "!");
-
+		if (enemy.getHealthPoints() <= 0) {
+			System.out.println(enemy.getName() + " Looks to be unstable");
+		} else {
+			System.out.println("Sir, scanners show enemy health at " + enemy.getHealthPoints() + "!");
+		}
 	}
 
 	/**
@@ -995,7 +997,11 @@ public class GameController2 {
 
 		System.out.println("Captain! Our sensors are showing us that we have sustained class " + enemyDamage
 				+ " damage to our hull!");
-		System.out.println("Sir, our shields are at level " + captain.getHealthPoints() + "!");
+		if (captain.getHealthPoints() <= 0) {
+			System.out.println("Captain...We are not looking to good...");
+		} else {
+			System.out.println("Sir, our shields are at level " + captain.getHealthPoints() + "!");
+		}
 	}
 
 }
