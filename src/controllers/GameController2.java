@@ -265,7 +265,7 @@ public class GameController2 {
 	}
 
 	/**
-	 * Method: randomPlanets Description: picks randomized planets from
+	 * randomPlanets() - Picks randomized planets from
 	 * available planetArrayList author: Kenny
 	 *
 	 * @param numberOfPlanets
@@ -315,11 +315,11 @@ public class GameController2 {
 		if (!currentPlanet.getArrivalMessage().contains("Nothing")) {
 			System.out.println(currentPlanet.getArrivalMessage());
 		}
-		//NORMAL PLANET
+		//Normal Planet
 		if (currentPlanet.getPlanetFlag() == 0) {
 			planetMenuSelection();
 		}
-		//BOSS PLANET
+		//Boss Planet
 		else if (currentPlanet.getPlanetFlag() == 1) {
 			combatMenu();
 			planetMenuSelection();
