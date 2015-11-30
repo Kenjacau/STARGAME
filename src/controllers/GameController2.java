@@ -331,15 +331,19 @@ public class GameController2 {
 			if (booleanMaker("Scan") && notScanned) {
 				System.out.println(currentPlanet.getScanMessage());
 				notScanned = false;
+				softSaveGame();
 			} else if (booleanMaker("Explore") && notExplored) {
 				exploreMenu();
 				notExplored = false;
+				softSaveGame();
 			} else if (booleanMaker("Repair") && notRepaired) {
 				captain.setHealthPoints(captain.getHealthPoints() + REPAIR_HEALTH_AMOUNT);
 				captain.getAllAttributes();
 				notRepaired = false;
+				softSaveGame();
 			} else if (booleanMaker("Leave")) {
 				planetMenuNotFinished = false;
+				softSaveGame();
 				planetSelectionMenu();
 
 			} else if (booleanMaker("Help")) {
