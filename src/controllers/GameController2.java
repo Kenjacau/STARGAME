@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
+
 import obstacles.*;
 import playerCharacter.Captain;
 import sun.font.TrueTypeFont;
@@ -32,14 +33,13 @@ public class GameController2 {
 	private Planet currentPlanet;
 	private Scanner in = new Scanner(System.in);
 	private String userInput = "";
-	private GameClassTester gameTester = new GameClassTester(); 
+	private GameClassTester gameTester = new GameClassTester();
 
 	/**
 	 * main() STATIC METHOD This serves as the starting point for the
 	 * GameController class.
-	 * 
-	 * @param args
-	 *            Command line arguments
+	 *
+	 * @param args Command line arguments
 	 * @throws IOException
 	 */
 	public static void main(String[] args) throws IOException {
@@ -61,7 +61,7 @@ public class GameController2 {
 
 	/**
 	 * titleScreen() Displays dat title screen.
-	 * 
+	 *
 	 * @return void
 	 * @author kenny
 	 */
@@ -98,7 +98,7 @@ public class GameController2 {
 
 				System.out.println("Let's get started Captain!");
 				planetSelectionMenu();
-				
+
 			} else if (booleanMaker("Load Game")) {
 				// TODO: Display LoadGame/SaveGame menu that returns a string
 				// path.
@@ -111,7 +111,7 @@ public class GameController2 {
 				for (String crewName : captain.getCaptainCrew()) {
 					System.out.println(crewName);
 				}
-				
+
 				System.out.println("Let's get started Captain!");
 
 				if (captain.getCurrentPlanet() != null) {
@@ -127,15 +127,12 @@ public class GameController2 {
 
 				titleNotComplete = false;
 
-			} 
-			else if (booleanMaker("Help Menu")) {
-				headerPrint(); 
+			} else if (booleanMaker("Help Menu")) {
+				headerPrint();
 				System.out.println("Captain! You have to start a game to get help with one!");
 				headerPrint();
 				titleScreen();
-			}
-			
-			else {
+			} else {
 				genericInputFailure();
 			}
 		}
@@ -180,10 +177,9 @@ public class GameController2 {
 
 	/**
 	 * planetSelectionMenu() Displays the planet selection menu.
-	 * 
+	 *
 	 * @return void
 	 * @author jcbrough, kenny
-	 *
 	 */
 	public void planetSelectionMenu() {
 		boolean planetSelectionNotComplete = true;
@@ -195,47 +191,55 @@ public class GameController2 {
 			planetChoices = randomPlanets(2);
 		}
 
+		if (!(captain.getPlanetCount() >= 10)) {
+			while (planetSelectionNotComplete && captain.isAlive()) {
+				System.out.println("What is our destination, Captain " + captain.getName() + "?");
+				System.out.println("Based on our current position, these are our options: ");
+				for (Planet thisPlanet : planetChoices) {
+					System.out.println("		" + thisPlanet.getPlanetName());
+				}
+				System.out.println("Please type [help] or the name of the planet you'd like to visit: ");
+				System.out.println(
+						"Please note: if the planet name isn't input into the navigation system with precision, we'll be...");
+				System.out.println("LOOOOOSSSST IIIINNNNN SSPPPPPPPAAAAACCCEEEEE!!!!!");
+				listener();
+				nl(1);
+				if (booleanMaker("Help")) {
+					helpMenu();
+				} else {
+					for (Planet selectedPlanet : planetChoices) {
+						if (userInput.contains(removeNonWords(selectedPlanet.getPlanetName()))) {
+							currentPlanet = selectedPlanet;
+							selectedPlanet.setPlanetExplored(true);
+							System.out.println("Thank you, Captain!");
+							System.out.println("You have chosen to go to " + selectedPlanet.getPlanetName()
+									+ "! BOLDLY GOING NOW, CAPTAIN!!!");
+							planetSelectionNotComplete = false;
+							captain.setPlanetCount(captain.getPlanetCount() + 1);
+							planetMenu();
+							break;
 
-		while (planetSelectionNotComplete && captain.isAlive()) {
-			System.out.println("What is our destination, Captain " + captain.getName() + "?");
-			System.out.println("Based on our current position, these are our options: ");
-			for (Planet thisPlanet : planetChoices) {
-				System.out.println("		" + thisPlanet.getPlanetName());
-			}
-			System.out.println("Please type [help] or the name of the planet you'd like to visit: ");
-			System.out.println(
-					"Please note: if the planet name isn't input into the navigation system with precision, we'll be...");
-			System.out.println("LOOOOOSSSST IIIINNNNN SSPPPPPPPAAAAACCCEEEEE!!!!!");
-			listener();
-			nl(1);
-			if (booleanMaker("Help")) {
-				helpMenu();
-			} else {
-				for (Planet selectedPlanet : planetChoices) {
-					if (userInput.contains(removeNonWords(selectedPlanet.getPlanetName()))) {
-						currentPlanet = selectedPlanet;
-						selectedPlanet.setPlanetExplored(true);
-						System.out.println("Thank you, Captain!");
-						System.out.println("You have chosen to go to " + selectedPlanet.getPlanetName()
-								+ "! BOLDLY GOING NOW, CAPTAIN!!!");
-						planetSelectionNotComplete = false;
-						captain.setPlanetCount(captain.getPlanetCount() + 1);
-						planetMenu();
-						break;
-
-					} else if (planetChoices.indexOf(selectedPlanet) < planetChoices.size() - 1) {
-						// continues loop until planetSelectionNotComplete == false
-					} else {
-						nl(1);
-						headerPrint();
-						System.out.println("Captain, the input \"" + userInput + "\" is garbage!!! You are a crazy person!");
-						System.out.println("Let's try that again!");
-						nl(1);
-						// continues loop until planetSelectionNotComplete == false
+						} else if (planetChoices.indexOf(selectedPlanet) < planetChoices.size() - 1) {
+							// continues loop until planetSelectionNotComplete == false
+						} else {
+							nl(1);
+							headerPrint();
+							System.out.println("Captain, the input \"" + userInput + "\" is garbage!!! You are a crazy person!");
+							System.out.println("Let's try that again!");
+							nl(1);
+							// continues loop until planetSelectionNotComplete == false
+						}
 					}
 				}
 			}
+		} else {
+			youWin();
 		}
+
+	}
+
+	public void youWin() {
+		System.out.println("YOU WIN!");
 	}
 
 	/**
@@ -601,17 +605,17 @@ public class GameController2 {
 		System.out.println("Would you like to [save] your game? Or are you [done] with this cruel world?!");
 		listener();
 
-		if (booleanMaker("Save")) {		
+		if (booleanMaker("Save")) {
 			@SuppressWarnings("resource")
 			Scanner in = new Scanner(System.in);
 			System.out.println("What would you like the save file to be called?");
 			StringBuilder saveGameFileName = new StringBuilder(in.nextLine());
-			System.out.println(saveGameFileName.length()); 
+			System.out.println(saveGameFileName.length());
 			saveGameFileName.append(" - ");
 			saveGameFileName.append("Captain " + captain.getName());
-			saveGameFileName.append(SAVE_FILE_EXTENSION); 
+			saveGameFileName.append(SAVE_FILE_EXTENSION);
 			StringBuilder fullPath = new StringBuilder(DESKTOP_PATH); //Changed name for readability. 
-			fullPath.append(saveGameFileName); 
+			fullPath.append(saveGameFileName);
 			//TODO: FULL PATH ACQUIRED. 
 			//TODO: Serialize game and get it get it .
 		}
@@ -621,7 +625,7 @@ public class GameController2 {
 		ArrayList<String> selectedCrew = new ArrayList<String>();
 
 		headerPrint();
-		System.out.println("Captain! You must select a crew! You can only choose three!"); 
+		System.out.println("Captain! You must select a crew! You can only choose three!");
 		System.out.println("Here is a list of currently unassigned crew:");
 		for (String s : captain.getFullCrewList()) {
 			System.out.println("		" + s + "?");
@@ -641,9 +645,7 @@ public class GameController2 {
 			captain.setCaptainCrew(selectedCrew); //Set the selection
 			captain.getAttributesFromCrew(); //Grant the attributes.
 
-		}
-
-		else {
+		} else {
 			System.out.println("Something screwed up, captain! Let's do that again!");
 			crewSelectionMenu();
 		}
@@ -655,11 +657,10 @@ public class GameController2 {
 	/**
 	 * Method: removeNonWords()
 	 *
-	 * @param string
-	 *            String that you want to remove all whitespace and non word
-	 *            characters from.
+	 * @param string String that you want to remove all whitespace and non word
+	 *               characters from.
 	 * @return string with all non word characters including whitespace removed
-	 *         Last Edit: Kenny Cauthen Remarks:
+	 * Last Edit: Kenny Cauthen Remarks:
 	 */
 	public String removeNonWords(String string) {
 		return (string.replaceAll("[^\\p{L}\\p{Nd}]+", "")).toLowerCase();
@@ -667,7 +668,7 @@ public class GameController2 {
 
 	/**
 	 * Method: headerPrint() Prints a header thingy.
-	 * 
+	 *
 	 * @return void
 	 * @author kenny
 	 */
@@ -715,16 +716,16 @@ public class GameController2 {
 	private String getExactResponse() {
 		return in.nextLine();
 	}
+
 	/**
 	 * Method: booleanMaker() Description: Takes in a String input and converts
 	 * tests whether userInput contains the whole String, first char, or just
 	 * the first word.
-	 *
+	 * <p>
 	 * Example: booleanMaker("Exit Menu") <-- will be true if input is
 	 * "Exit Menu", "Exit", or E Author: Kenny
-	 * 
-	 * @param input
-	 *            String to test userInput against.
+	 *
+	 * @param input String to test userInput against.
 	 * @return boolean if userInput matches @param input
 	 */
 	public boolean booleanMaker(String input) {
@@ -745,18 +746,17 @@ public class GameController2 {
 	}
 
 
-
 	/**
 	 * Method: inputFailure() Prints a failure based on passed parameters. Used
 	 * for readability.
 	 *
 	 * @return void
 	 * @author jcbrough
-	 * 
-	 *         Use case: String garbage = in.nextline(); if (garbage !=
-	 *         validInput) { inputFailure("Hey, Captain! " +
-	 *         garbage.toUpperCase() + " is not a valid input!");
-	 *         tryInputAgain(); }
+	 * <p>
+	 * Use case: String garbage = in.nextline(); if (garbage !=
+	 * validInput) { inputFailure("Hey, Captain! " +
+	 * garbage.toUpperCase() + " is not a valid input!");
+	 * tryInputAgain(); }
 	 */
 	public void inputFailure(String message) {
 		System.out.println(message);
@@ -770,19 +770,17 @@ public class GameController2 {
 	}
 
 	/**
-	 * @param thisGame
-	 *            the thisGame to set
+	 * @param thisGame the thisGame to set
 	 */
 	public void setThisGame(Game thisGame) {
 		this.thisGame = thisGame;
 	}
-	
+
 	/**
 	 * combatMenu() - Displays the combat menu
-	 * 
+	 *
 	 * @return void
 	 * @author cdeluna, tkeating
-	 *
 	 */
 
 	public boolean dwellerEncounter() {
@@ -792,6 +790,7 @@ public class GameController2 {
 				removeNonWords(currentPlanet.getPlanetName()).equals(removeNonWords("TrES-2b")) ||
 				removeNonWords(currentPlanet.getPlanetName()).equals(removeNonWords("Nesqueron")));
 	}
+
 	public void combatMenu() {
 		boolean captainAlive = true;
 		boolean enemyAlive = true;
@@ -815,7 +814,7 @@ public class GameController2 {
 				// If enemy survives initiate Enemy on player Combat
 				System.out.println("Captain! " + enemy.getEnemyName() + "You appear to be readying for an attack! Brace for impact!");
 				nl(1);
-		}
+			}
 			// Determine damage
 			int enemyDamage = enemy.getAttackPoints() - captain.getDefensePoints();
 			// Sustain damage
@@ -837,49 +836,49 @@ public class GameController2 {
 			// Flee with Tactical Officer
 			if (captain.hasTacticalOfficer() == true) {
 				System.out.println("[F]lee");
-
-				// Declare String to hold player choice
-				listener();
-				// When player attacks
-				if (booleanMaker("Attack")) {
-					System.out.println("Roger that, Captain! Target acquired, firing lasers!");
-					nl(1);
-				}
-				// Determine damage
-				int captainDamage = captain.getAttackPoints() - enemy.getDefensePoints();
-				// Inflict damage
-				currentEnemyHP = enemy.getHealth() - captainDamage;
-				// Display damage dealt
-				System.out.println("Captain, our scanners report that " + enemy.getEnemyName() + " has sustained class "
-						+ captainDamage + " damage!");
-				nl(1);
-
-				// Determine if enemy is still alive
-				if (enemy.getHealth() <= 0) {
-					System.out.println("Sir, " + enemy.getEnemyName() + " has been neutralized");
-					nl(1);
-					enemyAlive = false;
-				} else {
-					// If enemy survives initiate Enemy on player Combat
-					System.out.println("Captain! " + enemy.getEnemyName() + "appears to be readying for an attack! Brace for impact!");
-					nl(1);
-				}
-				// Determine damage
-				enemyDamage = enemy.getAttackPoints() - captain.getDefensePoints();
-				// Sustain Damage
-				currentCaptainHP = currentCaptainHP - enemyDamage;
-				// Display damage dealt
-				System.out.println("Captain! Our sensors are showing us that we have sustained class " + enemyDamage
-						+ " damage to our hull!");
-				nl(1);
-				System.out.println("Sir, our shields are at level " + currentCaptainHP + "!");
-				nl(1);
-				// If player dies
-				if (currentCaptainHP <= 0) {
-					System.out.println("Oops! Too bad!");
-					captainAlive = false;
-				}
 			}
+			// Declare String to hold player choice
+			listener();
+			// When player attacks
+			if (booleanMaker("Attack")) {
+				System.out.println("Roger that, Captain! Target acquired, firing lasers!");
+				nl(1);
+			}
+			// Determine damage
+			int captainDamage = captain.getAttackPoints() - enemy.getDefensePoints();
+			// Inflict damage
+			currentEnemyHP = enemy.getHealth() - captainDamage;
+			// Display damage dealt
+			System.out.println("Captain, our scanners report that " + enemy.getEnemyName() + " has sustained class "
+					+ captainDamage + " damage!");
+			nl(1);
+
+			// Determine if enemy is still alive
+			if (enemy.getHealth() <= 0) {
+				System.out.println("Sir, " + enemy.getEnemyName() + " has been neutralized");
+				nl(1);
+				enemyAlive = false;
+			} else {
+				// If enemy survives initiate Enemy on player Combat
+				System.out.println("Captain! " + enemy.getEnemyName() + "appears to be readying for an attack! Brace for impact!");
+				nl(1);
+			}
+			// Determine damage
+			enemyDamage = enemy.getAttackPoints() - captain.getDefensePoints();
+			// Sustain Damage
+			currentCaptainHP = currentCaptainHP - enemyDamage;
+			// Display damage dealt
+			System.out.println("Captain! Our sensors are showing us that we have sustained class " + enemyDamage
+					+ " damage to our hull!");
+			nl(1);
+			System.out.println("Sir, our shields are at level " + currentCaptainHP + "!");
+			nl(1);
+			// If player dies
+			if (currentCaptainHP <= 0) {
+				System.out.println("Oops! Too bad!");
+				captainAlive = false;
+			}
+
 			// Handle Flee Command
 			else if (booleanMaker("Flee")) {
 				System.out.println("Roger that captain! Preparing for ludicrous Speed!");
@@ -894,5 +893,6 @@ public class GameController2 {
 			}
 		}
 	}
-	
+
+
 }
