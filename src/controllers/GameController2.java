@@ -723,7 +723,6 @@ public class GameController2 {
 	 * @author kenny
 	 */
 	private void listener() {
-		System.out.print("::");
 		userInput = removeNonWords(in.nextLine());
 	}
 
