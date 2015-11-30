@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
-
 import obstacles.*;
 import playerCharacter.Captain;
 import sun.font.TrueTypeFont;
@@ -801,7 +800,7 @@ public class GameController2 {
 				removeNonWords(currentPlanet.getPlanetName()).equals(removeNonWords("Prion")) ||
 				removeNonWords(currentPlanet.getPlanetName()).equals(removeNonWords("Shadowfax")) ||
 				removeNonWords(currentPlanet.getPlanetName()).equals(removeNonWords("TrES-2b")) ||
-				removeNonWords(currentPlanet.getPlanetName()).equals(removeNonWords("Nesqueron")));
+				removeNonWords(currentPlanet.getPlanetName()).equals(removeNonWords("Nasqueron")));
 	}
 
 	public void combatMenu() {
@@ -817,7 +816,7 @@ public class GameController2 {
 
 		if (enemy.getAmbushStatus() == 1) {
 			// If enemy survives initiate Enemy on player Combat
-			System.out.println("Captain! " + enemy.getEnemyName() + " appear to be readying for an attack! Brace for impact!");
+			System.out.println("Captain " + enemy.getEnemyName() + " appear to be readying for an attack! Brace for impact!");
 			hitCaptain(enemy);
 			isCaptainAlive();
 			nl(1);
