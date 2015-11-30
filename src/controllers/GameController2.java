@@ -803,7 +803,6 @@ public class GameController2 {
 	public void combatMenu() {
 		boolean hasNotFled = true;
 		Enemy enemy = new Enemy();
-
 		for (Enemy e : enemyArrayList) {
 			if (removeNonWords(e.getEnemyLocation()).equals(removeNonWords(currentPlanet.getPlanetName()))) {
 				enemy = e;
