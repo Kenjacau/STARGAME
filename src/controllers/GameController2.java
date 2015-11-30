@@ -19,7 +19,7 @@ The GameController class is the primary controller, featuring the interfaces, th
 */
 public class GameController2 {
 	// Static constants
-	private static final String SPACE_GAME_TITLE = "Super Elite: Space Adventure";
+	private static final String SPACE_GAME_TITLE = "Super Elite: Space Adventure!";
 	private static final String SAVE_FILE_EXTENSION = ".ser";
 	private static final String DESKTOP_PATH = System.getProperty("user.home") + "\\Desktop\\";
 
@@ -111,7 +111,7 @@ public class GameController2 {
 					System.out.println(crewName);
 				}
 
-				System.out.println("Let's get started Captain!");
+				System.out.println("Let's get started, Captain!");
 
 				if (captain.getCurrentPlanet() != null) {
 					planetMenu();
@@ -214,7 +214,7 @@ public class GameController2 {
 							selectedPlanet.setPlanetExplored(true);
 							System.out.println("Thank you, Captain!");
 							System.out.println("You have chosen to go to " + selectedPlanet.getPlanetName()
-									+ "! BOLDLY GOING NOW, CAPTAIN!!!");
+									+ "! BOLDLY GOING NOW, CAPTAIN!");
 							planetSelectionNotComplete = false;
 							captain.setPlanetCount(captain.getPlanetCount() + 1);
 							softSaveGame();
@@ -247,7 +247,7 @@ public class GameController2 {
 	 * @author kenny
 	 */
 	public void youWin() {
-		System.out.println("Congratulations! You win!");
+		System.out.println("Congratulations! YOU WIN!");
 		softSaveGame();
 		titleScreen();
 	}
@@ -259,7 +259,7 @@ public class GameController2 {
 	 * @author kenny
 	 */
 	public void youLose() {
-		System.out.println("Bleh! You Lose!");
+		System.out.println("Bleh! YOU LOSE!");
 		softSaveGame();
 		titleScreen();
 	}
@@ -344,8 +344,6 @@ public class GameController2 {
 			planetMenuSelection();
 		}
 
-
-
 	}
 
 	public void rockPaperScissor() {
@@ -372,7 +370,7 @@ public class GameController2 {
 					playerChoice = 3;
 					playerThinking = false;
 				} else {
-					System.out.println("Looks like they did not understand out choice");
+					System.out.println("Looks like they did not understand our choice.");
 				}
 			}
 
@@ -392,7 +390,7 @@ public class GameController2 {
 			System.out.println("The Enemy chose " + enemySign);
 
 			if (enemyChoice == playerChoice) {
-				System.out.println("Look Like a Tie...Try Again");
+				System.out.println("Looks like a tie... Try again.");
 			} else if ((playerChoice == 1 && enemyChoice == 3) || (playerChoice == 2 && enemyChoice == 1)
 					|| (playerChoice == 3 && enemyChoice == 2)) {
 				notTie = false;
@@ -445,7 +443,7 @@ public class GameController2 {
 			} else if (booleanMaker("Help")) {
 				helpMenu();
 			} else {
-				System.out.println("Not sure what you are saying Captain... Lets try that again");
+				System.out.println("Not sure what you are saying Captain. Let's try that again.");
 			}
 		}
 		isCaptainAlive();
@@ -458,7 +456,7 @@ public class GameController2 {
 		if (currentPlanet.getExploreFlag() == 0) {
 			if (removeNonWords(currentPlanet.getPlanetName()).equals(removeNonWords("Eos"))) {
 				System.out.println(currentPlanet.getExploreMessage());
-				System.out.println("The harsh climate cause some damage though");
+				System.out.println("The harsh climate caused some damage, though.");
 				captain.setHealthPoints(captain.getHealthPoints() - 25);
 				isCaptainAlive();
 				captain.getAllAttributes();
@@ -496,7 +494,7 @@ public class GameController2 {
 		while (puzzleNotComplete && captain.isAlive()) {
 			headerPrint();
 			nl(1);
-			System.out.println("Hmm...So what you think we should do Captain?");
+			System.out.println("Hmm, so what you think we should do Captain?");
 			if (currentPuzzle.getPuzzleChoices().length == 3) {
 				System.out.println(currentPuzzle.getPuzzleChoices()[0] + " | or | " + currentPuzzle.getPuzzleChoices()[1]
 						+ " | or | " + currentPuzzle.getPuzzleChoices()[2]);
@@ -504,7 +502,7 @@ public class GameController2 {
 				System.out.println(currentPuzzle.getPuzzleChoices()[0] + " | or | " + currentPuzzle.getPuzzleChoices()[1]);
 			}
 			if (captain.hasSurveyOfficer()) {
-				System.out.println("Captain we can have our Survey Officer inspect the area to give us a [H]int");
+				System.out.println("Captain, we can have our Survey Officer inspect the area to give us a [H]int.");
 			}
 
 			listener();
@@ -527,7 +525,7 @@ public class GameController2 {
 								captain.getCaptainCrew().add("Survey Officer");
 								System.out.println(captain.getCaptainCrew());
 							} else {
-								System.out.println("Sorry Captain we had to decline the offer since we already have a Survey Officer");
+								System.out.println("Sorry, Captain! We had to decline the offer since we already have a Survey Officer!");
 							}
 							puzzleNotComplete = false;
 						}
@@ -553,7 +551,7 @@ public class GameController2 {
 									captain.getCaptainCrew().add("Navigation Officer");
 									System.out.println(captain.getCaptainCrew());
 								} else {
-									System.out.println("Sorry Captain we had to throw them overboard since we already have a Navigation Officer");
+									System.out.println("Sorry, Captain! We had to throw them overboard since we already have a Navigation Officer!");
 								}
 							}
 							puzzleNotComplete = false;
@@ -588,7 +586,7 @@ public class GameController2 {
 						} else if (booleanMaker(currentPuzzle.getPuzzleChoices()[1])) {
 							System.out.println(currentPuzzle.getPuzzleChoiceMessages()[1]);
 							if (dice50.roll()) {
-								System.out.println("After wandering the forest for days, you return to your ship with half health");
+								System.out.println("After wandering the forest for days, you return to your ship with half health.");
 								captain.setHealthPoints(captain.getHealthPoints() / 2);
 								isCaptainAlive();
 								captain.getAllAttributes();
@@ -598,7 +596,7 @@ public class GameController2 {
 									captain.getCaptainCrew().add("Sentinel Bot");
 									System.out.println(captain.getCaptainCrew());
 								} else {
-									System.out.println("Sorry Captain. We scrapped the Sentinel Bot since we have one already");
+									System.out.println("Sorry, Captain! We scrapped the Sentinel Bot since we have one already!");
 								}
 
 							}
@@ -610,7 +608,7 @@ public class GameController2 {
 						if (booleanMaker(currentPuzzle.getPuzzleChoices()[0])) {
 							printChoice(currentPuzzle.getPuzzleChoices()[0]);
 							System.out.println(currentPuzzle.getPuzzleChoiceMessages()[0]);
-							System.out.println("Due to the harsh environment you have taken 30 damage");
+							System.out.println("Due to the harsh environment, you have taken 30 damage.");
 							captain.setHealthPoints(captain.getHealthPoints() - 30);
 							isCaptainAlive();
 							captain.getAllAttributes();
@@ -619,9 +617,9 @@ public class GameController2 {
 							printChoice(currentPuzzle.getPuzzleChoices()[1]);
 							System.out.println(currentPuzzle.getPuzzleChoiceMessages()[1]);
 							if (dice50.roll()) {
-								System.out.println("The door opens and you see a device capable of lifting the ship laying on the table");
+								System.out.println("The door opens, and you see a device capable of lifting the ship laying on the table.");
 							} else {
-								System.out.println("As door creeks open you notice glaring eyes on the other side...");
+								System.out.println("As door creeks open, you notice glaring eyes on the other side...");
 								combatMenu();
 							}
 							puzzleNotComplete = false;
@@ -638,12 +636,12 @@ public class GameController2 {
 							if (dice50.roll()) {
 								System.out.println("The Device just crumbles in your hands...");
 							} else {
-								System.out.println("Thanks to the Device, A Tactical Officer has found our ship and wishes to join our crew");
+								System.out.println("Thanks to the Device, a Tactical Officer has found our ship and wishes to join our crew.");
 								if (!captain.hasCrew("Tactical Officer")) {
 									captain.getCaptainCrew().add("Tactical Officer");
 									System.out.println(captain.getCaptainCrew());
 								} else {
-									System.out.println("Sorry Captain. We assigned the Tactical Officer to kitchen duty since we have one already");
+									System.out.println("Sorry, Captain! We assigned the Tactical Officer to kitchen duty since we have one already!");
 								}
 							}
 							puzzleNotComplete = false;
@@ -651,10 +649,8 @@ public class GameController2 {
 						break;
 
 					default:
-						System.out.println("Looks like there was some issues with the comm. Lets try this again");
+						System.out.println("Looks like there are some issues with the comm. Let's try this again.");
 						break;
-
-
 				}
 			}
 		}
@@ -669,7 +665,7 @@ public class GameController2 {
 	}
 
 	public void printChoice(String s) {
-		System.out.println("You chosen " + s);
+		System.out.println("You've chosen " + s);
 	}
 
 	private void helpMenu() {
@@ -738,7 +734,7 @@ public class GameController2 {
 
 		headerPrint();
 		System.out.println("Captain! You must select a crew! You can only choose three!");
-		System.out.println("Here is a list of currently unassigned crew:");
+		System.out.println("Here is a list of currently unassigned crew: ");
 		for (String s : captain.getFullCrewList()) {
 			System.out.println("		" + s + "?");
 		}
@@ -758,11 +754,10 @@ public class GameController2 {
 			captain.getAttributesFromCrew(); //Grant the attributes.
 
 		} else {
-			System.out.println("Something screwed up, captain! Let's do that again!");
+			System.out.println("Something screwed up, Captain! Let's do that again!");
 			crewSelectionMenu();
 		}
 	}
-
 
 	// Menu Making Helper Methods//
 
@@ -923,7 +918,7 @@ public class GameController2 {
 
 		if (enemy.getAmbushStatus() == 1) {
 			// If enemy survives initiate Enemy on player Combat
-			System.out.println("Captain! " + enemy.getName() + " appear to be readying for an attack! Brace for impact!");
+			System.out.println("Captain " + enemy.getName() + "appears to be readying for an attack! Brace for impact!");
 			hitCaptain(enemy);
 			isCaptainAlive();
 			nl(1);
@@ -946,11 +941,12 @@ public class GameController2 {
 					hitCaptain(enemy);
 				}
 			} else if (captain.hasTacticalOfficer() && booleanMaker("Flee")) {
-				System.out.println("Roger that captain! Preparing for ludicrous Speed!");
-				System.out.println("Ludicrous Speed reached! Sir we've gone Plaid.\n");
+				System.out.println("Roger that, Captain! Preparing for ludicrous speed!");
+				System.out.println("Ludicrous speed reached! Sir, we've gone plaid.");
+				nl(1);
 				hasNotFled = false;
 			} else {
-				System.out.println("There seems to be an issue with comms. Lets try that again.");
+				System.out.println("There seems to be an issue with comms. Let's try that again.");
 
 			}
 		}
@@ -958,7 +954,7 @@ public class GameController2 {
 		if (!captain.isAlive()) {
 			isCaptainAlive();
 		} else if (!enemy.isAlive()) {
-			System.out.println("Sir, " + enemy.getName() + " has been neutralized");
+			System.out.println("Sir, " + enemy.getName() + " has been neutralized.");
 			nl(1);
 		}
 	}
@@ -990,7 +986,7 @@ public class GameController2 {
 	 */
 	public void hitCaptain(Enemy enemy) {
 		int enemyDamage = enemy.getAttackPoints() - captain.getDefensePoints();
-		System.out.println("Captain! " + enemy.getName() + "appears to be readying for an attack! Brace for impact!");
+		System.out.println("Captain " + enemy.getName() + "appears to be readying for an attack! Brace for impact!");
 		nl(1);
 
 		captain.setHealthPoints(captain.getHealthPoints() - enemyDamage);
@@ -998,7 +994,7 @@ public class GameController2 {
 		System.out.println("Captain! Our sensors are showing us that we have sustained class " + enemyDamage
 				+ " damage to our hull!");
 		if (captain.getHealthPoints() <= 0) {
-			System.out.println("Captain...We are not looking to good...");
+			System.out.println("Captain... U-uh... W-we are not l-looking to g..oo..d...");
 		} else {
 			System.out.println("Sir, our shields are at level " + captain.getHealthPoints() + "!");
 		}
