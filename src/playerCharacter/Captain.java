@@ -68,31 +68,53 @@ public class Captain extends Persona {
 		return fullCrewList;
 	}
 
+
+	/**
+	 * Method:confirmList()
+	 * Description:
+	 * author: Kenny
+	 */
+	public boolean confirmList(ArrayList<String> selectedCrew) {
+		int count = 0;
+		ArrayList<String> cc = getFullCrewList();
+		for (String sC : selectedCrew) {
+			for (String s : cc) {
+				if (removeNonWords(sC).equals(removeNonWords(s))) {
+					count++;
+				}
+			}
+		}
+		return count == 3;
+	}
+
 	/**
 	 * confirmCrew
 	 * Gets a full list of all possible crew choices.
 	 *
 	 * @param selectedCrew An ArrayList of selected crewmenbers.
 	 * @return Boolean flag for correct crew list.
-	 * @author jcbrough
+	 * @author jcbrough, Kenny
 	 */
 	public boolean confirmCrew(ArrayList<String> selectedCrew) {
+		boolean confirmed = true;
 		headerPrint();
-		System.out.println("Captain! Is your crew selection correct?");
-		for (String s : selectedCrew) {
-			System.out.println("		" + s);
-		}
-		System.out.println("\n");
-		System.out.println("Please enter [y]es or [n]o!");
-
-		@SuppressWarnings("resource")
-		Scanner in = new Scanner(System.in);
-		String response = in.nextLine();
-		if (response.toLowerCase().equals("y")) {
-			return true;
+		if (!confirmList(selectedCrew)) {
+			confirmed = false;
 		} else {
-			return false;
+			System.out.println("Captain! Is your crew selection correct?");
+			for (String s : selectedCrew) {
+				System.out.println("		" + s);
+			}
+			System.out.println("\n");
+			System.out.println("Please enter [y]es or [n]o!");
+
+			@SuppressWarnings("resource") Scanner in = new Scanner(System.in);
+			String response = in.nextLine();
+			if (!response.toLowerCase().equals("y")) {
+				confirmed = false;
+			}
 		}
+		return confirmed;
 	}
 	
 //	public boolean confirmCrew(ArrayList<String> selectedCrew) {

@@ -217,8 +217,7 @@ public class PlanetMaker {
 				"player " +
 				"is hailed and receives a " + "message: You have entered restricted space. You will be escorted to " +
 				"the" +
-				" near-est warp entry point.", "Nothing happens.", "Nothing happens.", "Nothing happens.", "Nothing "
-				+ "happens.", "Nothing happens.", "Nothing happens.", "Nothing happens.", "Nothing happens.", "Nothing " + "happens."};
+				" near-est warp entry point.", "Nothing happens.", "Nothing happens.", "Nothing happens.", "Nothing " + "happens.", "Nothing happens.", "Nothing happens.", "Nothing happens.", "Nothing happens.", "Nothing " + "happens."};
 	}
 
 

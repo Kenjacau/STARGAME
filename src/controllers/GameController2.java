@@ -307,6 +307,11 @@ public class GameController2 {
 		return randomPlanets;
 	}
 
+	/**
+	 * Method: PlanetMenu()
+	 * Description:
+	 * author: Kenny
+	 */
 	public void planetMenu() {
 		softSaveGame();
 		headerPrint();
@@ -329,6 +334,11 @@ public class GameController2 {
 		}
 	}
 
+	/**
+	 * Method:specialPlanetMenu()
+	 * Description:
+	 * author: Kenny
+	 */
 	public void specialPlanetMenu() {
 		Dice dice25 = new Dice(25);
 		if (currentPlanet.getPlanetName().equals("Theta-10c")) {
@@ -346,6 +356,11 @@ public class GameController2 {
 
 	}
 
+	/**
+	 * Method:rockPaperScissor()
+	 * Description:
+	 * author: Kenny
+	 */
 	public void rockPaperScissor() {
 		boolean notTie = true;
 		boolean playerThinking = true;
@@ -405,6 +420,11 @@ public class GameController2 {
 		}
 	}
 
+	/**
+	 * Method:planetMenuSelection()
+	 * Description:
+	 * author: Kenny
+	 */
 	public void planetMenuSelection() {
 		final int REPAIR_HEALTH_AMOUNT = 25;
 		boolean planetMenuNotFinished = true;
@@ -416,10 +436,16 @@ public class GameController2 {
 		while (planetMenuNotFinished && captain.isAlive()) {
 			headerPrint();
 			System.out.println("Here are your options Captain");
-			System.out.print("| [S]can | [E]xplore | [L]eave |");
-			if (captain.hasEngineerOfficer()) {
-				System.out.println(" [R]epair |");
+			if (notScanned) {
+				System.out.print("| [S]can ");
 			}
+			if (notExplored) {
+				System.out.print("| [E]xplore ");
+			}
+			if (captain.hasEngineerOfficer() && notRepaired) {
+				System.out.print("| [R]epair ");
+			}
+			System.out.println("| [L]eave |");
 			wWJD();
 			listener();
 			if (booleanMaker("Scan") && notScanned) {
@@ -430,14 +456,19 @@ public class GameController2 {
 				exploreMenu();
 				notExplored = false;
 				softSaveGame();
-			} else if (booleanMaker("Repair") && notRepaired && !(captain.getHealthPoints() > 100)) {
-				captain.setHealthPoints(captain.getHealthPoints() + REPAIR_HEALTH_AMOUNT);
+			} else if (booleanMaker("Repair") && notRepaired) {
+				if (captain.getHealthPoints() + REPAIR_HEALTH_AMOUNT > 99) {
+					captain.setHealthPoints(100);
+				} else {
+					captain.setHealthPoints(captain.getHealthPoints() + REPAIR_HEALTH_AMOUNT);
+				}
 				captain.getAllAttributes();
 				notRepaired = false;
 				softSaveGame();
 			} else if (booleanMaker("Leave")) {
 				planetMenuNotFinished = false;
 				softSaveGame();
+
 				planetSelectionMenu();
 
 			} else if (booleanMaker("Help")) {
@@ -449,6 +480,10 @@ public class GameController2 {
 		isCaptainAlive();
 	}
 
+	/**
+	 * Method:
+	 * Description:
+	 */
 	public void exploreMenu() {
 		Dice dwellerEncounter = new Dice(25);
 		Dice invisibleEncounter = new Dice(50);
@@ -482,6 +517,11 @@ public class GameController2 {
 
 	}
 
+	/**
+	 * Method:puzzleMenu()
+	 * Description:
+	 * Author: Kenny
+	 */
 	public void puzzleMenu() {
 		Dice dice50 = new Dice(50);
 		boolean puzzleNotComplete = true;
@@ -569,6 +609,8 @@ public class GameController2 {
 							System.out.println(currentPuzzle.getPuzzleChoiceMessages()[1]);
 							captain.setPlanetCount(0);
 							puzzleNotComplete = false;
+							planetSelectionMenu();
+
 
 						} else if (booleanMaker(currentPuzzle.getPuzzleChoices()[2])) {
 							printChoice(currentPuzzle.getPuzzleChoices()[2]);
@@ -657,6 +699,11 @@ public class GameController2 {
 		isCaptainAlive();
 	}
 
+	/**
+	 * Method:isCaptainAlive()
+	 * Description:
+	 * Author: Kenny
+	 */
 	public void isCaptainAlive() {
 		if (captain.getHealthPoints() <= 0) {
 			System.out.println("YOU HAVE DIED...");
@@ -664,6 +711,11 @@ public class GameController2 {
 		}
 	}
 
+	/**
+	 * Method:printChoice()
+	 * Description:
+	 * Author: Kenny
+	 */
 	public void printChoice(String s) {
 		System.out.println("You've chosen " + s);
 	}
@@ -729,6 +781,11 @@ public class GameController2 {
 		}
 	}
 
+	/**
+	 * Method:crewSelectionMenu()
+	 * Author:Kenny
+	 * Description:
+	 */
 	private void crewSelectionMenu() {
 		ArrayList<String> selectedCrew = new ArrayList<String>();
 
