@@ -1,7 +1,5 @@
 package obstacles;
 
-import controllers.Combat;
-import playerCharacter.Captain;
 import playerCharacter.Persona;
 
 /*
@@ -20,7 +18,6 @@ public class Enemy extends Persona
 	private String enemyDescription;
 	private String enemyLocation;
 
-	//TODO: NOTE FROM KENNY... THIS CLASS SHOULD EXTEND PERSONA
 	//TODO: Write this class. Stubbed for inclusion into the controllers.GameController class.
 	//Need Enemy constructor that takes in String of planetName.
 	public Enemy(String newEnemyList, int newAmbushStatus, int newAttackPoints,
@@ -40,30 +37,6 @@ public class Enemy extends Persona
 	public Enemy() {
 
 	}
-
-	/**
-	 * CONSTRUCTOR FOR ENEMIES with super()
-	 * @param enemyName
-	 * @param enemyDescription
-	 * @param enemyLocation
-	 * @param ambushStatus
-	 * 
-	 * CREATED: 11/3/15
-	 * LAST EDITED ON: 11/3/15  BY: Travis K.
-	 */
-	//	public Enemy(String enemyDescription, String enemyLocation,
-	//			int ambushStatus)
-	//	{
-	//		super();
-	//
-	//		int healthPoints = getHealthPoints();
-	//		int attackPoints = getAttackPoints();
-	//		int defensePoints = getDefensePoints();
-	//
-	//		this.enemyDescription = enemyDescription;
-	//		this.enemyLocation = enemyLocation;
-	//		this.ambushStatus = ambushStatus;
-	//	}
 
 	/**
 	 * @return the enemy description

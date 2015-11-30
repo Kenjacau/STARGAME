@@ -20,7 +20,6 @@ public class Captain extends Persona {
 	private static final int SENTINEL_BOT = 30;
 	private static final int SECURITY_OFFICER = 40;
 	private ArrayList<String> captainCrew = new ArrayList<String>();
-	private ArrayList<Planet> planetsVisited = new ArrayList<Planet>();
 	private Planet currentPlanet = null;
 	private int planetCount = 0;
 
@@ -247,31 +246,6 @@ public class Captain extends Persona {
 	 */
 	public String removeNonWords(String string) {
 		return (string.replaceAll("[^\\p{L}\\p{Nd}]+", "")).toLowerCase();
-	}
-
-	/**
-	 * @return the palnetsVisited
-	 */
-	public ArrayList<Planet> getPlanetsVisited() {
-		return planetsVisited;
-	}
-
-	/**
-	 * @param planetsVisited the planetsVisited to set
-	 */
-	public void setPlanetsVisited(ArrayList<Planet> planetsVisited) {
-		this.planetsVisited = planetsVisited;
-	}
-
-	/**
-	 * visitedPlanetCount
-	 * "Getter" for the number of planets the captain has visited.
-	 *
-	 * @return int value of number of planets the captain has visited.
-	 * @author jcbrough
-	 */
-	public int getVisitedPlanetCount() {
-		return this.getPlanetsVisited().size();
 	}
 
 	/**

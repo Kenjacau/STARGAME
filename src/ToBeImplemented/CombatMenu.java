@@ -1,9 +1,6 @@
 package ToBeImplemented;
 
 import java.util.Scanner;
-import controllers.Combat;
-import obstacles.Enemy;
-import playerCharacter.Captain;
 
 /**
  * 
