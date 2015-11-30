@@ -240,12 +240,24 @@ public class GameController2 {
 
 	}
 
+	/**
+	 * youWin() - Displays player's victory
+	 *
+	 * @return void
+	 * @author kenny
+	 */
 	public void youWin() {
 		System.out.println("Congratulations! You win!");
 		softSaveGame();
 		titleScreen();
 	}
 
+	/**
+	 * youLose() - Displays player's loss
+	 *
+	 * @return void
+	 * @author kenny
+	 */
 	public void youLose() {
 		System.out.println("Bleh! You Lose!");
 		softSaveGame();
