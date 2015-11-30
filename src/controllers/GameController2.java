@@ -423,9 +423,11 @@ public class GameController2 {
 			} else if ((playerChoice == 1 && enemyChoice == 3) || (playerChoice == 2 && enemyChoice == 1)
 					|| (playerChoice == 3 && enemyChoice == 2)) {
 				winCount++;
+				playerThinking = true;
 				System.out.println("");
 			} else {
 				loseCount++;
+				playerThinking = true;
 				System.out.println();
 
 			}
