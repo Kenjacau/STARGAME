@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="511a37c4-096f-4213-83cd-204fe18f5250" name="Default" comment="UPDATE: 11/29/2015 Kenny Cauthen&#10;Fixed Combat. Dweller Encounter should work now. Only can Explore and Scan Once. will make the option change accordingly.">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/controllers/GameController2.java" afterPath="$PROJECT_DIR$/src/controllers/GameController2.java" />
     </list>
     <ignored path="ITEC3860Fall15SpaceGame.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -1063,7 +1062,7 @@
       <workItem from="1448777876499" duration="1938000" />
       <workItem from="1448779868030" duration="742000" />
       <workItem from="1448780629433" duration="100000" />
-      <workItem from="1448808096909" duration="27395000" />
+      <workItem from="1448808096909" duration="27404000" />
     </task>
     <task id="LOCAL-00001" summary="Commiting after changes with IntelliJ">
       <created>1446516332691</created>
@@ -1173,11 +1172,17 @@
       <option name="project" value="LOCAL" />
       <updated>1448842091645</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="UPDATE: 11/29/2015 Kenny Cauthen&#10;Fixed Combat. Dweller Encounter should work now. Only can Explore and Scan Once. will make the option change accordingly.">
+      <created>1448842746113</created>
+      <option name="number" value="00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1448842746113</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="130655000" />
+    <option name="totallyTimeSpent" value="130664000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-80" y="6" width="1932" height="999" extended-state="0" />
