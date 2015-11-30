@@ -296,10 +296,14 @@ public class GameController2 {
 		else if (currentPlanet.getPlanetFlag() == 1) {
 			combatMenu();
 			planetMenuSelection();
-
+			//All the other Planets with special conditions
 		} else {
-			//specialPlanetMenu();
+			specialPlanetMenu();
 		}
+	}
+
+	public void specialPlanetMenu() {
+
 	}
 
 	public void planetMenuSelection() {
@@ -343,12 +347,19 @@ public class GameController2 {
 	}
 
 	public void exploreMenu() {
+		Dice dwellerEncounter = new Dice(25);
 		if (currentPlanet.getExploreFlag() == 0) {
 			System.out.println(currentPlanet.getExploreMessage());
 
 		} else if (currentPlanet.getExploreFlag() == 1) {
 			System.out.println(currentPlanet.getExploreMessage());
-			combatMenu();
+			if (dwellerEncounter()) {
+				if (dwellerEncounter.roll()) {
+					combatMenu();
+				}
+			} else {
+				combatMenu();
+			}
 
 		} else if (currentPlanet.getExploreFlag() == 2) {
 			System.out.println(currentPlanet.getExploreMessage());
@@ -773,6 +784,14 @@ public class GameController2 {
 	 * @author cdeluna, tkeating
 	 *
 	 */
+
+	public boolean dwellerEncounter() {
+		return (removeNonWords(currentPlanet.getPlanetName()).equals(removeNonWords("Jor")) ||
+				removeNonWords(currentPlanet.getPlanetName()).equals(removeNonWords("Prion")) ||
+				removeNonWords(currentPlanet.getPlanetName()).equals(removeNonWords("Shadowfax")) ||
+				removeNonWords(currentPlanet.getPlanetName()).equals(removeNonWords("TrES-2b")) ||
+				removeNonWords(currentPlanet.getPlanetName()).equals(removeNonWords("Nesqueron")));
+	}
 	public void combatMenu() {
 		boolean captainAlive = true;
 		boolean enemyAlive = true;
@@ -782,11 +801,14 @@ public class GameController2 {
 		for (Enemy e : enemyArrayList) {
 			if (removeNonWords(e.getEnemyLocation()).equals(removeNonWords(currentPlanet.getPlanetName()))) {
 				enemy = e;
+			} else if (e.getEnemyName().equals("Gas Giant Dwellers") && dwellerEncounter()) {
+				enemy = e;
 			}
 		}
 
 		int currentEnemyHP = enemy.getHealth();
 		int currentCaptainHP = captain.getHealthPoints();
+
 
 		while (captainAlive == true && enemyAlive == true && hasFled == false) {
 			if (enemy.getAmbushStatus() == 1) {
@@ -815,50 +837,51 @@ public class GameController2 {
 			// Flee with Tactical Officer
 			if (captain.hasTacticalOfficer() == true) {
 				System.out.println("[F]lee");
-			}
-			// Declare String to hold player choice
-			String playerAction = in.nextLine();
-			// When player attacks
-			if (playerAction.equalsIgnoreCase("Attack")) {
-				System.out.println("Roger that, Captain! Target acquired, firing lasers!");
+
+				// Declare String to hold player choice
+				listener();
+				// When player attacks
+				if (booleanMaker("Attack")) {
+					System.out.println("Roger that, Captain! Target acquired, firing lasers!");
+					nl(1);
+				}
+				// Determine damage
+				int captainDamage = captain.getAttackPoints() - enemy.getDefensePoints();
+				// Inflict damage
+				currentEnemyHP = enemy.getHealth() - captainDamage;
+				// Display damage dealt
+				System.out.println("Captain, our scanners report that " + enemy.getEnemyName() + " has sustained class "
+						+ captainDamage + " damage!");
 				nl(1);
-			}
-			// Determine damage
-			int captainDamage = captain.getAttackPoints() - enemy.getDefensePoints();
-			// Inflict damage 
-			currentEnemyHP = enemy.getHealth() - captainDamage;
-			// Display damage dealt
-			System.out.println("Captain, our scanners report that " + enemy.getEnemyName() + " has sustained class "
-					+ captainDamage + " damage!");
-			nl(1);
-			
-			// Determine if enemy is still alive
-			if (enemy.getHealth() <= 0) {
-				System.out.println("Sir, " + enemy.getEnemyName() + " has been neutralized");
+
+				// Determine if enemy is still alive
+				if (enemy.getHealth() <= 0) {
+					System.out.println("Sir, " + enemy.getEnemyName() + " has been neutralized");
+					nl(1);
+					enemyAlive = false;
+				} else {
+					// If enemy survives initiate Enemy on player Combat
+					System.out.println("Captain! " + enemy.getEnemyName() + "appears to be readying for an attack! Brace for impact!");
+					nl(1);
+				}
+				// Determine damage
+				enemyDamage = enemy.getAttackPoints() - captain.getDefensePoints();
+				// Sustain Damage
+				currentCaptainHP = currentCaptainHP - enemyDamage;
+				// Display damage dealt
+				System.out.println("Captain! Our sensors are showing us that we have sustained class " + enemyDamage
+						+ " damage to our hull!");
 				nl(1);
-				enemyAlive = false;
-			} else {
-				// If enemy survives initiate Enemy on player Combat
-				System.out.println("Captain! " + enemy.getEnemyName() + "appears to be readying for an attack! Brace for impact!");
+				System.out.println("Sir, our shields are at level " + currentCaptainHP + "!");
 				nl(1);
-			}
-			// Determine damage
-			enemyDamage = enemy.getAttackPoints() - captain.getDefensePoints();
-			// Sustain Damage
-			currentCaptainHP = currentCaptainHP - enemyDamage;
-			// Display damage dealt
-			System.out.println("Captain! Our sensors are showing us that we have sustained class " + enemyDamage
-					+ " damage to our hull!");
-			nl(1);
-			System.out.println("Sir, our shields are at level " + currentCaptainHP + "!");
-			nl(1);
-			// If player dies
-			if (currentCaptainHP <= 0) {
-				System.out.println("Oops! Too bad!");
-				captainAlive = false;
+				// If player dies
+				if (currentCaptainHP <= 0) {
+					System.out.println("Oops! Too bad!");
+					captainAlive = false;
+				}
 			}
 			// Handle Flee Command
-			else if (playerAction.equalsIgnoreCase("Flee")) {
+			else if (booleanMaker("Flee")) {
 				System.out.println("Roger that captain! Preparing for ludicrous Speed!");
 				System.out.println("Ludicrous Speed reached! Sir we've gone Plaid.\n");
 				hasFled = true;
