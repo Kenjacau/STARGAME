@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
-
 import obstacles.*;
 import playerCharacter.Captain;
 import sun.font.TrueTypeFont;
@@ -55,12 +54,12 @@ public class GameController2 {
 		// Menu to get path for loadGame should be done below.
 		// TODO: method saveGame
 		// TODO: method loadGame
-
-		// ALL Menu Methods
 	}
+	
+	// ALL Menu Methods
 
 	/**
-	 * titleScreen() Displays dat title screen.
+	 * titleScreen() - Displays title screen
 	 *
 	 * @return void
 	 * @author kenny
@@ -141,7 +140,7 @@ public class GameController2 {
 	}
 
 	/**
-	 * captainNameMenu displays a menu for setting the Captain's name.
+	 * captainNameMenu() - Displays a menu for setting the Captain's name.
 	 *
 	 * @author jcbrough
 	 */
@@ -153,9 +152,10 @@ public class GameController2 {
 	}
 
 	/**
-	 * Method: loadThisGameElements Description: Pulls saved planetArrayList and
+	 * loadThisGameElements() - Pulls saved planetArrayList and
 	 * captain object from game object to current Game Controllers Attributes.
-	 * Author: Kenny
+	 * 
+	 * @author: kenny
 	 */
 	private void loadThisGameElements(Game game) {
 		captain = game.getCaptain();
@@ -167,8 +167,9 @@ public class GameController2 {
 	}
 
 	/**
-	 * Method:TODO
-	 * Description:
+	 * softSaveGame() - Soft saves captain and planet ArrayList
+	 * 
+	 * @author kenny
 	 */
 	public void softSaveGame() {
 		thisGame.setCaptain(captain);
@@ -176,7 +177,7 @@ public class GameController2 {
 	}
 
 	/**
-	 * planetSelectionMenu() Displays the planet selection menu.
+	 * planetSelectionMenu() - Displays the planet selection menu.
 	 *
 	 * @return void
 	 * @author jcbrough, kenny
@@ -240,13 +241,13 @@ public class GameController2 {
 	}
 
 	public void youWin() {
-		System.out.println("YOU WIN!");
+		System.out.println("Congratulations! You win!");
 		softSaveGame();
 		titleScreen();
 	}
 
 	public void youLose() {
-		System.out.println("You LOSE!");
+		System.out.println("Bleh! You Lose!");
 		softSaveGame();
 		titleScreen();
 	}
@@ -875,12 +876,11 @@ public class GameController2 {
 	}
 
 	/**
-	 * combatMenu() - Displays the combat menu
+	 * dwellerEncounter() - Encounters an enemy in specified planets
 	 *
-	 * @return void
-	 * @author cdeluna, tkeating
+	 * @return boolean if currentPlanet matches planetName
+	 * @author kenny
 	 */
-
 	public boolean dwellerEncounter() {
 		return (removeNonWords(currentPlanet.getPlanetName()).equals(removeNonWords("Jor")) ||
 				removeNonWords(currentPlanet.getPlanetName()).equals(removeNonWords("Prion")) ||
@@ -889,6 +889,12 @@ public class GameController2 {
 				removeNonWords(currentPlanet.getPlanetName()).equals(removeNonWords("Nasqueron")));
 	}
 
+	/**
+	 * combatMenu() - Displays the combat menu
+	 *
+	 * @return void
+	 * @author tkeating, cdeluna, kenny
+	 */
 	public void combatMenu() {
 		boolean hasNotFled = true;
 		Enemy enemy = new Enemy();
@@ -944,8 +950,13 @@ public class GameController2 {
 			nl(1);
 		}
 	}
-
-
+	
+	/**
+	 * hitEnemy() - Captain attacks enemy
+	 *
+	 * @return void
+	 * @author tkeating, cdeluna, kenny
+	 */
 	public void hitEnemy(Enemy enemy) {
 		int captainDamage = captain.getAttackPoints() - enemy.getDefensePoints();
 
@@ -957,6 +968,12 @@ public class GameController2 {
 
 	}
 
+	/**
+	 * hitCaptain() - Enemy attacks captain
+	 *
+	 * @return void
+	 * @author tkeating, cdeluna, kenny
+	 */
 	public void hitCaptain(Enemy enemy) {
 		int enemyDamage = enemy.getAttackPoints() - captain.getDefensePoints();
 		System.out.println("Captain! " + enemy.getName() + "appears to be readying for an attack! Brace for impact!");
@@ -968,6 +985,5 @@ public class GameController2 {
 				+ " damage to our hull!");
 		System.out.println("Sir, our shields are at level " + captain.getHealthPoints() + "!");
 	}
-
 
 }
