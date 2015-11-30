@@ -1,5 +1,6 @@
 package playerCharacter;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Scanner;
 import controllers.GameController2;
@@ -13,7 +14,7 @@ import obstacles.Planet;
  * - Version: 0.0.9
  * - Date: 2015-11-05
  **/
-public class Captain extends Persona {
+public class Captain extends Persona implements Serializable {
 	private static final int HEALTH_POINTS = 100;
 	private static final int ATTACK_POINTS = 25;
 	private static final int DEFENSE_POINTS = 0;

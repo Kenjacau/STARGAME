@@ -1,5 +1,6 @@
 package obstacles;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
@@ -14,7 +15,7 @@ import java.util.concurrent.ThreadLocalRandom;
  *          Course: ITEC 3860 Fall 2015
  *          Assignment: Final Project
  */
-public class Planet {
+public class Planet implements Serializable {
 
 	//TODO: Write this class. Stubbed for inclusion into the controllers.GameController class.
 

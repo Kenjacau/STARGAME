@@ -1,5 +1,7 @@
 package playerCharacter;
 
+import java.io.Serializable;
+
 /**
  * Class: Persona 
  * Purpose: The Persona class stores attributes, which gets and sets stat points necessary for combat. 
@@ -8,7 +10,7 @@ package playerCharacter;
  * - Version: 0.0.8
  * - Date: 2015-11-05
  **/
-public abstract class Persona {
+public abstract class Persona implements Serializable {
 	private String name = "";
 	private boolean alive = true;
 	private int healthPoints;

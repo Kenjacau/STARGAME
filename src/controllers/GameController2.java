@@ -247,6 +247,13 @@ public class GameController2 {
 	 * @author kenny
 	 */
 	public void youWin() {
+		System.out.println(" __     ______  _    _  __          _______ _   _ \n" +
+				" \\ \\   / / __ \\| |  | | \\ \\        / /_   _| \\ | |\n" +
+				"  \\ \\_/ / |  | | |  | |  \\ \\  /\\  / /  | | |  \\| |\n" +
+				"   \\   /| |  | | |  | |   \\ \\/  \\/ /   | | | . ` |\n" +
+				"    | | | |__| | |__| |    \\  /\\  /   _| |_| |\\  |\n" +
+				"    |_|  \\____/ \\____/      \\/  \\/   |_____|_| \\_|\n" +
+				"                                                 ");
 		System.out.println("Congratulations! YOU WIN!");
 		softSaveGame();
 		titleScreen();
@@ -259,6 +266,12 @@ public class GameController2 {
 	 * @author kenny
 	 */
 	public void youLose() {
+		System.out.println(" __     ______  _    _   _      ____   _____ ______ _ \n" +
+				" \\ \\   / / __ \\| |  | | | |    / __ \\ / ____|  ____| |\n" +
+				"  \\ \\_/ / |  | | |  | | | |   | |  | | (___ | |__  | |\n" +
+				"   \\   /| |  | | |  | | | |   | |  | |\\___ \\|  __| | |\n" +
+				"    | | | |__| | |__| | | |___| |__| |____) | |____|_|\n" +
+				"    |_|  \\____/ \\____/  |______\\____/|_____/|______(_)");
 		System.out.println("Bleh! YOU LOSE!");
 		softSaveGame();
 		titleScreen();
@@ -367,10 +380,11 @@ public class GameController2 {
 		int playerChoice = 0;
 		int enemyChoice = 0;
 		String enemySign = "";
-
+		int winCount = 0;
+		int loseCount = 0;
 		System.out.println("Seems like we have no choice...");
 
-		while (notTie) {
+		while (winCount < 2 && loseCount < 2) {
 			while (playerThinking) {
 				nl(1);
 				System.out.println(" Rock, Paper, or Scissor");
@@ -408,16 +422,20 @@ public class GameController2 {
 				System.out.println("Looks like a tie... Try again.");
 			} else if ((playerChoice == 1 && enemyChoice == 3) || (playerChoice == 2 && enemyChoice == 1)
 					|| (playerChoice == 3 && enemyChoice == 2)) {
-				notTie = false;
-				youWin();
+				winCount++;
+				System.out.println("");
 			} else {
-				notTie = false;
-				youLose();
+				loseCount++;
+				System.out.println();
 
 			}
-
-
 		}
+		if (winCount == 2) {
+			youWin();
+		} else {
+			youLose();
+		}
+
 	}
 
 	/**
