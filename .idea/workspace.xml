@@ -4,8 +4,10 @@
     <bookmark url="file://$PROJECT_DIR$/src/obstacles/PlanetMaker.java" line="15" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="511a37c4-096f-4213-83cd-204fe18f5250" name="Default" comment="UPDATE: 11/29/2015 Kenny Cauthen&#10;Special Menus done. . . .">
+    <list default="true" id="511a37c4-096f-4213-83cd-204fe18f5250" name="Default" comment="UPDATE: 11/29/2015 Kenny Cauthen&#10;Squishing Bugs..">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/codeStyleSettings.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/obstacles/EnemyMaker.java" afterPath="$PROJECT_DIR$/src/obstacles/EnemyMaker.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/obstacles/PlanetMaker.java" afterPath="$PROJECT_DIR$/src/obstacles/PlanetMaker.java" />
     </list>
     <ignored path="ITEC3860Fall15SpaceGame.iws" />
@@ -111,8 +113,8 @@
       <file leaf-file-name="PlanetMaker.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/obstacles/PlanetMaker.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.4258675">
-              <caret line="37" column="113" selection-start-line="37" selection-start-column="113" selection-end-line="37" selection-end-column="113" />
+            <state vertical-scroll-proportion="3.9747634">
+              <caret line="183" column="19" selection-start-line="183" selection-start-column="19" selection-end-line="183" selection-end-column="19" />
               <folding />
             </state>
           </provider>
@@ -149,10 +151,10 @@
         <entry file="file://$PROJECT_DIR$/src/obstacles/EnemyMaker.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="133" column="46" selection-start-line="133" selection-start-column="46" selection-end-line="133" selection-end-column="46" />
+              <caret line="52" column="75" selection-start-line="51" selection-start-column="13" selection-end-line="52" selection-end-column="75" />
               <folding>
-                <element signature="e#5675#5676#0" expanded="true" />
-                <element signature="e#5703#5704#0" expanded="true" />
+                <element signature="e#5668#5669#0" expanded="true" />
+                <element signature="e#5696#5697#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -209,10 +211,10 @@
         <option value="$PROJECT_DIR$/src/testers/PuzzleClassTester.java" />
         <option value="$PROJECT_DIR$/src/obstacles/PuzzleMaker.java" />
         <option value="$PROJECT_DIR$/src/playerCharacter/Persona.java" />
-        <option value="$PROJECT_DIR$/src/obstacles/EnemyMaker.java" />
         <option value="$PROJECT_DIR$/src/obstacles/Enemy.java" />
         <option value="$PROJECT_DIR$/src/playerCharacter/Captain.java" />
         <option value="$PROJECT_DIR$/src/controllers/GameController2.java" />
+        <option value="$PROJECT_DIR$/src/obstacles/EnemyMaker.java" />
         <option value="$PROJECT_DIR$/src/obstacles/PlanetMaker.java" />
       </list>
     </option>
@@ -398,7 +400,7 @@
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="fileTemplates" />
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.Java" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -1058,7 +1060,7 @@
       <workItem from="1448777876499" duration="1938000" />
       <workItem from="1448779868030" duration="742000" />
       <workItem from="1448780629433" duration="100000" />
-      <workItem from="1448808096909" duration="35268000" />
+      <workItem from="1448808096909" duration="36968000" />
     </task>
     <task id="LOCAL-00001" summary="Commiting after changes with IntelliJ">
       <created>1446516332691</created>
@@ -1216,11 +1218,17 @@
       <option name="project" value="LOCAL" />
       <updated>1448850132919</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="UPDATE: 11/29/2015 Kenny Cauthen&#10;Squishing Bugs..">
+      <created>1448850642880</created>
+      <option name="number" value="00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1448850642880</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="138528000" />
+    <option name="totallyTimeSpent" value="140228000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="27" y="7" width="1932" height="999" extended-state="0" />
@@ -1307,7 +1315,8 @@
     <MESSAGE value="UPDATE: 11/29/2015 Kenny Cauthen&#10;Fixed Combat." />
     <MESSAGE value="UPDATE: 11/29/2015 Kenny Cauthen&#10;Fo Real Fixed Combat." />
     <MESSAGE value="UPDATE: 11/29/2015 Kenny Cauthen&#10;Special Menus done. . . ." />
-    <option name="LAST_COMMIT_MESSAGE" value="UPDATE: 11/29/2015 Kenny Cauthen&#10;Special Menus done. . . ." />
+    <MESSAGE value="UPDATE: 11/29/2015 Kenny Cauthen&#10;Squishing Bugs.." />
+    <option name="LAST_COMMIT_MESSAGE" value="UPDATE: 11/29/2015 Kenny Cauthen&#10;Squishing Bugs.." />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
@@ -1710,21 +1719,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/obstacles/Enemy.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="33" column="35" selection-start-line="33" selection-start-column="35" selection-end-line="33" selection-end-column="35" />
-          <folding>
-            <element signature="e#1780#1781#0" expanded="true" />
-            <element signature="e#1810#1811#0" expanded="true" />
-            <element signature="e#1889#1890#0" expanded="true" />
-            <element signature="e#1916#1917#0" expanded="true" />
-            <element signature="e#2186#2187#0" expanded="true" />
-            <element signature="e#2212#2213#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/playerCharacter/Persona.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1752,17 +1746,6 @@
             <element signature="e#7329#7330#0" expanded="true" />
             <element signature="e#7377#7378#0" expanded="true" />
             <element signature="e#7414#7415#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/obstacles/EnemyMaker.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="133" column="46" selection-start-line="133" selection-start-column="46" selection-end-line="133" selection-end-column="46" />
-          <folding>
-            <element signature="e#5675#5676#0" expanded="true" />
-            <element signature="e#5703#5704#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1800,10 +1783,36 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/obstacles/Enemy.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="33" column="35" selection-start-line="33" selection-start-column="35" selection-end-line="33" selection-end-column="35" />
+          <folding>
+            <element signature="e#1780#1781#0" expanded="true" />
+            <element signature="e#1810#1811#0" expanded="true" />
+            <element signature="e#1889#1890#0" expanded="true" />
+            <element signature="e#1916#1917#0" expanded="true" />
+            <element signature="e#2186#2187#0" expanded="true" />
+            <element signature="e#2212#2213#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/obstacles/EnemyMaker.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="52" column="75" selection-start-line="51" selection-start-column="13" selection-end-line="52" selection-end-column="75" />
+          <folding>
+            <element signature="e#5668#5669#0" expanded="true" />
+            <element signature="e#5696#5697#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/obstacles/PlanetMaker.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4258675">
-          <caret line="37" column="113" selection-start-line="37" selection-start-column="113" selection-end-line="37" selection-end-column="113" />
+        <state vertical-scroll-proportion="3.9747634">
+          <caret line="183" column="19" selection-start-line="183" selection-start-column="19" selection-end-line="183" selection-end-column="19" />
           <folding />
         </state>
       </provider>
