@@ -68,6 +68,14 @@ public class GameController2 {
 		boolean titleNotComplete = true;
 
 		headerPrint();
+		System.out.println("   _____                         ______ _ _ _       \n" +
+				"  / ____|                       |  ____| (_) |      \n" +
+				" | (___  _   _ _ __   ___ _ __  | |__  | |_| |_ ___ \n" +
+				"  \\___ \\| | | | '_ \\ / _ \\ '__| |  __| | | | __/ _ \\\n" +
+				"  ____) | |_| | |_) |  __/ |    | |____| | | ||  __/\n" +
+				" |_____/ \\__,_| .__/ \\___|_|    |______|_|_|\\__\\___|\n" +
+				"              | |                                   \n" +
+				"              |_|                                   ");
 		System.out.println(SPACE_GAME_TITLE);
 		nl(1);
 		System.out.println("Welcome to the world, Captain! Here are your options.");
@@ -727,7 +735,12 @@ public class GameController2 {
 	 */
 	public void isCaptainAlive() {
 		if (captain.getHealthPoints() <= 0) {
-			System.out.println("YOU HAVE DIED...");
+			System.out.println(" __     ______  _    _    _____ _____ ______ _____  _ \n" +
+					" \\ \\   / / __ \\| |  | |  |  __ \\_   _|  ____|  __ \\| |\n" +
+					"  \\ \\_/ / |  | | |  | |  | |  | || | | |__  | |  | | |\n" +
+					"   \\   /| |  | | |  | |  | |  | || | |  __| | |  | | |\n" +
+					"    | | | |__| | |__| |  | |__| || |_| |____| |__| |_|\n" +
+					"    |_|  \\____/ \\____/   |_____/_____|______|_____/(_)");
 			titleScreen();
 		}
 	}
