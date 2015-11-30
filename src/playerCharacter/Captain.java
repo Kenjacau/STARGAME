@@ -10,7 +10,7 @@ import obstacles.Planet;
  * Purpose: The Captain class manages the display of player information, selection of crew members, and actions related to combat.
  * - Author: @cdeluna, @jcbrough, @kcauthen
  * - Email: cdeluna@ggc.edu, jbroughton@ggc.edu, kcauthen@ggc.edu
- * - Version: 0.0.8
+ * - Version: 0.0.9
  * - Date: 2015-11-05
  **/
 public class Captain extends Persona {
@@ -23,8 +23,6 @@ public class Captain extends Persona {
 	private ArrayList<Planet> planetsVisited = new ArrayList<Planet>();
 	private Planet currentPlanet = null;
 	private int planetCount = 0;
-
-
 
 	/**
 	 * Method: Captain - No-arg constructor that sets default attributes to Captain
@@ -97,6 +95,42 @@ public class Captain extends Persona {
 			return false;
 		}
 	}
+	
+//	public boolean confirmCrew(ArrayList<String> selectedCrew) {
+//	boolean crewSelectionNotComplete = true;
+//	while (crewSelectionNotComplete) {
+//		headerPrint(); 
+//		System.out.println("Captain! Is your crew selection correct?");
+//		for (String s : selectedCrew) {
+//			System.out.println("		" + s);
+//			}
+//		System.out.println("\n");
+//		System.out.println("Please enter [y]es or [n]o!");
+//		nl(1);
+//		for (captain.getCaptainCrew() : captain.getFullCrewList()) {
+//			if (userInput.contains(removeNonWords(selectedCrew.getCaptainCrew()))) {
+//				captainCrew = selectedCrew;
+//				selectedCrew.setPlanetExplored(true);
+//				System.out.println("Thank you, Captain!");
+//				System.out.println("You have chosen to go to " + selectedPlanet.getPlanetName()
+//						+ "! BOLDLY GOING NOW, CAPTAIN!!!");
+//				crewSelectionNotComplete = false;
+//				confirmCrew();
+//			} else if (planetChoices.indexOf(selectedPlanet) < planetChoices.size() - 1) {
+//				// continues loop until planetSelectionNotComplete == false
+//			} else {
+//				nl(1);
+//				headerPrint();
+//				System.out.println("Captain, the input \"" + userInput + "\" is garbage!!! You are a crazy person!");
+//				System.out.println("Let's try that again!");
+//				nl(1);
+//				headerPrint();
+//				nl(1);
+//				// continues loop until planetSelectionNotComplete == false
+//			}
+//		}
+//	}
+//}
 
 	/**
 	 * Method: modifyAttributesToCrew - Officers modify captain's stats
