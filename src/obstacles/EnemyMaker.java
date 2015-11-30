@@ -42,7 +42,7 @@ public class EnemyMaker
 
 	//Enemy Locations
 	private final String[] enemyLocation = new String[]
-	{ "WASP-12b", "Theta-10c", "EMPTY SPACE", "LV-426", "insula", "Gas Giants",
+			{"WASP-12b", "Theta-10c", "EMPTY SPACE", "LV-426", "Insula", "Gas Giants",
 			"Altair IV", "Rignus", "Helnetia" };
 
 	//Enemy Description

@@ -16,7 +16,7 @@ import obstacles.Planet;
 public class Captain extends Persona {
 	private static final int HEALTH_POINTS = 100;
 	private static final int ATTACK_POINTS = 25;
-	private static final int DEFENSE_POINTS = 20;
+	private static final int DEFENSE_POINTS = 0;
 	private static final int SENTINEL_BOT = 30;
 	private static final int SECURITY_OFFICER = 40;
 	private ArrayList<String> captainCrew = new ArrayList<String>();
@@ -41,7 +41,7 @@ public class Captain extends Persona {
 		for (String s : captainCrew) {
 			switch (s) {
 				case "Sentinel Bot":
-					setDefensePoints(30);
+					setDefensePoints(5);
 					break;
 				case "Security Officer":
 					setAttackPoints(40);

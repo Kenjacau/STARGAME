@@ -15,11 +15,8 @@ TODO: Write class definition here.
 public class Enemy extends Persona
 {
 	//Declare enemy specific Attributes
-	private String enemyName;
+
 	private int ambushStatus;
-	private int attackPoints;
-	private int defensePoints;
-	private int health;
 	private String enemyDescription;
 	private String enemyLocation;
 
@@ -30,11 +27,11 @@ public class Enemy extends Persona
 			int newDefensePoints, int newHealth, String newEnemyLocation,
 			String newEnemyDescription)
 	{
-		enemyName = newEnemyList;
+		setName(newEnemyList);
 		ambushStatus = newAmbushStatus;
-		attackPoints = newAttackPoints;
-		defensePoints = newDefensePoints;
-		health = newHealth;
+		setAttackPoints(newAttackPoints);
+		setDefensePoints(newDefensePoints);
+		setHealthPoints(newHealth);
 		enemyDescription = newEnemyDescription;
 		enemyLocation = newEnemyLocation;
 
@@ -67,38 +64,6 @@ public class Enemy extends Persona
 	//		this.enemyLocation = enemyLocation;
 	//		this.ambushStatus = ambushStatus;
 	//	}
-
-	/**Method Name: getEnemyName
-	 * @return the enemyName
-	 */
-	public String getEnemyName()
-	{
-		return enemyName;
-	}
-
-	/**Method Name: getAttackPoints
-	 * @return the attackPoints
-	 */
-	public int getAttackPoints()
-	{
-		return attackPoints;
-	}
-
-	/**Method Name: getDefensePoints
-	 * @return the defensePoints
-	 */
-	public int getDefensePoints()
-	{
-		return defensePoints;
-	}
-
-	/**Method Name: getHealth
-	 * @return the health
-	 */
-	public int getHealth()
-	{
-		return health;
-	}
 
 	/**
 	 * @return the enemy description

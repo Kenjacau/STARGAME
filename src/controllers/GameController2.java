@@ -216,6 +216,7 @@ public class GameController2 {
 									+ "! BOLDLY GOING NOW, CAPTAIN!!!");
 							planetSelectionNotComplete = false;
 							captain.setPlanetCount(captain.getPlanetCount() + 1);
+							softSaveGame();
 							planetMenu();
 							break;
 
@@ -336,7 +337,7 @@ public class GameController2 {
 				exploreMenu();
 				notExplored = false;
 				softSaveGame();
-			} else if (booleanMaker("Repair") && notRepaired) {
+			} else if (booleanMaker("Repair") && notRepaired && !(captain.getHealthPoints() > 100)) {
 				captain.setHealthPoints(captain.getHealthPoints() + REPAIR_HEALTH_AMOUNT);
 				captain.getAllAttributes();
 				notRepaired = false;
@@ -801,28 +802,31 @@ public class GameController2 {
 				removeNonWords(currentPlanet.getPlanetName()).equals(removeNonWords("Prion")) ||
 				removeNonWords(currentPlanet.getPlanetName()).equals(removeNonWords("Shadowfax")) ||
 				removeNonWords(currentPlanet.getPlanetName()).equals(removeNonWords("TrES-2b")) ||
-				removeNonWords(currentPlanet.getPlanetName()).equals(removeNonWords("Nesqueron")));
+				removeNonWords(currentPlanet.getPlanetName()).equals(removeNonWords("Nasqueron")));
 	}
 
 	public void combatMenu() {
 		boolean hasNotFled = true;
 		Enemy enemy = new Enemy();
+
 		for (Enemy e : enemyArrayList) {
 			if (removeNonWords(e.getEnemyLocation()).equals(removeNonWords(currentPlanet.getPlanetName()))) {
 				enemy = e;
-			} else if (e.getEnemyName().equals("Gas Giant Dwellers") && dwellerEncounter()) {
+			} else if (e.getName().equals("Gas Giant Dwellers") && dwellerEncounter()) {
 				enemy = e;
 			}
 		}
 
+		//System.out.println(enemy.getEnemyDescription());
+
 		if (enemy.getAmbushStatus() == 1) {
 			// If enemy survives initiate Enemy on player Combat
-			System.out.println("Captain! " + enemy.getEnemyName() + "You appear to be readying for an attack! Brace for impact!");
+			System.out.println("Captain! " + enemy.getName() + " appear to be readying for an attack! Brace for impact!");
 			hitCaptain(enemy);
 			isCaptainAlive();
 			nl(1);
 		}
-		while ((captain.isAlive() && enemy.isAlive()) || hasNotFled) {
+		while ((captain.isAlive() && enemy.isAlive()) && hasNotFled) {
 
 			System.out.println("Captain! What are you orders?");
 			System.out.print("| [A]ttack |");
@@ -852,23 +856,26 @@ public class GameController2 {
 		if (!captain.isAlive()) {
 			isCaptainAlive();
 		} else if (!enemy.isAlive()) {
-			System.out.println("Sir, " + enemy.getEnemyName() + " has been neutralized");
+			System.out.println("Sir, " + enemy.getName() + " has been neutralized");
 			nl(1);
 		}
 	}
 
 
 	public void hitEnemy(Enemy enemy) {
-		System.out.println("Roger that, Captain! Target acquired, firing lasers!");
-		nl(1);
-		enemy.setHealthPoints(enemy.getHealthPoints() - (captain.getAttackPoints() - enemy.getDefensePoints()));
+		int captainDamage = captain.getAttackPoints() - enemy.getDefensePoints();
 
+		System.out.println("Roger that, Captain! Target acquired, firing lasers at " + enemy.getName() + "!");
+		nl(1);
+		enemy.setHealthPoints(enemy.getHealthPoints() - captainDamage);
+
+		System.out.println("Sir, scanners show enemy health at " + enemy.getHealthPoints() + "!");
 
 	}
 
 	public void hitCaptain(Enemy enemy) {
 		int enemyDamage = enemy.getAttackPoints() - captain.getDefensePoints();
-		System.out.println("Captain! " + enemy.getEnemyName() + "appears to be readying for an attack! Brace for impact!");
+		System.out.println("Captain! " + enemy.getName() + "appears to be readying for an attack! Brace for impact!");
 		nl(1);
 
 		captain.setHealthPoints(captain.getHealthPoints() - enemyDamage);

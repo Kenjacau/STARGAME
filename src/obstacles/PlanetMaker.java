@@ -24,7 +24,7 @@ public class PlanetMaker {
 		Collections.addAll(planetArrayList,
 				//Planet Name, Arrival Message,Scan Message, Explore Message, Explore Flag, Planet Flag, Planet Explored)
 				new Planet(planetList[0], arrivalMessageList[0], scanMessageList[0], exploreMessageList[0], 0, 1, false),
-				new Planet(planetList[1], arrivalMessageList[1], scanMessageList[1], exploreMessageList[1], 0, 3, false),
+				new Planet(planetList[1], arrivalMessageList[1], scanMessageList[1], exploreMessageList[1], 0, 1, false),
 				new Planet(planetList[2], arrivalMessageList[2], scanMessageList[2], exploreMessageList[2], 0, 1, false),
 				new Planet(planetList[3], arrivalMessageList[3], scanMessageList[3], exploreMessageList[3], 0, 3, false),
 				new Planet(planetList[4], arrivalMessageList[4], scanMessageList[4], exploreMessageList[4], 2, 0, false),
