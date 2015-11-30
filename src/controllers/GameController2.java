@@ -865,6 +865,10 @@ public class GameController2 {
 			}
 			// Determine damage
 			enemyDamage = enemy.getAttackPoints() - captain.getDefensePoints();
+			//Ensure that at the very least 10 damage is dealt
+			if(enemyDamage <= 0){
+				enemyDamage = 10;
+			}
 			// Sustain Damage
 			currentCaptainHP = currentCaptainHP - enemyDamage;
 			// Display damage dealt
