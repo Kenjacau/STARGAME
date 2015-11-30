@@ -4,9 +4,8 @@
     <bookmark url="file://$PROJECT_DIR$/src/obstacles/PlanetMaker.java" line="15" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="511a37c4-096f-4213-83cd-204fe18f5250" name="Default" comment="UPDATE: 11/29/2015 Kenny Cauthen&#10;Fo Real Fixed Combat.">
+    <list default="true" id="511a37c4-096f-4213-83cd-204fe18f5250" name="Default" comment="UPDATE: 11/29/2015 Kenny Cauthen&#10;Special Menus done. . . .">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/controllers/GameController2.java" afterPath="$PROJECT_DIR$/src/controllers/GameController2.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/obstacles/PlanetMaker.java" afterPath="$PROJECT_DIR$/src/obstacles/PlanetMaker.java" />
     </list>
     <ignored path="ITEC3860Fall15SpaceGame.iws" />
@@ -37,28 +36,28 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="GameController2.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="GameController2.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/controllers/GameController2.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5504732">
-              <caret line="463" column="21" selection-start-line="463" selection-start-column="21" selection-end-line="463" selection-end-column="21" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="499" column="46" selection-start-line="499" selection-start-column="46" selection-end-line="499" selection-end-column="46" />
               <folding>
-                <element signature="e#20508#20509#0" expanded="true" />
-                <element signature="e#20552#20553#0" expanded="true" />
-                <element signature="e#22018#22047#1" expanded="true" />
-                <element signature="e#22728#22736#0" expanded="true" />
-                <element signature="e#24147#24148#0" expanded="true" />
-                <element signature="e#24219#24220#0" expanded="true" />
-                <element signature="e#25277#25278#0" expanded="true" />
-                <element signature="e#25325#25326#0" expanded="true" />
-                <element signature="e#25363#25364#0" expanded="true" />
-                <element signature="e#25390#25391#0" expanded="true" />
-                <element signature="e#26642#26643#0" expanded="true" />
-                <element signature="e#26676#26677#0" expanded="true" />
-                <element signature="e#26741#26742#0" expanded="true" />
-                <element signature="e#26763#26764#0" expanded="true" />
-                <element signature="e#26856#26857#0" expanded="true" />
-                <element signature="e#26887#26888#0" expanded="true" />
+                <element signature="e#20534#20535#0" expanded="true" />
+                <element signature="e#20578#20579#0" expanded="true" />
+                <element signature="e#22044#22073#1" expanded="true" />
+                <element signature="e#22754#22762#0" expanded="true" />
+                <element signature="e#24173#24174#0" expanded="true" />
+                <element signature="e#24245#24246#0" expanded="true" />
+                <element signature="e#25303#25304#0" expanded="true" />
+                <element signature="e#25351#25352#0" expanded="true" />
+                <element signature="e#25389#25390#0" expanded="true" />
+                <element signature="e#25416#25417#0" expanded="true" />
+                <element signature="e#26668#26669#0" expanded="true" />
+                <element signature="e#26702#26703#0" expanded="true" />
+                <element signature="e#26767#26768#0" expanded="true" />
+                <element signature="e#26789#26790#0" expanded="true" />
+                <element signature="e#26882#26883#0" expanded="true" />
+                <element signature="e#26913#26914#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -109,11 +108,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PlanetMaker.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="PlanetMaker.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/obstacles/PlanetMaker.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="36" column="116" selection-start-line="36" selection-start-column="116" selection-end-line="36" selection-end-column="116" />
+            <state vertical-scroll-proportion="0.4258675">
+              <caret line="37" column="113" selection-start-line="37" selection-start-column="113" selection-end-line="37" selection-end-column="113" />
               <folding />
             </state>
           </provider>
@@ -213,8 +212,8 @@
         <option value="$PROJECT_DIR$/src/obstacles/EnemyMaker.java" />
         <option value="$PROJECT_DIR$/src/obstacles/Enemy.java" />
         <option value="$PROJECT_DIR$/src/playerCharacter/Captain.java" />
-        <option value="$PROJECT_DIR$/src/obstacles/PlanetMaker.java" />
         <option value="$PROJECT_DIR$/src/controllers/GameController2.java" />
+        <option value="$PROJECT_DIR$/src/obstacles/PlanetMaker.java" />
       </list>
     </option>
   </component>
@@ -1059,7 +1058,7 @@
       <workItem from="1448777876499" duration="1938000" />
       <workItem from="1448779868030" duration="742000" />
       <workItem from="1448780629433" duration="100000" />
-      <workItem from="1448808096909" duration="34763000" />
+      <workItem from="1448808096909" duration="35268000" />
     </task>
     <task id="LOCAL-00001" summary="Commiting after changes with IntelliJ">
       <created>1446516332691</created>
@@ -1211,11 +1210,17 @@
       <option name="project" value="LOCAL" />
       <updated>1448847919602</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="UPDATE: 11/29/2015 Kenny Cauthen&#10;Special Menus done. . . .">
+      <created>1448850132919</created>
+      <option name="number" value="00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1448850132919</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="138023000" />
+    <option name="totallyTimeSpent" value="138528000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="27" y="7" width="1932" height="999" extended-state="0" />
@@ -1301,7 +1306,8 @@
     <MESSAGE value="UPDATE: 11/29/2015 Kenny Cauthen&#10;Fixed Combat. Dweller Encounter should work now. Only can Explore and Scan Once. will make the option change accordingly." />
     <MESSAGE value="UPDATE: 11/29/2015 Kenny Cauthen&#10;Fixed Combat." />
     <MESSAGE value="UPDATE: 11/29/2015 Kenny Cauthen&#10;Fo Real Fixed Combat." />
-    <option name="LAST_COMMIT_MESSAGE" value="UPDATE: 11/29/2015 Kenny Cauthen&#10;Fo Real Fixed Combat." />
+    <MESSAGE value="UPDATE: 11/29/2015 Kenny Cauthen&#10;Special Menus done. . . ." />
+    <option name="LAST_COMMIT_MESSAGE" value="UPDATE: 11/29/2015 Kenny Cauthen&#10;Special Menus done. . . ." />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
@@ -1769,36 +1775,36 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/obstacles/PlanetMaker.java">
+    <entry file="file://$PROJECT_DIR$/src/controllers/GameController2.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="36" column="116" selection-start-line="36" selection-start-column="116" selection-end-line="36" selection-end-column="116" />
-          <folding />
+          <caret line="499" column="46" selection-start-line="499" selection-start-column="46" selection-end-line="499" selection-end-column="46" />
+          <folding>
+            <element signature="e#20534#20535#0" expanded="true" />
+            <element signature="e#20578#20579#0" expanded="true" />
+            <element signature="e#22044#22073#1" expanded="true" />
+            <element signature="e#22754#22762#0" expanded="true" />
+            <element signature="e#24173#24174#0" expanded="true" />
+            <element signature="e#24245#24246#0" expanded="true" />
+            <element signature="e#25303#25304#0" expanded="true" />
+            <element signature="e#25351#25352#0" expanded="true" />
+            <element signature="e#25389#25390#0" expanded="true" />
+            <element signature="e#25416#25417#0" expanded="true" />
+            <element signature="e#26668#26669#0" expanded="true" />
+            <element signature="e#26702#26703#0" expanded="true" />
+            <element signature="e#26767#26768#0" expanded="true" />
+            <element signature="e#26789#26790#0" expanded="true" />
+            <element signature="e#26882#26883#0" expanded="true" />
+            <element signature="e#26913#26914#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/controllers/GameController2.java">
+    <entry file="file://$PROJECT_DIR$/src/obstacles/PlanetMaker.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5504732">
-          <caret line="463" column="21" selection-start-line="463" selection-start-column="21" selection-end-line="463" selection-end-column="21" />
-          <folding>
-            <element signature="e#20508#20509#0" expanded="true" />
-            <element signature="e#20552#20553#0" expanded="true" />
-            <element signature="e#22018#22047#1" expanded="true" />
-            <element signature="e#22728#22736#0" expanded="true" />
-            <element signature="e#24147#24148#0" expanded="true" />
-            <element signature="e#24219#24220#0" expanded="true" />
-            <element signature="e#25277#25278#0" expanded="true" />
-            <element signature="e#25325#25326#0" expanded="true" />
-            <element signature="e#25363#25364#0" expanded="true" />
-            <element signature="e#25390#25391#0" expanded="true" />
-            <element signature="e#26642#26643#0" expanded="true" />
-            <element signature="e#26676#26677#0" expanded="true" />
-            <element signature="e#26741#26742#0" expanded="true" />
-            <element signature="e#26763#26764#0" expanded="true" />
-            <element signature="e#26856#26857#0" expanded="true" />
-            <element signature="e#26887#26888#0" expanded="true" />
-          </folding>
+        <state vertical-scroll-proportion="0.4258675">
+          <caret line="37" column="113" selection-start-line="37" selection-start-column="113" selection-end-line="37" selection-end-column="113" />
+          <folding />
         </state>
       </provider>
     </entry>

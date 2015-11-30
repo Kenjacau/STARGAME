@@ -35,7 +35,7 @@ public class PlanetMaker {
 				new Planet(planetList[9], arrivalMessageList[9], scanMessageList[9], exploreMessageList[9], 0, 0, false),
 				new Planet(planetList[10], arrivalMessageList[10], scanMessageList[10], exploreMessageList[10], 1, 0, false),
 				new Planet(planetList[11], arrivalMessageList[11], scanMessageList[11], exploreMessageList[11], 1, 0, false),
-				new Planet(planetList[12], arrivalMessageList[12], scanMessageList[12], exploreMessageList[12], 2, 0, false),
+				new Planet(planetList[12], arrivalMessageList[12], scanMessageList[12], exploreMessageList[12], 1, 0, false),
 				new Planet(planetList[13], arrivalMessageList[13], scanMessageList[13], exploreMessageList[13], 0, 0, false),
 				new Planet(planetList[14], arrivalMessageList[14], scanMessageList[14], exploreMessageList[14], 0, 0, false),
 				new Planet(planetList[15], arrivalMessageList[15], scanMessageList[15], exploreMessageList[15], 1, 0, false),
@@ -163,7 +163,8 @@ public class PlanetMaker {
 						"Paper, Rock, Scissor best 2 out of 3. If the user loses the game is over.",
 				"BOSS FIGHT! The planet disappears from the ships contact list. The ship loses power and drifts slowly through space. Slowly, a mist envelopes the ship and " +
 						"seeps through each deck. Then AMBER EYES, sharp as flames, appear before the ship within a gaseous body and unleash a bellowing roar.",
-				"Nothing happens.", "Nothing happens.", "Nothing happens.", "Nothing happens.", "Nothing happens.", "Nothing happens.", "Nothing happens.", "Nothing happens.",
+				"The player detects a distress signal from an orbital research station that has suffered severe damage to its heat shield.",
+				"Nothing happens.", "Nothing happens.", "Nothing happens.", "Nothing happens.", "Nothing happens.", "Nothing happens.", "Nothing happens.",
 				"Nothing happens.", "Nothing happens.", "Nothing happens.", "Nothing happens.", "Nothing happens.", "Nothing happens.", "Nothing happens.", "Nothing happens.",
 				"Nothing happens.", "The player is hailed and receives a message: You have entered restricted space. You will be escorted to the near-est warp entry point.",
 				"Nothing happens.", "Nothing happens.", "Nothing happens.", "Nothing happens.", "Nothing happens.", "Nothing happens.", "Nothing happens.", "Nothing happens.", "Nothing happens."
