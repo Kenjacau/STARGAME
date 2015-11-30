@@ -24,7 +24,7 @@ public class PlanetMaker {
 		Collections.addAll(planetArrayList,
 				//Planet Name, Arrival Message,Scan Message, Explore Message, Explore Flag, Planet Flag, Planet Explored)
 				new Planet(planetList[0], arrivalMessageList[0], scanMessageList[0], exploreMessageList[0], 0, 1, false),
-				new Planet(planetList[1], arrivalMessageList[1], scanMessageList[1], exploreMessageList[1], 0, 1, false),
+				new Planet(planetList[1], arrivalMessageList[1], scanMessageList[1], exploreMessageList[1], 0, 3, false),
 				new Planet(planetList[2], arrivalMessageList[2], scanMessageList[2], exploreMessageList[2], 0, 1, false),
 				new Planet(planetList[3], arrivalMessageList[3], scanMessageList[3], exploreMessageList[3], 0, 3, false),
 				new Planet(planetList[4], arrivalMessageList[4], scanMessageList[4], exploreMessageList[4], 2, 0, false),
@@ -34,7 +34,7 @@ public class PlanetMaker {
 				new Planet(planetList[8], arrivalMessageList[8], scanMessageList[8], exploreMessageList[8], 2, 0, false),
 				new Planet(planetList[9], arrivalMessageList[9], scanMessageList[9], exploreMessageList[9], 0, 0, false),
 				new Planet(planetList[10], arrivalMessageList[10], scanMessageList[10], exploreMessageList[10], 1, 0, false),
-				new Planet(planetList[11], arrivalMessageList[11], scanMessageList[11], exploreMessageList[11], 1, 3, false),
+				new Planet(planetList[11], arrivalMessageList[11], scanMessageList[11], exploreMessageList[11], 1, 0, false),
 				new Planet(planetList[12], arrivalMessageList[12], scanMessageList[12], exploreMessageList[12], 2, 0, false),
 				new Planet(planetList[13], arrivalMessageList[13], scanMessageList[13], exploreMessageList[13], 0, 0, false),
 				new Planet(planetList[14], arrivalMessageList[14], scanMessageList[14], exploreMessageList[14], 0, 0, false),

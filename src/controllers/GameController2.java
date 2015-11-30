@@ -241,6 +241,14 @@ public class GameController2 {
 
 	public void youWin() {
 		System.out.println("YOU WIN!");
+		softSaveGame();
+		titleScreen();
+	}
+
+	public void youLose() {
+		System.out.println("You LOSE!");
+		softSaveGame();
+		titleScreen();
 	}
 
 	/**
@@ -266,7 +274,7 @@ public class GameController2 {
 						randomPlanetNotComplete = false;
 						break;
 					} else if (!p.isPlanetExplored() && randomNumber == planetArrayList.indexOf(p)
-							&& !randomPlanets.contains(p) && p.getPlanetFlag() == 1) {
+							&& !randomPlanets.contains(p) && (p.getPlanetFlag() == 1 || p.getPlanetName().equals("Theta-10c"))) {
 						randomPlanets.add(p);
 						count++;
 					}
@@ -287,6 +295,7 @@ public class GameController2 {
 	}
 
 	public void planetMenu() {
+		softSaveGame();
 		headerPrint();
 		nl(1);
 		System.out.println("You have arrived at " + currentPlanet.getPlanetName());
@@ -308,8 +317,81 @@ public class GameController2 {
 	}
 
 	public void specialPlanetMenu() {
+		Dice dice25 = new Dice(25);
+		if (currentPlanet.getPlanetName().equals("Theta-10c")) {
+			rockPaperScissor();
+			planetMenuSelection();
+		} else if (currentPlanet.getPlanetName().equals("51 Pegasi b")) {
+			puzzleMenu();
+			planetMenuSelection();
+		} else if (currentPlanet.getPlanetName().equals("Shadowfax")) {
+			if (dice25.roll()) {
+				combatMenu();
+			}
+			planetMenuSelection();
+		}
 
 
+
+	}
+
+	public void rockPaperScissor() {
+		boolean notTie = true;
+		boolean playerThinking = true;
+		int playerChoice = 0;
+		int enemyChoice = 0;
+		String enemySign = "";
+
+		System.out.println("Seems like we have no choice...");
+
+		while (notTie) {
+			while (playerThinking) {
+				nl(1);
+				System.out.println(" Rock, Paper, or Scissor");
+				listener();
+				if (booleanMaker("Rock")) {
+					playerChoice = 1;
+					playerThinking = false;
+				} else if (booleanMaker("Paper")) {
+					playerChoice = 2;
+					playerThinking = false;
+				} else if (booleanMaker("Scissor")) {
+					playerChoice = 3;
+					playerThinking = false;
+				} else {
+					System.out.println("Looks like they did not understand out choice");
+				}
+			}
+
+
+			System.out.println("You chose " + userInput);
+			Random rand = new Random();
+			enemyChoice = rand.nextInt(3) + 1;
+
+			if (enemyChoice == 1) {
+				enemySign = "Rock";
+			} else if (enemyChoice == 2) {
+				enemySign = "Paper";
+			} else {
+				enemySign = "Scissor";
+			}
+
+			System.out.println("The Enemy chose " + enemySign);
+
+			if (enemyChoice == playerChoice) {
+				System.out.println("Look Like a Tie...Try Again");
+			} else if ((playerChoice == 1 && enemyChoice == 3) || (playerChoice == 2 && enemyChoice == 1)
+					|| (playerChoice == 3 && enemyChoice == 2)) {
+				notTie = false;
+				youWin();
+			} else {
+				notTie = false;
+				youLose();
+
+			}
+
+
+		}
 	}
 
 	public void planetMenuSelection() {
@@ -358,6 +440,8 @@ public class GameController2 {
 
 	public void exploreMenu() {
 		Dice dwellerEncounter = new Dice(25);
+		Dice invisibleEncounter = new Dice(50);
+		System.out.println(currentPlanet.getExploreMessage());
 		if (currentPlanet.getExploreFlag() == 0) {
 			if (removeNonWords(currentPlanet.getPlanetName()).equals(removeNonWords("Eos"))) {
 				System.out.println(currentPlanet.getExploreMessage());
@@ -367,12 +451,14 @@ public class GameController2 {
 				captain.getAllAttributes();
 			}
 
-			System.out.println(currentPlanet.getExploreMessage());
 
 		} else if (currentPlanet.getExploreFlag() == 1) {
-			System.out.println(currentPlanet.getExploreMessage());
 			if (dwellerEncounter()) {
 				if (dwellerEncounter.roll()) {
+					combatMenu();
+				}
+			} else if (removeNonWords(currentPlanet.getPlanetName()).equals(removeNonWords("Altair IV"))) {
+				if (invisibleEncounter.roll()) {
 					combatMenu();
 				}
 			} else {
@@ -380,7 +466,6 @@ public class GameController2 {
 			}
 
 		} else if (currentPlanet.getExploreFlag() == 2) {
-			System.out.println(currentPlanet.getExploreMessage());
 			puzzleMenu();
 		}
 
