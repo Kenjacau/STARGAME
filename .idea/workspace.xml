@@ -6,6 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="511a37c4-096f-4213-83cd-204fe18f5250" name="Default" comment="UPDATE: 11/29/2015 Kenny Cauthen&#10;Fixed Combat. Dweller Encounter should work now. Only can Explore and Scan Once. will make the option change accordingly.">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/controllers/GameController2.java" afterPath="$PROJECT_DIR$/src/controllers/GameController2.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/obstacles/PlanetMaker.java" afterPath="$PROJECT_DIR$/src/obstacles/PlanetMaker.java" />
     </list>
     <ignored path="ITEC3860Fall15SpaceGame.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -38,25 +40,25 @@
       <file leaf-file-name="GameController2.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/controllers/GameController2.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6137339">
-              <caret line="882" column="15" selection-start-line="882" selection-start-column="15" selection-end-line="882" selection-end-column="15" />
+            <state vertical-scroll-proportion="0.4437086">
+              <caret line="854" column="5" selection-start-line="854" selection-start-column="5" selection-end-line="854" selection-end-column="5" />
               <folding>
                 <element signature="e#7067#7068#0" expanded="true" />
                 <element signature="e#7104#7105#0" expanded="true" />
-                <element signature="e#17995#17996#0" expanded="true" />
-                <element signature="e#18039#18040#0" expanded="true" />
-                <element signature="e#19505#19534#1" expanded="true" />
-                <element signature="e#20215#20223#0" expanded="true" />
-                <element signature="e#21634#21635#0" expanded="true" />
-                <element signature="e#21706#21707#0" expanded="true" />
-                <element signature="e#22876#22877#0" expanded="true" />
-                <element signature="e#22903#22904#0" expanded="true" />
-                <element signature="e#24155#24156#0" expanded="true" />
-                <element signature="e#24189#24190#0" expanded="true" />
-                <element signature="e#24254#24255#0" expanded="true" />
-                <element signature="e#24276#24277#0" expanded="true" />
-                <element signature="e#24369#24370#0" expanded="true" />
-                <element signature="e#24400#24401#0" expanded="true" />
+                <element signature="e#18328#18329#0" expanded="true" />
+                <element signature="e#18372#18373#0" expanded="true" />
+                <element signature="e#19838#19867#1" expanded="true" />
+                <element signature="e#20548#20556#0" expanded="true" />
+                <element signature="e#21967#21968#0" expanded="true" />
+                <element signature="e#22039#22040#0" expanded="true" />
+                <element signature="e#23209#23210#0" expanded="true" />
+                <element signature="e#23236#23237#0" expanded="true" />
+                <element signature="e#24488#24489#0" expanded="true" />
+                <element signature="e#24522#24523#0" expanded="true" />
+                <element signature="e#24587#24588#0" expanded="true" />
+                <element signature="e#24609#24610#0" expanded="true" />
+                <element signature="e#24702#24703#0" expanded="true" />
+                <element signature="e#24733#24734#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -123,7 +125,7 @@
         <entry file="file://$PROJECT_DIR$/src/obstacles/PlanetMaker.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="43" column="113" selection-start-line="43" selection-start-column="113" selection-end-line="43" selection-end-column="113" />
+              <caret line="47" column="116" selection-start-line="47" selection-start-column="116" selection-end-line="47" selection-end-column="116" />
               <folding />
             </state>
           </provider>
@@ -144,7 +146,22 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="18" column="28" selection-start-line="18" selection-start-column="28" selection-end-line="18" selection-end-column="28" />
-              <folding />
+              <folding>
+                <element signature="e#1883#1884#0" expanded="true" />
+                <element signature="e#1906#1907#0" expanded="true" />
+                <element signature="e#2007#2008#0" expanded="true" />
+                <element signature="e#2033#2034#0" expanded="true" />
+                <element signature="e#2137#2138#0" expanded="true" />
+                <element signature="e#2164#2165#0" expanded="true" />
+                <element signature="e#2247#2248#0" expanded="true" />
+                <element signature="e#2267#2268#0" expanded="true" />
+                <element signature="e#2352#2353#0" expanded="true" />
+                <element signature="e#2382#2383#0" expanded="true" />
+                <element signature="e#2461#2462#0" expanded="true" />
+                <element signature="e#2488#2489#0" expanded="true" />
+                <element signature="e#2758#2759#0" expanded="true" />
+                <element signature="e#2784#2785#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -1062,7 +1079,7 @@
       <workItem from="1448777876499" duration="1938000" />
       <workItem from="1448779868030" duration="742000" />
       <workItem from="1448780629433" duration="100000" />
-      <workItem from="1448808096909" duration="27404000" />
+      <workItem from="1448808096909" duration="30091000" />
     </task>
     <task id="LOCAL-00001" summary="Commiting after changes with IntelliJ">
       <created>1446516332691</created>
@@ -1178,11 +1195,17 @@
       <option name="project" value="LOCAL" />
       <updated>1448842746113</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="UPDATE: 11/29/2015 Kenny Cauthen&#10;Fixed Combat. Dweller Encounter should work now. Only can Explore and Scan Once. will make the option change accordingly.">
+      <created>1448842751296</created>
+      <option name="number" value="00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1448842751296</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="130664000" />
+    <option name="totallyTimeSpent" value="133351000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-80" y="6" width="1932" height="999" extended-state="0" />
@@ -1195,7 +1218,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.084295616" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16050808" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.09584296" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32881355" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17200854" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -1683,26 +1706,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/obstacles/Enemy.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="18" column="28" selection-start-line="18" selection-start-column="28" selection-end-line="18" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/testers/PuzzleClassTester.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="61" column="0" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/playerCharacter/Persona.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="46" column="13" selection-start-line="46" selection-start-column="13" selection-end-line="46" selection-end-column="13" />
           <folding />
         </state>
       </provider>
@@ -1750,22 +1757,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/obstacles/Planet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/obstacles/PlanetMaker.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="43" column="113" selection-start-line="43" selection-start-column="113" selection-end-line="43" selection-end-column="113" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/obstacles/EnemyMaker.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1777,27 +1768,74 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/obstacles/Planet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/obstacles/PlanetMaker.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="47" column="116" selection-start-line="47" selection-start-column="116" selection-end-line="47" selection-end-column="116" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/obstacles/Enemy.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="18" column="28" selection-start-line="18" selection-start-column="28" selection-end-line="18" selection-end-column="28" />
+          <folding>
+            <element signature="e#1883#1884#0" expanded="true" />
+            <element signature="e#1906#1907#0" expanded="true" />
+            <element signature="e#2007#2008#0" expanded="true" />
+            <element signature="e#2033#2034#0" expanded="true" />
+            <element signature="e#2137#2138#0" expanded="true" />
+            <element signature="e#2164#2165#0" expanded="true" />
+            <element signature="e#2247#2248#0" expanded="true" />
+            <element signature="e#2267#2268#0" expanded="true" />
+            <element signature="e#2352#2353#0" expanded="true" />
+            <element signature="e#2382#2383#0" expanded="true" />
+            <element signature="e#2461#2462#0" expanded="true" />
+            <element signature="e#2488#2489#0" expanded="true" />
+            <element signature="e#2758#2759#0" expanded="true" />
+            <element signature="e#2784#2785#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/playerCharacter/Persona.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="46" column="13" selection-start-line="46" selection-start-column="13" selection-end-line="46" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/controllers/GameController2.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6137339">
-          <caret line="882" column="15" selection-start-line="882" selection-start-column="15" selection-end-line="882" selection-end-column="15" />
+        <state vertical-scroll-proportion="0.4437086">
+          <caret line="854" column="5" selection-start-line="854" selection-start-column="5" selection-end-line="854" selection-end-column="5" />
           <folding>
             <element signature="e#7067#7068#0" expanded="true" />
             <element signature="e#7104#7105#0" expanded="true" />
-            <element signature="e#17995#17996#0" expanded="true" />
-            <element signature="e#18039#18040#0" expanded="true" />
-            <element signature="e#19505#19534#1" expanded="true" />
-            <element signature="e#20215#20223#0" expanded="true" />
-            <element signature="e#21634#21635#0" expanded="true" />
-            <element signature="e#21706#21707#0" expanded="true" />
-            <element signature="e#22876#22877#0" expanded="true" />
-            <element signature="e#22903#22904#0" expanded="true" />
-            <element signature="e#24155#24156#0" expanded="true" />
-            <element signature="e#24189#24190#0" expanded="true" />
-            <element signature="e#24254#24255#0" expanded="true" />
-            <element signature="e#24276#24277#0" expanded="true" />
-            <element signature="e#24369#24370#0" expanded="true" />
-            <element signature="e#24400#24401#0" expanded="true" />
+            <element signature="e#18328#18329#0" expanded="true" />
+            <element signature="e#18372#18373#0" expanded="true" />
+            <element signature="e#19838#19867#1" expanded="true" />
+            <element signature="e#20548#20556#0" expanded="true" />
+            <element signature="e#21967#21968#0" expanded="true" />
+            <element signature="e#22039#22040#0" expanded="true" />
+            <element signature="e#23209#23210#0" expanded="true" />
+            <element signature="e#23236#23237#0" expanded="true" />
+            <element signature="e#24488#24489#0" expanded="true" />
+            <element signature="e#24522#24523#0" expanded="true" />
+            <element signature="e#24587#24588#0" expanded="true" />
+            <element signature="e#24609#24610#0" expanded="true" />
+            <element signature="e#24702#24703#0" expanded="true" />
+            <element signature="e#24733#24734#0" expanded="true" />
           </folding>
         </state>
       </provider>
