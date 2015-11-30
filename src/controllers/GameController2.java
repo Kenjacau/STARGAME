@@ -476,6 +476,7 @@ public class GameController2 {
 				softSaveGame();
 			} else if (booleanMaker("Repair") && notRepaired) {
 				if (captain.getHealthPoints() + REPAIR_HEALTH_AMOUNT > 99) {
+					System.out.println("At max health Captain!");
 					captain.setHealthPoints(100);
 				} else {
 					captain.setHealthPoints(captain.getHealthPoints() + REPAIR_HEALTH_AMOUNT);
