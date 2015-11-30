@@ -993,7 +993,7 @@ public class GameController2 {
 
 		if (enemy.getAmbushStatus() == 1) {
 			// If enemy survives initiate Enemy on player Combat
-			System.out.println("Captain " + enemy.getName() + "appears to be readying for an attack! Brace for impact!");
+			System.out.println("AMBUSH!");
 			hitCaptain(enemy);
 			isCaptainAlive();
 			nl(1);
@@ -1060,10 +1060,8 @@ public class GameController2 {
 	 * @author tkeating, cdeluna, kenny
 	 */
 	public void hitCaptain(Enemy enemy) {
+		System.out.println("Captain! " + enemy.getName() + " appears to be readying for an attack! Brace for impact!");
 		int enemyDamage = enemy.getAttackPoints() - captain.getDefensePoints();
-		System.out.println("Captain " + enemy.getName() + "appears to be readying for an attack! Brace for impact!");
-		nl(1);
-
 		captain.setHealthPoints(captain.getHealthPoints() - enemyDamage);
 
 		System.out.println("Captain! Our sensors are showing us that we have sustained class " + enemyDamage

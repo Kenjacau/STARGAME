@@ -90,7 +90,7 @@ public class PlanetMaker {
                 "\nclutching a metallic object in its hand, " + "that appears to be beeping ever so slightly.",
                 /*10*/"You scour the surface and find nothing particularly interesting or useful.",
 				/*11*/"We are being attacked by a group of dwellers",
-				/*12*/"50% chance to encounter nothing or an invisible monster",
+                /*12*/"It feels as if something is watching us Captain.",
 				/*13*/"You find nothing of interest or use",
 				/*14*/"You find nothing of interest or use",
 				/*15*/"You cannot explore this planet",
@@ -213,19 +213,14 @@ public class PlanetMaker {
                 "\ndeck. Then AMBER EYES, sharp as flames, appear before the ship within a gaseous body and unleash a" +
                 " " +
                 "\nbellowing roar.", "The player detects a distress signal from an orbital research station that has " +
-                "" + "\nsuffered severe damage to its heat shield.", "Nothing happens.", "Nothing happens.", "Nothing" +
-                " " +
-                "happens" + ".", "Nothing happens.", "Nothing happens.", "Nothing happens.", "Nothing happens.",
+                "" + "\nsuffered severe damage to its heat shield.", "Nothing happens.", "Nothing happens.",
+                "Nothing happens.", "Nothing happens.", "Nothing happens.", "Nothing happens.", "Nothing happens.",
                 "Nothing happens" + ".", "Nothing happens.", "Nothing happens.", "Nothing happens.", "Nothing " +
                 "happens" + ".", "Nothing happens" + ".", "Nothing happens.", "Nothing happens.", "Nothing happens.",
-                "The " +
-                        "player " +
-                        "is hailed and receives a " + "message: You have entered restricted space. You will be escorted to" +
-                        " " +
-                        "the" +
-                        " near-est warp entry point.", "Nothing happens.", "Nothing happens.", "Nothing happens.", "Nothing "
-                + "happens.", "Nothing happens.", "Nothing happens.", "Nothing happens.", "Nothing happens.",
-                "Nothing " + "happens."};
+                "The player is hailed and receives a message: You have entered restricted space. You will be escorted to the"
+                        + " near-est warp entry point.", "Nothing happens.", "Nothing happens.", "Nothing happens.",
+                "Nothing happens.", "Nothing happens.", "Nothing happens.", "Nothing happens.", "Nothing happens.",
+                "Nothing happens."};
     }
 
 
