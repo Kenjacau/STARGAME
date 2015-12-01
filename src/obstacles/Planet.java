@@ -15,6 +15,7 @@ import java.util.concurrent.ThreadLocalRandom;
  *          Course: ITEC 3860 Fall 2015
  *          Assignment: Final Project
  */
+@SuppressWarnings("serial")
 public class Planet implements Serializable {
 
 	//TODO: Write this class. Stubbed for inclusion into the controllers.GameController class.

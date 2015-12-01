@@ -1,6 +1,12 @@
 package controllers;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.OptionalDataException;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
@@ -40,20 +46,11 @@ public class GameController2 {
 	 *
 	 * @param args Command line arguments
 	 * @throws IOException
+	 * @throws ClassNotFoundException 
 	 */
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws IOException, ClassNotFoundException {
 		GameController2 thisGameController = new GameController2();
 		thisGameController.titleScreen();
-
-		// TODO: Quit Game Menu with save option
-		// TODO: Display Planet selection menu.
-		// TODO: Display Planet menu
-		// TODO: Display Combat menu
-		// saveGame method and loadGame Constructor should be implemented in
-		// game class.
-		// Menu to get path for loadGame should be done below.
-		// TODO: method saveGame
-		// TODO: method loadGame
 	}
 	
 	// ALL Menu Methods
@@ -63,8 +60,10 @@ public class GameController2 {
 	 *
 	 * @return void
 	 * @author kenny
+	 * @throws IOException 
+	 * @throws ClassNotFoundException 
 	 */
-	public void titleScreen() {
+	public void titleScreen() throws ClassNotFoundException, IOException {
 		boolean titleNotComplete = true;
 
 		headerPrint();
@@ -112,7 +111,10 @@ public class GameController2 {
 
 				// String path = loadGameMenu(); //TODO: Remove this when menu
 				// sys implemented.
-				thisGame = new Game(loadGameMenu(userInput));
+				
+				Scanner in = new Scanner(System.in); 
+				System.out.println("What is the EXACT name of the world recording, without the \"*.ser\" extension?");
+				thisGame = loadGame(in.nextLine()); 
 				loadThisGameElements(thisGame);
 				System.out.println("Captain, this is who you're travelling with: ");
 				for (String crewName : captain.getCaptainCrew()) {
@@ -189,8 +191,10 @@ public class GameController2 {
 	 *
 	 * @return void
 	 * @author jcbrough, kenny
+	 * @throws IOException 
+	 * @throws ClassNotFoundException 
 	 */
-	public void planetSelectionMenu() {
+	public void planetSelectionMenu() throws ClassNotFoundException, IOException {
 		boolean planetSelectionNotComplete = true;
 		ArrayList<Planet> planetChoices = new ArrayList<>();
 
@@ -253,8 +257,10 @@ public class GameController2 {
 	 *
 	 * @return void
 	 * @author kenny
+	 * @throws IOException 
+	 * @throws ClassNotFoundException 
 	 */
-	public void youWin() {
+	public void youWin() throws ClassNotFoundException, IOException {
 		System.out.println(" __     ______  _    _  __          _______ _   _ \n" +
 				" \\ \\   / / __ \\| |  | | \\ \\        / /_   _| \\ | |\n" +
 				"  \\ \\_/ / |  | | |  | |  \\ \\  /\\  / /  | | |  \\| |\n" +
@@ -272,8 +278,10 @@ public class GameController2 {
 	 *
 	 * @return void
 	 * @author kenny
+	 * @throws IOException 
+	 * @throws ClassNotFoundException 
 	 */
-	public void youLose() {
+	public void youLose() throws ClassNotFoundException, IOException {
 		System.out.println(" __     ______  _    _   _      ____   _____ ______ _ \n" +
 				" \\ \\   / / __ \\| |  | | | |    / __ \\ / ____|  ____| |\n" +
 				"  \\ \\_/ / |  | | |  | | | |   | |  | | (___ | |__  | |\n" +
@@ -332,8 +340,10 @@ public class GameController2 {
 	 * Method: PlanetMenu()
 	 * Description:
 	 * author: Kenny
+	 * @throws IOException 
+	 * @throws ClassNotFoundException 
 	 */
-	public void planetMenu() {
+	public void planetMenu() throws ClassNotFoundException, IOException {
 		softSaveGame();
 		headerPrint();
 		nl(1);
@@ -359,8 +369,10 @@ public class GameController2 {
 	 * Method:specialPlanetMenu()
 	 * Description:
 	 * author: Kenny
+	 * @throws IOException 
+	 * @throws ClassNotFoundException 
 	 */
-	public void specialPlanetMenu() {
+	public void specialPlanetMenu() throws ClassNotFoundException, IOException {
 		Dice dice25 = new Dice(25);
 		if (currentPlanet.getPlanetName().equals("Theta-10c")) {
 			rockPaperScissor();
@@ -381,8 +393,10 @@ public class GameController2 {
 	 * Method:rockPaperScissor()
 	 * Description:
 	 * author: Kenny
+	 * @throws IOException 
+	 * @throws ClassNotFoundException 
 	 */
-	public void rockPaperScissor() {
+	public void rockPaperScissor() throws ClassNotFoundException, IOException {
 		boolean notTie = true;
 		boolean playerThinking = true;
 		int playerChoice = 0;
@@ -452,8 +466,10 @@ public class GameController2 {
 	 * Method:planetMenuSelection()
 	 * Description:
 	 * author: Kenny
+	 * @throws IOException 
+	 * @throws ClassNotFoundException 
 	 */
-	public void planetMenuSelection() {
+	public void planetMenuSelection() throws ClassNotFoundException, IOException {
 		final int REPAIR_HEALTH_AMOUNT = 25;
 		boolean planetMenuNotFinished = true;
 		boolean notScanned = true;
@@ -512,8 +528,10 @@ public class GameController2 {
 	/**
 	 * Method:
 	 * Description:
+	 * @throws IOException 
+	 * @throws ClassNotFoundException 
 	 */
-	public void exploreMenu() {
+	public void exploreMenu() throws ClassNotFoundException, IOException {
 		Dice dwellerEncounter = new Dice(25);
 		Dice invisibleEncounter = new Dice(50);
 		System.out.println(currentPlanet.getExploreMessage());
@@ -550,8 +568,10 @@ public class GameController2 {
 	 * Method:puzzleMenu()
 	 * Description:
 	 * Author: Kenny
+	 * @throws IOException 
+	 * @throws ClassNotFoundException 
 	 */
-	public void puzzleMenu() {
+	public void puzzleMenu() throws ClassNotFoundException, IOException {
 		Dice dice50 = new Dice(50);
 		boolean puzzleNotComplete = true;
 		Puzzle currentPuzzle = new Puzzle();
@@ -732,8 +752,10 @@ public class GameController2 {
 	 * Method:isCaptainAlive()
 	 * Description:
 	 * Author: Kenny
+	 * @throws IOException 
+	 * @throws ClassNotFoundException 
 	 */
-	public void isCaptainAlive() {
+	public void isCaptainAlive() throws ClassNotFoundException, IOException {
 		if (captain.getHealthPoints() <= 0) {
 			System.out.println(" __     ______  _    _    _____ _____ ______ _____  _ \n" +
 					" \\ \\   / / __ \\| |  | |  |  __ \\_   _|  ____|  __ \\| |\n" +
@@ -775,43 +797,61 @@ public class GameController2 {
 	}
 
 	/**
-	 * Method: loadGameMenu() Description: Load Game menu that displays
+	 * loadGame
+	 * Deserializer for a saveGame.ser file. 
+	 * @param saveGameFileName The name of the save file. 
 	 *
-	 * @return String path for Game.loadGame
+	 * @return Fully constructed Game object. 
+	 * 
 	 * @author jcbrough, kenny
+	 * @throws IOException 
+	 * @throws ClassNotFoundException 
 	 */
-	private String loadGameMenu(String fileName) {
-		System.out.println("Which game would you like to load?"); //TODO: Create loadgame menu. 
-		// selectedGame should be the saved game that the player chooses. This
-		// is just filler.
-		Game selectedGame = new Game();
-		if (selectedGame.getNumPreviousSaves() <= 3) {
-			System.out.println("Sorry, Captain! You're too old for active duty!");
-			titleScreen();
-		}
-		return System.getProperty("user.home") + "\\Desktop\\" + Game.getExtension();
-		// TODO load game menu that returns path for Game secondary constructor.
+	private Game loadGame(String saveGameFileName) throws IOException, ClassNotFoundException {
+		
+		FileInputStream fis = new FileInputStream(getFullPathForLoad(saveGameFileName));
+	    ObjectInputStream ois = new ObjectInputStream(fis);
+	    Game loadedGame = new Game(); 
+	    try {
+	    	loadedGame = (Game) ois.readObject();
+	    } catch (OptionalDataException e) {
+	        if (!e.eof) throw e;
+	    } finally {
+	        ois.close();
+	    }
+		
+		return loadedGame; 
 	}
 
 	public void saveGameMenu() {
 		// TODO Save Game Menu to save Game
-		//At this point, a valid savegame is not being passed to this method. 
-		System.out.println("Would you like to [save] your game? Or are you [done] with this cruel world?!");
+		//At this point, a valid save game is not being passed to this method. 
+		System.out.println("You [sure] you want to do this? The world will fall after recording.");
 		listener();
 
-		if (booleanMaker("Save")) {
+		if (booleanMaker("Sure")) {
 			@SuppressWarnings("resource")
 			Scanner in = new Scanner(System.in);
 			System.out.println("What would you like the save file to be called?");
-			StringBuilder saveGameFileName = new StringBuilder(in.nextLine());
-			System.out.println(saveGameFileName.length());
-			saveGameFileName.append(" - ");
-			saveGameFileName.append("Captain " + captain.getName());
-			saveGameFileName.append(SAVE_FILE_EXTENSION);
-			StringBuilder fullPath = new StringBuilder(DESKTOP_PATH); //Changed name for readability. 
-			fullPath.append(saveGameFileName);
-			//TODO: FULL PATH ACQUIRED. 
-			//TODO: Serialize game and get it get it .
+			String saveGameFileName  = in.next(); 
+			
+			try {
+				//Declare helpers
+		        FileOutputStream saveGameFileOut = new FileOutputStream(getFullPathForSave(saveGameFileName)); //FileOutputStream takes a String, not a StringBuilder object.
+		        ObjectOutputStream out = new ObjectOutputStream(saveGameFileOut);
+		        
+		        //Do the work
+		        out.writeObject(thisGame);
+		        
+		        //Cleanup. 
+		        saveGameFileOut.close();
+		        saveGameFileOut.close();
+		        System.out.printf("World recorded and saved to: " + getFullPathForSave(saveGameFileName) + ". Goodbye, Captain " + thisGame.getCaptain().getName() + "."); 
+		        System.exit(0); 
+		     } 
+			 catch(IOException e) {
+		          e.printStackTrace();
+			 }
 		}
 	}
 
@@ -992,8 +1032,10 @@ public class GameController2 {
 	 *
 	 * @return void
 	 * @author tkeating, cdeluna, kenny
+	 * @throws IOException 
+	 * @throws ClassNotFoundException 
 	 */
-	public void combatMenu() {
+	public void combatMenu() throws ClassNotFoundException, IOException {
 		boolean hasNotFled = true;
 		Enemy enemy = new Enemy();
 
@@ -1088,5 +1130,40 @@ public class GameController2 {
 			System.out.println("Sir, our shields are at level " + captain.getHealthPoints() + "!");
 		}
 	}
-
+	
+	/**getFullPathForSave
+	 * Constructs a full save game path based on the users's desktop and the static file extension variable. 
+	 * 
+	 * @param saveFile The name of the save file. 
+	 * @return The full path. If the param is "test", return should look like this: 
+	 * 		C:\Users\jcbrough\Desktop\test - Captain Jim.ser
+	 * 
+	 * @author jcbrough
+	 */
+	public String getFullPathForSave(String saveFile) {
+		StringBuilder saveGameFileName = new StringBuilder(saveFile);
+		saveGameFileName.append(" - ");
+		saveGameFileName.append("Captain " + captain.getName());
+		saveGameFileName.append(SAVE_FILE_EXTENSION);
+		StringBuilder fullPath = new StringBuilder(DESKTOP_PATH); //Changed name for readability. 
+		fullPath.append(saveGameFileName);
+		return fullPath.toString(); 
+	}
+	
+	/**getFullPathForLoad
+	 * Constructs a full save game path based on the users's desktop and the static file extension variable. 
+	 * 
+	 * @param saveFile The name of the save file, with Captian name. 
+	 * @return The full path. If the param is "test", return should look like this: 
+	 * 		C:\Users\jcbrough\Desktop\test - Captain Jim.ser
+	 * 
+	 * @author jcbrough
+	 */
+	public String getFullPathForLoad(String saveFile) {
+		StringBuilder saveGameFileName = new StringBuilder(saveFile);
+		saveGameFileName.append(SAVE_FILE_EXTENSION);
+		StringBuilder fullPath = new StringBuilder(DESKTOP_PATH); //Changed name for readability. 
+		fullPath.append(saveGameFileName);
+		return fullPath.toString(); 
+	}
 }

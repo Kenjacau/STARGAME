@@ -2,6 +2,7 @@ package controllers;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /*
@@ -18,7 +19,9 @@ import obstacles.PlanetMaker;
 import obstacles.Puzzle;
 import playerCharacter.Captain;
 
-public class Game {
+
+@SuppressWarnings("serial") //I want all versions of the game class compatible. 
+public class Game implements Serializable {
 	private static final String EXTENSION = ".ser";
 	private int numPreviousSaves;
 	private Captain captain = new Captain();
@@ -60,6 +63,10 @@ public class Game {
 		this.captain = new Captain();
 		this.planets = new PlanetMaker().getPlanetArrayList();
 		
+	}
+
+	public Game(Object readObject) {
+		// TODO Auto-generated constructor stub
 	}
 
 	/**
