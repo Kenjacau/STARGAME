@@ -14,12 +14,13 @@ import obstacles.Planet;
  * - Version: 0.0.9
  * - Date: 2015-11-05
  **/
+@SuppressWarnings("serial") //Always compatable. Stop fooling.
 public class Captain extends Persona implements Serializable {
 	private static final int HEALTH_POINTS = 100;
 	private static final int ATTACK_POINTS = 25;
 	private static final int DEFENSE_POINTS = 0;
-	private static final int SENTINEL_BOT = 30;
-	private static final int SECURITY_OFFICER = 40;
+	private static final int SENTINEL_BOT_BONUS = 5;
+	private static final int SECURITY_OFFICER_BONUS = 40;
 	private ArrayList<String> captainCrew = new ArrayList<String>();
 	private Planet currentPlanet = null;
 	private int planetCount = 0;
@@ -41,10 +42,10 @@ public class Captain extends Persona implements Serializable {
 		for (String s : captainCrew) {
 			switch (s) {
 				case "Sentinel Bot":
-					setDefensePoints(5);
+					setDefensePoints(SENTINEL_BOT_BONUS);
 					break;
 				case "Security Officer":
-					setAttackPoints(40);
+					setAttackPoints(SECURITY_OFFICER_BONUS);
 					break;
 			}
 		}
@@ -155,16 +156,17 @@ public class Captain extends Persona implements Serializable {
 //}
 
 	/**
-	 * Method: modifyAttributesToCrew - Officers modify captain's stats
+	 * printAllAttributes
+	 * Prints all the captain's attributes!
 	 *
 	 * @author cdeluna, jcbrough
 	 */
-	public void getAllAttributes() {
-		System.out.println("Here are your stats, captain!");
+	public void printAllAttributes() {
+		System.out.println("Here are your stats, Captain!");
 		nl(1);
-		System.out.println("Your health points are: " + getHealthPoints());
-		System.out.println("Your attack points are: " + getAttackPoints());
-		System.out.println("Your defense points are: " + getDefensePoints());
+		System.out.println("Current Health: " + getHealthPoints());
+		System.out.println("Current Attack: " + getAttackPoints());
+		System.out.println("Current Defense: " + getDefensePoints());
 	}
 
 	/**

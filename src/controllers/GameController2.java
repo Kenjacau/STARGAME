@@ -28,6 +28,7 @@ public class GameController2 {
 	private static final String SPACE_GAME_TITLE = "Super Elite: Space Adventure!";
 	private static final String SAVE_FILE_EXTENSION = ".ser";
 	private static final String DESKTOP_PATH = System.getProperty("user.home") + "\\Desktop\\";
+	private static final int MAX_NUMBER_OF_SAVES = 3; 
 
 	// Other private variables
 	private Game thisGame;
@@ -105,13 +106,7 @@ public class GameController2 {
 				System.out.println("Let's get started Captain!");
 				planetSelectionMenu();
 
-			} else if (booleanMaker("Load Game")) {
-				// TODO: Display LoadGame/SaveGame menu that returns a string
-				// path.
-
-				// String path = loadGameMenu(); //TODO: Remove this when menu
-				// sys implemented.
-				
+			} else if (booleanMaker("Load Game")) {	
 				Scanner in = new Scanner(System.in); 
 				System.out.println("What is the EXACT name of the world recording, without the \"*.ser\" extension?");
 				thisGame = loadGame(in.nextLine()); 
@@ -124,7 +119,10 @@ public class GameController2 {
 					System.out.println(crewName);
 				}
 				nl(1); 
-				System.out.println("Your stats are: ");
+				thisGame.getCaptain().printAllAttributes();
+				nl(1); 
+				System.out.println("You have recorded the world " + thisGame.getNumPreviousSaves() + " times."); 
+				System.out.println("Max number of world recordings is: " + MAX_NUMBER_OF_SAVES + ". Be careful out there, Captain!");
 				nl(1); 
 				headerPrint(); 
 				nl(1); 
@@ -516,7 +514,7 @@ public class GameController2 {
 				} else {
 					captain.setHealthPoints(captain.getHealthPoints() + REPAIR_HEALTH_AMOUNT);
 				}
-				captain.getAllAttributes();
+				captain.printAllAttributes();
 				notRepaired = false;
 				softSaveGame();
 			} else if (booleanMaker("Leave")) {
@@ -550,7 +548,7 @@ public class GameController2 {
 				System.out.println("The harsh climate caused some damage, though.");
 				captain.setHealthPoints(captain.getHealthPoints() - 25);
 				isCaptainAlive();
-				captain.getAllAttributes();
+				captain.printAllAttributes();
 			}
 
 
@@ -689,7 +687,7 @@ public class GameController2 {
 								System.out.println("After wandering the forest for days, you return to your ship with half health.");
 								captain.setHealthPoints(captain.getHealthPoints() / 2);
 								isCaptainAlive();
-								captain.getAllAttributes();
+								captain.printAllAttributes();
 							} else {
 								System.out.println(currentPuzzle.getPuzzleChoiceMessages()[0]);
 								if (!captain.hasCrew("Sentinel Bot")) {
@@ -711,7 +709,7 @@ public class GameController2 {
 							System.out.println("Due to the harsh environment, you have taken 30 damage.");
 							captain.setHealthPoints(captain.getHealthPoints() - 30);
 							isCaptainAlive();
-							captain.getAllAttributes();
+							captain.printAllAttributes();
 							puzzleNotComplete = false;
 						} else if (booleanMaker(currentPuzzle.getPuzzleChoices()[1])) {
 							printChoice(currentPuzzle.getPuzzleChoices()[1]);
@@ -833,34 +831,43 @@ public class GameController2 {
 	}
 
 	public void saveGameMenu() {
-		// TODO Save Game Menu to save Game
-		//At this point, a valid save game is not being passed to this method. 
 		System.out.println("You [sure] you want to do this? The world will fall after recording.");
 		listener();
 
 		if (booleanMaker("Sure")) {
+			//Mod number of savegames at thisGame object. 
+			thisGame.setNumPreviousSaves(thisGame.getNumPreviousSaves() + 1);
+			
+			//See class header for globals. 
+			if (thisGame.getNumPreviousSaves() >= MAX_NUMBER_OF_SAVES) {
+				System.out.println("Captain... we cannot record the world. You're too old... you'll die in the attempt!");
+				return; 
+			}
+			
+			else { //Save the game!
 			@SuppressWarnings("resource")
 			Scanner in = new Scanner(System.in);
 			System.out.println("What would you like the save file to be called?");
 			String saveGameFileName  = in.next(); 
 			
-			try {
-				//Declare helpers
-		        FileOutputStream saveGameFileOut = new FileOutputStream(getFullPathForSave(saveGameFileName)); //FileOutputStream takes a String, not a StringBuilder object.
-		        ObjectOutputStream out = new ObjectOutputStream(saveGameFileOut);
-		        
-		        //Do the work
-		        out.writeObject(thisGame);
-		        
-		        //Cleanup. 
-		        saveGameFileOut.close();
-		        saveGameFileOut.close();
-		        System.out.printf("World recorded and saved to: " + getFullPathForSave(saveGameFileName) + ". Goodbye, Captain " + thisGame.getCaptain().getName() + "."); 
-		        System.exit(0); 
-		     } 
-			 catch(IOException e) {
-		          e.printStackTrace();
-			 }
+				try {
+					//Declare helpers
+					FileOutputStream saveGameFileOut = new FileOutputStream(getFullPathForSave(saveGameFileName)); //FileOutputStream takes a String, not a StringBuilder object.
+					ObjectOutputStream out = new ObjectOutputStream(saveGameFileOut);
+			        
+					//Do the work
+					out.writeObject(thisGame);
+			       
+					//Cleanup. 
+					saveGameFileOut.close();
+					saveGameFileOut.close();
+					System.out.printf("World recorded and saved to: " + getFullPathForSave(saveGameFileName) + ". Goodbye, Captain " + thisGame.getCaptain().getName() + "."); 
+					System.exit(0); 
+			    } 
+				catch(IOException e) {
+			         e.printStackTrace();
+				}
+			}
 		}
 	}
 
