@@ -36,7 +36,8 @@ public class GameController2 {
 	private Planet currentPlanet;
 	private Scanner in = new Scanner(System.in);
 	private String userInput = "";
-
+	private static GameController2 gcSingleton = null;
+	
 	/**
 	 * main() 
 	 * STATIC METHOD 
@@ -49,11 +50,32 @@ public class GameController2 {
 	 * @author jcbrough
 	 */
 	public static void main(String[] args) throws IOException, ClassNotFoundException {
-		GameController2 thisGameController = new GameController2();
-		thisGameController.titleScreen();
+		getGameControllerInstance().titleScreen();
 	}
 	
-	// ALL Menu Methods
+	
+	/**
+	 * GameController2 CONSTRUCTOR
+	 * This constructor is PRIVATE. It exists ONLY TO DEFEAT GC INSTANTIATION.
+	 * 
+	 * @author jcbrough
+	 */
+	private GameController2() {
+	}
+	
+	/**getGameControllerInstance
+	 * Make sure the GameController2 control object is a Singleton
+	 * 
+	 * @return GameController2 object.
+	 * 
+	 * @author jcbrough
+	 */
+	private static GameController2 getGameControllerInstance() {
+		if (gcSingleton == null) {
+			gcSingleton = new GameController2();
+		}		
+		return gcSingleton; 
+	}
 
 	/**
 	 * titleScreen() - Displays title screen
