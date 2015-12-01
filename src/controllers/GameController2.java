@@ -116,10 +116,19 @@ public class GameController2 {
 				System.out.println("What is the EXACT name of the world recording, without the \"*.ser\" extension?");
 				thisGame = loadGame(in.nextLine()); 
 				loadThisGameElements(thisGame);
-				System.out.println("Captain, this is who you're travelling with: ");
+				nl(1); 
+				headerPrint(); 
+				nl(1); 
+				System.out.println("Welcome back, Captain! This is who you're travelling with: ");
 				for (String crewName : captain.getCaptainCrew()) {
 					System.out.println(crewName);
 				}
+				nl(1); 
+				System.out.println("Your stats are: ");
+				nl(1); 
+				headerPrint(); 
+				nl(1); 
+				
 
 				System.out.println("Let's get started, Captain!");
 
