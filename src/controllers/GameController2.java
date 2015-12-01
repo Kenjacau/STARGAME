@@ -1,7 +1,6 @@
 package controllers;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -12,8 +11,6 @@ import java.util.Random;
 import java.util.Scanner;
 import obstacles.*;
 import playerCharacter.Captain;
-import sun.font.TrueTypeFont;
-import testers.GameClassTester;
 
 /*
 Class: GameController
@@ -39,15 +36,17 @@ public class GameController2 {
 	private Planet currentPlanet;
 	private Scanner in = new Scanner(System.in);
 	private String userInput = "";
-	private GameClassTester gameTester = new GameClassTester();
 
 	/**
-	 * main() STATIC METHOD This serves as the starting point for the
-	 * GameController class.
+	 * main() 
+	 * STATIC METHOD 
+	 * This serves as the starting point for the GameController class.
 	 *
 	 * @param args Command line arguments
 	 * @throws IOException
 	 * @throws ClassNotFoundException 
+	 * 
+	 * @author jcbrough
 	 */
 	public static void main(String[] args) throws IOException, ClassNotFoundException {
 		GameController2 thisGameController = new GameController2();
@@ -60,9 +59,10 @@ public class GameController2 {
 	 * titleScreen() - Displays title screen
 	 *
 	 * @return void
-	 * @author kenny
+	 * 
 	 * @throws IOException 
 	 * @throws ClassNotFoundException 
+	 * @author kenny, jcbrough
 	 */
 	public void titleScreen() throws ClassNotFoundException, IOException {
 		boolean titleNotComplete = true;
@@ -88,8 +88,7 @@ public class GameController2 {
 			nl(1);
 			listener();
 			if (booleanMaker("New Game")) {
-				// Construct New game object, captain object, and ArrayList of
-				// default planets.
+				// Construct New game object, captain object, and ArrayList of default planets.
 				thisGame = new Game();
 				captain = new Captain();
 				thisGame.setCaptain(captain);
@@ -101,13 +100,15 @@ public class GameController2 {
 
 				// Set Captain's Crew through menu
 				crewSelectionMenu();
+				
 				// End loop
 				titleNotComplete = false;
 
 				System.out.println("Let's get started Captain!");
 				planetSelectionMenu();
 
-			} else if (booleanMaker("Load Game")) {	
+			} else if (booleanMaker("Load Game")) {
+				@SuppressWarnings("resource") //Known bug. Don't yell at me.
 				Scanner in = new Scanner(System.in); 
 				System.out.println("What is the EXACT name of the world recording, without the \"*.ser\" extension?");
 				thisGame = loadGame(in.nextLine()); 
@@ -115,6 +116,8 @@ public class GameController2 {
 				nl(1); 
 				headerPrint(); 
 				nl(1); 
+				
+				//Print some info for the returning captain: 
 				System.out.println("Welcome back, Captain! This is who you're travelling with: ");
 				for (String crewName : captain.getCaptainCrew()) {
 					System.out.println(crewName);
@@ -128,7 +131,7 @@ public class GameController2 {
 				headerPrint(); 
 				nl(1); 
 				
-
+				//Begin. 
 				System.out.println("Let's get started, Captain!");
 
 				if (captain.getCurrentPlanet() != null) {
@@ -153,6 +156,7 @@ public class GameController2 {
 				genericInputFailure();
 			}
 		}
+		
 		headerPrint();
 		isCaptainAlive();
 	}
@@ -170,7 +174,8 @@ public class GameController2 {
 	}
 
 	/**
-	 * loadThisGameElements() - Pulls saved planetArrayList and
+	 * loadThisGameElements()
+	 * Pulls saved planetArrayList and
 	 * captain object from game object to current Game Controllers Attributes.
 	 * 
 	 * @author: kenny
@@ -185,7 +190,8 @@ public class GameController2 {
 	}
 
 	/**
-	 * softSaveGame() - Soft saves captain and planet ArrayList
+	 * softSaveGame()
+	 * Soft saves captain and planet ArrayList
 	 * 
 	 * @author kenny
 	 */
@@ -198,9 +204,11 @@ public class GameController2 {
 	 * planetSelectionMenu() - Displays the planet selection menu.
 	 *
 	 * @return void
-	 * @author jcbrough, kenny
+	 * 
 	 * @throws IOException 
 	 * @throws ClassNotFoundException 
+	 * 
+	 * @author jcbrough, kenny
 	 */
 	public void planetSelectionMenu() throws ClassNotFoundException, IOException {
 		boolean planetSelectionNotComplete = true;
@@ -242,20 +250,22 @@ public class GameController2 {
 							break;
 
 						} else if (planetChoices.indexOf(selectedPlanet) < planetChoices.size() - 1) {
-							// continues loop until planetSelectionNotComplete == false
+							
+						// continues loop until planetSelectionNotComplete == false
 						} else {
 							nl(1);
 							headerPrint();
 							System.out.println("Captain, the input \"" + userInput + "\" is garbage!!! You are a crazy person!");
 							System.out.println("Let's try that again!");
 							nl(1);
-							// continues loop until planetSelectionNotComplete == false
+						// continues loop until planetSelectionNotComplete == false
+							
 						}
 					}
 				}
 			}
 		} else {
-			youWin();
+			youWin(); //OH SHIT
 		}
 
 	}
@@ -276,8 +286,10 @@ public class GameController2 {
 				"    | | | |__| | |__| |    \\  /\\  /   _| |_| |\\  |\n" +
 				"    |_|  \\____/ \\____/      \\/  \\/   |_____|_| \\_|\n" +
 				"                                                 ");
+		nl(1);
 		System.out.println("Congratulations! YOU WIN!");
 		softSaveGame();
+		nl(2); 
 		titleScreen();
 	}
 
@@ -299,6 +311,7 @@ public class GameController2 {
 		nl(1); 
 		System.out.println("Bleh! YOU LOSE!");
 		softSaveGame();
+		nl(2); 
 		titleScreen();
 	}
 
@@ -341,13 +354,13 @@ public class GameController2 {
 				}
 			}
 		}
-
 		return randomPlanets;
 	}
 
 	/**
 	 * Method: PlanetMenu()
 	 * Description:
+	 * 
 	 * author: Kenny
 	 * @throws IOException 
 	 * @throws ClassNotFoundException 
@@ -376,8 +389,10 @@ public class GameController2 {
 
 	/**
 	 * Method:specialPlanetMenu()
-	 * Description:
+	 * Description: If the planet is special, this is what happens. 
+	 * 
 	 * author: Kenny
+	 * 
 	 * @throws IOException 
 	 * @throws ClassNotFoundException 
 	 */
@@ -406,7 +421,6 @@ public class GameController2 {
 	 * @throws ClassNotFoundException 
 	 */
 	public void rockPaperScissor() throws ClassNotFoundException, IOException {
-		boolean notTie = true;
 		boolean playerThinking = true;
 		int playerChoice = 0;
 		int enemyChoice = 0;
@@ -418,7 +432,7 @@ public class GameController2 {
 		while (winCount < 2 && loseCount < 2) {
 			while (playerThinking) {
 				nl(1);
-				System.out.println(" Rock, Paper, or Scissor");
+				System.out.println(" Rock, Paper, or Scissors");
 				listener();
 				if (booleanMaker("Rock")) {
 					playerChoice = 1;
@@ -426,7 +440,7 @@ public class GameController2 {
 				} else if (booleanMaker("Paper")) {
 					playerChoice = 2;
 					playerThinking = false;
-				} else if (booleanMaker("Scissor")) {
+				} else if (booleanMaker("Scissors")) {
 					playerChoice = 3;
 					playerThinking = false;
 				} else {
@@ -444,7 +458,7 @@ public class GameController2 {
 			} else if (enemyChoice == 2) {
 				enemySign = "Paper";
 			} else {
-				enemySign = "Scissor";
+				enemySign = "Scissors";
 			}
 
 			System.out.println("The Enemy chose " + enemySign);
@@ -468,7 +482,6 @@ public class GameController2 {
 		} else {
 			youLose();
 		}
-
 	}
 
 	/**
@@ -531,7 +544,7 @@ public class GameController2 {
 			} else if (booleanMaker("Help")) {
 				helpMenu();
 			} else {
-				System.out.println("Not sure what you are saying Captain. Let's try that again.");
+				System.out.println("We seem to be having communicaton issues, Captain. You know, like your parents back home in Wisconsin? Let's try that again.");
 			}
 		}
 		isCaptainAlive();
@@ -550,7 +563,7 @@ public class GameController2 {
 		if (currentPlanet.getExploreFlag() == 0) {
 			if (removeNonWords(currentPlanet.getPlanetName()).equals(removeNonWords("Eos"))) {
 				System.out.println(currentPlanet.getExploreMessage());
-				System.out.println("The harsh climate caused some damage, though.");
+				System.out.println("The harsh climate caused some damage. Durn.");
 				captain.setHealthPoints(captain.getHealthPoints() - 25);
 				isCaptainAlive();
 				captain.printAllAttributes();
@@ -578,8 +591,10 @@ public class GameController2 {
 
 	/**
 	 * Method:puzzleMenu()
-	 * Description:
+	 * Description: Dispalys puzzle menus for non-special planets. 
+	 * 
 	 * Author: Kenny
+	 * 
 	 * @throws IOException 
 	 * @throws ClassNotFoundException 
 	 */
@@ -597,13 +612,12 @@ public class GameController2 {
 			nl(1);
 			System.out.println("Hmm, so what you think we should do Captain?");
 			if (currentPuzzle.getPuzzleChoices().length == 3) {
-				System.out.println(currentPuzzle.getPuzzleChoices()[0] + " | or | " + currentPuzzle.getPuzzleChoices()[1]
-						+ " | or | " + currentPuzzle.getPuzzleChoices()[2]);
+				System.out.println("[" + currentPuzzle.getPuzzleChoices()[0] + "] | or | [" + currentPuzzle.getPuzzleChoices()[1] + "] | or | [" + currentPuzzle.getPuzzleChoices()[2] + "]");
 			} else {
-				System.out.println(currentPuzzle.getPuzzleChoices()[0] + " | or | " + currentPuzzle.getPuzzleChoices()[1]);
+				System.out.println("[" + currentPuzzle.getPuzzleChoices()[0] + "] | or | ["+ currentPuzzle.getPuzzleChoices()[1] + "]");
 			}
 			if (captain.hasSurveyOfficer()) {
-				System.out.println("Captain, we can have our Survey Officer inspect the area to give us a [H]int.");
+				System.out.println("Captain, we can have our Survey Officer inspect the area to give us a [Hint].");
 			}
 
 			listener();
@@ -612,7 +626,6 @@ public class GameController2 {
 			} else if (booleanMaker("Help")) {
 				helpMenu();
 			} else {
-
 				switch (currentPuzzle.getPuzzleHomePlanet()) {
 					case "51 Pegasi b":
 						if (booleanMaker(currentPuzzle.getPuzzleChoices()[0])) {
@@ -652,7 +665,7 @@ public class GameController2 {
 									captain.getCaptainCrew().add("Navigation Officer");
 									System.out.println(captain.getCaptainCrew());
 								} else {
-									System.out.println("Sorry, Captain! We had to throw them overboard since we already have a Navigation Officer!");
+									System.out.println("Sorry, Captain! We had to throw them overboard since we already have a Navigation Officer! You're an asshole!");
 								}
 							}
 							puzzleNotComplete = false;
@@ -762,12 +775,14 @@ public class GameController2 {
 
 	/**
 	 * Method:isCaptainAlive()
-	 * Description:
+	 * Description: If the captain is dead, you lose!!
+	 * 
 	 * Author: Kenny
+	 * 
 	 * @throws IOException 
 	 * @throws ClassNotFoundException 
 	 */
-	public void isCaptainAlive() throws ClassNotFoundException, IOException {
+	public void isCaptainAlive() throws ClassNotFoundException, IOException  {
 		if (captain.getHealthPoints() <= 0) {
 			System.out.println(" __     ______  _    _    _____ _____ ______ _____  _ \n" +
 					" \\ \\   / / __ \\| |  | |  |  __ \\_   _|  ____|  __ \\| |\n" +
@@ -775,6 +790,7 @@ public class GameController2 {
 					"   \\   /| |  | | |  | |  | |  | || | |  __| | |  | | |\n" +
 					"    | | | |__| | |__| |  | |__| || |_| |____| |__| |_|\n" +
 					"    |_|  \\____/ \\____/   |_____/_____|______|_____/(_)");
+			nl(2);
 			titleScreen();
 		}
 	}
@@ -789,7 +805,6 @@ public class GameController2 {
 	}
 
 	private void helpMenu() {
-		// TODO Help Menu
 		headerPrint();
 		System.out.println("You get very little help, Captain!");
 		System.out.println("You can [save], and that's about it.");

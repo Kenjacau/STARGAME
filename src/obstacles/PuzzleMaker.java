@@ -49,13 +49,7 @@ public class PuzzleMaker {
 		return puzzleArrayList;
 	}
 
-	/**
-	 * Method:TODO
-	 * Description:
-	 *
-	 * @param
-	 * @return
-	 */
+	//List of all puzzle hints. 
 	private String[] getPuzzleHintArray() {
 		return new String[]{"We may be able to utilize the skilled crew should they survive.",
 				"We have to consider why that facility is empty and where everyone went. If you continue be prepared for anything.",
@@ -66,13 +60,13 @@ public class PuzzleMaker {
 				"Sorry. You're on your own on this one."
 		};
 	}
-
+	
+	//List of all possible puzzle answer choices.
+	//Kenny did this. Ask him about the syntax. 
 	private String[] getPuzzleChoices() {
 		return new String[]{"Abandon", "Rescue", "Leave", "Search", "Left", "Middle", "Right", "Leave", "Stay", "Leave", "Mallet", "Leave", "Device"
 		};
 	}
-
-	;
 
 	private String[] getPuzzleChoiceResultMessages() {
 		return new String[]{"As you abandon the station it explodes...", "The search and rescue mission was a success and you managed to save the entire crew! \n" +
@@ -84,8 +78,6 @@ public class PuzzleMaker {
 				"You had back to the ship and spend a day digging out the ship with your plasma shovel",
 				"You take the mallet and strike the door...", "You leave the body and head back to the ship",
 				"You head over to the body and grab the device..."
-
-
 		};
 	}
 
@@ -96,6 +88,8 @@ public class PuzzleMaker {
 	 * @param list
 	 * @param rowWithThreeChoices
 	 * @return ArrayList of String array, tempArrayList
+	 * 
+	 * @author Kenny
 	 */
 	private ArrayList<String[]> puzzleArrayListGenerator(String[] list, int rowWithThreeChoices) {
 		ArrayList<String[]> tempArrayList = new ArrayList<>();
