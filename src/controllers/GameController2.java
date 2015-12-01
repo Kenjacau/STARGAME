@@ -76,9 +76,10 @@ public class GameController2 {
 				" |_____/ \\__,_| .__/ \\___|_|    |______|_|_|\\__\\___|\n" +
 				"              | |                                   \n" +
 				"              |_|                                   ");
+		nl(1); 
 		System.out.println(SPACE_GAME_TITLE);
-		nl(1);
-		System.out.println("Welcome to the world, Captain! Here are your options.");
+		nl(2);
+		System.out.println("Welcome to the world, Captain! Here are your options:");
 		nl(1);
 
 		while (titleNotComplete) {
@@ -121,7 +122,7 @@ public class GameController2 {
 				nl(1); 
 				thisGame.getCaptain().printAllAttributes();
 				nl(1); 
-				System.out.println("You have recorded the world " + thisGame.getNumPreviousSaves() + " times."); 
+				System.out.println("You have recorded the world " + thisGame.getNumPreviousSaves() + " time(s)."); 
 				System.out.println("Max number of world recordings is: " + MAX_NUMBER_OF_SAVES + ". Be careful out there, Captain!");
 				nl(1); 
 				headerPrint(); 
@@ -295,6 +296,7 @@ public class GameController2 {
 				"   \\   /| |  | | |  | | | |   | |  | |\\___ \\|  __| | |\n" +
 				"    | | | |__| | |__| | | |___| |__| |____) | |____|_|\n" +
 				"    |_|  \\____/ \\____/  |______\\____/|_____/|______(_)");
+		nl(1); 
 		System.out.println("Bleh! YOU LOSE!");
 		softSaveGame();
 		titleScreen();
@@ -486,7 +488,7 @@ public class GameController2 {
 
 		while (planetMenuNotFinished && captain.isAlive()) {
 			headerPrint();
-			System.out.println("Here are your options Captain");
+			System.out.println("Captain, our options are: ");
 			if (notScanned) {
 				System.out.print("| [S]can ");
 			}
@@ -497,6 +499,9 @@ public class GameController2 {
 				System.out.print("| [R]epair ");
 			}
 			System.out.println("| [L]eave |");
+			nl(1);
+			thisGame.getCaptain().printAllAttributes();
+			nl(1); 
 			wWJD();
 			listener();
 			if (booleanMaker("Scan") && notScanned) {
@@ -835,9 +840,6 @@ public class GameController2 {
 		listener();
 
 		if (booleanMaker("Sure")) {
-			//Mod number of savegames at thisGame object. 
-			thisGame.setNumPreviousSaves(thisGame.getNumPreviousSaves() + 1);
-			
 			//See class header for globals. 
 			if (thisGame.getNumPreviousSaves() >= MAX_NUMBER_OF_SAVES) {
 				System.out.println("Captain... we cannot record the world. You're too old... you'll die in the attempt!");
@@ -845,11 +847,11 @@ public class GameController2 {
 			}
 			
 			else { //Save the game!
-			@SuppressWarnings("resource")
-			Scanner in = new Scanner(System.in);
-			System.out.println("What would you like the save file to be called?");
-			String saveGameFileName  = in.next(); 
-			
+				thisGame.setNumPreviousSaves(thisGame.getNumPreviousSaves() + 1);
+				@SuppressWarnings("resource")
+				Scanner in = new Scanner(System.in);
+				System.out.println("What would you like the save file to be called?");
+				String saveGameFileName  = in.next(); 
 				try {
 					//Declare helpers
 					FileOutputStream saveGameFileOut = new FileOutputStream(getFullPathForSave(saveGameFileName)); //FileOutputStream takes a String, not a StringBuilder object.
