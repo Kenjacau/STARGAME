@@ -73,9 +73,7 @@ public class PuzzleMaker {
 				"The Survey Officer of the station wishes to join your crew",
 				"Oh no! Something is heading towards you...You should get your blaster ready", "You found an ARTIFACT!",
 				"As you step through the door you notice that you are now back in your ship hovering over the same planet.",
-				"As you step through the door your vision goes dark. You awake on the flight deck overlooking a very familiar planet...Earth",
-				"You head back to the ship and leave the planet's surface.", "You attempt to navigate the forest...",
-				"You had back to the ship and spend a day digging out the ship with your plasma shovel",
+				"As you step through the door your vision goes dark. You awake on the flight deck overlooking a very familiar planet...Earth", "You head back to the ship and leave the planet's surface.", "You attempt to navigate the forest...", "You head back to the ship and spend a day digging out the ship with your plasma shovel",
 				"You take the mallet and strike the door...", "You leave the body and head back to the ship",
 				"You head over to the body and grab the device..."
 		};

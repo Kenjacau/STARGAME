@@ -68,6 +68,5 @@ public class Enemy extends Persona
 		return ambushStatus;
 	}
 
-	
 
 }

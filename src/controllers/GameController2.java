@@ -25,8 +25,8 @@ public class GameController2 {
 	private static final String SPACE_GAME_TITLE = "Super Elite: Space Adventure!";
 	private static final String SAVE_FILE_EXTENSION = ".ser";
 	private static final String DESKTOP_PATH = System.getProperty("user.home") + "\\Desktop\\";
-	private static final int MAX_NUMBER_OF_SAVES = 3; 
-
+	private static final int MAX_NUMBER_OF_SAVES = 3;
+	private static GameController2 gcSingleton = null;
 	// Other private variables
 	private Game thisGame;
 	private Captain captain;
@@ -36,31 +36,29 @@ public class GameController2 {
 	private Planet currentPlanet;
 	private Scanner in = new Scanner(System.in);
 	private String userInput = "";
-	private static GameController2 gcSingleton = null;
-	
-	/**
-	 * main() 
-	 * STATIC METHOD 
-	 * This serves as the starting point for the GameController class.
-	 *
-	 * @param args Command line arguments
-	 * @throws IOException
-	 * @throws ClassNotFoundException 
-	 * 
-	 * @author jcbrough
-	 */
-	public static void main(String[] args) throws IOException, ClassNotFoundException {
-		getGameControllerInstance().titleScreen();
-	}
-	
 	
 	/**
 	 * GameController2 CONSTRUCTOR
 	 * This constructor is PRIVATE. It exists ONLY TO DEFEAT GC INSTANTIATION.
-	 * 
+	 *
 	 * @author jcbrough
 	 */
 	private GameController2() {
+	}
+	
+	/**
+	 * main()
+	 * STATIC METHOD
+	 * This serves as the starting point for the GameController class.
+	 *
+	 * @param args Command line arguments
+	 * @throws IOException
+	 * @throws ClassNotFoundException
+	 *
+	 * @author jcbrough
+	 */
+	public static void main(String[] args) throws IOException, ClassNotFoundException {
+		getGameControllerInstance().titleScreen();
 	}
 	
 	/**getGameControllerInstance
@@ -98,9 +96,10 @@ public class GameController2 {
 				" |_____/ \\__,_| .__/ \\___|_|    |______|_|_|\\__\\___|\n" +
 				"              | |                                   \n" +
 				"              |_|                                   ");
-		nl(1); 
+		nl(1);
 		System.out.println(SPACE_GAME_TITLE);
-		nl(2);
+		headerPrint();
+		pause(1500);
 		System.out.println("Welcome to the world, Captain! Here are your options:");
 		nl(1);
 
@@ -247,8 +246,10 @@ public class GameController2 {
 				System.out.println("What is our destination, Captain " + captain.getName() + "?");
 				System.out.println("Based on our current position, these are our options: ");
 				for (Planet thisPlanet : planetChoices) {
+					pause(400);
 					System.out.println("		" + thisPlanet.getPlanetName());
 				}
+				pause(600);
 				System.out.println("Please type [help] or the name of the planet you'd like to visit: ");
 				System.out.println(
 						"Please note: if the planet name isn't input into the navigation system with precision, we'll be...");
@@ -265,6 +266,7 @@ public class GameController2 {
 							System.out.println("Thank you, Captain!");
 							System.out.println("You have chosen to go to " + selectedPlanet.getPlanetName()
 									+ "! BOLDLY GOING NOW, CAPTAIN!");
+							dotPrinter();
 							planetSelectionNotComplete = false;
 							captain.setPlanetCount(captain.getPlanetCount() + 1);
 							softSaveGame();
@@ -301,6 +303,12 @@ public class GameController2 {
 	 * @throws ClassNotFoundException 
 	 */
 	public void youWin() throws ClassNotFoundException, IOException {
+		headerPrint();
+		System.out.println("After Exploring the Galaxy you realize there is nothing better than...");
+		pause(800);
+		System.out.println("to sitting at home and watching Netflix.");
+		pause(800);
+		headerPrint();
 		System.out.println(" __     ______  _    _  __          _______ _   _ \n" +
 				" \\ \\   / / __ \\| |  | | \\ \\        / /_   _| \\ | |\n" +
 				"  \\ \\_/ / |  | | |  | |  \\ \\  /\\  / /  | | |  \\| |\n" +
@@ -324,6 +332,8 @@ public class GameController2 {
 	 * @throws ClassNotFoundException 
 	 */
 	public void youLose() throws ClassNotFoundException, IOException {
+		headerPrint();
+		pause(800);
 		System.out.println(" __     ______  _    _   _      ____   _____ ______ _ \n" +
 				" \\ \\   / / __ \\| |  | | | |    / __ \\ / ____|  ____| |\n" +
 				"  \\ \\_/ / |  | | |  | | | |   | |  | | (___ | |__  | |\n" +
@@ -392,6 +402,7 @@ public class GameController2 {
 		headerPrint();
 		nl(1);
 		System.out.println("You have arrived at " + currentPlanet.getPlanetName());
+		nl(1);
 		if (!currentPlanet.getArrivalMessage().contains("Nothing")) {
 			System.out.println(currentPlanet.getArrivalMessage());
 		}
@@ -523,6 +534,7 @@ public class GameController2 {
 
 		while (planetMenuNotFinished && captain.isAlive()) {
 			headerPrint();
+			pause(1600);
 			System.out.println("Captain, our options are: ");
 			if (notScanned) {
 				System.out.print("| [S]can ");
@@ -533,12 +545,12 @@ public class GameController2 {
 			if (captain.hasEngineerOfficer() && notRepaired) {
 				System.out.print("| [R]epair ");
 			}
-			System.out.println("| [L]eave |");
+			System.out.println("| [L]eave | [C]ondition |");
 			nl(1);
-			thisGame.getCaptain().printAllAttributes();
 			nl(1); 
 			wWJD();
 			listener();
+			nl(1);
 			if (booleanMaker("Scan") && notScanned) {
 				System.out.println(currentPlanet.getScanMessage());
 				notScanned = false;
@@ -549,6 +561,7 @@ public class GameController2 {
 				softSaveGame();
 			} else if (booleanMaker("Repair") && notRepaired) {
 				if (captain.getHealthPoints() + REPAIR_HEALTH_AMOUNT > 99) {
+
 					System.out.println("At max health Captain!");
 					captain.setHealthPoints(100);
 				} else {
@@ -563,13 +576,26 @@ public class GameController2 {
 
 				planetSelectionMenu();
 
+			} else if (booleanMaker("Condition")) {
+				captain.printAllAttributes();
+
 			} else if (booleanMaker("Help")) {
 				helpMenu();
 			} else {
-				System.out.println("We seem to be having communicaton issues, Captain. You know, like your parents back home in Wisconsin? Let's try that again.");
+				System.out.println("We seem to be having communication issues, Captain. \n" + "You know, like your " +
+						"parents back home in Wisconsin? Let's try that again.");
 			}
 		}
 		isCaptainAlive();
+	}
+
+	public void dotPrinter() {
+
+		for (int i = 0; i < 30; i++) {
+			pause(100);
+			System.out.print(".");
+		}
+		System.out.println(".");
 	}
 
 	/**
@@ -632,6 +658,7 @@ public class GameController2 {
 		while (puzzleNotComplete && captain.isAlive()) {
 			headerPrint();
 			nl(1);
+			pause(1600);
 			System.out.println("Hmm, so what you think we should do Captain?");
 			if (currentPuzzle.getPuzzleChoices().length == 3) {
 				System.out.println("[" + currentPuzzle.getPuzzleChoices()[0] + "] | or | [" + currentPuzzle.getPuzzleChoices()[1] + "] | or | [" + currentPuzzle.getPuzzleChoices()[2] + "]");
@@ -659,6 +686,8 @@ public class GameController2 {
 							System.out.println(currentPuzzle.getPuzzleChoiceMessages()[1]);
 							if (!captain.hasSurveyOfficer()) {
 								captain.getCaptainCrew().add("Survey Officer");
+								System.out.println("We made some room for the Survey Officer!");
+								nl(1);
 								System.out.println(captain.getCaptainCrew());
 							} else {
 								System.out.println("Sorry, Captain! We had to decline the offer since we already have a Survey Officer!");
@@ -682,12 +711,14 @@ public class GameController2 {
 								combatMenu();
 							} else {
 								System.out.println(currentPuzzle.getPuzzleChoiceMessages()[1]);
+								System.out.println("Seems like this Navigation Officer is attracted to the Artifact.");
 								if (!captain.hasNavigationOfficer()) {
-									System.out.println("Seems like this Navigation Officer is attracted to the Artifact.");
 									captain.getCaptainCrew().add("Navigation Officer");
+									System.out.println("The Navigation Officer has joined the crew!");
 									System.out.println(captain.getCaptainCrew());
 								} else {
-									System.out.println("Sorry, Captain! We had to throw them overboard since we already have a Navigation Officer! You're an asshole!");
+									System.out.println("Sorry, Captain! We had to throw them overboard since we " +
+											"already have a Navigation Officer! You're an ***!");
 								}
 							}
 							puzzleNotComplete = false;
@@ -729,9 +760,15 @@ public class GameController2 {
 								isCaptainAlive();
 								captain.printAllAttributes();
 							} else {
-								System.out.println(currentPuzzle.getPuzzleChoiceMessages()[0]);
+								System.out.println("After wandering the forest, you find a Sentinel Bot patrolling " +
+										"aimlessly.");
+								nl(1);
+								System.out.println("It seems to want to join your team.");
+
 								if (!captain.hasCrew("Sentinel Bot")) {
 									captain.getCaptainCrew().add("Sentinel Bot");
+									nl(1);
+									System.out.println("The Sentinel Bot has joined our crew!");
 									System.out.println(captain.getCaptainCrew());
 								} else {
 									System.out.println("Sorry, Captain! We scrapped the Sentinel Bot since we have one already!");
@@ -777,6 +814,7 @@ public class GameController2 {
 								System.out.println("Thanks to the Device, a Tactical Officer has found our ship and wishes to join our crew.");
 								if (!captain.hasCrew("Tactical Officer")) {
 									captain.getCaptainCrew().add("Tactical Officer");
+									System.out.println("Tactical Officer has joined the crew!");
 									System.out.println(captain.getCaptainCrew());
 								} else {
 									System.out.println("Sorry, Captain! We assigned the Tactical Officer to kitchen duty since we have one already!");
@@ -813,17 +851,32 @@ public class GameController2 {
 					"    | | | |__| | |__| |  | |__| || |_| |____| |__| |_|\n" +
 					"    |_|  \\____/ \\____/   |_____/_____|______|_____/(_)");
 			nl(2);
+			pause(200);
 			titleScreen();
 		}
 	}
 
 	/**
 	 * Method:printChoice()
-	 * Description:
+	 * Description: Helper method to display choice player made
 	 * Author: Kenny
 	 */
 	public void printChoice(String s) {
 		System.out.println("You've chosen " + s);
+		headerPrint();
+	}
+
+	/**
+	 * Method:pause()
+	 * Description:Pause thread
+	 * Author: Kenny
+	 */
+	public void pause(int millis) {
+		try {
+			Thread.sleep(millis);
+		} catch (InterruptedException ie) {
+			ie.printStackTrace();
+		}
 	}
 
 	private void helpMenu() {
@@ -920,13 +973,17 @@ public class GameController2 {
 
 		headerPrint();
 		System.out.println("Captain! You must select a crew! You can only choose three!");
+		pause(600);
 		System.out.println("Here is a list of currently unassigned crew: ");
 		for (String s : captain.getFullCrewList()) {
+			pause(400);
 			System.out.println("		" + s + "?");
 		}
+		pause(400);
 
-		System.out.println(
-				"The rest of the officers of SuperElite StarFleet have been disqualified for active duty for a felony involving a can of pureed pumpkin.");
+		System.out.println("The rest of the officers of SuperElite StarFleet have been disqualified \nfor active duty " +
+				"" + "for a felony involving a can of pureed pumpkin.");
+		nl(1);
 		System.out.println("Please type three crew members, and press enter between each one!");
 		System.out.println("You must type their names EXACTLY, or I won't be able to understand your finger-accent.");
 		nl(1);
@@ -966,6 +1023,7 @@ public class GameController2 {
 	 * @author kenny
 	 */
 	public void headerPrint() {
+		pause(300);
 		nl(1);
 		System.out.println("==================================================================");
 		nl(1);
@@ -1078,8 +1136,7 @@ public class GameController2 {
 		return (removeNonWords(currentPlanet.getPlanetName()).equals(removeNonWords("Jor")) ||
 				removeNonWords(currentPlanet.getPlanetName()).equals(removeNonWords("Prion")) ||
 				removeNonWords(currentPlanet.getPlanetName()).equals(removeNonWords("Shadowfax")) ||
-				removeNonWords(currentPlanet.getPlanetName()).equals(removeNonWords("TrES-2b")) ||
-				removeNonWords(currentPlanet.getPlanetName()).equals(removeNonWords("Nasqueron")));
+				removeNonWords(currentPlanet.getPlanetName()).equals(removeNonWords("TrES-2b")));
 	}
 
 	/**
@@ -1097,7 +1154,8 @@ public class GameController2 {
 		for (Enemy e : enemyArrayList) {
 			if (removeNonWords(e.getEnemyLocation()).equals(removeNonWords(currentPlanet.getPlanetName()))) {
 				enemy = e;
-			} else if (e.getName().equals("Gas Giant Dwellers") && dwellerEncounter()) {
+			} else if (e.getName().equals("Gas Giant Dwellers") && (dwellerEncounter() || removeNonWords(currentPlanet
+					.getPlanetName()).equals(removeNonWords("Nasqueron")))) {
 				enemy = e;
 			}
 		}
@@ -1106,13 +1164,14 @@ public class GameController2 {
 
 		if (enemy.getAmbushStatus() == 1) {
 			// If enemy survives initiate Enemy on player Combat
-			System.out.println("AMBUSH!");
+			System.out.println("::::::::::::::::AMBUSH!::::::::::::::::::");
 			hitCaptain(enemy);
 			isCaptainAlive();
 			nl(1);
 		}
 		while ((captain.isAlive() && enemy.isAlive()) && hasNotFled) {
-
+			headerPrint();
+			pause(800);
 			System.out.println("Captain! What are you orders?");
 			System.out.print("| [A]ttack |");
 			// Flee with Tactical Officer
@@ -1130,6 +1189,7 @@ public class GameController2 {
 				}
 			} else if (captain.hasTacticalOfficer() && booleanMaker("Flee")) {
 				System.out.println("Roger that, Captain! Preparing for ludicrous speed!");
+				dotPrinter();
 				System.out.println("Ludicrous speed reached! Sir, we've gone plaid.");
 				nl(1);
 				hasNotFled = false;
@@ -1142,8 +1202,11 @@ public class GameController2 {
 		if (!captain.isAlive()) {
 			isCaptainAlive();
 		} else if (!enemy.isAlive()) {
-			System.out.println("Sir, " + enemy.getName() + " has been neutralized.");
 			nl(1);
+			System.out.println("Sir, " + enemy.getName() + " has been neutralized.");
+			if (enemy.getName().equals("Gas Giant Dweller")) {
+				enemyArrayList = new EnemyMaker().getEnemyArrayList();
+			}
 		}
 	}
 	
@@ -1154,13 +1217,16 @@ public class GameController2 {
 	 * @author tkeating, cdeluna, kenny
 	 */
 	public void hitEnemy(Enemy enemy) {
+
 		int captainDamage = captain.getAttackPoints() - enemy.getDefensePoints();
 
 		System.out.println("Roger that, Captain! Target acquired, firing lasers at " + enemy.getName() + "!");
 		nl(1);
+		pause(1000);
+		nl(1);
 		enemy.setHealthPoints(enemy.getHealthPoints() - captainDamage);
 		if (enemy.getHealthPoints() <= 0) {
-			System.out.println(enemy.getName() + " Looks to be unstable");
+			System.out.println(enemy.getName() + " Looks to be in critical condition...");
 		} else {
 			System.out.println("Sir, scanners show enemy health at " + enemy.getHealthPoints() + "!");
 		}
@@ -1176,9 +1242,9 @@ public class GameController2 {
 		System.out.println("Captain! " + enemy.getName() + " appears to be readying for an attack! Brace for impact!");
 		int enemyDamage = enemy.getAttackPoints() - captain.getDefensePoints();
 		captain.setHealthPoints(captain.getHealthPoints() - enemyDamage);
-
-		System.out.println("Captain! Our sensors are showing us that we have sustained class " + enemyDamage
-				+ " damage to our hull!");
+		pause(1000);
+		nl(1);
+		System.out.println("Captain! Our sensors are showing us that we have sustained class " + enemyDamage + " damage!");
 		if (captain.getHealthPoints() <= 0) {
 			System.out.println("Captain... U-uh... W-we are not l-looking to g..oo..d...");
 		} else {

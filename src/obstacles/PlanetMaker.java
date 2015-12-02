@@ -196,7 +196,7 @@ public class PlanetMaker {
                 "\ncages rest quietly.",
                 /*29*/"This earth-like planet is the home of two unclothed humanoid beings frolicking in a garden " +
                 "near" +
-                "\n an apple tree. It seems that one is trying to communicate with a " + "snake while the other is " +
+                "\nan apple tree. It seems that one is trying to communicate with a " + "snake while the other is " +
                 "\nchasing a lightening fast blue hedgehog.",
                 /*30*/"This earth-like planet is thick with smog emitted from its industrious inhabitants. They do " +
                 "\nnot appear to have technology advanced enough to detect your presence."};
